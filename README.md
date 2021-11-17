@@ -1,3 +1,3 @@
 # AirRobeWidget
 
-A description of this package.
+This is the Widget library for AirRobe integration.
