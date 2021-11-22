@@ -21,7 +21,7 @@ let package = Package(
         .target(
             name: "AirRobeWidget",
             dependencies: [],
-            resources: [.process("Assets.xcassets")]),
+            resources: [.process("Resources/Assets.xcassets")]),
         .testTarget(
             name: "AirRobeWidgetTests",
             dependencies: ["AirRobeWidget"]),
