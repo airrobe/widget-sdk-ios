@@ -1,13 +1,13 @@
 //
-//  DemoUITestsLaunchTests.swift
-//  DemoUITests
+//  AirRobeDemoUITestsLaunchTests.swift
+//  AirRobeDemoUITests
 //
-//  Created by King on 11/18/21.
+//  Created by King on 11/22/21.
 //
 
 import XCTest
 
-class DemoUITestsLaunchTests: XCTestCase {
+class AirRobeDemoUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

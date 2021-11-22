@@ -1,8 +1,8 @@
 //
 //  ExpandableView.swift
-//  
 //
-//  Created by King on 11/21/21.
+//
+//  Created by King on 11/22/21.
 //
 
 import Foundation
@@ -18,7 +18,7 @@ public enum SwitchState {
     case notAdded
 }
 
-open class ExpandableView: UIView {
+open class AirRobeWidget: UIView {
     var highlightAnimation = HighlightAnimation.animated
     var arrowImageView: UIImageView!
     private var expandType: ExpandState = .closed
@@ -42,7 +42,6 @@ open class ExpandableView: UIView {
             widgetMainContainer.topAnchor.constraint(equalTo: topAnchor)
         ]
         widgetMainContainer.axis = .vertical
-        addSubview(widgetMainContainer)
 
         let titleContainerView = UIView()
         let addToAirRobeSwitch = UISwitch()
@@ -59,7 +58,7 @@ open class ExpandableView: UIView {
             arrowImageView.trailingAnchor.constraint(equalTo: titleContainerView.trailingAnchor, constant: 10),
             arrowImageView.centerYAnchor.constraint(equalTo: titleContainerView.centerYAnchor)
         ]
-        arrowImageView.image = UIImage(named: "arrowDown", in: Bundle(for: ExpandableView.self), compatibleWith: nil)
+        arrowImageView.image = UIImage(named: "arrowDown", in: Bundle(for: AirRobeWidget.self), compatibleWith: nil)
         titleContainerView.addSubview(arrowImageView)
 
         let titleLabel = UILabel()
@@ -122,6 +121,7 @@ open class ExpandableView: UIView {
         extraInfoLabel.text = "By opting in you agree to THE ICONIC’s Privacy Policy and consent for us to share your details with AirRobe."
         extraInfoLabel.textColor = .black
         extraInfoLabel.font = .systemFont(ofSize: 16)
+        addSubview(widgetMainContainer)
         addSubview(extraInfoLabel)
 
         NSLayoutConstraint.activate(widgetMainContainerConstraints)

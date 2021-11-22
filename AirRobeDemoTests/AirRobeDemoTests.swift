@@ -1,14 +1,14 @@
 //
-//  DemoTests.swift
-//  DemoTests
+//  AirRobeDemoTests.swift
+//  AirRobeDemoTests
 //
-//  Created by King on 11/18/21.
+//  Created by King on 11/22/21.
 //
 
 import XCTest
-@testable import Demo
+@testable import AirRobeDemo
 
-class DemoTests: XCTestCase {
+class AirRobeDemoTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
