@@ -17,20 +17,21 @@ public enum SwitchState {
     case added
     case notAdded
 }
+
 open class ExpandableView: UIView {
-    open var rightMargin: CGFloat = 16
-    open var highlightAnimation = HighlightAnimation.animated
-    open var arrowImageView: UIImageView!
+    var highlightAnimation = HighlightAnimation.animated
+    var arrowImageView: UIImageView!
     private var expandType: ExpandState = .closed
     private var switchState: SwitchState = .notAdded
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         initView()
     }
-    
-    required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initView()
     }
     
     func initView() {
@@ -76,7 +77,7 @@ open class ExpandableView: UIView {
             logoImageView.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 5),
             logoImageView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor)
         ]
-        logoImageView.image = UIImage(named: "logo")
+        logoImageView.image = UIImage()
         titleContainerView.addSubview(logoImageView)
 
         let descriptionLabel = UILabel()
