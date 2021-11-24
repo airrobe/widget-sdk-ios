@@ -112,7 +112,7 @@
                                                     <constraint firstAttribute="height" constant="20" id="9Ne-JB-KcM"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctI-XT-sW6" customClass="AirRobeWidget" customModule="AirRobeWidget">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ctI-XT-sW6" customClass="WidgetOnShop" customModule="AirRobeWidget">
                                                 <rect key="frame" x="0.0" y="579" width="374" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>

@@ -1,5 +1,5 @@
 //
-//  WidgetOnShop.swift
+//  OnShopView.swift
 //  
 //
 //  Created by King on 11/18/21.
@@ -8,8 +8,8 @@
 #if canImport(UIKit)
 import UIKit
 
-// AirRobe widget which will be shown on Shopping page.
-final class WidgetOnShop: UIView, NibLoadable {
+// AirRobe view which will be shown on Shopping page.
+final class OnShopView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var mainContainerExpandButton: UIButton!
