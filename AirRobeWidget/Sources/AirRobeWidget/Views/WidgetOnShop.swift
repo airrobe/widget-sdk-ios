@@ -10,7 +10,10 @@ import UIKit
 
 // AirRobe widget which will be shown on Shopping page.
 final class WidgetOnShop: UIView, NibLoadable {
+    @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
+    @IBOutlet weak var mainContainerExpandButton: UIButton!
+    @IBOutlet weak var margin: UIView!
     @IBOutlet weak var extraInfoLabel: UILabel!
     @IBOutlet weak var addToAirRobeSwitch: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
