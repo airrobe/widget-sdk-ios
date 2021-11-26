@@ -7,6 +7,7 @@
 
 #if canImport(UIKit)
 import UIKit
+import Combine
 
 public enum ExpandState {
     case opened
@@ -19,21 +20,87 @@ public enum SwitchState {
 }
 
 open class WidgetOnShop: UIView {
+    private(set) lazy var viewModel = WidgetOnShopModel()
+    private var subscribers: [AnyCancellable] = []
     private lazy var widgetOnShop: OnShopView = OnShopView.loadFromNib()
     private var expandType: ExpandState = .closed
     private var switchState: SwitchState = .notAdded
 
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initView()
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
-        initView()
     }
 
-    func initView() {
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+
+    public func initialize(
+        brand: String,
+        material: String,
+        category: String,
+        priceCents: String,
+        originalFullPriceCents: String,
+        rrpCents: String,
+        currency: String,
+        locale: String
+    ) {
+        viewModel.brand = brand
+        viewModel.material = material
+        viewModel.category = category
+        viewModel.priceCents = priceCents
+        viewModel.originalFullPriceCents = originalFullPriceCents
+        viewModel.rrpCents = rrpCents
+        viewModel.currency = currency
+        viewModel.locale = locale
+
+        setupBindings()
+        viewModel.initializeWidget()
+    }
+
+    private func setupBindings() {
+        viewModel.$isAllSet
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] allSet in
+                guard let self = self else {
+                    return
+                }
+                switch allSet {
+                case .notInitialized:
+                    break
+                case .loaded:
+                    self.initView()
+                case .loadedButInvisible:
+                    self.isHidden = true
+                case .loadedWithMappingInfoIssue:
+                    self.initViewWithError(error: WidgetOnShopModel.LoadState.loadedWithMappingInfoIssue.rawValue)
+                case .loadedWithParamIssue:
+                    self.initViewWithError(error: WidgetOnShopModel.LoadState.loadedWithParamIssue.rawValue)
+                case .loadedWithPriceEngineIssue:
+                    self.initViewWithError(error: WidgetOnShopModel.LoadState.loadedWithPriceEngineIssue.rawValue)
+                }
+            }).store(in: &subscribers)
+    }
+
+    private func initViewWithError(error: String) {
+        let errorLabel: UILabel = {
+            let v = UILabel()
+            v.textColor = .red
+            v.font = .systemFont(ofSize: 16)
+            v.text = error
+            v.textAlignment = .center
+            v.lineBreakMode = .byWordWrapping
+            v.numberOfLines = 0
+            return v
+        }()
+        addSubview(errorLabel)
+        heightAnchor.constraint(equalToConstant: 50).isActive = true
+        errorLabel.frame = self.bounds
+        errorLabel.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+
+    private func initView() {
         // Widget Border Style
         widgetOnShop.mainContainerView.layer.borderColor = UIColor.black.cgColor
         widgetOnShop.mainContainerView.layer.borderWidth = 1

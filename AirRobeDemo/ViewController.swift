@@ -8,11 +8,22 @@
 import UIKit
 import AirRobeWidget
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+    @IBOutlet weak var stackView: UIStackView!
+    private var widgetOnShop: WidgetOnShop = WidgetOnShop()
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+
+        widgetOnShop.initialize(
+            brand: "",
+            material: "",
+            category: "Accessories/Jewellery",
+            priceCents: "120",
+            originalFullPriceCents: "120",
+            rrpCents: "100",
+            currency: "AUD",
+            locale: "en-AU")
+        stackView.addArrangedSubview(widgetOnShop)
     }
 }
 

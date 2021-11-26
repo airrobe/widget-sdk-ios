@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 secretKey: "0779306686746963e71027f33c86ba5b",
                 mode: .sandbox)
         ).build()
+
         return true
     }
 

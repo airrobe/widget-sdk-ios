@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 final public class AirRobeWidgetBuild {
     var categoryModel: CategoryModel?
@@ -24,8 +25,6 @@ final public class AirRobeWidgetBuild {
                 return AirRobeHost.airRobeConnectorProduction.rawValue
             case .sandbox :
                 return AirRobeHost.airRobeConnectorSandbox.rawValue
-            case .none:
-                return ""
             }
         }()
 
@@ -34,11 +33,7 @@ final public class AirRobeWidgetBuild {
             return
         }
 
-        getMappingInfo(GraphQLOperation.fetchPost(url: url, appId: config.appId)) { [weak self] (category) in
-            guard let self = self else {
-                return
-            }
-            self.categoryModel = category
+        getMappingInfo(GraphQLOperation.fetchPost(url: url, appId: config.appId)) { (category) in
             UserDefaults.standard.categoryMappingInfo = category
         }
     }

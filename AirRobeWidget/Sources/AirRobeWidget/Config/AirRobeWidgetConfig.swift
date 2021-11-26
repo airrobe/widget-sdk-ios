@@ -22,7 +22,7 @@ public struct AirRobeWidgetConfig {
 
     /// AirRobe Widget Select Mode whether production or sandbox
     /// Initial value = .production
-    var mode: Mode?
+    var mode: Mode = .production
 
     /// set AirRobWidget AppId and SecretKey
     /// - Parameters:
@@ -31,7 +31,7 @@ public struct AirRobeWidgetConfig {
     public init(
         appId: String,
         secretKey: String,
-        mode: Mode? = .production
+        mode: Mode = .production
     ) {
         self.appId = appId
         self.secretKey = secretKey
