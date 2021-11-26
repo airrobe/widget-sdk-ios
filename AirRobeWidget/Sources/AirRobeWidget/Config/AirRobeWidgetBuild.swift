@@ -18,7 +18,12 @@ final public class AirRobeWidgetBuild {
     private init() { fatalError("You must provide settings when creating the AirRobeWidget") }
 
     public func build() {
-        getMappingInfo(config: config) { [weak self] (category) in
+        guard let url = URL(string: AirRobeHost.airRobeConnectorSandbox.rawValue) else {
+            print("Failed to Load AirRobe Connector Endpoint")
+            return
+        }
+
+        getMappingInfo(GraphQLOperation.fetchPost(url: url, appId: config.appId)) { [weak self] (category) in
             guard let self = self else {
                 return
             }
@@ -30,31 +35,16 @@ final public class AirRobeWidgetBuild {
         }
     }
 
-    fileprivate func getMappingInfo(config: AirRobeWidgetConfig, completionHandler: @escaping (CategoryModel) -> Void) {
+    fileprivate func getMappingInfo(_ operation: GraphQLOperation, completion: @escaping (CategoryModel) -> Void) {
+        let request: URLRequest
 
-        guard let url = URL(string: AirRobeHost.airRobeConnectorSandbox.rawValue) else {
-            print("Failed to Load AirRobe Connector Endpoint")
+        do {
+            request = try operation.getURLRequest()
+        } catch {
             return
         }
 
-        /// GetMappingInfo Query for AirRobe Connector GraphQL
-        let params: [String: String?] = [
-            "query": "query GetMappingInfo {\n    shop {\n        categoryMappings {\n            from\n            to\n            excluded\n        }\n    }\n}",
-            "variables": nil,
-            "operationName": "GetMappingInfo"
-        ]
-
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: params, options: []) else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.addValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Application/json", forHTTPHeaderField: "Accept")
-        request.addValue(config.appId, forHTTPHeaderField: "x-airrobe-app-id")
-        request.addValue("XhMrE0hVul9M52f2VPjT61AToEEXHiI2Qywkm7RgIEw=", forHTTPHeaderField: "x-airrobe-hmac-sha256")
-        request.httpMethod = "POST"
-        request.httpBody = httpBody
-        let getMappingInfoTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let getMappingInfoTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("Error with fetching mapping info: \(error)")
                 return
@@ -71,10 +61,8 @@ final public class AirRobeWidgetBuild {
                     print("Error with the data")
                     return
             }
-            completionHandler(mappingInfos)
+            completion(mappingInfos)
         }
         getMappingInfoTask.resume()
-
     }
-
 }

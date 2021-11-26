@@ -10,6 +10,6 @@ import Foundation
 enum AirRobeHost: String {
 
     case airRobeConnectorSandbox = "https://sandbox.connector.airrobe.com/graphql"
-//    case airRobeConnectorProduction = "https://sandbox.connector.airrobe.com/graphql"
+//    case airRobeConnectorProduction = "https://connector.airrobe.com/graphql"
 
 }

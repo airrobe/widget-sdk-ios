@@ -31,4 +31,17 @@ enum Strings {
     static let extraInfo = "By opting in you agree to THE ICONIC’s Privacy Policy and consent for us to share your details with AirRobe."
     static let extraLinkText = "Privacy Policy"
     static let extraLink = "https://www.theiconic.com.au/privacy-policy"
+
+    // MARK: - Get Mapping Info Query String
+    static let GetMappingInfoQuery = """
+                query GetMappingInfo {
+                  shop {
+                    categoryMappings {
+                      from
+                      to
+                      excluded
+                    }
+                  }
+                }
+            """
 }
