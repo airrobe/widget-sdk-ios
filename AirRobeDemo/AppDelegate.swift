@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AirRobeWidgetBuild.init(
             config: AirRobeWidgetConfig(
                 appId: "515b6ee129da",
-                secretKey: "0779306686746963e71027f33c86ba5b")
+                secretKey: "0779306686746963e71027f33c86ba5b",
+                mode: .sandbox)
         ).build()
         return true
     }

@@ -18,7 +18,18 @@ final public class AirRobeWidgetBuild {
     private init() { fatalError("You must provide settings when creating the AirRobeWidget") }
 
     public func build() {
-        guard let url = URL(string: AirRobeHost.airRobeConnectorSandbox.rawValue) else {
+        let endpoint: String = {
+            switch self.config.mode {
+            case .production:
+                return AirRobeHost.airRobeConnectorProduction.rawValue
+            case .sandbox :
+                return AirRobeHost.airRobeConnectorSandbox.rawValue
+            case .none:
+                return ""
+            }
+        }()
+
+        guard let url = URL(string: endpoint) else {
             print("Failed to Load AirRobe Connector Endpoint")
             return
         }
