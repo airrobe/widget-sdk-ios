@@ -81,6 +81,19 @@ open class WidgetOnShop: UIView {
                     self.initViewWithError(error: WidgetOnShopModel.LoadState.loadedWithPriceEngineIssue.rawValue)
                 }
             }).store(in: &subscribers)
+
+        viewModel.$potentialPrice
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] price in
+                guard let self = self else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.widgetOnShop.potentialValueLabel.text = Strings.potentialValue + "$" + price
+                }
+            }).store(in: &subscribers)
     }
 
     private func initViewWithError(error: String) {

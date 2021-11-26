@@ -49,9 +49,7 @@ class WidgetOnShopModel {
             isAllSet = .loadedWithParamIssue
             return
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.getCategoryFromMappings()
-        }
+        getCategoryFromMappings()
     }
 }
 
