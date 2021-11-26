@@ -25,11 +25,12 @@ struct GraphQLOperation: Encodable {
         var request = URLRequest(url: url)
 
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Application/json", forHTTPHeaderField: "Accept")
         request.addValue(appId, forHTTPHeaderField: "x-airrobe-app-id")
-        request.addValue("HdHwWAavwpPpWNyUr0g72xiTlNSkUngwzz275eO91+0=", forHTTPHeaderField: "x-airrobe-hmac-sha256")
         request.httpMethod = "POST"
         request.httpBody = try JSONEncoder().encode(self)
+        #if DEBUG
+        dump(request)
+        #endif
 
         return request
     }

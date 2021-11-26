@@ -27,9 +27,6 @@ final public class AirRobeWidgetBuild {
             guard let self = self else {
                 return
             }
-            #if DEBUG
-            print("Category Mapping Info", category)
-            #endif
             self.categoryModel = category
             UserDefaults.standard.categoryMappingInfo = category
         }
