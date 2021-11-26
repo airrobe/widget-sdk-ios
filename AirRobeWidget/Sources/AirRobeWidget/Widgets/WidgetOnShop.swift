@@ -143,6 +143,7 @@ open class WidgetOnShop: UIView {
         addSubview(widgetOnShop)
         widgetOnShop.frame = self.bounds
         widgetOnShop.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        widgetOnShop.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 
     @objc func onTapSwitch(_ sender: UISwitch) {
