@@ -69,6 +69,7 @@ private extension WidgetOnShopModel {
             isAllSet = .loadedButInvisible
             return
         }
+        isAllSet = .loaded
         callPriceEngine(category: to)
     }
 
@@ -97,7 +98,6 @@ private extension WidgetOnShopModel {
                     return
                 }
                 self.potentialPrice = String(resaleValue)
-                self.isAllSet = .loaded
             })
     }
 

@@ -19,6 +19,7 @@ final class OnShopView: UIView, NibLoadable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var potentialValueLabel: UILabel!
+    @IBOutlet weak var potentialValueLoading: UIActivityIndicatorView!
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var detailedDescriptionLabel: UILabel!
 }
