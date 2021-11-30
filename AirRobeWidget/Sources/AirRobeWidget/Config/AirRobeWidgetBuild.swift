@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import Combine
 
 final public class AirRobeWidgetBuild {
-    var categoryModel: CategoryModel?
     private let config: AirRobeWidgetConfig
 
     public init(config: AirRobeWidgetConfig) {
@@ -19,6 +17,7 @@ final public class AirRobeWidgetBuild {
     private init() { fatalError("You must provide settings when creating the AirRobeWidget") }
 
     public func build() {
+        UserDefaults.standard.shouldLoadWidget = false
         let endpoint: String = {
             switch self.config.mode {
             case .production:
@@ -35,6 +34,7 @@ final public class AirRobeWidgetBuild {
 
         getMappingInfo(GraphQLOperation.fetchPost(url: url, appId: config.appId)) { (category) in
             UserDefaults.standard.categoryMappingInfo = category
+            UserDefaults.standard.shouldLoadWidget = true
         }
     }
 
@@ -50,17 +50,23 @@ final public class AirRobeWidgetBuild {
         let getMappingInfoTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 print("Error with fetching mapping info: \(error)")
+                UserDefaults.standard.categoryMappingInfo = nil
+                UserDefaults.standard.shouldLoadWidget = true
                 return
             }
 
             guard let httpResponse = response as? HTTPURLResponse,
                 (200...299).contains(httpResponse.statusCode) else {
                     print("Error with the response, unexpected status code: \(String(describing: response))")
+                    UserDefaults.standard.categoryMappingInfo = nil
+                    UserDefaults.standard.shouldLoadWidget = true
                 return
             }
 
             guard let data = data,
                 let mappingInfos = try? JSONDecoder().decode(CategoryModel.self, from: data) else {
+                    UserDefaults.standard.categoryMappingInfo = nil
+                    UserDefaults.standard.shouldLoadWidget = true
                     print("Error with the data")
                     return
             }

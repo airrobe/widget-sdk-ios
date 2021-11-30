@@ -61,10 +61,24 @@ open class WidgetOnShop: UIView {
 
         initViewWithLoadingIndicator()
         setupBindings()
-        viewModel.initializeWidget()
+        if UserDefaults.standard.shouldLoadWidget {
+            self.viewModel.initializeWidget()
+        }
     }
 
     private func setupBindings() {
+        UserDefaults.standard
+            .publisher(for: \.shouldLoadWidget)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] (shouldLoadWidget) in
+                guard let self = self, shouldLoadWidget else {
+                    return
+                }
+                self.viewModel.initializeWidget()
+            }).store(in: &subscribers)
+
         viewModel.$isAllSet
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
@@ -83,7 +97,10 @@ open class WidgetOnShop: UIView {
                 case .loadedWithMappingInfoIssue:
                     self.initViewWithError(error: WidgetOnShopModel.LoadState.loadedWithMappingInfoIssue.rawValue)
                 case .loadedWithParamIssue:
-                    self.initViewWithError(error: WidgetOnShopModel.LoadState.loadedWithParamIssue.rawValue)
+                    self.isHidden = true
+                    #if DEBUG
+                    print(WidgetOnShopModel.LoadState.loadedWithParamIssue.rawValue)
+                    #endif
                 case .loadedWithPriceEngineIssue:
                     #if DEBUG
                     print(WidgetOnShopModel.LoadState.loadedWithPriceEngineIssue.rawValue)
@@ -145,7 +162,7 @@ open class WidgetOnShop: UIView {
         widgetOnShop.mainContainerView.layer.borderWidth = 1
 
         // Initializing Static Texts & Links
-        widgetOnShop.titleLabel.text = Strings.add
+        widgetOnShop.titleLabel.text = UserDefaults.standard.OtpInfo ? Strings.added : Strings.add
         widgetOnShop.descriptionLabel.text = Strings.description
         widgetOnShop.potentialValueLabel.text = Strings.potentialValue
         widgetOnShop.potentialValueLoading.hidesWhenStopped = true
@@ -162,7 +179,7 @@ open class WidgetOnShop: UIView {
             linkText: Strings.extraLinkText,
             link: Strings.extraLink)
 
-        widgetOnShop.addToAirRobeSwitch.isOn = false
+        widgetOnShop.addToAirRobeSwitch.isOn = UserDefaults.standard.OtpInfo
         widgetOnShop.addToAirRobeSwitch.addTarget(self, action: #selector(onTapSwitch), for: .valueChanged)
 
         widgetOnShop.mainContainerExpandButton.setTitle("", for: .normal)
@@ -178,9 +195,11 @@ open class WidgetOnShop: UIView {
         if sender.isOn {
             switchState = .added
             widgetOnShop.titleLabel.text = Strings.added
+            UserDefaults.standard.OtpInfo = true
         } else {
             switchState = .notAdded
             widgetOnShop.titleLabel.text = Strings.add
+            UserDefaults.standard.OtpInfo = false
         }
     }
 

@@ -46,4 +46,8 @@ public struct AirRobeWidget: Codable {
             platform: \(platform)
         """
     }
+
+    public func clearCache() {
+        UserDefaults.standard.OtpInfo = false
+    }
 }

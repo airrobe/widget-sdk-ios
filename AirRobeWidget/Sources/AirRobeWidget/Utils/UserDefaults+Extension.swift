@@ -27,4 +27,16 @@ extension UserDefaults {
             set(encoded, forKey: UserDefaults.categoryMappingInfoKey)
         }
     }
+
+    static let shouldLoadWidgetKey = "shouldLoadWidgetKey"
+    @objc var shouldLoadWidget: Bool {
+        get { return bool(forKey: UserDefaults.shouldLoadWidgetKey) }
+        set { set(newValue, forKey: UserDefaults.shouldLoadWidgetKey) }
+    }
+
+    static let OtpInfoKey = "OtpInfoKey"
+    var OtpInfo: Bool {
+        get { return bool(forKey: UserDefaults.OtpInfoKey) }
+        set { set(newValue, forKey: UserDefaults.OtpInfoKey) }
+    }
 }

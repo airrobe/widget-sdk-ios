@@ -24,6 +24,9 @@ final class ViewController: UIViewController {
             currency: "AUD",
             locale: "en-AU")
         stackView.addArrangedSubview(widgetOnShop)
+
+        /// In order to clear cache for Otp Info
+        /// AirRobeWidget.current.clearCache()
     }
 }
 

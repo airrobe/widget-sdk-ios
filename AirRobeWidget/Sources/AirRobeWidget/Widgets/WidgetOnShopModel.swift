@@ -39,7 +39,6 @@ class WidgetOnShopModel {
     @Published var isAllSet: LoadState = .notInitialized
     @Published var potentialPrice: String = ""
 
-    private let categoryMappingInfo = UserDefaults.standard.categoryMappingInfo
     private lazy var priceEngineApiService = AirRobePriceEngineApiService()
     private(set) lazy var widgetBuildModel = WidgetOnShopModel()
     private var cancellable: AnyCancellable?
@@ -56,7 +55,7 @@ class WidgetOnShopModel {
 private extension WidgetOnShopModel {
 
     func getCategoryFromMappings() {
-        guard let categoryMappingInfo = categoryMappingInfo else {
+        guard let categoryMappingInfo = UserDefaults.standard.categoryMappingInfo else {
             isAllSet = .loadedWithMappingInfoIssue
             return
         }
