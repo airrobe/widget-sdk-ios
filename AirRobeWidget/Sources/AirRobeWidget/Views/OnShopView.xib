@@ -98,7 +98,7 @@
                                         <constraint firstAttribute="height" constant="10" id="VcM-4E-Mi1"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMv-u6-Ipi">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMv-u6-Ipi" customClass="HyperlinkLabel" customModule="AirRobeWidget">
                                     <rect key="frame" x="0.0" y="138" width="394" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
@@ -115,7 +115,7 @@
                         <constraint firstAttribute="trailing" secondItem="vZ6-M6-d25" secondAttribute="trailing" constant="10" id="oQK-p7-GCF"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dp7-jD-L3u">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dp7-jD-L3u" customClass="HyperlinkLabel" customModule="AirRobeWidget">
                     <rect key="frame" x="10" y="212" width="394" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>
@@ -136,8 +136,8 @@
                 <outlet property="addToAirRobeSwitch" destination="0fP-yw-WwF" id="4ev-WZ-inm"/>
                 <outlet property="arrowImageView" destination="Hpz-Z1-uaW" id="e9p-Nm-PYK"/>
                 <outlet property="descriptionLabel" destination="sgg-2c-UU8" id="5vW-Se-MJr"/>
-                <outlet property="detailedDescriptionLabel" destination="qMv-u6-Ipi" id="83M-Rd-U4I"/>
-                <outlet property="extraInfoLabel" destination="dp7-jD-L3u" id="Oa8-Zh-uxz"/>
+                <outlet property="detailedDescriptionLabel" destination="qMv-u6-Ipi" id="Yqp-kx-43s"/>
+                <outlet property="extraInfoLabel" destination="dp7-jD-L3u" id="BS1-CU-3BT"/>
                 <outlet property="mainContainerExpandButton" destination="Fvc-fX-KYx" id="EHH-g8-yAb"/>
                 <outlet property="mainContainerView" destination="swg-ok-dY1" id="wOr-lj-dRN"/>
                 <outlet property="margin" destination="6RC-xd-TY7" id="Yi4-aG-ukC"/>

@@ -171,13 +171,14 @@ open class WidgetOnShop: UIView {
         widgetOnShop.detailedDescriptionLabel.setLinkText(
             orgText: Strings.detailedDescription,
             linkText: Strings.learnMoreLinkText,
-            link: Strings.learnMoreLinkText)
+            tapHandler: onTapLearnMore)
         widgetOnShop.detailedDescriptionLabel.isHidden = true
         widgetOnShop.margin.isHidden = true
         widgetOnShop.extraInfoLabel.setLinkText(
             orgText: Strings.extraInfo,
             linkText: Strings.extraLinkText,
-            link: Strings.extraLink)
+            link: Strings.extraLink,
+            tapHandler: onTapExtraInfoLink)
 
         widgetOnShop.addToAirRobeSwitch.isOn = UserDefaults.standard.OtpInfo
         widgetOnShop.addToAirRobeSwitch.addTarget(self, action: #selector(onTapSwitch), for: .valueChanged)
@@ -189,6 +190,14 @@ open class WidgetOnShop: UIView {
         widgetOnShop.frame = bounds
         widgetOnShop.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         widgetOnShop.heightAnchor.constraint(equalToConstant: 100).isActive = true
+    }
+
+    private func onTapExtraInfoLink(_ url: URL) {
+        Utils.openUrl(url)
+    }
+
+    private func onTapLearnMore(_ url: URL) {
+        print("Learn More Tapped")
     }
 
     @objc func onTapSwitch(_ sender: UISwitch) {

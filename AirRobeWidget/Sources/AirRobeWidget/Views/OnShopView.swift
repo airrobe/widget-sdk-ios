@@ -14,13 +14,13 @@ final class OnShopView: UIView, NibLoadable {
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var mainContainerExpandButton: UIButton!
     @IBOutlet weak var margin: UIView!
-    @IBOutlet weak var extraInfoLabel: UILabel!
+    @IBOutlet weak var extraInfoLabel: HyperlinkLabel!
     @IBOutlet weak var addToAirRobeSwitch: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var potentialValueLabel: UILabel!
     @IBOutlet weak var potentialValueLoading: UIActivityIndicatorView!
     @IBOutlet weak var arrowImageView: UIImageView!
-    @IBOutlet weak var detailedDescriptionLabel: UILabel!
+    @IBOutlet weak var detailedDescriptionLabel: HyperlinkLabel!
 }
 #endif

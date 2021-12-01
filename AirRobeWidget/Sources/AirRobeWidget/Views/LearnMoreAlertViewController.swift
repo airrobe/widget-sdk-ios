@@ -25,7 +25,7 @@ final class LearnMoreAlertViewController: UIViewController {
     @IBOutlet weak var toggleOnLabel: UILabel!
     @IBOutlet weak var switchContainerView: UIView!
     @IBOutlet weak var otpSwitch: UISwitch!
-    @IBOutlet weak var findMoreLabel: UILabel!
+    @IBOutlet weak var findMoreLabel: HyperlinkLabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,15 @@ final class LearnMoreAlertViewController: UIViewController {
         answerLabel.text = Strings.learnMoreAnswer
         readyLabel.text = Strings.learnMoreReady
         toggleOnLabel.text = Strings.learnMoreToggleOn
-        findMoreLabel.setLinkText(orgText: Strings.learnMoreFindMoreText, linkText: Strings.learnMoreFindMoreText, link: Strings.learnMoreFindMoreLink)
+        findMoreLabel.setLinkText(
+            orgText: Strings.learnMoreFindMoreText,
+            linkText: Strings.learnMoreFindMoreText,
+            link: Strings.learnMoreFindMoreLink,
+            tapHandler: onTapFindMoreLink)
+    }
+
+    private func onTapFindMoreLink(_ url: URL) {
+        Utils.openUrl(url)
     }
 
     @IBAction func onToggleOtpSwitch(_ sender: Any) {
