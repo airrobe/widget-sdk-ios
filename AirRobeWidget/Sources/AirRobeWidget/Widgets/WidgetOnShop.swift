@@ -204,15 +204,16 @@ open class WidgetOnShop: UIView {
     }
 
     @objc func onTapExpand(_ sender: UIButton) {
-        var degree = 0.0
-        switch expandType {
-        case .opened:
-            expandType = .closed
-            degree = 0.0
-        case .closed:
-            expandType = .opened
-            degree = 1.0
-        }
+        let degree: CGFloat = {
+            switch expandType {
+            case .opened:
+                expandType = .closed
+                return 0.0
+            case .closed:
+                expandType = .opened
+                return 1.0
+            }
+        }()
 
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
             guard let self = self else {

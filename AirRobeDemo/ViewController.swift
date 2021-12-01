@@ -23,6 +23,7 @@ final class ViewController: UIViewController {
             rrpCents: "100",
             currency: "AUD",
             locale: "en-AU")
+//        widgetOnMultiOtp.initialize(items: ["Accessories/Jewellery", "Accessories/Jewellery"])
         stackView.addArrangedSubview(widgetOnShop)
 
         /// In order to clear cache for Otp Info

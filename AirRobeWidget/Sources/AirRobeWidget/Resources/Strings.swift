@@ -44,4 +44,17 @@ enum Strings {
                   }
                 }
             """
+
+    // MARK: - Learn More Alert View Controller Strings
+    static let learnMoreTitle = "HOW IT WORKS"
+    static let learnMoreStep1Title = "1. ADD TO AIRROBE"
+    static let learnMoreStep1Description = "Toggling the AirRobe \"on\" will save your purchase (including all product information) to your private AirRobe account to re-sell later."
+    static let learnMoreStep2Title = "2. RE-SELL LATER"
+    static let learnMoreStep2Description = "After you've worn and loved your item, simply log into airrobe.com to list your item for sale on AirRobe’s marketplace – in one click."
+    static let learnMoreQuestion = "What if I don't have an AirRobe account?"
+    static let learnMoreAnswer = "Don't panic! You'll be directed to set up your free account at the order confirmation page."
+    static let learnMoreReady = "READY TO GET STARTED?"
+    static let learnMoreToggleOn = "TOGGLE ON!"
+    static let learnMoreFindMoreText = "Find out more about AirRobe."
+    static let learnMoreFindMoreLink = "https://www.theiconic.com.au/airrobe/"
 }
