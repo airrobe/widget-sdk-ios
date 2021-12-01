@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// Initialize AirRobeWidget with appId and secretKey
         AirRobeWidgetBuild.init(
             config: AirRobeWidgetConfig(
-                appId: "515b6ee129da",
+                appId: "c43f2be28f1f",
                 secretKey: "0779306686746963e71027f33c86ba5b",
                 mode: .sandbox)
         ).build()

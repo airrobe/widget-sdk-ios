@@ -18,14 +18,12 @@ struct GraphQLOperation: Encodable {
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(operationString, forKey: .query)
+        try container.encode(operationString.replacingOccurrences(of: Strings.GetMappingInfoQueryAppIdKey, with: appId), forKey: .query)
     }
 
     func getURLRequest() throws -> URLRequest {
         var request = URLRequest(url: url)
-
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue(appId, forHTTPHeaderField: "x-airrobe-app-id")
         request.httpMethod = "POST"
         request.httpBody = try JSONEncoder().encode(self)
         #if DEBUG

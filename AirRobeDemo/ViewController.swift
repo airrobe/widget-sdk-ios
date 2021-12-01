@@ -17,7 +17,7 @@ final class ViewController: UIViewController {
         widgetOnShop.initialize(
             brand: "",
             material: "",
-            category: "Accessories/Jewellery",
+            category: "Accessories",
             priceCents: "120",
             originalFullPriceCents: "120",
             rrpCents: "100",
