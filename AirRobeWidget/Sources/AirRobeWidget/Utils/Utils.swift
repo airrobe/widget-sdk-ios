@@ -9,7 +9,11 @@
 import UIKit
 
 struct Utils {
-    static func openUrl(_ url: URL) {
+    static func openUrl(_ url: URL?) {
+        guard let url = url else {
+            return
+        }
+
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: { success in
                 if success {

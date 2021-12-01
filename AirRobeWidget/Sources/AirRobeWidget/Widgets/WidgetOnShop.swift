@@ -189,14 +189,13 @@ open class WidgetOnShop: UIView {
         addSubview(widgetOnShop)
         widgetOnShop.frame = bounds
         widgetOnShop.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        widgetOnShop.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 
-    private func onTapExtraInfoLink(_ url: URL) {
+    private func onTapExtraInfoLink(_ url: URL?) {
         Utils.openUrl(url)
     }
 
-    private func onTapLearnMore(_ url: URL) {
+    private func onTapLearnMore(_ url: URL?) {
         print("Learn More Tapped")
     }
 

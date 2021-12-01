@@ -45,7 +45,7 @@ final class LearnMoreAlertViewController: UIViewController {
             tapHandler: onTapFindMoreLink)
     }
 
-    private func onTapFindMoreLink(_ url: URL) {
+    private func onTapFindMoreLink(_ url: URL?) {
         Utils.openUrl(url)
     }
 

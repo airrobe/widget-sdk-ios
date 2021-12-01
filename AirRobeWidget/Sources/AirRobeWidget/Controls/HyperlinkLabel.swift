@@ -57,7 +57,10 @@ final class HyperlinkLabel: UILabel {
 
     var hyperlinkAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.systemBlue]
 
-    var didTapOnURL: (URL) -> Void = { url in
+    var didTapOnURL: (URL?) -> Void = { url in
+        guard let url = url else {
+            return
+        }
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: { success in
                 if success {
@@ -74,12 +77,7 @@ final class HyperlinkLabel: UILabel {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let url = self.url(at: touches) {
-            didTapOnURL(url)
-        }
-        else {
-            super.touchesEnded(touches, with: event)
-        }
+        didTapOnURL(self.url(at: touches))
     }
 
     private func url(at touches: Set<UITouch>) -> URL? {
@@ -130,7 +128,7 @@ extension NSAttributedString.Key {
 }
 
 extension HyperlinkLabel {
-    func setLinkText(orgText: String, linkText: String, link: URL? = nil, tapHandler: @escaping (URL) -> Void) {
+    func setLinkText(orgText: String, linkText: String, link: URL? = nil, tapHandler: @escaping (URL?) -> Void) {
         var attText: NSMutableAttributedString? = NSMutableAttributedString(string: orgText)
         let linkWasSet = attText?.setAsLink(textToFind: linkText, linkURL: link) == true
         if !linkWasSet {
