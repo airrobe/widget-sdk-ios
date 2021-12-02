@@ -11,7 +11,8 @@ import AirRobeWidget
 final class ViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     private var airRobeOtpIn: AirRobeOtpIn = AirRobeOtpIn()
-    private var airRobeOrderConfirmation: AirRobeOrderConfirmation = AirRobeOrderConfirmation()
+    private var airRobeMultiOtpIn: AirRobeMultiOtpIn = AirRobeMultiOtpIn()
+    private var airRobeConfirmation: AirRobeConfirmation = AirRobeConfirmation()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,11 +26,16 @@ final class ViewController: UIViewController {
             rrpCents: "100",
             currency: "AUD",
             locale: "en-AU")
-//        widgetOnMultiOtp.initialize(items: ["Accessories/Jewellery", "Accessories/Jewellery"])
         stackView.addArrangedSubview(airRobeOtpIn)
 
-        airRobeOrderConfirmation.initialize()
-        stackView.addArrangedSubview(airRobeOrderConfirmation)
+        airRobeMultiOtpIn.initialize(
+            viewController: self,
+            items: ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"]
+        )
+        stackView.addArrangedSubview(airRobeMultiOtpIn)
+
+        airRobeConfirmation.initialize()
+        stackView.addArrangedSubview(airRobeConfirmation)
         /// In order to clear cache for Otp Info
         /// AirRobeWidget.current.clearCache()
     }

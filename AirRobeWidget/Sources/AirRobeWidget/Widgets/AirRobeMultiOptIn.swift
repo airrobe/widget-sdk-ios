@@ -1,21 +1,21 @@
 //
-//  AirRobeOtpIn.swift
+//  AirRobeMultiOtpIn.swift
 //  
 //
-//  Created by King on 11/24/21.
+//  Created by King on 12/2/21.
 //
 
 #if canImport(UIKit)
 import UIKit
 import Combine
 
-open class AirRobeOtpIn: UIView {
+open class AirRobeMultiOtpIn: UIView {
     enum ExpandState {
         case opened
         case closed
     }
 
-    private(set) lazy var viewModel = AirRobeOtpInModel()
+    private(set) lazy var viewModel = AirRobeMultiOtpInModel()
     private var subscribers: [AnyCancellable] = []
     private lazy var otpInview: OtpInView = OtpInView.loadFromNib()
     private var expandType: ExpandState = .closed
@@ -36,24 +36,10 @@ open class AirRobeOtpIn: UIView {
 
     public func initialize(
         viewController: UIViewController,
-        brand: String,
-        material: String,
-        category: String,
-        priceCents: String,
-        originalFullPriceCents: String,
-        rrpCents: String,
-        currency: String,
-        locale: String
+        items: [String]
     ) {
         viewModel.vc = viewController
-        viewModel.brand = brand
-        viewModel.material = material
-        viewModel.category = category
-        viewModel.priceCents = priceCents
-        viewModel.originalFullPriceCents = originalFullPriceCents
-        viewModel.rrpCents = rrpCents
-        viewModel.currency = currency
-        viewModel.locale = locale
+        viewModel.items = items
 
         initViewWithLoadingIndicator()
         setupBindings()
@@ -97,24 +83,6 @@ open class AirRobeOtpIn: UIView {
                     #if DEBUG
                     print(AirRobeOtpInModel.LoadState.loadedWithParamIssue.rawValue)
                     #endif
-                case .loadedWithPriceEngineIssue:
-                    #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.loadedWithPriceEngineIssue.rawValue)
-                    #endif
-                }
-            }).store(in: &subscribers)
-
-        viewModel.$potentialPrice
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] price in
-                guard let self = self, !price.isEmpty else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.otpInview.potentialValueLoading.stopAnimating()
-                    self.otpInview.potentialValueLabel.text = Strings.potentialValue + "$" + price
                 }
             }).store(in: &subscribers)
     }
@@ -123,6 +91,7 @@ open class AirRobeOtpIn: UIView {
         addSubview(activityIndicator)
         activityIndicator.frame = bounds
         activityIndicator.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        activityIndicator.heightAnchor.constraint(equalToConstant: 50).isActive = true
         activityIndicator.center = center
         activityIndicator.startAnimating()
     }
@@ -159,9 +128,8 @@ open class AirRobeOtpIn: UIView {
         // Initializing Static Texts & Links
         otpInview.titleLabel.text = UserDefaults.standard.OtpInfo ? Strings.added : Strings.add
         otpInview.descriptionLabel.text = Strings.description
-        otpInview.potentialValueLabel.text = Strings.potentialValue
+        otpInview.potentialValueLabel.isHidden = true
         otpInview.potentialValueLoading.hidesWhenStopped = true
-        otpInview.potentialValueLoading.startAnimating()
 
         otpInview.detailedDescriptionLabel.setLinkText(
             orgText: Strings.detailedDescription,
