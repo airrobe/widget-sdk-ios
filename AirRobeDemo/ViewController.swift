@@ -15,6 +15,7 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
 
         widgetOnShop.initialize(
+            viewController: self,
             brand: "",
             material: "",
             category: "Accessories",

@@ -5,7 +5,8 @@
 //  Created by King on 11/25/21.
 //
 
-import Foundation
+#if canImport(UIKit)
+import UIKit
 import Combine
 
 class WidgetOnShopModel {
@@ -19,6 +20,8 @@ class WidgetOnShopModel {
         case loadedWithPriceEngineIssue = "Not able to get the valid information from Price Engine-v1"
     }
 
+    /// The instance of the parent view controller
+    var vc: UIViewController = UIViewController()
     /// Describes which brand the widget belongs to.
     var brand: String = ""
     /// Describes which material the widget belongs to.
@@ -101,3 +104,4 @@ private extension WidgetOnShopModel {
     }
 
 }
+#endif

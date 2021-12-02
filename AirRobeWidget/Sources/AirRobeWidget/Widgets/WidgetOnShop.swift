@@ -14,17 +14,11 @@ public enum ExpandState {
     case closed
 }
 
-public enum SwitchState {
-    case added
-    case notAdded
-}
-
 open class WidgetOnShop: UIView {
     private(set) lazy var viewModel = WidgetOnShopModel()
     private var subscribers: [AnyCancellable] = []
     private lazy var widgetOnShop: OnShopView = OnShopView.loadFromNib()
     private var expandType: ExpandState = .closed
-    private var switchState: SwitchState = .notAdded
     private let activityIndicator: UIActivityIndicatorView = {
         let v = UIActivityIndicatorView()
         v.hidesWhenStopped = true
@@ -41,6 +35,7 @@ open class WidgetOnShop: UIView {
     }
 
     public func initialize(
+        viewController: UIViewController,
         brand: String,
         material: String,
         category: String,
@@ -50,6 +45,7 @@ open class WidgetOnShop: UIView {
         currency: String,
         locale: String
     ) {
+        viewModel.vc = viewController
         viewModel.brand = brand
         viewModel.material = material
         viewModel.category = category
@@ -158,8 +154,7 @@ open class WidgetOnShop: UIView {
         activityIndicator.removeFromSuperview()
 
         // Widget Border Style
-        widgetOnShop.mainContainerView.layer.borderColor = UIColor.black.cgColor
-        widgetOnShop.mainContainerView.layer.borderWidth = 1
+        widgetOnShop.mainContainerView.addBorder(cornerRadius: 0)
 
         // Initializing Static Texts & Links
         widgetOnShop.titleLabel.text = UserDefaults.standard.OtpInfo ? Strings.added : Strings.add
@@ -196,16 +191,16 @@ open class WidgetOnShop: UIView {
     }
 
     private func onTapLearnMore(_ url: URL?) {
-        print("Learn More Tapped")
+        let alert = LearnMoreAlertViewController.instantiate()
+        alert.modalPresentationStyle = .overCurrentContext
+        viewModel.vc.present(alert, animated: true)
     }
 
     @objc func onTapSwitch(_ sender: UISwitch) {
         if sender.isOn {
-            switchState = .added
             widgetOnShop.titleLabel.text = Strings.added
             UserDefaults.standard.OtpInfo = true
         } else {
-            switchState = .notAdded
             widgetOnShop.titleLabel.text = Strings.add
             UserDefaults.standard.OtpInfo = false
         }

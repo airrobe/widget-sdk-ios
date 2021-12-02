@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class LearnMoreAlertViewController: UIViewController {
+final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
     @IBOutlet weak var outsideView: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var closeButton: UIButton!
@@ -43,17 +43,36 @@ final class LearnMoreAlertViewController: UIViewController {
             linkText: Strings.learnMoreFindMoreText,
             link: Strings.learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
+        otpSwitch.isOn = UserDefaults.standard.OtpInfo
+
+        mainView.addShadow()
+        step1View.addBorder()
+        step1View.addShadow()
+        step2View.addBorder()
+        step2View.addShadow()
+        switchContainerView.addBorder(cornerRadius: 22)
+
+        let outTap = UITapGestureRecognizer(target: self, action: #selector(dismissController))
+        outsideView.addGestureRecognizer(outTap)
     }
 
     private func onTapFindMoreLink(_ url: URL?) {
         Utils.openUrl(url)
     }
 
-    @IBAction func onToggleOtpSwitch(_ sender: Any) {
-        
+    @IBAction func onToggleOtpSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            UserDefaults.standard.OtpInfo = true
+        } else {
+            UserDefaults.standard.OtpInfo = false
+        }
     }
 
     @IBAction func onTapClose(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
+    }
+
+    @objc func dismissController() {
+        dismiss(animated: true)
     }
 }
