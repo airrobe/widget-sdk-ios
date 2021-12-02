@@ -1,5 +1,5 @@
 //
-//  WidgetOnShopModel.swift
+//  AirRobeOtpInModel.swift
 //  
 //
 //  Created by King on 11/25/21.
@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-class WidgetOnShopModel {
+final class AirRobeOtpInModel {
 
     enum LoadState: String {
         case notInitialized = "Widget Initializing"
@@ -43,7 +43,6 @@ class WidgetOnShopModel {
     @Published var potentialPrice: String = ""
 
     private lazy var priceEngineApiService = AirRobePriceEngineApiService()
-    private(set) lazy var widgetBuildModel = WidgetOnShopModel()
     private var cancellable: AnyCancellable?
 
     func initializeWidget() {
@@ -55,7 +54,7 @@ class WidgetOnShopModel {
     }
 }
 
-private extension WidgetOnShopModel {
+private extension AirRobeOtpInModel {
 
     func getCategoryFromMappings() {
         guard let categoryMappingInfo = UserDefaults.standard.categoryMappingInfo else {

@@ -58,4 +58,9 @@ enum Strings {
     static let learnMoreToggleOn = "TOGGLE ON!"
     static let learnMoreFindMoreText = "Find out more about AirRobe."
     static let learnMoreFindMoreLink = URL(string:"https://www.theiconic.com.au/airrobe/")!
+
+    // MARK: - Order Confirmation View Strings
+    static let orderConfirmationTitle = "Your items are in"
+    static let orderConfirmationDescription = "Simply activate your free account below to re-sell your items back into a circular economy after you`ve worn and loved them."
+    static let orderconrifmrationActivateText = "ACTIVATE YOUR AIRROBE ACCOUNT"
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 // AirRobe view which will be shown on Shopping page.
-final class OnShopView: UIView, NibLoadable {
+final class OtpInView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var mainContainerExpandButton: UIButton!

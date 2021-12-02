@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OrderConfirmationView" customModule="AirRobeWidget">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpu-A5-hUn">
+                    <rect key="frame" x="0.0" y="64" width="414" height="50"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1on-WJ-75x">
+                            <rect key="frame" x="0.0" y="0.0" width="184.5" height="50"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airrobeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="mOd-bW-Lwo">
+                            <rect key="frame" x="184.5" y="0.0" width="229.5" height="50"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="1on-WJ-75x" firstAttribute="width" secondItem="mOd-bW-Lwo" secondAttribute="width" multiplier="0.803922" id="xIb-cu-g8H"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxa-zn-Xla">
+                    <rect key="frame" x="30" y="134" width="354" height="658"/>
+                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Fa-yf-gHU">
+                    <rect key="frame" x="177" y="812" width="60" height="30"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sm7-tj-Ipk">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jn-QE-jkN">
+                            <rect key="frame" x="30" y="10" width="0.0" height="10"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Sm7-tj-Ipk" secondAttribute="bottom" id="5w3-kS-hjj"/>
+                        <constraint firstAttribute="trailing" secondItem="Sm7-tj-Ipk" secondAttribute="trailing" id="6Cb-et-lrn"/>
+                        <constraint firstItem="Sm7-tj-Ipk" firstAttribute="leading" secondItem="4Fa-yf-gHU" secondAttribute="leading" id="CRc-DX-FAR"/>
+                        <constraint firstAttribute="bottom" secondItem="2Jn-QE-jkN" secondAttribute="bottom" constant="10" id="aAz-vV-Pj3"/>
+                        <constraint firstAttribute="trailing" secondItem="2Jn-QE-jkN" secondAttribute="trailing" constant="30" id="hfB-q8-m0b"/>
+                        <constraint firstItem="2Jn-QE-jkN" firstAttribute="leading" secondItem="4Fa-yf-gHU" secondAttribute="leading" constant="30" id="lii-xV-Ykf"/>
+                        <constraint firstItem="Sm7-tj-Ipk" firstAttribute="top" secondItem="4Fa-yf-gHU" secondAttribute="top" id="vNH-kI-bIP"/>
+                        <constraint firstItem="2Jn-QE-jkN" firstAttribute="top" secondItem="4Fa-yf-gHU" secondAttribute="top" constant="10" id="yPr-Jr-JQo"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="kpu-A5-hUn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="11m-QJ-kLI"/>
+                <constraint firstItem="4Fa-yf-gHU" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="6ue-Cl-c0q"/>
+                <constraint firstItem="Qxa-zn-Xla" firstAttribute="top" secondItem="kpu-A5-hUn" secondAttribute="bottom" constant="20" id="Fuv-eR-5V9"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Qxa-zn-Xla" secondAttribute="trailing" constant="30" id="GhV-aB-7a6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kpu-A5-hUn" secondAttribute="trailing" id="S5S-44-Cmn"/>
+                <constraint firstItem="4Fa-yf-gHU" firstAttribute="top" secondItem="Qxa-zn-Xla" secondAttribute="bottom" constant="20" id="eOq-dh-COd"/>
+                <constraint firstItem="kpu-A5-hUn" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="nuz-sL-Kai"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4Fa-yf-gHU" secondAttribute="bottom" constant="20" id="q4M-uy-LHp"/>
+                <constraint firstItem="Qxa-zn-Xla" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="vOV-4s-Iep"/>
+            </constraints>
+            <connections>
+                <outlet property="activateButton" destination="Sm7-tj-Ipk" id="G5K-Pc-cCa"/>
+                <outlet property="activateContainerView" destination="4Fa-yf-gHU" id="dh2-OM-kuP"/>
+                <outlet property="activateLabel" destination="2Jn-QE-jkN" id="bUX-kU-CEC"/>
+                <outlet property="descriptionLabel" destination="Qxa-zn-Xla" id="ZsR-ob-d5k"/>
+                <outlet property="titleLabel" destination="1on-WJ-75x" id="nJO-KS-Jza"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="63.616071428571423"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="airrobeLogo" width="229.5" height="34"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

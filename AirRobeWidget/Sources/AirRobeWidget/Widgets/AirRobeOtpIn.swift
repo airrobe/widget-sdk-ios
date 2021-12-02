@@ -1,5 +1,5 @@
 //
-//  WidgetOnShop.swift
+//  AirRobeOtpIn.swift
 //  
 //
 //  Created by King on 11/24/21.
@@ -14,10 +14,10 @@ public enum ExpandState {
     case closed
 }
 
-open class WidgetOnShop: UIView {
-    private(set) lazy var viewModel = WidgetOnShopModel()
+open class AirRobeOtpIn: UIView {
+    private(set) lazy var viewModel = AirRobeOtpInModel()
     private var subscribers: [AnyCancellable] = []
-    private lazy var widgetOnShop: OnShopView = OnShopView.loadFromNib()
+    private lazy var otpInview: OtpInView = OtpInView.loadFromNib()
     private var expandType: ExpandState = .closed
     private let activityIndicator: UIActivityIndicatorView = {
         let v = UIActivityIndicatorView()
@@ -91,15 +91,15 @@ open class WidgetOnShop: UIView {
                 case .loadedButInvisible:
                     self.isHidden = true
                 case .loadedWithMappingInfoIssue:
-                    self.initViewWithError(error: WidgetOnShopModel.LoadState.loadedWithMappingInfoIssue.rawValue)
+                    self.initViewWithError(error: AirRobeOtpInModel.LoadState.loadedWithMappingInfoIssue.rawValue)
                 case .loadedWithParamIssue:
                     self.isHidden = true
                     #if DEBUG
-                    print(WidgetOnShopModel.LoadState.loadedWithParamIssue.rawValue)
+                    print(AirRobeOtpInModel.LoadState.loadedWithParamIssue.rawValue)
                     #endif
                 case .loadedWithPriceEngineIssue:
                     #if DEBUG
-                    print(WidgetOnShopModel.LoadState.loadedWithPriceEngineIssue.rawValue)
+                    print(AirRobeOtpInModel.LoadState.loadedWithPriceEngineIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)
@@ -113,8 +113,8 @@ open class WidgetOnShop: UIView {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.widgetOnShop.potentialValueLoading.stopAnimating()
-                    self.widgetOnShop.potentialValueLabel.text = Strings.potentialValue + "$" + price
+                    self.otpInview.potentialValueLoading.stopAnimating()
+                    self.otpInview.potentialValueLabel.text = Strings.potentialValue + "$" + price
                 }
             }).store(in: &subscribers)
     }
@@ -154,36 +154,36 @@ open class WidgetOnShop: UIView {
         activityIndicator.removeFromSuperview()
 
         // Widget Border Style
-        widgetOnShop.mainContainerView.addBorder(cornerRadius: 0)
+        otpInview.mainContainerView.addBorder(cornerRadius: 0)
 
         // Initializing Static Texts & Links
-        widgetOnShop.titleLabel.text = UserDefaults.standard.OtpInfo ? Strings.added : Strings.add
-        widgetOnShop.descriptionLabel.text = Strings.description
-        widgetOnShop.potentialValueLabel.text = Strings.potentialValue
-        widgetOnShop.potentialValueLoading.hidesWhenStopped = true
-        widgetOnShop.potentialValueLoading.startAnimating()
+        otpInview.titleLabel.text = UserDefaults.standard.OtpInfo ? Strings.added : Strings.add
+        otpInview.descriptionLabel.text = Strings.description
+        otpInview.potentialValueLabel.text = Strings.potentialValue
+        otpInview.potentialValueLoading.hidesWhenStopped = true
+        otpInview.potentialValueLoading.startAnimating()
 
-        widgetOnShop.detailedDescriptionLabel.setLinkText(
+        otpInview.detailedDescriptionLabel.setLinkText(
             orgText: Strings.detailedDescription,
             linkText: Strings.learnMoreLinkText,
             tapHandler: onTapLearnMore)
-        widgetOnShop.detailedDescriptionLabel.isHidden = true
-        widgetOnShop.margin.isHidden = true
-        widgetOnShop.extraInfoLabel.setLinkText(
+        otpInview.detailedDescriptionLabel.isHidden = true
+        otpInview.margin.isHidden = true
+        otpInview.extraInfoLabel.setLinkText(
             orgText: Strings.extraInfo,
             linkText: Strings.extraLinkText,
             link: Strings.extraLink,
             tapHandler: onTapExtraInfoLink)
 
-        widgetOnShop.addToAirRobeSwitch.isOn = UserDefaults.standard.OtpInfo
-        widgetOnShop.addToAirRobeSwitch.addTarget(self, action: #selector(onTapSwitch), for: .valueChanged)
+        otpInview.addToAirRobeSwitch.isOn = UserDefaults.standard.OtpInfo
+        otpInview.addToAirRobeSwitch.addTarget(self, action: #selector(onTapSwitch), for: .valueChanged)
 
-        widgetOnShop.mainContainerExpandButton.setTitle("", for: .normal)
-        widgetOnShop.mainContainerExpandButton.addTarget(self, action: #selector(onTapExpand), for: .touchUpInside)
+        otpInview.mainContainerExpandButton.setTitle("", for: .normal)
+        otpInview.mainContainerExpandButton.addTarget(self, action: #selector(onTapExpand), for: .touchUpInside)
 
-        addSubview(widgetOnShop)
-        widgetOnShop.frame = bounds
-        widgetOnShop.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        addSubview(otpInview)
+        otpInview.frame = bounds
+        otpInview.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
 
     private func onTapExtraInfoLink(_ url: URL?) {
@@ -193,15 +193,21 @@ open class WidgetOnShop: UIView {
     private func onTapLearnMore(_ url: URL?) {
         let alert = LearnMoreAlertViewController.instantiate()
         alert.modalPresentationStyle = .overCurrentContext
+        alert.onDidDismiss = { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.otpInview.addToAirRobeSwitch.isOn = UserDefaults.standard.OtpInfo
+        }
         viewModel.vc.present(alert, animated: true)
     }
 
     @objc func onTapSwitch(_ sender: UISwitch) {
         if sender.isOn {
-            widgetOnShop.titleLabel.text = Strings.added
+            otpInview.titleLabel.text = Strings.added
             UserDefaults.standard.OtpInfo = true
         } else {
-            widgetOnShop.titleLabel.text = Strings.add
+            otpInview.titleLabel.text = Strings.add
             UserDefaults.standard.OtpInfo = false
         }
     }
@@ -222,10 +228,10 @@ open class WidgetOnShop: UIView {
             guard let self = self else {
                 return
             }
-            self.widgetOnShop.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
-            self.widgetOnShop.detailedDescriptionLabel.isHidden.toggle()
-            self.widgetOnShop.margin.isHidden.toggle()
-            self.widgetOnShop.widgetStackView.layoutIfNeeded()
+            self.otpInview.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
+            self.otpInview.detailedDescriptionLabel.isHidden.toggle()
+            self.otpInview.margin.isHidden.toggle()
+            self.otpInview.widgetStackView.layoutIfNeeded()
         })
     }
 
