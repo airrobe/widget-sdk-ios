@@ -18,8 +18,6 @@ final class AirRobeMultiOtpInModel {
         case paramIssue = "Please initialize the widget with the valid information"
     }
 
-    /// The instance of the parent view controller
-    var vc: UIViewController = UIViewController()
     /// Describes the categorys mapping info in String array for the items in the cart.
     var items: [String] = []
 

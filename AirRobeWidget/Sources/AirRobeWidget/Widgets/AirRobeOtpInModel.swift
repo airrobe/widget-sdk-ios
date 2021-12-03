@@ -19,8 +19,6 @@ final class AirRobeOtpInModel {
         case priceEngineIssue = "Not able to get the valid information from Price Engine-v1"
     }
 
-    /// The instance of the parent view controller
-    var vc: UIViewController = UIViewController()
     /// Describes which brand the widget belongs to.
     var brand: String = ""
     /// Describes which material the widget belongs to.

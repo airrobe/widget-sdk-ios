@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct AirRobeWidgetConfig {
 
@@ -20,8 +21,11 @@ public struct AirRobeWidgetConfig {
     /// AirRobe Widget Secret Key from https://connector.airrobe.com
     var secretKey: String = ""
 
+    /// AirRobe Widget Base Theme Color
+    var color: UIColor?
+
     /// AirRobe Widget Select Mode whether production or sandbox
-    /// Initial value = .production
+    /// default value = .production
     var mode: Mode = .production
 
     /// set AirRobWidget AppId and SecretKey
@@ -31,10 +35,12 @@ public struct AirRobeWidgetConfig {
     public init(
         appId: String,
         secretKey: String,
+        color: String = "42abc8",
         mode: Mode = .production
     ) {
         self.appId = appId
         self.secretKey = secretKey
         self.mode = mode
+        UserDefaults.standard.BaseColor = color
     }
 }

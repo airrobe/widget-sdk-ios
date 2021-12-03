@@ -10,7 +10,7 @@ import UIKit
 
 final class HyperlinkLabel: UILabel {
 
-    // MARK: Creating the Label
+    // MARK: - Creating the Label
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,6 +41,9 @@ final class HyperlinkLabel: UILabel {
                     guard let value = value else { return }
                     assert(value is URL)
                     text.addAttributes(hyperlinkAttributes, range: subrange)
+                    text.addAttribute(.foregroundColor, value: UIColor(colorCode: UserDefaults.standard.BaseColor), range: subrange)
+                    text.addAttribute(.underlineColor, value: UIColor(colorCode: UserDefaults.standard.BaseColor), range: subrange)
+                    text.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: subrange)
                 }
 
                 /// Fill in font attributes when not set
@@ -53,31 +56,30 @@ final class HyperlinkLabel: UILabel {
         }
     }
 
-    // MARK: Finding Hyperlink Under Touch
+    // MARK: - Finding Hyperlink Under Touch
 
     var hyperlinkAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.systemBlue]
 
-    var didTapOnURL: (URL?) -> Void = { url in
-        guard let url = url else {
-            return
-        }
+    var didTapOnURL: (URL) -> Void = { url in
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: { success in
                 if success {
                     print("Opened URL \(url) successfully")
-                }
-                else {
+                } else {
                     print("Failed to open URL \(url)")
                 }
             })
-        }
-        else {
+        } else {
             print("Can't open the URL: \(url)")
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        didTapOnURL(self.url(at: touches))
+        if let url = self.url(at: touches) {
+            didTapOnURL(url)
+        } else {
+            super.touchesEnded(touches, with: event)
+        }
     }
 
     private func url(at touches: Set<UITouch>) -> URL? {
@@ -128,7 +130,7 @@ extension NSAttributedString.Key {
 }
 
 extension HyperlinkLabel {
-    func setLinkText(orgText: String, linkText: String, link: URL? = nil, tapHandler: @escaping (URL?) -> Void) {
+    func setLinkText(orgText: String, linkText: String, link: URL, tapHandler: @escaping (URL) -> Void) {
         var attText: NSMutableAttributedString? = NSMutableAttributedString(string: orgText)
         let linkWasSet = attText?.setAsLink(textToFind: linkText, linkURL: link) == true
         if !linkWasSet {
@@ -140,10 +142,10 @@ extension HyperlinkLabel {
 }
 
 extension NSMutableAttributedString {
-    public func setAsLink(textToFind: String, linkURL: URL?) -> Bool {
+    public func setAsLink(textToFind: String, linkURL: URL) -> Bool {
         let foundRange = self.mutableString.range(of: textToFind)
         if foundRange.location != NSNotFound {
-            self.addAttribute(.link, value: linkURL ?? Strings.learnMoreLinkText, range: foundRange)
+            addAttribute(.hyperlink, value: linkURL, range: foundRange)
             return true
         }
         return false

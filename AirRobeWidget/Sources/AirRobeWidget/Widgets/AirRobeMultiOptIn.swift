@@ -10,15 +10,9 @@ import UIKit
 import Combine
 
 open class AirRobeMultiOtpIn: UIView {
-    enum ExpandState {
-        case opened
-        case closed
-    }
-
     private(set) lazy var viewModel = AirRobeMultiOtpInModel()
     private var subscribers: [AnyCancellable] = []
     private lazy var otpInview: OtpInView = OtpInView.loadFromNib()
-    private var expandType: ExpandState = .closed
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,10 +23,8 @@ open class AirRobeMultiOtpIn: UIView {
     }
 
     public func initialize(
-        viewController: UIViewController,
         items: [String]
     ) {
-        viewModel.vc = viewController
         viewModel.items = items
 
         setupBindings()
@@ -109,77 +101,10 @@ open class AirRobeMultiOtpIn: UIView {
     }
 
     private func initView() {
-        // Widget Border Style
-        otpInview.mainContainerView.addBorder(cornerRadius: 0)
-
-        // Initializing Static Texts & Links
-        otpInview.titleLabel.text = UserDefaults.standard.OtpInfo ? Strings.added : Strings.add
-        otpInview.descriptionLabel.text = Strings.description
         otpInview.potentialValueLabel.isHidden = true
-        otpInview.potentialValueLoading.hidesWhenStopped = true
-
-        otpInview.detailedDescriptionLabel.setLinkText(
-            orgText: Strings.detailedDescription,
-            linkText: Strings.learnMoreLinkText,
-            tapHandler: onTapLearnMore)
-        otpInview.detailedDescriptionLabel.isHidden = true
-        otpInview.margin.isHidden = true
-        otpInview.extraInfoLabel.setLinkText(
-            orgText: Strings.extraInfo,
-            linkText: Strings.extraLinkText,
-            link: Strings.extraLink,
-            tapHandler: onTapExtraInfoLink)
-
-        otpInview.addToAirRobeSwitch.isOn = UserDefaults.standard.OtpInfo
-        otpInview.addToAirRobeSwitch.addTarget(self, action: #selector(onTapSwitch), for: .valueChanged)
-        otpInview.mainContainerExpandButton.addTarget(self, action: #selector(onTapExpand), for: .touchUpInside)
-
         addSubview(otpInview)
         otpInview.frame = bounds
         otpInview.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    }
-
-    private func onTapExtraInfoLink(_ url: URL?) {
-        Utils.openUrl(url)
-    }
-
-    private func onTapLearnMore(_ url: URL?) {
-        let alert = LearnMoreAlertViewController.instantiate()
-        alert.modalPresentationStyle = .overCurrentContext
-        viewModel.vc.present(alert, animated: true)
-    }
-
-    @objc func onTapSwitch(_ sender: UISwitch) {
-        if sender.isOn {
-            otpInview.titleLabel.text = Strings.added
-            UserDefaults.standard.OtpInfo = true
-        } else {
-            otpInview.titleLabel.text = Strings.add
-            UserDefaults.standard.OtpInfo = false
-        }
-    }
-
-    @objc func onTapExpand(_ sender: UIButton) {
-        let degree: CGFloat = {
-            switch expandType {
-            case .opened:
-                expandType = .closed
-                return 0.0
-            case .closed:
-                expandType = .opened
-                return 1.0
-            }
-        }()
-
-        UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.otpInview.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
-            self.otpInview.detailedDescriptionLabel.isHidden.toggle()
-            self.otpInview.margin.isHidden.toggle()
-            self.otpInview.widgetStackView.layoutIfNeeded()
-        })
     }
 }
 #endif

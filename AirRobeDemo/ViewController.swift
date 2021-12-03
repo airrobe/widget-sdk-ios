@@ -17,7 +17,6 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
 
         airRobeOtpIn.initialize(
-            viewController: self,
             brand: "",
             material: "",
             category: "Accessories",
@@ -29,7 +28,6 @@ final class ViewController: UIViewController {
         stackView.addArrangedSubview(airRobeOtpIn)
 
         airRobeMultiOtpIn.initialize(
-            viewController: self,
             items: ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"]
         )
         stackView.addArrangedSubview(airRobeMultiOtpIn)
