@@ -7,10 +7,13 @@
 
 #if canImport(UIKit)
 import UIKit
+import Combine
 
 open class AirRobeConfirmation: UIView {
     private lazy var orderConfirmationView: OrderConfirmationView = OrderConfirmationView.loadFromNib()
-    private(set) lazy var viewModel = AirRobeMultiOtpInModel()
+    private(set) lazy var viewModel = AirRobeConfirmationModel()
+    private var subscribers: [AnyCancellable] = []
+    private var initialized: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,25 +27,82 @@ open class AirRobeConfirmation: UIView {
         orderId: String,
         email: String? = nil
     ) {
-        initView()
+        viewModel.orderId = orderId
+        viewModel.email = email
+        setupBindings()
+    }
+
+    private func setupBindings() {
+        UserDefaults.standard
+            .publisher(for: \.OtpInfo)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] (otpInfo) in
+                guard let self = self else {
+                    return
+                }
+                self.viewModel.isAllSet = otpInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
+            }).store(in: &subscribers)
+
+        UserDefaults.standard
+            .publisher(for: \.Eligibility)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] (eligibility) in
+                guard let self = self else {
+                    return
+                }
+                self.viewModel.isAllSet = eligibility && UserDefaults.standard.OtpInfo ? .eligible : .notEligible
+            }).store(in: &subscribers)
+
+        viewModel.$isAllSet
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] allSet in
+                guard let self = self else {
+                    return
+                }
+                switch allSet {
+                case .initializing:
+                    #if DEBUG
+                    print(AirRobeOtpInModel.LoadState.initializing.rawValue)
+                    #endif
+                case .eligible:
+                    self.initView()
+                case .notEligible:
+                    self.isHidden = true
+                case .paramIssue:
+                    self.isHidden = true
+                    #if DEBUG
+                    print(AirRobeOtpInModel.LoadState.paramIssue.rawValue)
+                    #endif
+                }
+            }).store(in: &subscribers)
     }
 
     private func initView() {
-        orderConfirmationView.addBorder()
-        orderConfirmationView.addShadow()
+        if !initialized {
+            orderConfirmationView.addBorder()
+            orderConfirmationView.addShadow()
 
-        orderConfirmationView.titleLabel.text = Strings.orderConfirmationTitle
-        orderConfirmationView.descriptionLabel.text = Strings.orderConfirmationDescription
-        orderConfirmationView.activateLabel.text = Strings.orderconrifmrationActivateText
+            orderConfirmationView.titleLabel.text = Strings.orderConfirmationTitle
+            orderConfirmationView.descriptionLabel.text = Strings.orderConfirmationDescription
+            orderConfirmationView.activateLabel.text = Strings.orderconrifmrationActivateText
 
-        orderConfirmationView.activateContainerView.backgroundColor = UIColor.black
-        orderConfirmationView.activateContainerView.addBorder(borderWidth: 0, cornerRadius: 20)
-        orderConfirmationView.activateContainerView.addShadow()
-        orderConfirmationView.activateButton.addTarget(self, action: #selector(onTapActivate), for: .touchUpInside)
+            orderConfirmationView.activateContainerView.backgroundColor = UIColor.black
+            orderConfirmationView.activateContainerView.addBorder(borderWidth: 0, cornerRadius: 20)
+            orderConfirmationView.activateContainerView.addShadow()
+            orderConfirmationView.activateButton.addTarget(self, action: #selector(onTapActivate), for: .touchUpInside)
 
-        addSubview(orderConfirmationView)
-        orderConfirmationView.frame = bounds
-        orderConfirmationView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            addSubview(orderConfirmationView)
+            orderConfirmationView.frame = bounds
+            orderConfirmationView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            initialized = true
+        }
+        isHidden = false
     }
 
     @objc func onTapActivate(_ sender: UIButton) {

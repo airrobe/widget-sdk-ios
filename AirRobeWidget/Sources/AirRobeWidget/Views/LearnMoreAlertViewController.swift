@@ -26,7 +26,6 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
     @IBOutlet weak var switchContainerView: UIView!
     @IBOutlet weak var otpSwitch: UISwitch!
     @IBOutlet weak var findMoreLabel: HyperlinkLabel!
-    var onDidDismiss: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,20 +69,10 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
     }
 
     @IBAction func onTapClose(_ sender: Any) {
-        dismiss(animated: true) { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.onDidDismiss?()
-        }
+        dismiss(animated: true)
     }
 
     @objc func dismissController() {
-        dismiss(animated: true) { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.onDidDismiss?()
-        }
+        dismiss(animated: true)
     }
 }

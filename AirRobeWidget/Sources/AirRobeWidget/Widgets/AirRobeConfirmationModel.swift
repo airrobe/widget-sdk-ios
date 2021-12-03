@@ -12,33 +12,24 @@ import Combine
 final class AirRobeConfirmationModel {
 
     enum LoadState: String {
-        case notInitialized = "Widget Initializing"
-        case loaded
-        case loadedButInvisible
-        case loadedWithMappingInfoIssue = "Please initialize the sdk with your AppID and Secret Key"
-        case loadedWithParamIssue = "Please initialize the widget with the valid information"
+        case initializing = "Widget Initializing"
+        case eligible
+        case notEligible
+        case paramIssue = "Please initialize the widget with the valid information"
     }
 
     /// Describes the order Id of the purchase.
     var orderId: String = ""
     var email: String?
 
-    @Published var isAllSet: LoadState = .notInitialized
+    @Published var isAllSet: LoadState = .initializing
 
     func initializeWidget() {
         if orderId.isEmpty {
-            isAllSet = .loadedWithParamIssue
+            isAllSet = .paramIssue
             return
         }
-        checkEligibility()
+        isAllSet = UserDefaults.standard.OtpInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
     }
-}
-
-private extension AirRobeConfirmationModel {
-
-    func checkEligibility() {
-        isAllSet = .loaded
-    }
-
 }
 #endif

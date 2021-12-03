@@ -31,6 +31,7 @@ final class AirRobeMultiOtpInModel {
             return
         }
         isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
+        UserDefaults.standard.Eligibility = categoryModel.checkCategoryEligible(items: items).eligible ? true : false
     }
 }
 #endif

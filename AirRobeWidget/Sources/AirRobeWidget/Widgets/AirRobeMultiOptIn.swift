@@ -42,6 +42,18 @@ open class AirRobeMultiOtpIn: UIView {
     }
 
     private func setupBindings() {
+        UserDefaults.standard
+            .publisher(for: \.OtpInfo)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] (otpInfo) in
+                guard let self = self else {
+                    return
+                }
+                self.otpInview.addToAirRobeSwitch.isOn = otpInfo
+            }).store(in: &subscribers)
+
         CategoryModelInstance.shared.$categoryModel
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
@@ -134,12 +146,6 @@ open class AirRobeMultiOtpIn: UIView {
     private func onTapLearnMore(_ url: URL?) {
         let alert = LearnMoreAlertViewController.instantiate()
         alert.modalPresentationStyle = .overCurrentContext
-        alert.onDidDismiss = { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.otpInview.addToAirRobeSwitch.isOn = UserDefaults.standard.OtpInfo
-        }
         viewModel.vc.present(alert, animated: true)
     }
 
