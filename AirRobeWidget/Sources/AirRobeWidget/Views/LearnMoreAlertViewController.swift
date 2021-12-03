@@ -56,7 +56,7 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
         outsideView.addGestureRecognizer(outTap)
     }
 
-    private func onTapFindMoreLink(_ url: URL?) {
+    private func onTapFindMoreLink(_ url: URL) {
         Utils.openUrl(url)
     }
 
