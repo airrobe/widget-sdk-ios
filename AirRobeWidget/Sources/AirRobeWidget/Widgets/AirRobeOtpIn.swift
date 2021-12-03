@@ -19,12 +19,6 @@ open class AirRobeOtpIn: UIView {
     private var subscribers: [AnyCancellable] = []
     private lazy var otpInview: OtpInView = OtpInView.loadFromNib()
     private var expandType: ExpandState = .closed
-    private let activityIndicator: UIActivityIndicatorView = {
-        let v = UIActivityIndicatorView()
-        v.hidesWhenStopped = true
-        v.style = .medium
-        return v
-    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,24 +49,22 @@ open class AirRobeOtpIn: UIView {
         viewModel.currency = currency
         viewModel.locale = locale
 
-        initViewWithLoadingIndicator()
         setupBindings()
-        if UserDefaults.standard.shouldLoadWidget {
-            self.viewModel.initializeWidget()
+        if let categoryModel = CategoryModelInstance.shared.categoryModel {
+            viewModel.initializeWidget(categoryModel: categoryModel)
         }
     }
 
     private func setupBindings() {
-        UserDefaults.standard
-            .publisher(for: \.shouldLoadWidget)
+        CategoryModelInstance.shared.$categoryModel
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
-            }, receiveValue: { [weak self] (shouldLoadWidget) in
-                guard let self = self, shouldLoadWidget else {
+            }, receiveValue: { [weak self] categoryModel in
+                guard let self = self, let categoryModel = categoryModel else {
                     return
                 }
-                self.viewModel.initializeWidget()
+                self.viewModel.initializeWidget(categoryModel: categoryModel)
             }).store(in: &subscribers)
 
         viewModel.$isAllSet
@@ -92,8 +84,6 @@ open class AirRobeOtpIn: UIView {
                     self.initView()
                 case .notEligible:
                     self.isHidden = true
-                case .invalidMappingInfo:
-                    self.initViewWithError(error: AirRobeOtpInModel.LoadState.invalidMappingInfo.rawValue)
                 case .paramIssue:
                     self.isHidden = true
                     #if DEBUG
@@ -121,19 +111,7 @@ open class AirRobeOtpIn: UIView {
             }).store(in: &subscribers)
     }
 
-    private func initViewWithLoadingIndicator() {
-        addSubview(activityIndicator)
-        activityIndicator.frame = bounds
-        activityIndicator.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        activityIndicator.center = center
-        activityIndicator.startAnimating()
-    }
-
     private func initViewWithError(error: String) {
-        // Remove loading indicator when data loads out
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
-
         let errorLabel: UILabel = {
             let v = UILabel()
             v.textColor = .red
@@ -151,10 +129,6 @@ open class AirRobeOtpIn: UIView {
     }
 
     private func initView() {
-        // Remove loading indicator when data loads out
-        activityIndicator.stopAnimating()
-        activityIndicator.removeFromSuperview()
-
         // Widget Border Style
         otpInview.mainContainerView.addBorder(cornerRadius: 0)
 

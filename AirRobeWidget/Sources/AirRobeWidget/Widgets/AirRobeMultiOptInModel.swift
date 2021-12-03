@@ -15,7 +15,6 @@ final class AirRobeMultiOtpInModel {
         case initializing = "Widget Initializing"
         case eligible
         case notEligible
-        case invalidMappingInfo = "Please initialize the sdk with your AppID and Secret Key"
         case paramIssue = "Please initialize the widget with the valid information"
     }
 
@@ -26,24 +25,12 @@ final class AirRobeMultiOtpInModel {
 
     @Published var isAllSet: LoadState = .initializing
 
-    func initializeWidget() {
+    func initializeWidget(categoryModel: CategoryModel) {
         if items.isEmpty {
             isAllSet = .paramIssue
             return
         }
-        checkCategories()
+        isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
     }
-}
-
-private extension AirRobeMultiOtpInModel {
-
-    func checkCategories() {
-        guard let categoryMappingInfo = UserDefaults.standard.categoryMappingInfo else {
-            isAllSet = .invalidMappingInfo
-            return
-        }
-        isAllSet = categoryMappingInfo.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
-    }
-
 }
 #endif

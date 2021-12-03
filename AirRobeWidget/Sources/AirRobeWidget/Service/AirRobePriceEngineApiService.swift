@@ -36,7 +36,9 @@ final class AirRobePriceEngineApiService: NetworkClient {
     func priceEngine(price: String, rrp: String, category: String) -> AnyPublisher<PriceEngineResponseModel, Error> {
         var endpoint = Endpoint.priceEngine(price: price, rrp: rrp, category: category)
         endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
+        #if DEBUG
         dump(endpoint.asURLRequest())
+        #endif
         return execute(endpoint.asURLRequest(), decodingType: PriceEngineResponseModel.self)
     }
 }

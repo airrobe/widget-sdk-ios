@@ -15,7 +15,6 @@ final class AirRobeOtpInModel {
         case initializing = "Widget Initializing"
         case eligible
         case notEligible
-        case invalidMappingInfo = "Please initialize the sdk with your AppID and Secret Key"
         case paramIssue = "Please initialize the widget with the valid information"
         case priceEngineIssue = "Not able to get the valid information from Price Engine-v1"
     }
@@ -45,27 +44,19 @@ final class AirRobeOtpInModel {
     private lazy var priceEngineApiService = AirRobePriceEngineApiService()
     private var cancellable: AnyCancellable?
 
-    func initializeWidget() {
+    func initializeWidget(categoryModel: CategoryModel) {
         if category.isEmpty || priceCents.isEmpty || rrpCents.isEmpty {
             isAllSet = .paramIssue
             return
         }
-        checkCategory()
+        isAllSet = categoryModel.checkCategoryEligible(items: [category]).eligible ? .eligible : .notEligible
+        if isAllSet == .eligible {
+            callPriceEngine(category: categoryModel.checkCategoryEligible(items: [category]).to)
+        }
     }
 }
 
 private extension AirRobeOtpInModel {
-
-    func checkCategory() {
-        guard let categoryMappingInfo = UserDefaults.standard.categoryMappingInfo else {
-            isAllSet = .invalidMappingInfo
-            return
-        }
-        isAllSet = categoryMappingInfo.checkCategoryEligible(items: [category]).eligible ? .eligible : .notEligible
-        if isAllSet == .eligible {
-            callPriceEngine(category: categoryMappingInfo.checkCategoryEligible(items: [category]).to)
-        }
-    }
 
     func callPriceEngine(category: String) {
         cancellable = priceEngineApiService.priceEngine(price: priceCents, rrp: rrpCents, category: category)
