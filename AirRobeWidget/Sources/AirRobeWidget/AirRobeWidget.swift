@@ -68,6 +68,7 @@ extension AirRobeWidget {
 
         getMappingInfo(GraphQLOperation.fetchPost(url: url, appId: config.appId)) { (category) in
             CategoryModelInstance.shared.categoryModel = category
+            UserDefaults.standard.AppId = config.appId
         }
     }
 

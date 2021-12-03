@@ -63,4 +63,7 @@ enum Strings {
     static let orderConfirmationTitle = "Your items are in"
     static let orderConfirmationDescription = "Simply activate your free account below to re-sell your items back into a circular economy after you`ve worn and loved them."
     static let orderconrifmrationActivateText = "ACTIVATE YOUR AIRROBE ACCOUNT"
+
+    // MARK: - Order Activate baseURL
+    static let orderActivateBaseUrl = "https://shop.airrobe.com/en/orders/"
 }

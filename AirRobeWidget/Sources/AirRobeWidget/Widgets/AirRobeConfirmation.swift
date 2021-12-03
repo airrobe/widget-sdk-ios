@@ -106,7 +106,11 @@ open class AirRobeConfirmation: UIView {
     }
 
     @objc func onTapActivate(_ sender: UIButton) {
-        print("Activate")
+        let url = URL(string: "\(Strings.orderActivateBaseUrl)\(viewModel.orderId)-\(UserDefaults.standard.AppId)")
+        guard let url = url else {
+            return
+        }
+        Utils.openUrl(url)
     }
 }
 #endif
