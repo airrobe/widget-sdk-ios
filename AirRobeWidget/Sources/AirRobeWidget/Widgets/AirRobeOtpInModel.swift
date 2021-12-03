@@ -12,12 +12,12 @@ import Combine
 final class AirRobeOtpInModel {
 
     enum LoadState: String {
-        case notInitialized = "Widget Initializing"
-        case loaded
-        case loadedButInvisible
-        case loadedWithMappingInfoIssue = "Please initialize the sdk with your AppID and Secret Key"
-        case loadedWithParamIssue = "Please initialize the widget with the valid information"
-        case loadedWithPriceEngineIssue = "Not able to get the valid information from Price Engine-v1"
+        case initializing = "Widget Initializing"
+        case eligible
+        case notEligible
+        case invalidMappingInfo = "Please initialize the sdk with your AppID and Secret Key"
+        case paramIssue = "Please initialize the widget with the valid information"
+        case priceEngineIssue = "Not able to get the valid information from Price Engine-v1"
     }
 
     /// The instance of the parent view controller
@@ -39,7 +39,7 @@ final class AirRobeOtpInModel {
     /// Describes the current locale of the device.
     var locale: String = ""
 
-    @Published var isAllSet: LoadState = .notInitialized
+    @Published var isAllSet: LoadState = .initializing
     @Published var potentialPrice: String = ""
 
     private lazy var priceEngineApiService = AirRobePriceEngineApiService()
@@ -47,31 +47,24 @@ final class AirRobeOtpInModel {
 
     func initializeWidget() {
         if category.isEmpty || priceCents.isEmpty || rrpCents.isEmpty {
-            isAllSet = .loadedWithParamIssue
+            isAllSet = .paramIssue
             return
         }
-        getCategoryFromMappings()
+        checkCategory()
     }
 }
 
 private extension AirRobeOtpInModel {
 
-    func getCategoryFromMappings() {
+    func checkCategory() {
         guard let categoryMappingInfo = UserDefaults.standard.categoryMappingInfo else {
-            isAllSet = .loadedWithMappingInfoIssue
+            isAllSet = .invalidMappingInfo
             return
         }
-        let categoryMappings = categoryMappingInfo.data.shop.categoryMappings
-        guard let mappingIndex = categoryMappings.firstIndex(where: { $0.from == category }) else {
-            isAllSet = .loadedButInvisible
-            return
+        isAllSet = categoryMappingInfo.checkCategoryEligible(items: [category]).eligible ? .eligible : .notEligible
+        if isAllSet == .eligible {
+            callPriceEngine(category: categoryMappingInfo.checkCategoryEligible(items: [category]).to)
         }
-        guard let to = categoryMappings[mappingIndex].to, !to.isEmpty, !categoryMappings[mappingIndex].excluded else {
-            isAllSet = .loadedButInvisible
-            return
-        }
-        isAllSet = .loaded
-        callPriceEngine(category: to)
     }
 
     func callPriceEngine(category: String) {
@@ -85,7 +78,7 @@ private extension AirRobeOtpInModel {
                     #if DEBUG
                     print("PriceEngine Api Issue: ", error)
                     #endif
-                    self.isAllSet = .loadedWithPriceEngineIssue
+                    self.isAllSet = .priceEngineIssue
                 case .finished:
                     print(completion)
                 }
@@ -95,7 +88,7 @@ private extension AirRobeOtpInModel {
                 }
                 print($0)
                 guard let result = $0.result, let resaleValue = result.resaleValue else {
-                    self.isAllSet = .loadedWithPriceEngineIssue
+                    self.isAllSet = .priceEngineIssue
                     return
                 }
                 self.potentialPrice = String(resaleValue)

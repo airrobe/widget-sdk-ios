@@ -70,18 +70,20 @@ open class AirRobeMultiOtpIn: UIView {
                     return
                 }
                 switch allSet {
-                case .notInitialized:
-                    break
-                case .loaded:
+                case .initializing:
+                    #if DEBUG
+                    print(AirRobeOtpInModel.LoadState.initializing.rawValue)
+                    #endif
+                case .eligible:
                     self.initView()
-                case .loadedButInvisible:
+                case .notEligible:
                     self.isHidden = true
-                case .loadedWithMappingInfoIssue:
-                    self.initViewWithError(error: AirRobeOtpInModel.LoadState.loadedWithMappingInfoIssue.rawValue)
-                case .loadedWithParamIssue:
+                case .invalidMappingInfo:
+                    self.initViewWithError(error: AirRobeOtpInModel.LoadState.invalidMappingInfo.rawValue)
+                case .paramIssue:
                     self.isHidden = true
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.loadedWithParamIssue.rawValue)
+                    print(AirRobeOtpInModel.LoadState.paramIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)

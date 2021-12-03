@@ -12,23 +12,23 @@ import Combine
 final class AirRobeMultiOtpInModel {
 
     enum LoadState: String {
-        case notInitialized = "Widget Initializing"
-        case loaded
-        case loadedButInvisible
-        case loadedWithMappingInfoIssue = "Please initialize the sdk with your AppID and Secret Key"
-        case loadedWithParamIssue = "Please initialize the widget with the valid information"
+        case initializing = "Widget Initializing"
+        case eligible
+        case notEligible
+        case invalidMappingInfo = "Please initialize the sdk with your AppID and Secret Key"
+        case paramIssue = "Please initialize the widget with the valid information"
     }
 
     /// The instance of the parent view controller
     var vc: UIViewController = UIViewController()
-    /// Describes the categorys mapping info in String array for the items in the cart .
+    /// Describes the categorys mapping info in String array for the items in the cart.
     var items: [String] = []
 
-    @Published var isAllSet: LoadState = .notInitialized
+    @Published var isAllSet: LoadState = .initializing
 
     func initializeWidget() {
         if items.isEmpty {
-            isAllSet = .loadedWithParamIssue
+            isAllSet = .paramIssue
             return
         }
         checkCategories()
@@ -39,26 +39,11 @@ private extension AirRobeMultiOtpInModel {
 
     func checkCategories() {
         guard let categoryMappingInfo = UserDefaults.standard.categoryMappingInfo else {
-            isAllSet = .loadedWithMappingInfoIssue
+            isAllSet = .invalidMappingInfo
             return
         }
-        let categoryMappings = categoryMappingInfo.data.shop.categoryMappings
-        let filteredCategoryMappings = categoryMappings.filter { items.contains($0.from) }
-        guard !filteredCategoryMappings.isEmpty else {
-            isAllSet = .loadedButInvisible
-            return
-        }
-        let filteredByExcludedAndTo = filteredCategoryMappings.filter {
-            guard let to = $0.to else {
-                return false
-            }
-            return !to.isEmpty && !$0.excluded
-        }
-        guard !filteredByExcludedAndTo.isEmpty else {
-            isAllSet = .loadedButInvisible
-            return
-        }
-        isAllSet = .loaded
+        isAllSet = categoryMappingInfo.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
     }
+
 }
 #endif

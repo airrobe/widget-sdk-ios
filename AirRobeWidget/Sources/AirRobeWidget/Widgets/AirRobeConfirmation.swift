@@ -10,6 +10,8 @@ import UIKit
 
 open class AirRobeConfirmation: UIView {
     private lazy var orderConfirmationView: OrderConfirmationView = OrderConfirmationView.loadFromNib()
+    private(set) lazy var viewModel = AirRobeMultiOtpInModel()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -18,7 +20,10 @@ open class AirRobeConfirmation: UIView {
         super.init(coder: coder)
     }
 
-    public func initialize() {
+    public func initialize(
+        orderId: String,
+        email: String? = nil
+    ) {
         initView()
     }
 

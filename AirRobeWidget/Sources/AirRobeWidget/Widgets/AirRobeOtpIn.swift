@@ -84,22 +84,24 @@ open class AirRobeOtpIn: UIView {
                     return
                 }
                 switch allSet {
-                case .notInitialized:
-                    break
-                case .loaded:
-                    self.initView()
-                case .loadedButInvisible:
-                    self.isHidden = true
-                case .loadedWithMappingInfoIssue:
-                    self.initViewWithError(error: AirRobeOtpInModel.LoadState.loadedWithMappingInfoIssue.rawValue)
-                case .loadedWithParamIssue:
-                    self.isHidden = true
+                case .initializing:
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.loadedWithParamIssue.rawValue)
+                    print(AirRobeOtpInModel.LoadState.initializing.rawValue)
                     #endif
-                case .loadedWithPriceEngineIssue:
+                case .eligible:
+                    self.initView()
+                case .notEligible:
+                    self.isHidden = true
+                case .invalidMappingInfo:
+                    self.initViewWithError(error: AirRobeOtpInModel.LoadState.invalidMappingInfo.rawValue)
+                case .paramIssue:
+                    self.isHidden = true
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.loadedWithPriceEngineIssue.rawValue)
+                    print(AirRobeOtpInModel.LoadState.paramIssue.rawValue)
+                    #endif
+                case .priceEngineIssue:
+                    #if DEBUG
+                    print(AirRobeOtpInModel.LoadState.priceEngineIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)

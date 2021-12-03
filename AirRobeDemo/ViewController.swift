@@ -34,7 +34,9 @@ final class ViewController: UIViewController {
         )
         stackView.addArrangedSubview(airRobeMultiOtpIn)
 
-        airRobeConfirmation.initialize()
+        airRobeConfirmation.initialize(
+            orderId: "123456"
+        )
         stackView.addArrangedSubview(airRobeConfirmation)
         /// In order to clear cache for Otp Info
         /// AirRobeWidget.current.clearCache()

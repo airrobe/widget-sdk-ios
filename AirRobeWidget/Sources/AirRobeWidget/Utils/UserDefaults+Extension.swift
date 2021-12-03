@@ -8,7 +8,7 @@
 import Foundation
 
 extension UserDefaults {
-    static let categoryMappingInfoKey = "AirRobeWidgetCategoryMappingInfo"
+    static let categoryMappingInfoKey = "categoryMappingInfoKey"
     var categoryMappingInfo: CategoryModel? {
         get {
             guard let savedData = object(forKey: UserDefaults.categoryMappingInfoKey) as? Data else {
