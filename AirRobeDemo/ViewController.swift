@@ -37,7 +37,7 @@ final class ViewController: UIViewController {
         )
         stackView.addArrangedSubview(airRobeConfirmation)
         /// In order to clear cache for Otp Info
-        /// AirRobeWidget.current.clearCache()
+        /// AirRobeWidget.clearCache()
     }
 }
 

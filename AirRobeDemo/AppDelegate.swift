@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         /// Initialize AirRobeWidget with appId and secretKey
-        AirRobeWidget.current.initialize(
+        AirRobeWidget.initialize(
             config: AirRobeWidgetConfig(
                 appId: "c43f2be28f1f",
                 secretKey: "0779306686746963e71027f33c86ba5b",
