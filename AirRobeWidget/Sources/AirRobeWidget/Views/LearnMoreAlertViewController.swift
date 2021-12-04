@@ -44,6 +44,8 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
             link: Strings.learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
         otpSwitch.isOn = UserDefaults.standard.OtpInfo
+        otpSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
+        otpSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
 
         mainView.addShadow()
         step1View.addBorder()
@@ -61,11 +63,7 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
     }
 
     @IBAction func onToggleOtpSwitch(_ sender: UISwitch) {
-        if sender.isOn {
-            UserDefaults.standard.OtpInfo = true
-        } else {
-            UserDefaults.standard.OtpInfo = false
-        }
+        UserDefaults.standard.OtpInfo = sender.isOn
     }
 
     @IBAction func onTapClose(_ sender: Any) {

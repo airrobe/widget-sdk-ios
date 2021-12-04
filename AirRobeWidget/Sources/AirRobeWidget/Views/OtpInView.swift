@@ -94,13 +94,8 @@ final class OtpInView: UIView, NibLoadable {
     }
 
     @IBAction func onTapSwitch(_ sender: UISwitch) {
-        if sender.isOn {
-            titleLabel.text = Strings.added
-            UserDefaults.standard.OtpInfo = true
-        } else {
-            titleLabel.text = Strings.add
-            UserDefaults.standard.OtpInfo = false
-        }
+        titleLabel.text = sender.isOn ? Strings.added : Strings.add
+        UserDefaults.standard.OtpInfo = sender.isOn
     }
 
     @IBAction func onTapExpand(_ sender: Any) {
