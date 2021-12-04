@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "smile.png",
+      "filename" : "airRobeLogo.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "smile@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "smile@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
