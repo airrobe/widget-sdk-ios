@@ -1,0 +1,653 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3C07BF25275B0493004D8CC2 /* AirRobeWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 3C07BF24275B0493004D8CC2 /* AirRobeWidget */; };
+		3CE54689275B01F000FBE205 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE54688275B01F000FBE205 /* AppDelegate.swift */; };
+		3CE5468B275B01F000FBE205 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5468A275B01F000FBE205 /* SceneDelegate.swift */; };
+		3CE5468D275B01F000FBE205 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5468C275B01F000FBE205 /* ViewController.swift */; };
+		3CE54690275B01F000FBE205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE5468E275B01F000FBE205 /* Main.storyboard */; };
+		3CE54692275B01F100FBE205 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CE54691275B01F100FBE205 /* Assets.xcassets */; };
+		3CE54695275B01F100FBE205 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE54693275B01F100FBE205 /* LaunchScreen.storyboard */; };
+		3CE546A0275B01F100FBE205 /* AirRobeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5469F275B01F100FBE205 /* AirRobeDemoTests.swift */; };
+		3CE546AA275B01F100FBE205 /* AirRobeDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE546A9275B01F100FBE205 /* AirRobeDemoUITests.swift */; };
+		3CE546AC275B01F100FBE205 /* AirRobeDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE546AB275B01F100FBE205 /* AirRobeDemoUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3CE5469C275B01F100FBE205 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CE5467D275B01F000FBE205 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CE54684275B01F000FBE205;
+			remoteInfo = AirRobeDemo;
+		};
+		3CE546A6275B01F100FBE205 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CE5467D275B01F000FBE205 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CE54684275B01F000FBE205;
+			remoteInfo = AirRobeDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3CE54685275B01F000FBE205 /* AirRobeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirRobeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE54688275B01F000FBE205 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3CE5468A275B01F000FBE205 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		3CE5468C275B01F000FBE205 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3CE5468F275B01F000FBE205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3CE54691275B01F100FBE205 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3CE54694275B01F100FBE205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3CE54696275B01F100FBE205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CE5469B275B01F100FBE205 /* AirRobeDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirRobeDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE5469F275B01F100FBE205 /* AirRobeDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirRobeDemoTests.swift; sourceTree = "<group>"; };
+		3CE546A5275B01F100FBE205 /* AirRobeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirRobeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE546A9275B01F100FBE205 /* AirRobeDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirRobeDemoUITests.swift; sourceTree = "<group>"; };
+		3CE546AB275B01F100FBE205 /* AirRobeDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirRobeDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3CE546B9275B02F000FBE205 /* AirRobeWidget */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AirRobeWidget; path = ..; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3CE54682275B01F000FBE205 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C07BF25275B0493004D8CC2 /* AirRobeWidget in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE54698275B01F100FBE205 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE546A2275B01F100FBE205 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3C07BF23275B0493004D8CC2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CE5467C275B01F000FBE205 = {
+			isa = PBXGroup;
+			children = (
+				3CE546B8275B02F000FBE205 /* Packages */,
+				3CE54687275B01F000FBE205 /* AirRobeDemo */,
+				3CE5469E275B01F100FBE205 /* AirRobeDemoTests */,
+				3CE546A8275B01F100FBE205 /* AirRobeDemoUITests */,
+				3CE54686275B01F000FBE205 /* Products */,
+				3C07BF23275B0493004D8CC2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3CE54686275B01F000FBE205 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3CE54685275B01F000FBE205 /* AirRobeDemo.app */,
+				3CE5469B275B01F100FBE205 /* AirRobeDemoTests.xctest */,
+				3CE546A5275B01F100FBE205 /* AirRobeDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3CE54687275B01F000FBE205 /* AirRobeDemo */ = {
+			isa = PBXGroup;
+			children = (
+				3CE54688275B01F000FBE205 /* AppDelegate.swift */,
+				3CE5468A275B01F000FBE205 /* SceneDelegate.swift */,
+				3CE5468C275B01F000FBE205 /* ViewController.swift */,
+				3CE5468E275B01F000FBE205 /* Main.storyboard */,
+				3CE54691275B01F100FBE205 /* Assets.xcassets */,
+				3CE54693275B01F100FBE205 /* LaunchScreen.storyboard */,
+				3CE54696275B01F100FBE205 /* Info.plist */,
+			);
+			path = AirRobeDemo;
+			sourceTree = "<group>";
+		};
+		3CE5469E275B01F100FBE205 /* AirRobeDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CE5469F275B01F100FBE205 /* AirRobeDemoTests.swift */,
+			);
+			path = AirRobeDemoTests;
+			sourceTree = "<group>";
+		};
+		3CE546A8275B01F100FBE205 /* AirRobeDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3CE546A9275B01F100FBE205 /* AirRobeDemoUITests.swift */,
+				3CE546AB275B01F100FBE205 /* AirRobeDemoUITestsLaunchTests.swift */,
+			);
+			path = AirRobeDemoUITests;
+			sourceTree = "<group>";
+		};
+		3CE546B8275B02F000FBE205 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				3CE546B9275B02F000FBE205 /* AirRobeWidget */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3CE54684275B01F000FBE205 /* AirRobeDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CE546AF275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemo" */;
+			buildPhases = (
+				3CE54681275B01F000FBE205 /* Sources */,
+				3CE54682275B01F000FBE205 /* Frameworks */,
+				3CE54683275B01F000FBE205 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AirRobeDemo;
+			packageProductDependencies = (
+				3C07BF24275B0493004D8CC2 /* AirRobeWidget */,
+			);
+			productName = AirRobeDemo;
+			productReference = 3CE54685275B01F000FBE205 /* AirRobeDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3CE5469A275B01F100FBE205 /* AirRobeDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CE546B2275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemoTests" */;
+			buildPhases = (
+				3CE54697275B01F100FBE205 /* Sources */,
+				3CE54698275B01F100FBE205 /* Frameworks */,
+				3CE54699275B01F100FBE205 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CE5469D275B01F100FBE205 /* PBXTargetDependency */,
+			);
+			name = AirRobeDemoTests;
+			productName = AirRobeDemoTests;
+			productReference = 3CE5469B275B01F100FBE205 /* AirRobeDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3CE546A4275B01F100FBE205 /* AirRobeDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CE546B5275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemoUITests" */;
+			buildPhases = (
+				3CE546A1275B01F100FBE205 /* Sources */,
+				3CE546A2275B01F100FBE205 /* Frameworks */,
+				3CE546A3275B01F100FBE205 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CE546A7275B01F100FBE205 /* PBXTargetDependency */,
+			);
+			name = AirRobeDemoUITests;
+			productName = AirRobeDemoUITests;
+			productReference = 3CE546A5275B01F100FBE205 /* AirRobeDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3CE5467D275B01F000FBE205 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					3CE54684275B01F000FBE205 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					3CE5469A275B01F100FBE205 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 3CE54684275B01F000FBE205;
+					};
+					3CE546A4275B01F100FBE205 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 3CE54684275B01F000FBE205;
+					};
+				};
+			};
+			buildConfigurationList = 3CE54680275B01F000FBE205 /* Build configuration list for PBXProject "AirRobeDemo" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3CE5467C275B01F000FBE205;
+			productRefGroup = 3CE54686275B01F000FBE205 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3CE54684275B01F000FBE205 /* AirRobeDemo */,
+				3CE5469A275B01F100FBE205 /* AirRobeDemoTests */,
+				3CE546A4275B01F100FBE205 /* AirRobeDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3CE54683275B01F000FBE205 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CE54695275B01F100FBE205 /* LaunchScreen.storyboard in Resources */,
+				3CE54692275B01F100FBE205 /* Assets.xcassets in Resources */,
+				3CE54690275B01F000FBE205 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE54699275B01F100FBE205 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE546A3275B01F100FBE205 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3CE54681275B01F000FBE205 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CE5468D275B01F000FBE205 /* ViewController.swift in Sources */,
+				3CE54689275B01F000FBE205 /* AppDelegate.swift in Sources */,
+				3CE5468B275B01F000FBE205 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE54697275B01F100FBE205 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CE546A0275B01F100FBE205 /* AirRobeDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE546A1275B01F100FBE205 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CE546AC275B01F100FBE205 /* AirRobeDemoUITestsLaunchTests.swift in Sources */,
+				3CE546AA275B01F100FBE205 /* AirRobeDemoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3CE5469D275B01F100FBE205 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CE54684275B01F000FBE205 /* AirRobeDemo */;
+			targetProxy = 3CE5469C275B01F100FBE205 /* PBXContainerItemProxy */;
+		};
+		3CE546A7275B01F100FBE205 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CE54684275B01F000FBE205 /* AirRobeDemo */;
+			targetProxy = 3CE546A6275B01F100FBE205 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3CE5468E275B01F000FBE205 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CE5468F275B01F000FBE205 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3CE54693275B01F100FBE205 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3CE54694275B01F100FBE205 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3CE546AD275B01F100FBE205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3CE546AE275B01F100FBE205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3CE546B0275B01F100FBE205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AirRobeDemo/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airrobe.widgetsdk.AirRobeDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3CE546B1275B01F100FBE205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AirRobeDemo/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airrobe.widgetsdk.AirRobeDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3CE546B3275B01F100FBE205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airrobe.widgetsdk.AirRobeDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirRobeDemo.app/AirRobeDemo";
+			};
+			name = Debug;
+		};
+		3CE546B4275B01F100FBE205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airrobe.widgetsdk.AirRobeDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirRobeDemo.app/AirRobeDemo";
+			};
+			name = Release;
+		};
+		3CE546B6275B01F100FBE205 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airrobe.widgetsdk.AirRobeDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AirRobeDemo;
+			};
+			name = Debug;
+		};
+		3CE546B7275B01F100FBE205 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.airrobe.widgetsdk.AirRobeDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AirRobeDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3CE54680275B01F000FBE205 /* Build configuration list for PBXProject "AirRobeDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CE546AD275B01F100FBE205 /* Debug */,
+				3CE546AE275B01F100FBE205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CE546AF275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CE546B0275B01F100FBE205 /* Debug */,
+				3CE546B1275B01F100FBE205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CE546B2275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CE546B3275B01F100FBE205 /* Debug */,
+				3CE546B4275B01F100FBE205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CE546B5275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CE546B6275B01F100FBE205 /* Debug */,
+				3CE546B7275B01F100FBE205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C07BF24275B0493004D8CC2 /* AirRobeWidget */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AirRobeWidget;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 3CE5467D275B01F000FBE205 /* Project object */;
+}
