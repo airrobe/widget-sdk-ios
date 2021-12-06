@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ShoppingItemViewController.swift
 //  AirRobeDemo
 //
 //  Created by King on 11/22/21.
@@ -8,7 +8,7 @@
 import UIKit
 import AirRobeWidget
 
-final class ViewController: UIViewController {
+final class ShoppingItemViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     private var airRobeOtpIn: AirRobeOtpIn = AirRobeOtpIn()
     private var airRobeMultiOtpIn: AirRobeMultiOtpIn = AirRobeMultiOtpIn()

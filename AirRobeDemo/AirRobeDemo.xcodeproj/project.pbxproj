@@ -10,7 +10,7 @@
 		3C07BF25275B0493004D8CC2 /* AirRobeWidget in Frameworks */ = {isa = PBXBuildFile; productRef = 3C07BF24275B0493004D8CC2 /* AirRobeWidget */; };
 		3CE54689275B01F000FBE205 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE54688275B01F000FBE205 /* AppDelegate.swift */; };
 		3CE5468B275B01F000FBE205 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5468A275B01F000FBE205 /* SceneDelegate.swift */; };
-		3CE5468D275B01F000FBE205 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5468C275B01F000FBE205 /* ViewController.swift */; };
+		3CE5468D275B01F000FBE205 /* ShoppingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5468C275B01F000FBE205 /* ShoppingItemViewController.swift */; };
 		3CE54690275B01F000FBE205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE5468E275B01F000FBE205 /* Main.storyboard */; };
 		3CE54692275B01F100FBE205 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CE54691275B01F100FBE205 /* Assets.xcassets */; };
 		3CE54695275B01F100FBE205 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE54693275B01F100FBE205 /* LaunchScreen.storyboard */; };
@@ -40,7 +40,7 @@
 		3CE54685275B01F000FBE205 /* AirRobeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirRobeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE54688275B01F000FBE205 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CE5468A275B01F000FBE205 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3CE5468C275B01F000FBE205 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3CE5468C275B01F000FBE205 /* ShoppingItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingItemViewController.swift; sourceTree = "<group>"; };
 		3CE5468F275B01F000FBE205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3CE54691275B01F100FBE205 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CE54694275B01F100FBE205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -86,6 +86,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3C554D5B275EC32600FD9261 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3CE5468C275B01F000FBE205 /* ShoppingItemViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		3CE5467C275B01F000FBE205 = {
 			isa = PBXGroup;
 			children = (
@@ -111,9 +119,9 @@
 		3CE54687275B01F000FBE205 /* AirRobeDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3C554D5B275EC32600FD9261 /* Controllers */,
 				3CE54688275B01F000FBE205 /* AppDelegate.swift */,
 				3CE5468A275B01F000FBE205 /* SceneDelegate.swift */,
-				3CE5468C275B01F000FBE205 /* ViewController.swift */,
 				3CE5468E275B01F000FBE205 /* Main.storyboard */,
 				3CE54691275B01F100FBE205 /* Assets.xcassets */,
 				3CE54693275B01F100FBE205 /* LaunchScreen.storyboard */,
@@ -281,7 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CE5468D275B01F000FBE205 /* ViewController.swift in Sources */,
+				3CE5468D275B01F000FBE205 /* ShoppingItemViewController.swift in Sources */,
 				3CE54689275B01F000FBE205 /* AppDelegate.swift in Sources */,
 				3CE5468B275B01F000FBE205 /* SceneDelegate.swift in Sources */,
 			);
