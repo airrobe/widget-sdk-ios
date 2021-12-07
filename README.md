@@ -21,11 +21,13 @@ Currently, we do not have any of other the supported dependency managers, so for
 
 Now that the AirRobeWidget SDK resides in the `AirRobeWidget` directory in the root of your working directory, it can be added to your project or workspace with the following steps:
 
-1. Open the new `AirRobeWidget` directory, and drag `AirRobeWidget.xcodeproj` into the Project Navigator of your application's Xcode project or workspace.
-2. Select your application project in the Project Navigator to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
-3. In the tab bar at the top of that window, open the "General" panel.
-4. Click on the `+` button under the "Frameworks, Libraries, and Embedded Content" section.
-5. Select the `AirRobeWidget.framework` for your target platform.
+1. Download our [Lastest SDK] (as Zip or tar.gz) and extract it to your preferred location.
+2. Inside your own project, in XCode menu, go to `File -> Add Packages...`.
+3. On Add Package Window, Tap on `Add Local...` and navigate to the downloaded SDK and Click `Add Package` button.
+4. Select your application project in the Project Navigator to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
+5. In the tab bar at the top of that window, open the "General" panel.
+6. Click on the `+` button under the "Frameworks, Libraries, and Embedded Content" section.
+7. Select the `Workspace -> AirRobeWidget -> AirRobeWidget` for your target platform.
 
 And that's it, the AirRobeWidget SDK is now ready to import and use within your application.
 
@@ -93,3 +95,5 @@ airRobeConfirmation.initialize(
     orderId: String // Example: "123456" - the order id you got from the checkout.
 )
 ```
+
+[Lastest SDK]: https://github.com/airrobe/AirRobeWidget/releases/tag/1.0.0
