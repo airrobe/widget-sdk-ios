@@ -119,5 +119,18 @@ airRobeConfirmation.initialize(
 )
 ```
 
+
+# Examples
+
+The [example project][example] demonstrates how to include AirRobeWidget UI components.
+
+# Building
+
+## Running
+
+Building and running the project is as simple as cloning the repository, opening [`AirRobeDemo.xcodeproj`][airrobedemo-workspace] and building the `AirRobeDemo` target.
+
 [latest-release]: https://github.com/airrobe/widget-sdk-ios/releases/latest
 [git-submodule]: https://git-scm.com/docs/git-submodule
+[example]: https://github.com/airrobe/widget-sdk-ios/tree/develop/AirRobeDemo
+[airrobedemo-workspace]: AirRobeDemo/AirRobeDemo.xcodeproj
