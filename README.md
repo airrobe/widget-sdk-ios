@@ -11,6 +11,17 @@ The AirRobeWidget iOS SDK provides conveniences to make your AirRobeWidget integ
 - Xcode 12.0+
 
 
+## Swift Package Manager (recommended)
+
+This is the recommended integration method, but we assume that you already have the access to our Repo since its access is restricted for purposes.
+
+```
+dependencies: [
+    .package(url: "https://github.com/airrobe/widget-sdk-ios.git", .upToNextMajor(from: "1.0.0"))
+]
+```
+
+
 ## Manual
 
 Currently, we do not have any of other the supported dependency managers, so for now choose to manually integrate the AirRobe SDK into your project.
