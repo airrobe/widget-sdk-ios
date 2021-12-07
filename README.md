@@ -17,21 +17,33 @@ Currently, we do not have any of other the supported dependency managers, so for
 
 ### Source
 
+#### GitHub Release
+
+Download the [latest release][latest-release] source zip from GitHub and unzip into an `AirRobeWidget` directory in the root of your working directory.
+
+#### Git Submodule
+
+We assume that you already have the access to our Repo since its access is restricted for purposes.
+Add the AirRobeWidget SDK as a [git submodule][git-submodule] by navigating to the root of your working directory and running the following commands:
+
+```
+git submodule add https://github.com/airrobe/widget-sdk-ios.git AirRobeWidget
+cd AirRobeWidget
+git checkout 1.0.0
+```
+
 #### Project / Workspace Integration
 
 Now that the AirRobeWidget SDK resides in the `AirRobeWidget` directory in the root of your working directory, it can be added to your project or workspace with the following steps:
 
-1. Download our [Lastest SDK] (as Zip or tar.gz) and extract it to your preferred location.
-2. Inside your own project, in XCode menu, go to `File -> Add Packages...`.
-3. On Add Package Window, Tap on `Add Local...` and navigate to the downloaded SDK and Click `Add Package` button.
-4. Select your application project in the Project Navigator to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
-5. In the tab bar at the top of that window, open the "General" panel.
-6. Click on the `+` button under the "Frameworks, Libraries, and Embedded Content" section.
-7. Select the `Workspace -> AirRobeWidget -> AirRobeWidget` for your target platform.
+1. Select your application project in the Project Navigator to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
+2. In the tab bar at the top of that window, open the "General" panel.
+3. Click on the `+` button under the "Frameworks, Libraries, and Embedded Content" section.
+4. Select the `Workspace -> AirRobeWidget -> AirRobeWidget` for your target platform.
 
 And that's it, the AirRobeWidget SDK is now ready to import and use within your application.
 
-## TODOs: CocoaPods, SPM, Carthage - Coming Soon
+## TODOs: CocoaPods, Carthage - Coming Soon
 
 # Getting Started
 
@@ -96,4 +108,5 @@ airRobeConfirmation.initialize(
 )
 ```
 
-[Lastest SDK]: https://github.com/airrobe/AirRobeWidget/releases/tag/1.0.0
+[latest-release]: https://github.com/airrobe/widget-sdk-ios/releases/latest
+[git-submodule]: https://git-scm.com/docs/git-submodule
