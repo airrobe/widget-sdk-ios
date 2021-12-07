@@ -79,7 +79,8 @@ airRobeOtpIn.initialize(
 var airRobeMultiOtpIn = AirRobeMultiOtpIn()
 ...
 airRobeMultiOtpIn.initialize(
-    items: [String], // Example: ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"])
+    items: [String], // Example: ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"]
+)
 ```
 
 
