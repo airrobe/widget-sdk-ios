@@ -83,28 +83,16 @@ open class AirRobeMultiOtpIn: UIView {
             }).store(in: &subscribers)
     }
 
-    private func initViewWithError(error: String) {
-        let errorLabel: UILabel = {
-            let v = UILabel()
-            v.textColor = .red
-            v.font = .systemFont(ofSize: 16)
-            v.text = error
-            v.textAlignment = .center
-            v.lineBreakMode = .byWordWrapping
-            v.numberOfLines = 0
-            return v
-        }()
-        addSubview(errorLabel)
-        errorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        errorLabel.frame = bounds
-        errorLabel.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    }
-
     private func initView() {
         otpInview.potentialValueLabel.isHidden = true
         addSubview(otpInview)
-        otpInview.frame = bounds
-        otpInview.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        otpInview.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            otpInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            otpInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            otpInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            otpInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+        ])
     }
 }
 #endif

@@ -169,26 +169,26 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fjallraven" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4h-zq-T0E">
-                                                                        <rect key="frame" x="0.0" y="210" width="142" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="210" width="142" height="21.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kanken Totepack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0a-ki-Ope">
-                                                                        <rect key="frame" x="0.0" y="238" width="177" height="19.5"/>
+                                                                        <rect key="frame" x="0.0" y="236.5" width="177" height="19.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="QFO-I6-oDU">
-                                                                        <rect key="frame" x="152" y="211.5" width="25" height="20"/>
+                                                                        <rect key="frame" x="152" y="211" width="25" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="IXo-7A-SAT"/>
                                                                             <constraint firstAttribute="width" constant="25" id="Vsm-Ml-wFL"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$174.95" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z75-Ic-pww">
-                                                                        <rect key="frame" x="0.0" y="262.5" width="177" height="19.5"/>
+                                                                        <rect key="frame" x="0.0" y="261" width="177" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -761,10 +761,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LdE-Nz-64b" customClass="AirRobeConfirmation" customModule="AirRobeWidget">
-                                <rect key="frame" x="20" y="132" width="374" height="302"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UjX-lm-uQb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -772,14 +768,10 @@
                             <constraint firstItem="ZgG-yD-heO" firstAttribute="leading" secondItem="UjX-lm-uQb" secondAttribute="leading" constant="20" id="1GA-Pc-W5B"/>
                             <constraint firstItem="ZgG-yD-heO" firstAttribute="top" secondItem="UjX-lm-uQb" secondAttribute="top" constant="20" id="5eM-Hf-Xyt"/>
                             <constraint firstItem="UjX-lm-uQb" firstAttribute="trailing" secondItem="ZgG-yD-heO" secondAttribute="trailing" constant="20" id="J5O-O4-DJr"/>
-                            <constraint firstItem="LdE-Nz-64b" firstAttribute="leading" secondItem="UjX-lm-uQb" secondAttribute="leading" constant="20" id="cdW-vz-gvn"/>
-                            <constraint firstItem="UjX-lm-uQb" firstAttribute="trailing" secondItem="LdE-Nz-64b" secondAttribute="trailing" constant="20" id="gBF-5Y-jks"/>
-                            <constraint firstItem="LdE-Nz-64b" firstAttribute="top" secondItem="ZgG-yD-heO" secondAttribute="bottom" constant="20" id="sQE-sL-fkF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Thank You" id="pGQ-Fq-zbU"/>
                     <connections>
-                        <outlet property="airRobeConfirmation" destination="LdE-Nz-64b" id="Dzw-dq-b6O"/>
                         <outlet property="thankyouLabel" destination="ZgG-yD-heO" id="TE0-4Y-pY2"/>
                     </connections>
                 </viewController>

@@ -87,8 +87,13 @@ open class AirRobeConfirmation: UIView {
         if !initialized {
             orderConfirmationView.activateButton.addTarget(self, action: #selector(onTapActivate), for: .touchUpInside)
             addSubview(orderConfirmationView)
-            orderConfirmationView.frame = bounds
-            orderConfirmationView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+            orderConfirmationView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                orderConfirmationView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+                orderConfirmationView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+                orderConfirmationView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+                orderConfirmationView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            ])
             initialized = true
         }
         isHidden = false

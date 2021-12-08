@@ -135,8 +135,13 @@ open class AirRobeOtpIn: UIView {
     private func initView() {
         otpInview.potentialValueLoading.startAnimating()
         addSubview(otpInview)
-        otpInview.frame = bounds
-        otpInview.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        otpInview.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            otpInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            otpInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            otpInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            otpInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+        ])
     }
 }
 #endif
