@@ -15,13 +15,8 @@ final class OrderConfirmationView: UIView, NibLoadable {
     @IBOutlet weak var activateLabel: UILabel!
     @IBOutlet weak var activateButton: UIButton!
 
-    public init(viewController: UIViewController) {
-        super.init(frame: .zero)
-        commonInit()
-    }
-
     public override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         commonInit()
     }
 
