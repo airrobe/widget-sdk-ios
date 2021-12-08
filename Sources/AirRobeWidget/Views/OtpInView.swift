@@ -31,7 +31,7 @@ final class OtpInView: UIView, NibLoadable {
     private var expandType: ExpandState = .closed
 
     public override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
         commonInit()
     }
 
