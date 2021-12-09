@@ -39,7 +39,7 @@ final class AirRobeOtpInModel {
     @Published var isAllSet: LoadState = .initializing
     @Published var potentialPrice: String = ""
 
-    private lazy var priceEngineApiService = AirRobePriceEngineApiService()
+    private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
 
     func initializeWidget(categoryModel: CategoryModel) {
@@ -57,7 +57,7 @@ final class AirRobeOtpInModel {
 private extension AirRobeOtpInModel {
 
     func callPriceEngine(category: String) {
-        cancellable = priceEngineApiService.priceEngine(price: priceCents, rrp: rrpCents, category: category)
+        cancellable = apiService.priceEngine(price: priceCents, rrp: rrpCents, category: category)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else {
                     return

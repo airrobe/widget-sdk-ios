@@ -18,12 +18,12 @@ enum RequestMethod: String {
 }
 
 struct Endpoint {
-    private static let priceEngineHost = "price-engine.airrobe.com"
-
     let method: RequestMethod
     let path: String
     var queryItems: [URLQueryItem]
     var requestBody: [String: Any]
+    var categoryMappingRequestBody: GraphQLOperation<AppIdInput>?
+    var emailCheckRequestBody: GraphQLOperation<EmailInput>?
     var customHeaders: [String: String]
     var scheme: String
     var host: String
@@ -34,15 +34,19 @@ struct Endpoint {
         path: String,
         queryItems: [URLQueryItem] = [],
         requestBody: [String: Any] = [:],
+        categoryMappingRequestBody: GraphQLOperation<AppIdInput>? = nil,
+        emailCheckRequestBody: GraphQLOperation<EmailInput>? = nil,
         customHeaders: [String: String] = [:],
         scheme: String = "https",
-        host: String = Endpoint.priceEngineHost,
+        host: String = priceEngineHost,
         timeout: TimeInterval = 60
     ) {
         self.method = method
         self.path = path
         self.queryItems = queryItems
         self.requestBody = requestBody
+        self.categoryMappingRequestBody = categoryMappingRequestBody
+        self.emailCheckRequestBody = emailCheckRequestBody
         self.customHeaders = customHeaders
         self.scheme = scheme
         self.host = host
@@ -74,6 +78,20 @@ extension Endpoint {
         if !requestBody.isEmpty {
             let bodyData = try? JSONSerialization.data(withJSONObject: requestBody, options: [])
             request.httpBody = bodyData
+        }
+        if let graphQLRequestBody = categoryMappingRequestBody {
+            request.httpBody = try? JSONEncoder().encode(graphQLRequestBody)
+            #if DEBUG
+            let str = String(decoding: request.httpBody!, as: UTF8.self)
+            print(str)
+            #endif
+        }
+        if let graphQLRequestBody = emailCheckRequestBody {
+            request.httpBody = try? JSONEncoder().encode(graphQLRequestBody)
+            #if DEBUG
+            let str = String(decoding: request.httpBody!, as: UTF8.self)
+            print(str)
+            #endif
         }
 
         request.timeoutInterval = timeout

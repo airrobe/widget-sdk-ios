@@ -33,16 +33,22 @@ enum Strings {
     static let extraLink = URL(string: "https://www.theiconic.com.au/privacy-policy")!
 
     // MARK: - Get Mapping Info Query Strings
-    static let GetMappingInfoQueryAppIdKey = "APP_ID"
     static let GetMappingInfoQuery = """
-                query GetMappingInfo {
-                  shop(appId: "APP_ID") {
+                query GetMappingInfo ($appId: String) {
+                  shop(appId: $appId) {
                     categoryMappings {
                       from
                       to
                       excluded
                     }
                   }
+                }
+            """
+
+    // MARK: - Check Email Query Strings
+    static let CheckEmailQuery = """
+                query IsCustomer ($email: String) {
+                  isCustomer(email: $email)
                 }
             """
 

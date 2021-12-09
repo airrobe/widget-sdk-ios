@@ -8,8 +8,9 @@
 import Foundation
 
 enum AirRobeHost: String {
-
-    case airRobeConnectorSandbox = "https://sandbox.connector.airrobe.com/graphql"
-    case airRobeConnectorProduction = "https://connector.airrobe.com/graphql"
-
+    case airRobeConnectorSandbox = "sandbox.connector.airrobe.com"
+    case airRobeConnectorProduction = "connector.airrobe.com"
 }
+
+let priceEngineHost = "price-engine.airrobe.com"
+let emailCheckHost = "shop.airrobe.com"

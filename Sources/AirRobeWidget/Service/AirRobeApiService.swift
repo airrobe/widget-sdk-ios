@@ -1,5 +1,5 @@
 //
-//  AirRobePriceEngineApiService.swift
+//  AirRobeApiService.swift
 //  
 //
 //  Created by King on 11/26/21.
@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import UIKit
 
-final class AirRobePriceEngineApiService: NetworkClient {
+final class AirRobeApiService: NetworkClient {
     let session: URLSession
     let additionalRequestBodyParams: [String: String]
 
@@ -40,5 +40,23 @@ final class AirRobePriceEngineApiService: NetworkClient {
         dump(endpoint.asURLRequest())
         #endif
         return execute(endpoint.asURLRequest(), decodingType: PriceEngineResponseModel.self)
+    }
+
+    func getCategoryMapping(operation: GraphQLOperation<AppIdInput>) -> AnyPublisher<CategoryModel, Error> {
+        var endpoint = Endpoint.getCategoryMapping(operation: operation)
+        endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
+        #if DEBUG
+        dump(endpoint.asURLRequest())
+        #endif
+        return execute(endpoint.asURLRequest(), decodingType: CategoryModel.self)
+    }
+
+    func emailCheck(operation: GraphQLOperation<EmailInput>) -> AnyPublisher<EmailCheckResponseModel, Error> {
+        var endpoint = Endpoint.emailCheck(operation: operation)
+        endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
+        #if DEBUG
+        dump(endpoint.asURLRequest())
+        #endif
+        return execute(endpoint.asURLRequest(), decodingType: EmailCheckResponseModel.self)
     }
 }

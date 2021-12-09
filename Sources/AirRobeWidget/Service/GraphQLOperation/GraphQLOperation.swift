@@ -7,35 +7,44 @@
 
 import Foundation
 
-struct GraphQLOperation: Encodable {
+struct AppIdInput: Encodable {
+    let appId: String
+}
+
+struct EmailInput: Encodable {
+    let email: String
+}
+
+struct GraphQLOperation<Input: Encodable>: Encodable {
+    var input: Input
     var operationString: String
-    var appId: String
-    var url: URL
 
     enum CodingKeys: String, CodingKey {
+        case variables
         case query
     }
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(operationString.replacingOccurrences(of: Strings.GetMappingInfoQueryAppIdKey, with: appId), forKey: .query)
-    }
-
-    func getURLRequest() throws -> URLRequest {
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = try JSONEncoder().encode(self)
-        #if DEBUG
-        dump(request)
-        #endif
-
-        return request
+        try container.encode(input, forKey: .variables)
+        try container.encode(operationString, forKey: .query)
     }
 }
 
-extension GraphQLOperation {
-    static func fetchPost(url: URL, appId: String) -> Self {
-        GraphQLOperation(operationString: Strings.GetMappingInfoQuery, appId: appId, url: url)
+extension GraphQLOperation where Input == AppIdInput {
+    static func fetchPost(with appId: String) -> Self {
+        GraphQLOperation(
+            input: AppIdInput(appId: appId),
+            operationString: Strings.GetMappingInfoQuery
+        )
+    }
+}
+
+extension GraphQLOperation where Input == EmailInput {
+    static func fetchPost(with email: String) -> Self {
+        GraphQLOperation(
+            input: EmailInput(email: email),
+            operationString: Strings.CheckEmailQuery
+        )
     }
 }
