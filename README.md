@@ -71,8 +71,8 @@ You are going to need `AppId` from the Provider which will be used to get the Ca
 AirRobeWidget.initialize(
     config: AirRobeWidgetConfig(
         appId: "APP_ID",  // required
-        color: String, // optional - color HexCode without "#"
-        mode: enum // optional - (.production or .sandbox) Default value is .production
+        color: String,    // optional - color HexCode without "#"
+        mode: enum        // optional - (.production or .sandbox) Default value is .production
     )
 )
 ```
@@ -86,14 +86,14 @@ AirRobeWidget.initialize(
 var airRobeOptIn = AirRobeOptIn()
 ...
 airRobeOptIn.initialize(
-    brand: String, // required - e.g. "Chanel" - Can be empty string
-    material: String, // required - e.g. "Leather" - Can be empty string
-    category: String, // required - e.g. "Hats/fancy-hats"
-    priceCents: Double, // required - e.g. 100.95
+    brand: String,                  // required - e.g. "Chanel" - Can be empty string
+    material: String,               // required - e.g. "Leather" - Can be empty string
+    category: String,               // required - e.g. "Hats/fancy-hats"
+    priceCents: Double,             // required - e.g. 100.95
     originalFullPriceCents: Double, // required - e.g. 62.00
-    rrpCents: Double, // required - e.g. 62.00
-    currency: String, // required - e.g. "AUD"
-    locale: String // required - e.g. "en-AU"
+    rrpCents: Double,               // required - e.g. 62.00
+    currency: String,               // required - e.g. "AUD"
+    locale: String                  // required - e.g. "en-AU"
 )
 ```
 
@@ -116,7 +116,7 @@ var airRobeConfirmation = AirRobeConfirmation()
 ...
 airRobeConfirmation.initialize(
     orderId: String // required - e.g. "123456" - the order id you got from the checkout.
-    email: String // optional
+    email: String   // optional
 )
 ```
 
