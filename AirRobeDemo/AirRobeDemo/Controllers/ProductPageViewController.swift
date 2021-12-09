@@ -33,9 +33,9 @@ final class ProductPageViewController: UIViewController {
                 brand: "",
                 material: "",
                 category: cellViewModel.category,
-                priceCents: cellViewModel.price.replacingOccurrences(of: "$", with: ""),
-                originalFullPriceCents: cellViewModel.price.replacingOccurrences(of: "$", with: ""),
-                rrpCents: cellViewModel.price.replacingOccurrences(of: "$", with: ""),
+                priceCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0,
+                originalFullPriceCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0,
+                rrpCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0,
                 currency: "AUD",
                 locale: "en-AU")
             stackView.addArrangedSubview(airRobeOtpIn)

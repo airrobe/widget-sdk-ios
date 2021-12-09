@@ -26,9 +26,9 @@ open class AirRobeOtpIn: UIView {
         brand: String,
         material: String,
         category: String,
-        priceCents: String,
-        originalFullPriceCents: String,
-        rrpCents: String,
+        priceCents: Double,
+        originalFullPriceCents: Double,
+        rrpCents: Double,
         currency: String,
         locale: String
     ) {

@@ -17,10 +17,14 @@ extension Endpoint {
         return Endpoint(method: .POST, path: "/graphql", emailCheckRequestBody: operation, host: emailCheckHost)
     }
 
-    static func priceEngine(price: String, rrp: String, category: String) -> Endpoint {
-        return Endpoint(method: .GET, path: "/v1", queryItems: [URLQueryItem(name: "price", value: price),
-                                                                URLQueryItem(name: "rrp", value: rrp),
-                                                                URLQueryItem(name: "category", value: category)])
+    static func priceEngine(price: Double, rrp: Double, category: String) -> Endpoint {
+        return Endpoint(method: .GET, path: "/v1",
+                        queryItems: [
+                            URLQueryItem(name: "price", value: String(price)),
+                            URLQueryItem(name: "rrp", value: String(rrp)),
+                            URLQueryItem(name: "category", value: category)
+                        ]
+        )
     }
 
 }

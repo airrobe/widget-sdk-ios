@@ -26,11 +26,11 @@ final class AirRobeOtpInModel {
     /// Describes which category the widget belongs to.
     var category: String = ""
     /// Describes the price of the shopping item.
-    var priceCents: String = ""
+    var priceCents: Double = 0.0
     /// Describes the original full price of the shopping item.
-    var originalFullPriceCents: String = ""
+    var originalFullPriceCents: Double = 0.0
     /// Describes the Recommended Retail Price of the shopping item.
-    var rrpCents: String = ""
+    var rrpCents: Double = 0.0
     /// Describes the currency.
     var currency: String = ""
     /// Describes the current locale of the device.
@@ -43,7 +43,7 @@ final class AirRobeOtpInModel {
     private var cancellable: AnyCancellable?
 
     func initializeWidget(categoryModel: CategoryModel) {
-        if category.isEmpty || priceCents.isEmpty || rrpCents.isEmpty {
+        if category.isEmpty {
             isAllSet = .paramIssue
             return
         }
