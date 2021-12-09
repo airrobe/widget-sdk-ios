@@ -17,7 +17,7 @@ This is the recommended integration method, but we assume that you already have 
 
 ```
 dependencies: [
-    .package(url: "https://github.com/airrobe/widget-sdk-ios.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/airrobe/widget-sdk-ios.git", .upToNextMajor(from: "1.0.1"))
 ]
 ```
 
@@ -40,7 +40,7 @@ Add the AirRobeWidget SDK as a [git submodule][git-submodule] by navigating to t
 ```
 git submodule add https://github.com/airrobe/widget-sdk-ios.git AirRobeWidget
 cd AirRobeWidget
-git checkout 1.0.0
+git checkout 1.0.1
 ```
 
 #### Project / Workspace Integration
@@ -58,22 +58,21 @@ And that's it, the AirRobeWidget SDK is now ready to import and use within your 
 
 # Getting Started
 
-The AirRobe SDK contains UI components for Otp-In, Multi-Otp-In Views as well as Confirmation View.
+The AirRobe SDK contains UI components for Opt-In, Multi-Opt-In Views as well as Confirmation View.
 
 
 ## Integration
 
-You are going to need `AppId` and `SecretKey` from the Provider which will be used to get the Category Mapping Infos and initialize the sub-widgets.
+You are going to need `AppId` from the Provider which will be used to get the Category Mapping Infos and initialize the sub-widgets.
 
 ### Initialization
 
 ```swift
 AirRobeWidget.initialize(
     config: AirRobeWidgetConfig(
-        appId: "APP_ID",  // required
-        secretKey: "SECRET_KEY",  // required
-        color: String, // color HexCode without "#"
-        mode: enum // (.production or .sandbox) //optional and default is .production
+        appId: "APP_ID",  // Required
+        color: String, // Optional - color HexCode without "#"
+        mode: enum // Optional - (.production or .sandbox) Default value is .production
     )
 )
 ```
@@ -84,27 +83,28 @@ AirRobeWidget.initialize(
 ### Opt-In View Initialization
 
 ```swift
-var airRobeOtpIn = AirRobeOtpIn()
+var airRobeOptIn = AirRobeOptIn()
 ...
-airRobeOtpIn.initialize(
-    brand: String,
-    material: String,
-    category: String, // Example: "Hats/fancy-hats"
-    priceCents: String, // Example: "100"
-    originalFullPriceCents: String, // Example: "100"
-    rrpCents: String, // Example: "62"
-    currency: String, // Example: "AUD"
-    locale: String // Example: "en-AU")
+airRobeOptIn.initialize(
+    brand: String, // required - Example: "Chanel" - Can be empty string
+    material: String, // required - Example: "Leather" - Can be empty string
+    category: String, // required - Example: "Hats/fancy-hats"
+    priceCents: Double, // required - Example: 100.95
+    originalFullPriceCents: Double, required - // Example: 62.00
+    rrpCents: Double, // required - Example: 62.00
+    currency: String, // required - Example: "AUD"
+    locale: String // required - Example: "en-AU"
+)
 ```
 
 
 ### Multi-Opt-In View Initialization
 
 ```swift
-var airRobeMultiOtpIn = AirRobeMultiOtpIn()
+var airRobeMultiOptIn = AirRobeMultiOptIn()
 ...
-airRobeMultiOtpIn.initialize(
-    items: [String], // Example: ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"]
+airRobeMultiOptIn.initialize(
+    items: [String], // required - Example: ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"]
 )
 ```
 
@@ -115,10 +115,17 @@ airRobeMultiOtpIn.initialize(
 var airRobeConfirmation = AirRobeConfirmation()
 ...
 airRobeConfirmation.initialize(
-    orderId: String // Example: "123456" - the order id you got from the checkout.
+    orderId: String // Required - Example: "123456" - the order id you got from the checkout.
+    email: String // Optional
 )
 ```
 
+
+### Clear Cache (Opt value reset)
+
+```swift
+AirRobeWidget.clearCache()
+```
 
 # Examples
 
