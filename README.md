@@ -70,9 +70,9 @@ You are going to need `AppId` from the Provider which will be used to get the Ca
 ```swift
 AirRobeWidget.initialize(
     config: AirRobeWidgetConfig(
-        appId: "APP_ID",  // Required
-        color: String, // Optional - color HexCode without "#"
-        mode: enum // Optional - (.production or .sandbox) Default value is .production
+        appId: "APP_ID",  // required
+        color: String, // optional - color HexCode without "#"
+        mode: enum // optional - (.production or .sandbox) Default value is .production
     )
 )
 ```
@@ -86,14 +86,14 @@ AirRobeWidget.initialize(
 var airRobeOptIn = AirRobeOptIn()
 ...
 airRobeOptIn.initialize(
-    brand: String, // required - Example: "Chanel" - Can be empty string
-    material: String, // required - Example: "Leather" - Can be empty string
-    category: String, // required - Example: "Hats/fancy-hats"
-    priceCents: Double, // required - Example: 100.95
-    originalFullPriceCents: Double, required - // Example: 62.00
-    rrpCents: Double, // required - Example: 62.00
-    currency: String, // required - Example: "AUD"
-    locale: String // required - Example: "en-AU"
+    brand: String, // required - e.g. "Chanel" - Can be empty string
+    material: String, // required - e.g. "Leather" - Can be empty string
+    category: String, // required - e.g. "Hats/fancy-hats"
+    priceCents: Double, // required - e.g. 100.95
+    originalFullPriceCents: Double, // required - e.g. 62.00
+    rrpCents: Double, // required - e.g. 62.00
+    currency: String, // required - e.g. "AUD"
+    locale: String // required - e.g. "en-AU"
 )
 ```
 
@@ -104,7 +104,7 @@ airRobeOptIn.initialize(
 var airRobeMultiOptIn = AirRobeMultiOptIn()
 ...
 airRobeMultiOptIn.initialize(
-    items: [String], // required - Example: ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"]
+    items: [String], // required - e.g. ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"]
 )
 ```
 
@@ -115,8 +115,8 @@ airRobeMultiOptIn.initialize(
 var airRobeConfirmation = AirRobeConfirmation()
 ...
 airRobeConfirmation.initialize(
-    orderId: String // Required - Example: "123456" - the order id you got from the checkout.
-    email: String // Optional
+    orderId: String // required - e.g. "123456" - the order id you got from the checkout.
+    email: String // optional
 )
 ```
 
