@@ -14,7 +14,8 @@ final class OrderConfirmationView: UIView, NibLoadable {
     @IBOutlet weak var activateContainerView: UIView!
     @IBOutlet weak var activateLabel: UILabel!
     @IBOutlet weak var activateButton: UIButton!
-
+    @IBOutlet weak var activateLoading: UIActivityIndicatorView!
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -35,11 +36,13 @@ final class OrderConfirmationView: UIView, NibLoadable {
 
         titleLabel.text = Strings.orderConfirmationTitle
         descriptionLabel.text = Strings.orderConfirmationDescription
-        activateLabel.text = Strings.orderconrifmrationActivateText
 
         activateContainerView.backgroundColor = UIColor.black
         activateContainerView.addBorder(borderWidth: 0, cornerRadius: 20)
         activateContainerView.addShadow()
+
+        activateLoading.hidesWhenStopped = true
+        activateLoading.startAnimating()
     }
 }
 #endif

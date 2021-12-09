@@ -26,7 +26,6 @@ public func initialize(config: AirRobeWidgetConfig) {
                 print(completion)
             }
         }, receiveValue: {
-            print($0)
             CategoryModelInstance.shared.categoryModel = $0
         })
 }

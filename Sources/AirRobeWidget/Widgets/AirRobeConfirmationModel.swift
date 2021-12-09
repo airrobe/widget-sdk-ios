@@ -22,7 +22,11 @@ final class AirRobeConfirmationModel {
     var orderId: String = ""
     var email: String?
 
+    private lazy var apiService = AirRobeApiService()
+    private var cancellable: AnyCancellable?
+
     @Published var isAllSet: LoadState = .initializing
+    @Published var activateText: String = ""
 
     func initializeWidget() {
         if orderId.isEmpty {
@@ -30,6 +34,41 @@ final class AirRobeConfirmationModel {
             return
         }
         isAllSet = UserDefaults.standard.OtpInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
+        if isAllSet == .eligible {
+            if let email = email, !email.isEmpty {
+                emailCheck(email: email)
+            } else {
+                activateText = Strings.orderconrifmrationActivateText
+            }
+        }
     }
+
+}
+
+private extension AirRobeConfirmationModel {
+
+    func emailCheck(email: String) {
+        cancellable = apiService.emailCheck(operation: GraphQLOperation.fetchPost(with: email))
+            .sink(receiveCompletion: { [weak self] (completion) in
+                guard let self = self else {
+                    return
+                }
+                switch completion {
+                case .failure(let error):
+                    #if DEBUG
+                    print("Email Checking Issue: ", error)
+                    #endif
+                    self.activateText = Strings.orderconrifmrationActivateText
+                case .finished:
+                    print(completion)
+                }
+            }, receiveValue: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.activateText = $0.data.isCustomer ? Strings.orderconrifmrationVisitText : Strings.orderconrifmrationActivateText
+            })
+    }
+
 }
 #endif

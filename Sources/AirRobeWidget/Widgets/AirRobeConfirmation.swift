@@ -30,9 +30,41 @@ open class AirRobeConfirmation: UIView {
         viewModel.orderId = orderId
         viewModel.email = email
         setupBindings()
+        viewModel.initializeWidget()
     }
 
-    private func setupBindings() {
+    private func initView() {
+        if !initialized {
+            orderConfirmationView.activateButton.addTarget(self, action: #selector(onTapActivate), for: .touchUpInside)
+            addSubview(orderConfirmationView)
+            orderConfirmationView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                orderConfirmationView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+                orderConfirmationView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+                orderConfirmationView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+                orderConfirmationView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            ])
+            initialized = true
+        }
+        isHidden = false
+    }
+
+    @objc func onTapActivate(_ sender: UIButton) {
+        guard let configuration = configuration else {
+            return
+        }
+        let url = URL(
+            string: "\(Strings.orderActivateBaseUrl)\(viewModel.orderId)-\(configuration.appId)"
+        )
+        guard let url = url else {
+            return
+        }
+        Utils.openUrl(url)
+    }
+}
+
+private extension AirRobeConfirmation {
+    func setupBindings() {
         UserDefaults.standard
             .publisher(for: \.OtpInfo)
             .receive(on: DispatchQueue.main)
@@ -81,35 +113,18 @@ open class AirRobeConfirmation: UIView {
                     #endif
                 }
             }).store(in: &subscribers)
-    }
 
-    private func initView() {
-        if !initialized {
-            orderConfirmationView.activateButton.addTarget(self, action: #selector(onTapActivate), for: .touchUpInside)
-            addSubview(orderConfirmationView)
-            orderConfirmationView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                orderConfirmationView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-                orderConfirmationView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-                orderConfirmationView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-                orderConfirmationView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            ])
-            initialized = true
-        }
-        isHidden = false
-    }
-
-    @objc func onTapActivate(_ sender: UIButton) {
-        guard let configuration = configuration else {
-            return
-        }
-        let url = URL(
-            string: "\(Strings.orderActivateBaseUrl)\(viewModel.orderId)-\(configuration.appId)"
-        )
-        guard let url = url else {
-            return
-        }
-        Utils.openUrl(url)
+        viewModel.$activateText
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] activateText in
+                guard let self = self, !activateText.isEmpty else {
+                    return
+                }
+                self.orderConfirmationView.activateLoading.stopAnimating()
+                self.orderConfirmationView.activateLabel.text = activateText
+            }).store(in: &subscribers)
     }
 }
 #endif

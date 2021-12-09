@@ -75,7 +75,6 @@ private extension AirRobeOtpInModel {
                 guard let self = self else {
                     return
                 }
-                print($0)
                 guard let result = $0.result, let resaleValue = result.resaleValue else {
                     self.isAllSet = .priceEngineIssue
                     return

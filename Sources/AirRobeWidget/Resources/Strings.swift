@@ -47,7 +47,7 @@ enum Strings {
 
     // MARK: - Check Email Query Strings
     static let CheckEmailQuery = """
-                query IsCustomer ($email: String) {
+                query IsCustomer ($email: String!) {
                   isCustomer(email: $email)
                 }
             """
@@ -69,6 +69,7 @@ enum Strings {
     static let orderConfirmationTitle = "Your items are in"
     static let orderConfirmationDescription = "Simply activate your free account below to re-sell your items back into a circular economy after you`ve worn and loved them."
     static let orderconrifmrationActivateText = "ACTIVATE YOUR AIRROBE ACCOUNT"
+    static let orderconrifmrationVisitText = "VISIT YOUR AIRROBE ACCOUNT"
 
     // MARK: - Order Activate baseURL
     static let orderActivateBaseUrl = "https://shop.airrobe.com/en/orders/"

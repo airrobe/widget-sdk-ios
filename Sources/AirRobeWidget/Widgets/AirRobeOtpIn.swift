@@ -47,7 +47,38 @@ open class AirRobeOtpIn: UIView {
         }
     }
 
-    private func setupBindings() {
+    private func initViewWithError(error: String) {
+        let errorLabel: UILabel = {
+            let v = UILabel()
+            v.textColor = .red
+            v.font = .systemFont(ofSize: 16)
+            v.text = error
+            v.textAlignment = .center
+            v.lineBreakMode = .byWordWrapping
+            v.numberOfLines = 0
+            return v
+        }()
+        addSubview(errorLabel)
+        errorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        errorLabel.frame = bounds
+        errorLabel.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+
+    private func initView() {
+        otpInview.potentialValueLoading.startAnimating()
+        addSubview(otpInview)
+        otpInview.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            otpInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            otpInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            otpInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            otpInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+        ])
+    }
+}
+
+private extension AirRobeOtpIn {
+    func setupBindings() {
         UserDefaults.standard
             .publisher(for: \.OtpInfo)
             .receive(on: DispatchQueue.main)
@@ -113,35 +144,6 @@ open class AirRobeOtpIn: UIView {
                     self.otpInview.potentialValueLabel.text = Strings.potentialValue + "$" + price
                 }
             }).store(in: &subscribers)
-    }
-
-    private func initViewWithError(error: String) {
-        let errorLabel: UILabel = {
-            let v = UILabel()
-            v.textColor = .red
-            v.font = .systemFont(ofSize: 16)
-            v.text = error
-            v.textAlignment = .center
-            v.lineBreakMode = .byWordWrapping
-            v.numberOfLines = 0
-            return v
-        }()
-        addSubview(errorLabel)
-        errorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        errorLabel.frame = bounds
-        errorLabel.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    }
-
-    private func initView() {
-        otpInview.potentialValueLoading.startAnimating()
-        addSubview(otpInview)
-        otpInview.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            otpInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            otpInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            otpInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            otpInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-        ])
     }
 }
 #endif

@@ -33,7 +33,21 @@ open class AirRobeMultiOtpIn: UIView {
         }
     }
 
-    private func setupBindings() {
+    private func initView() {
+        otpInview.potentialValueLabel.isHidden = true
+        addSubview(otpInview)
+        otpInview.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            otpInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            otpInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            otpInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            otpInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+        ])
+    }
+}
+
+private extension AirRobeMultiOtpIn {
+    func setupBindings() {
         UserDefaults.standard
             .publisher(for: \.OtpInfo)
             .receive(on: DispatchQueue.main)
@@ -81,18 +95,6 @@ open class AirRobeMultiOtpIn: UIView {
                     #endif
                 }
             }).store(in: &subscribers)
-    }
-
-    private func initView() {
-        otpInview.potentialValueLabel.isHidden = true
-        addSubview(otpInview)
-        otpInview.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            otpInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            otpInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            otpInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            otpInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-        ])
     }
 }
 #endif
