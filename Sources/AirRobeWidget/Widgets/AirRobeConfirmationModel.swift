@@ -33,7 +33,7 @@ final class AirRobeConfirmationModel {
             isAllSet = .paramIssue
             return
         }
-        isAllSet = UserDefaults.standard.OtpInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
+        isAllSet = UserDefaults.standard.OptInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
         if isAllSet == .eligible {
             if let email = email, !email.isEmpty {
                 emailCheck(email: email)

@@ -15,7 +15,7 @@ final class ProductPageViewController: UIViewController {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
 
-    private lazy var airRobeOtpIn: AirRobeOtpIn = AirRobeOtpIn()
+    private lazy var airRobeOptIn: AirRobeOptIn = AirRobeOptIn()
     private(set) lazy var viewModel = ProductPageViewModel()
 
     var cartButton: UIBarButtonItem?
@@ -28,8 +28,8 @@ final class ProductPageViewController: UIViewController {
             subTitleLabel.text = cellViewModel.subTitle
             priceLabel.text = cellViewModel.price
 
-            // Initialize airRobeOtpIn view
-            airRobeOtpIn.initialize(
+            // Initialize airRobeOptIn view
+            airRobeOptIn.initialize(
                 brand: "",
                 material: "",
                 category: cellViewModel.category,
@@ -38,7 +38,7 @@ final class ProductPageViewController: UIViewController {
                 rrpCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0,
                 currency: "AUD",
                 locale: "en-AU")
-            stackView.addArrangedSubview(airRobeOtpIn)
+            stackView.addArrangedSubview(airRobeOptIn)
         }
     }
 

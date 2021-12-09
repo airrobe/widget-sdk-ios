@@ -1,5 +1,5 @@
 //
-//  AirRobeMultiOtpInModel.swift
+//  AirRobeMultiOptInModel.swift
 //  
 //
 //  Created by King on 12/2/21.
@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-final class AirRobeMultiOtpInModel {
+final class AirRobeMultiOptInModel {
 
     enum LoadState: String {
         case initializing = "Widget Initializing"

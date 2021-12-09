@@ -249,7 +249,7 @@
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Db-8j-Xax">
                                                                 <rect key="frame" x="35" y="5" width="51" height="31"/>
                                                                 <connections>
-                                                                    <action selector="onToggleOtpSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="UIe-mj-a9H"/>
+                                                                    <action selector="onToggleOptSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="8cG-OP-V37"/>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
@@ -331,7 +331,7 @@
                         <outlet property="closeButton" destination="ELr-2r-adY" id="rN0-Tu-Et6"/>
                         <outlet property="findMoreLabel" destination="eQA-w1-POF" id="gXi-Qt-Vd9"/>
                         <outlet property="mainView" destination="EyT-lf-6qW" id="sYz-tD-ZGs"/>
-                        <outlet property="otpSwitch" destination="0Db-8j-Xax" id="wvl-Qg-n14"/>
+                        <outlet property="optSwitch" destination="0Db-8j-Xax" id="DTR-Jz-7YH"/>
                         <outlet property="outsideView" destination="dyk-Zd-aKS" id="0bh-Yl-5ba"/>
                         <outlet property="questionLabel" destination="xtK-0u-UFr" id="Oro-CJ-891"/>
                         <outlet property="readyLabel" destination="eLm-bK-ddz" id="Ek8-hr-2TI"/>

@@ -66,15 +66,15 @@ open class AirRobeConfirmation: UIView {
 private extension AirRobeConfirmation {
     func setupBindings() {
         UserDefaults.standard
-            .publisher(for: \.OtpInfo)
+            .publisher(for: \.OptInfo)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
-            }, receiveValue: { [weak self] (otpInfo) in
+            }, receiveValue: { [weak self] (optInfo) in
                 guard let self = self else {
                     return
                 }
-                self.viewModel.isAllSet = otpInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
+                self.viewModel.isAllSet = optInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
             }).store(in: &subscribers)
 
         UserDefaults.standard
@@ -86,7 +86,7 @@ private extension AirRobeConfirmation {
                 guard let self = self else {
                     return
                 }
-                self.viewModel.isAllSet = eligibility && UserDefaults.standard.OtpInfo ? .eligible : .notEligible
+                self.viewModel.isAllSet = eligibility && UserDefaults.standard.OptInfo ? .eligible : .notEligible
             }).store(in: &subscribers)
 
         viewModel.$isAllSet
@@ -100,7 +100,7 @@ private extension AirRobeConfirmation {
                 switch allSet {
                 case .initializing:
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.initializing.rawValue)
+                    print(AirRobeOptInModel.LoadState.initializing.rawValue)
                     #endif
                 case .eligible:
                     self.initView()
@@ -109,7 +109,7 @@ private extension AirRobeConfirmation {
                 case .paramIssue:
                     self.isHidden = true
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.paramIssue.rawValue)
+                    print(AirRobeOptInModel.LoadState.paramIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)

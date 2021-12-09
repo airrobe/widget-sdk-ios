@@ -24,7 +24,7 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
     @IBOutlet weak var readyLabel: UILabel!
     @IBOutlet weak var toggleOnLabel: UILabel!
     @IBOutlet weak var switchContainerView: UIView!
-    @IBOutlet weak var otpSwitch: UISwitch!
+    @IBOutlet weak var optSwitch: UISwitch!
     @IBOutlet weak var findMoreLabel: HyperlinkLabel!
 
     override func viewDidLoad() {
@@ -43,9 +43,9 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
             linkText: Strings.learnMoreFindMoreText,
             link: Strings.learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
-        otpSwitch.isOn = UserDefaults.standard.OtpInfo
-        otpSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
-        otpSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
+        optSwitch.isOn = UserDefaults.standard.OptInfo
+        optSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
+        optSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
 
         mainView.addShadow()
         step1View.addBorder()
@@ -62,8 +62,8 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
         Utils.openUrl(url)
     }
 
-    @IBAction func onToggleOtpSwitch(_ sender: UISwitch) {
-        UserDefaults.standard.OtpInfo = sender.isOn
+    @IBAction func onToggleOptSwitch(_ sender: UISwitch) {
+        UserDefaults.standard.OptInfo = sender.isOn
     }
 
     @IBAction func onTapClose(_ sender: Any) {

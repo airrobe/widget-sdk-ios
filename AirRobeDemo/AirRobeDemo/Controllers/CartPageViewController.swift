@@ -14,7 +14,7 @@ final class CartPageViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
 
     private var cartItemViews: [CartItemView] = []
-    private lazy var airRobeMultiOtpIn: AirRobeMultiOtpIn = AirRobeMultiOtpIn()
+    private lazy var airRobeMultiOptIn: AirRobeMultiOptIn = AirRobeMultiOptIn()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +43,13 @@ final class CartPageViewController: UIViewController {
     }
 
     private func initMultiOptIn() {
-        airRobeMultiOtpIn.removeFromSuperview()
+        airRobeMultiOptIn.removeFromSuperview()
         let categories = UserDefaults.standard.cartItems.map { $0.category }
-        airRobeMultiOtpIn.initialize(
+        airRobeMultiOptIn.initialize(
             items: categories
         )
         if let index = stackView.arrangedSubviews.firstIndex(of: margin) {
-            stackView.insertArrangedSubview(airRobeMultiOtpIn, at: index)
+            stackView.insertArrangedSubview(airRobeMultiOptIn, at: index)
         }
     }
 

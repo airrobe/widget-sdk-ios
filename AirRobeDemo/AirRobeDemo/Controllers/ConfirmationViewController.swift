@@ -28,6 +28,7 @@ final class ConfirmationViewController: UIViewController {
             airRobeConfirmation.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             airRobeConfirmation.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
+        print(AirRobeWidgetInfo.current)
     }
 }
 

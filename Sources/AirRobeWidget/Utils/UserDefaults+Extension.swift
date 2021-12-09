@@ -8,10 +8,10 @@
 import Foundation
 
 extension UserDefaults {
-    static let OtpInfoKey = "OtpInfoKey"
-    @objc var OtpInfo: Bool {
-        get { return bool(forKey: UserDefaults.OtpInfoKey) }
-        set { set(newValue, forKey: UserDefaults.OtpInfoKey) }
+    static let OptInfoKey = "OptInfoKey"
+    @objc var OptInfo: Bool {
+        get { return bool(forKey: UserDefaults.OptInfoKey) }
+        set { set(newValue, forKey: UserDefaults.OptInfoKey) }
     }
 
     static let EligibilityKey = "EligibilityKey"

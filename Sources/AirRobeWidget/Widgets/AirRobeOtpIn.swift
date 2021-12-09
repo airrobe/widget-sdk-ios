@@ -1,5 +1,5 @@
 //
-//  AirRobeOtpIn.swift
+//  AirRobeOptIn.swift
 //  
 //
 //  Created by King on 11/24/21.
@@ -9,10 +9,10 @@
 import UIKit
 import Combine
 
-open class AirRobeOtpIn: UIView {
-    private(set) lazy var viewModel = AirRobeOtpInModel()
+open class AirRobeOptIn: UIView {
+    private(set) lazy var viewModel = AirRobeOptInModel()
     private var subscribers: [AnyCancellable] = []
-    private lazy var otpInview: OtpInView = OtpInView.loadFromNib()
+    private lazy var optInview: OptInView = OptInView.loadFromNib()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -65,30 +65,30 @@ open class AirRobeOtpIn: UIView {
     }
 
     private func initView() {
-        otpInview.potentialValueLoading.startAnimating()
-        addSubview(otpInview)
-        otpInview.translatesAutoresizingMaskIntoConstraints = false
+        optInview.potentialValueLoading.startAnimating()
+        addSubview(optInview)
+        optInview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            otpInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            otpInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            otpInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            otpInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            optInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            optInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            optInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            optInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
         ])
     }
 }
 
-private extension AirRobeOtpIn {
+private extension AirRobeOptIn {
     func setupBindings() {
         UserDefaults.standard
-            .publisher(for: \.OtpInfo)
+            .publisher(for: \.OptInfo)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
-            }, receiveValue: { [weak self] (otpInfo) in
+            }, receiveValue: { [weak self] (optInfo) in
                 guard let self = self else {
                     return
                 }
-                self.otpInview.addToAirRobeSwitch.isOn = otpInfo
+                self.optInview.addToAirRobeSwitch.isOn = optInfo
             }).store(in: &subscribers)
 
         CategoryModelInstance.shared.$categoryModel
@@ -113,7 +113,7 @@ private extension AirRobeOtpIn {
                 switch allSet {
                 case .initializing:
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.initializing.rawValue)
+                    print(AirRobeOptInModel.LoadState.initializing.rawValue)
                     #endif
                 case .eligible:
                     self.initView()
@@ -122,11 +122,11 @@ private extension AirRobeOtpIn {
                 case .paramIssue:
                     self.isHidden = true
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.paramIssue.rawValue)
+                    print(AirRobeOptInModel.LoadState.paramIssue.rawValue)
                     #endif
                 case .priceEngineIssue:
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.priceEngineIssue.rawValue)
+                    print(AirRobeOptInModel.LoadState.priceEngineIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)
@@ -140,8 +140,8 @@ private extension AirRobeOtpIn {
                     return
                 }
                 DispatchQueue.main.async {
-                    self.otpInview.potentialValueLoading.stopAnimating()
-                    self.otpInview.potentialValueLabel.text = Strings.potentialValue + "$" + price
+                    self.optInview.potentialValueLoading.stopAnimating()
+                    self.optInview.potentialValueLabel.text = Strings.potentialValue + "$" + price
                 }
             }).store(in: &subscribers)
     }

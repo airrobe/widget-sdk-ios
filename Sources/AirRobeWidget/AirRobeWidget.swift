@@ -31,5 +31,5 @@ public func initialize(config: AirRobeWidgetConfig) {
 }
 
 public func clearCache() {
-    UserDefaults.standard.OtpInfo = false
+    UserDefaults.standard.OptInfo = false
 }

@@ -1,5 +1,5 @@
 //
-//  AirRobeMultiOtpIn.swift
+//  AirRobeMultiOptIn.swift
 //  
 //
 //  Created by King on 12/2/21.
@@ -9,10 +9,10 @@
 import UIKit
 import Combine
 
-open class AirRobeMultiOtpIn: UIView {
-    private(set) lazy var viewModel = AirRobeMultiOtpInModel()
+open class AirRobeMultiOptIn: UIView {
+    private(set) lazy var viewModel = AirRobeMultiOptInModel()
     private var subscribers: [AnyCancellable] = []
-    private lazy var otpInview: OtpInView = OtpInView.loadFromNib()
+    private lazy var optInview: OptInView = OptInView.loadFromNib()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,30 +34,30 @@ open class AirRobeMultiOtpIn: UIView {
     }
 
     private func initView() {
-        otpInview.potentialValueLabel.isHidden = true
-        addSubview(otpInview)
-        otpInview.translatesAutoresizingMaskIntoConstraints = false
+        optInview.potentialValueLabel.isHidden = true
+        addSubview(optInview)
+        optInview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            otpInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            otpInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            otpInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            otpInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            optInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            optInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            optInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            optInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
         ])
     }
 }
 
-private extension AirRobeMultiOtpIn {
+private extension AirRobeMultiOptIn {
     func setupBindings() {
         UserDefaults.standard
-            .publisher(for: \.OtpInfo)
+            .publisher(for: \.OptInfo)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
-            }, receiveValue: { [weak self] (otpInfo) in
+            }, receiveValue: { [weak self] (optInfo) in
                 guard let self = self else {
                     return
                 }
-                self.otpInview.addToAirRobeSwitch.isOn = otpInfo
+                self.optInview.addToAirRobeSwitch.isOn = optInfo
             }).store(in: &subscribers)
 
         CategoryModelInstance.shared.$categoryModel
@@ -82,7 +82,7 @@ private extension AirRobeMultiOtpIn {
                 switch allSet {
                 case .initializing:
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.initializing.rawValue)
+                    print(AirRobeOptInModel.LoadState.initializing.rawValue)
                     #endif
                 case .eligible:
                     self.initView()
@@ -91,7 +91,7 @@ private extension AirRobeMultiOtpIn {
                 case .paramIssue:
                     self.isHidden = true
                     #if DEBUG
-                    print(AirRobeOtpInModel.LoadState.paramIssue.rawValue)
+                    print(AirRobeOptInModel.LoadState.paramIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)

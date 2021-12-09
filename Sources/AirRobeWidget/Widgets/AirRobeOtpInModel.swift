@@ -1,5 +1,5 @@
 //
-//  AirRobeOtpInModel.swift
+//  AirRobeOptInModel.swift
 //  
 //
 //  Created by King on 11/25/21.
@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-final class AirRobeOtpInModel {
+final class AirRobeOptInModel {
 
     enum LoadState: String {
         case initializing = "Widget Initializing"
@@ -54,7 +54,7 @@ final class AirRobeOtpInModel {
     }
 }
 
-private extension AirRobeOtpInModel {
+private extension AirRobeOptInModel {
 
     func callPriceEngine(category: String) {
         cancellable = apiService.priceEngine(price: priceCents, rrp: rrpCents, category: category, brand: brand, material: material)
