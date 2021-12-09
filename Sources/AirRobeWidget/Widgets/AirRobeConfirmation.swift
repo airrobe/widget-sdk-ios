@@ -54,7 +54,7 @@ open class AirRobeConfirmation: UIView {
             return
         }
         let url = URL(
-            string: "\(Strings.orderActivateBaseUrl)\(viewModel.orderId)-\(configuration.appId)"
+            string: "\(Strings.orderActivateBaseUrl)\(configuration.appId)-\(viewModel.orderId)"
         )
         guard let url = url else {
             return
