@@ -57,7 +57,7 @@ final class AirRobeOtpInModel {
 private extension AirRobeOtpInModel {
 
     func callPriceEngine(category: String) {
-        cancellable = apiService.priceEngine(price: priceCents, rrp: rrpCents, category: category)
+        cancellable = apiService.priceEngine(price: priceCents, rrp: rrpCents, category: category, brand: brand, material: material)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else {
                     return
