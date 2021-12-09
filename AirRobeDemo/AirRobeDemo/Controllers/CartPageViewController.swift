@@ -11,9 +11,10 @@ import AirRobeWidget
 final class CartPageViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var margin: UIView!
-    
+    @IBOutlet weak var emailTextField: UITextField!
+
     private var cartItemViews: [CartItemView] = []
-    private var airRobeMultiOtpIn: AirRobeMultiOtpIn = AirRobeMultiOtpIn()
+    private lazy var airRobeMultiOtpIn: AirRobeMultiOtpIn = AirRobeMultiOtpIn()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,7 @@ final class CartPageViewController: UIViewController {
             items: categories
         )
         if let index = stackView.arrangedSubviews.firstIndex(of: margin) {
-            stackView.insertArrangedSubview(airRobeMultiOtpIn, at: index + 1)
+            stackView.insertArrangedSubview(airRobeMultiOtpIn, at: index)
         }
     }
 
@@ -72,6 +73,7 @@ final class CartPageViewController: UIViewController {
     @IBAction func onTapPlaceOrder(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ConfirmationViewController") as! ConfirmationViewController
         vc.orderId = "random_order_id"
+        vc.email = emailTextField.text ?? ""
         navigationController?.pushViewController(vc, animated: true)
     }
 }

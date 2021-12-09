@@ -15,7 +15,7 @@ final class ProductPageViewController: UIViewController {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
 
-    private var airRobeOtpIn: AirRobeOtpIn = AirRobeOtpIn()
+    private lazy var airRobeOtpIn: AirRobeOtpIn = AirRobeOtpIn()
     private(set) lazy var viewModel = ProductPageViewModel()
 
     var cartButton: UIBarButtonItem?

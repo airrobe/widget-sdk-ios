@@ -11,13 +11,15 @@ import AirRobeWidget
 final class ConfirmationViewController: UIViewController {
     @IBOutlet weak var thankyouLabel: UILabel!
 
-    var airRobeConfirmation: AirRobeConfirmation = AirRobeConfirmation()
+    private lazy var airRobeConfirmation: AirRobeConfirmation = AirRobeConfirmation()
     var orderId: String = ""
+    var email: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         airRobeConfirmation.initialize(
-            orderId: orderId
+            orderId: orderId,
+            email: email
         )
         view.addSubview(airRobeConfirmation)
         airRobeConfirmation.translatesAutoresizingMaskIntoConstraints = false
