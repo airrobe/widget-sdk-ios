@@ -72,7 +72,7 @@ final class CartPageViewController: UIViewController {
 
     @IBAction func onTapPlaceOrder(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ConfirmationViewController") as! ConfirmationViewController
-        vc.orderId = ""
+        vc.orderId = "random_order_id"
         vc.email = emailTextField.text ?? ""
         navigationController?.pushViewController(vc, animated: true)
     }
