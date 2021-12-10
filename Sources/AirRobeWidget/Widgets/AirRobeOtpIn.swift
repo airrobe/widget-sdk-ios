@@ -124,10 +124,6 @@ private extension AirRobeOptIn {
                     #if DEBUG
                     print(AirRobeOptInModel.LoadState.paramIssue.rawValue)
                     #endif
-                case .priceEngineIssue:
-                    #if DEBUG
-                    print(AirRobeOptInModel.LoadState.priceEngineIssue.rawValue)
-                    #endif
                 }
             }).store(in: &subscribers)
 

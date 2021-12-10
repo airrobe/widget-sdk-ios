@@ -16,7 +16,6 @@ final class AirRobeOptInModel {
         case eligible
         case notEligible
         case paramIssue = "Category shouldn't be empty string"
-        case priceEngineIssue = "Not able to get the valid information from Price Engine-v1"
     }
 
     /// Describes which brand the widget belongs to.
@@ -76,7 +75,7 @@ private extension AirRobeOptInModel {
                     #if DEBUG
                     print("PriceEngine Api Issue: ", error)
                     #endif
-                    self.isAllSet = .priceEngineIssue
+                    self.potentialPrice = self.fallbackResalePrice()
                 case .finished:
                     print(completion)
                 }
@@ -85,12 +84,16 @@ private extension AirRobeOptInModel {
                     return
                 }
                 guard let result = $0.result, let resaleValue = result.resaleValue else {
-                    self.isAllSet = .priceEngineIssue
+                    self.potentialPrice = self.fallbackResalePrice()
                     return
                 }
                 self.potentialPrice = String(resaleValue)
             })
     }
 
+    func fallbackResalePrice() -> String {
+        let resaleValue = round(100 * ((priceCents * 65) / 100)) / 100
+        return String(resaleValue)
+    }
 }
 #endif
