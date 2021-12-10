@@ -15,12 +15,12 @@ final class AirRobeConfirmationModel {
         case initializing = "Widget Initializing"
         case eligible
         case notEligible
-        case paramIssue = "orderId shouldn't be empty string"
+        case paramIssue = "orderId and email shouldn't be empty string"
     }
 
     /// Describes the order Id of the purchase.
     var orderId: String = ""
-    var email: String?
+    var email: String = ""
 
     private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
@@ -29,17 +29,13 @@ final class AirRobeConfirmationModel {
     @Published var activateText: String = ""
 
     func initializeWidget() {
-        if orderId.isEmpty {
+        if orderId.isEmpty || email.isEmpty {
             isAllSet = .paramIssue
             return
         }
         isAllSet = UserDefaults.standard.OptInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
         if isAllSet == .eligible {
-            if let email = email, !email.isEmpty {
-                emailCheck(email: email)
-            } else {
-                activateText = Strings.orderconrifmrationActivateText
-            }
+            emailCheck(email: email)
         }
     }
 

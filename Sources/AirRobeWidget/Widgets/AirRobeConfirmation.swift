@@ -25,7 +25,7 @@ open class AirRobeConfirmation: UIView {
 
     public func initialize(
         orderId: String,
-        email: String? = nil
+        email: String
     ) {
         viewModel.orderId = orderId
         viewModel.email = email
