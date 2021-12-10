@@ -23,12 +23,12 @@ open class AirRobeOptIn: UIView {
     }
 
     public func initialize(
-        brand: String,
-        material: String,
+        brand: String? = nil,
+        material: String? = nil,
         category: String,
         priceCents: Double,
-        originalFullPriceCents: Double,
-        rrpCents: Double,
+        originalFullPriceCents: Double? = nil,
+        rrpCents: Double? = nil,
         currency: String,
         locale: String
     ) {

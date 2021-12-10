@@ -20,17 +20,17 @@ final class AirRobeOptInModel {
     }
 
     /// Describes which brand the widget belongs to.
-    var brand: String = ""
+    var brand: String?
     /// Describes which material the widget belongs to.
-    var material: String = ""
+    var material: String?
     /// Describes which category the widget belongs to.
     var category: String = ""
     /// Describes the price of the shopping item.
     var priceCents: Double = 0.0
     /// Describes the original full price of the shopping item.
-    var originalFullPriceCents: Double = 0.0
+    var originalFullPriceCents: Double?
     /// Describes the Recommended Retail Price of the shopping item.
-    var rrpCents: Double = 0.0
+    var rrpCents: Double?
     /// Describes the currency.
     var currency: String = ""
     /// Describes the current locale of the device.
@@ -57,7 +57,16 @@ final class AirRobeOptInModel {
 private extension AirRobeOptInModel {
 
     func callPriceEngine(category: String) {
-        cancellable = apiService.priceEngine(price: priceCents, rrp: rrpCents, category: category, brand: brand, material: material)
+        let rrp: Double? = {
+            if let rrpCents = rrpCents {
+                return rrpCents
+            }
+            if let originalFullPriceCents = originalFullPriceCents {
+                return originalFullPriceCents
+            }
+            return nil
+        }()
+        cancellable = apiService.priceEngine(price: priceCents, rrp: rrp, category: category, brand: brand, material: material)
             .sink(receiveCompletion: { [weak self] completion in
                 guard let self = self else {
                     return
