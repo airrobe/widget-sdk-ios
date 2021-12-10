@@ -15,7 +15,7 @@ final class AirRobeConfirmationModel {
         case initializing = "Widget Initializing"
         case eligible
         case notEligible
-        case paramIssue = "Please initialize the widget with the valid information"
+        case paramIssue = "orderId shouldn't be empty string"
     }
 
     /// Describes the order Id of the purchase.

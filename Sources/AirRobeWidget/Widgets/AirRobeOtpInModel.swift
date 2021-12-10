@@ -15,7 +15,7 @@ final class AirRobeOptInModel {
         case initializing = "Widget Initializing"
         case eligible
         case notEligible
-        case paramIssue = "Please initialize the widget with the valid information"
+        case paramIssue = "Category shouldn't be empty string"
         case priceEngineIssue = "Not able to get the valid information from Price Engine-v1"
     }
 

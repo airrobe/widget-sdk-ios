@@ -65,30 +65,6 @@ open class AirRobeConfirmation: UIView {
 
 private extension AirRobeConfirmation {
     func setupBindings() {
-        UserDefaults.standard
-            .publisher(for: \.OptInfo)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] (optInfo) in
-                guard let self = self else {
-                    return
-                }
-                self.viewModel.isAllSet = optInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
-            }).store(in: &subscribers)
-
-        UserDefaults.standard
-            .publisher(for: \.Eligibility)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] (eligibility) in
-                guard let self = self else {
-                    return
-                }
-                self.viewModel.isAllSet = eligibility && UserDefaults.standard.OptInfo ? .eligible : .notEligible
-            }).store(in: &subscribers)
-
         viewModel.$isAllSet
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {

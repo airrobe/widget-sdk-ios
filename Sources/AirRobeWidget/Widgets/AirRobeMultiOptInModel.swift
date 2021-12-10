@@ -15,7 +15,7 @@ final class AirRobeMultiOptInModel {
         case initializing = "Widget Initializing"
         case eligible
         case notEligible
-        case paramIssue = "Please initialize the widget with the valid information"
+        case paramIssue = "Cateory string array shouldn't be empty"
     }
 
     /// Describes the categorys mapping info in String array for the items in the cart.
