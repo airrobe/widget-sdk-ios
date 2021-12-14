@@ -55,7 +55,6 @@
 		3CE54691275B01F100FBE205 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CE54694275B01F100FBE205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CE54696275B01F100FBE205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3CE5469F275B01F100FBE205 /* AirRobeDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirRobeDemoTests.swift; sourceTree = "<group>"; };
 		3CE546A5275B01F100FBE205 /* AirRobeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirRobeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE546A9275B01F100FBE205 /* AirRobeDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirRobeDemoUITests.swift; sourceTree = "<group>"; };
 		3CE546AB275B01F100FBE205 /* AirRobeDemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirRobeDemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -131,7 +130,6 @@
 			children = (
 				3CE546B8275B02F000FBE205 /* Packages */,
 				3CE54687275B01F000FBE205 /* AirRobeDemo */,
-				3CE5469E275B01F100FBE205 /* AirRobeDemoTests */,
 				3CE546A8275B01F100FBE205 /* AirRobeDemoUITests */,
 				3CE54686275B01F000FBE205 /* Products */,
 				3C07BF23275B0493004D8CC2 /* Frameworks */,
@@ -162,14 +160,6 @@
 				3CE54696275B01F100FBE205 /* Info.plist */,
 			);
 			path = AirRobeDemo;
-			sourceTree = "<group>";
-		};
-		3CE5469E275B01F100FBE205 /* AirRobeDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				3CE5469F275B01F100FBE205 /* AirRobeDemoTests.swift */,
-			);
-			path = AirRobeDemoTests;
 			sourceTree = "<group>";
 		};
 		3CE546A8275B01F100FBE205 /* AirRobeDemoUITests */ = {
