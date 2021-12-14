@@ -31,9 +31,9 @@ final class AirRobeOptInModel {
     /// Describes the Recommended Retail Price of the shopping item.
     var rrpCents: Double?
     /// Describes the currency.
-    var currency: String = ""
+    var currency: String?
     /// Describes the current locale of the device.
-    var locale: String = ""
+    var locale: String?
 
     @Published var isAllSet: LoadState = .initializing
     @Published var potentialPrice: String = ""

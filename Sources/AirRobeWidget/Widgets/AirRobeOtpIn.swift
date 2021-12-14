@@ -29,8 +29,8 @@ open class AirRobeOptIn: UIView {
         priceCents: Double,
         originalFullPriceCents: Double? = nil,
         rrpCents: Double? = nil,
-        currency: String,
-        locale: String
+        currency: String? = "AUD",
+        locale: String? = "en-AU"
     ) {
         viewModel.brand = brand
         viewModel.material = material

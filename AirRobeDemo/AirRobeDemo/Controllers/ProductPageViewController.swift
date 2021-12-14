@@ -31,9 +31,7 @@ final class ProductPageViewController: UIViewController {
             // Initialize airRobeOptIn view
             airRobeOptIn.initialize(
                 category: cellViewModel.category,
-                priceCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0,
-                currency: "AUD",
-                locale: "en-AU")
+                priceCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0)
             stackView.addArrangedSubview(airRobeOptIn)
         }
     }

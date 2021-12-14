@@ -18,6 +18,9 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "AirRobeWidgetTests",
-            dependencies: ["AirRobeWidget"]),
+            dependencies: ["AirRobeWidget"],
+            resources: [
+                .copy("Resources/mappingInfo.json")
+            ]),
     ]
 )
