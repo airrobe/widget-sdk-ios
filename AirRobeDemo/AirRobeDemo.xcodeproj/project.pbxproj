@@ -23,19 +23,11 @@
 		3CE54690275B01F000FBE205 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE5468E275B01F000FBE205 /* Main.storyboard */; };
 		3CE54692275B01F100FBE205 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3CE54691275B01F100FBE205 /* Assets.xcassets */; };
 		3CE54695275B01F100FBE205 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CE54693275B01F100FBE205 /* LaunchScreen.storyboard */; };
-		3CE546A0275B01F100FBE205 /* AirRobeDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5469F275B01F100FBE205 /* AirRobeDemoTests.swift */; };
 		3CE546AA275B01F100FBE205 /* AirRobeDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE546A9275B01F100FBE205 /* AirRobeDemoUITests.swift */; };
 		3CE546AC275B01F100FBE205 /* AirRobeDemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE546AB275B01F100FBE205 /* AirRobeDemoUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3CE5469C275B01F100FBE205 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3CE5467D275B01F000FBE205 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3CE54684275B01F000FBE205;
-			remoteInfo = AirRobeDemo;
-		};
 		3CE546A6275B01F100FBE205 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3CE5467D275B01F000FBE205 /* Project object */;
@@ -63,7 +55,6 @@
 		3CE54691275B01F100FBE205 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3CE54694275B01F100FBE205 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3CE54696275B01F100FBE205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3CE5469B275B01F100FBE205 /* AirRobeDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirRobeDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE5469F275B01F100FBE205 /* AirRobeDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirRobeDemoTests.swift; sourceTree = "<group>"; };
 		3CE546A5275B01F100FBE205 /* AirRobeDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirRobeDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE546A9275B01F100FBE205 /* AirRobeDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirRobeDemoUITests.swift; sourceTree = "<group>"; };
@@ -77,13 +68,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C07BF25275B0493004D8CC2 /* AirRobeWidget in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3CE54698275B01F100FBE205 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				3CE54685275B01F000FBE205 /* AirRobeDemo.app */,
-				3CE5469B275B01F100FBE205 /* AirRobeDemoTests.xctest */,
 				3CE546A5275B01F100FBE205 /* AirRobeDemoUITests.xctest */,
 			);
 			name = Products;
@@ -229,24 +212,6 @@
 			productReference = 3CE54685275B01F000FBE205 /* AirRobeDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3CE5469A275B01F100FBE205 /* AirRobeDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3CE546B2275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemoTests" */;
-			buildPhases = (
-				3CE54697275B01F100FBE205 /* Sources */,
-				3CE54698275B01F100FBE205 /* Frameworks */,
-				3CE54699275B01F100FBE205 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3CE5469D275B01F100FBE205 /* PBXTargetDependency */,
-			);
-			name = AirRobeDemoTests;
-			productName = AirRobeDemoTests;
-			productReference = 3CE5469B275B01F100FBE205 /* AirRobeDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		3CE546A4275B01F100FBE205 /* AirRobeDemoUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3CE546B5275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemoUITests" */;
@@ -278,10 +243,6 @@
 					3CE54684275B01F000FBE205 = {
 						CreatedOnToolsVersion = 13.1;
 					};
-					3CE5469A275B01F100FBE205 = {
-						CreatedOnToolsVersion = 13.1;
-						TestTargetID = 3CE54684275B01F000FBE205;
-					};
 					3CE546A4275B01F100FBE205 = {
 						CreatedOnToolsVersion = 13.1;
 						TestTargetID = 3CE54684275B01F000FBE205;
@@ -302,7 +263,6 @@
 			projectRoot = "";
 			targets = (
 				3CE54684275B01F000FBE205 /* AirRobeDemo */,
-				3CE5469A275B01F100FBE205 /* AirRobeDemoTests */,
 				3CE546A4275B01F100FBE205 /* AirRobeDemoUITests */,
 			);
 		};
@@ -317,13 +277,6 @@
 				3C5B27B62760CC95006CB5B6 /* CartItemView.xib in Resources */,
 				3CE54692275B01F100FBE205 /* Assets.xcassets in Resources */,
 				3CE54690275B01F000FBE205 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3CE54699275B01F100FBE205 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,14 +308,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3CE54697275B01F100FBE205 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3CE546A0275B01F100FBE205 /* AirRobeDemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3CE546A1275B01F100FBE205 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -375,11 +320,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3CE5469D275B01F100FBE205 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3CE54684275B01F000FBE205 /* AirRobeDemo */;
-			targetProxy = 3CE5469C275B01F100FBE205 /* PBXContainerItemProxy */;
-		};
 		3CE546A7275B01F100FBE205 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3CE54684275B01F000FBE205 /* AirRobeDemo */;
@@ -577,54 +517,6 @@
 			};
 			name = Release;
 		};
-		3CE546B3275B01F100FBE205 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.airrobe.widgetsdk.AirRobeDemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirRobeDemo.app/AirRobeDemo";
-			};
-			name = Debug;
-		};
-		3CE546B4275B01F100FBE205 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.airrobe.widgetsdk.AirRobeDemoTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AirRobeDemo.app/AirRobeDemo";
-			};
-			name = Release;
-		};
 		3CE546B6275B01F100FBE205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -686,15 +578,6 @@
 			buildConfigurations = (
 				3CE546B0275B01F100FBE205 /* Debug */,
 				3CE546B1275B01F100FBE205 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3CE546B2275B01F100FBE205 /* Build configuration list for PBXNativeTarget "AirRobeDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3CE546B3275B01F100FBE205 /* Debug */,
-				3CE546B4275B01F100FBE205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
