@@ -13,13 +13,16 @@ open class AirRobeOptIn: UIView {
     private(set) lazy var viewModel = AirRobeOptInModel()
     private var subscribers: [AnyCancellable] = []
     private lazy var optInview: OptInView = OptInView.loadFromNib()
+    private var isAdded: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupBindings()
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupBindings()
     }
 
     public func initialize(
@@ -41,39 +44,22 @@ open class AirRobeOptIn: UIView {
         viewModel.currency = currency
         viewModel.locale = locale
 
-        setupBindings()
-        if let categoryModel = CategoryModelInstance.shared.categoryModel {
-            viewModel.initializeWidget(categoryModel: categoryModel)
-        }
-    }
-
-    private func initViewWithError(error: String) {
-        let errorLabel: UILabel = {
-            let v = UILabel()
-            v.textColor = .red
-            v.font = .systemFont(ofSize: 16)
-            v.text = error
-            v.textAlignment = .center
-            v.lineBreakMode = .byWordWrapping
-            v.numberOfLines = 0
-            return v
-        }()
-        addSubview(errorLabel)
-        errorLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        errorLabel.frame = bounds
-        errorLabel.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        viewModel.initializeWidget()
     }
 
     private func initView() {
         optInview.potentialValueLoading.startAnimating()
-        addSubview(optInview)
-        optInview.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            optInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            optInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            optInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            optInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-        ])
+        if !isAdded {
+            addSubview(optInview)
+            optInview.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                optInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+                optInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+                optInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+                optInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            ])
+            isAdded = true
+        }
     }
 }
 
@@ -95,11 +81,11 @@ private extension AirRobeOptIn {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
-            }, receiveValue: { [weak self] categoryModel in
-                guard let self = self, let categoryModel = categoryModel else {
+            }, receiveValue: { [weak self] (categoryModel) in
+                guard let self = self, categoryModel != nil else {
                     return
                 }
-                self.viewModel.initializeWidget(categoryModel: categoryModel)
+                self.viewModel.initializeWidget()
             }).store(in: &subscribers)
 
         viewModel.$isAllSet
@@ -113,7 +99,11 @@ private extension AirRobeOptIn {
                 switch allSet {
                 case .initializing:
                     #if DEBUG
-                    print(AirRobeOptInModel.LoadState.initializing.rawValue)
+                    print(OptInView.LoadState.initializing.rawValue)
+                    #endif
+                case .noCategoryMappingInfo:
+                    #if DEBUG
+                    print(OptInView.LoadState.noCategoryMappingInfo.rawValue)
                     #endif
                 case .eligible:
                     self.initView()
@@ -122,7 +112,7 @@ private extension AirRobeOptIn {
                 case .paramIssue:
                     self.isHidden = true
                     #if DEBUG
-                    print(AirRobeOptInModel.LoadState.paramIssue.rawValue)
+                    print(OptInView.LoadState.paramIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)

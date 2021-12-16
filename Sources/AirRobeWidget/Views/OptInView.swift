@@ -15,6 +15,14 @@ final class OptInView: UIView, NibLoadable {
         case closed
     }
 
+    enum LoadState: String {
+        case initializing = "Widget Initializing"
+        case noCategoryMappingInfo = "Category Mapping Info is not loaded"
+        case eligible
+        case notEligible
+        case paramIssue = "Required params can't be empty"
+    }
+
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var mainContainerExpandButton: UIButton!

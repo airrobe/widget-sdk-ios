@@ -10,14 +10,6 @@ import UIKit
 import Combine
 
 final class AirRobeOptInModel {
-
-    enum LoadState: String {
-        case initializing = "Widget Initializing"
-        case eligible
-        case notEligible
-        case paramIssue = "Category shouldn't be empty string"
-    }
-
     /// Describes which brand the widget belongs to.
     var brand: String?
     /// Describes which material the widget belongs to.
@@ -35,13 +27,17 @@ final class AirRobeOptInModel {
     /// Describes the current locale of the device.
     var locale: String?
 
-    @Published var isAllSet: LoadState = .initializing
+    @Published var isAllSet: OptInView.LoadState = .initializing
     @Published var potentialPrice: String = ""
 
     private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
 
-    func initializeWidget(categoryModel: CategoryModel) {
+    func initializeWidget() {
+        guard let categoryModel = CategoryModelInstance.shared.categoryModel else {
+            isAllSet = .noCategoryMappingInfo
+            return
+        }
         if category.isEmpty {
             isAllSet = .paramIssue
             return

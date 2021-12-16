@@ -10,22 +10,20 @@ import UIKit
 import Combine
 
 final class AirRobeMultiOptInModel {
-
-    enum LoadState: String {
-        case initializing = "Widget Initializing"
-        case eligible
-        case notEligible
-        case paramIssue = "Cateory string array shouldn't be empty"
-    }
-
     /// Describes the categorys mapping info in String array for the items in the cart.
-    var items: [String] = []
+    @Published var items: [String] = []
 
-    @Published var isAllSet: LoadState = .initializing
+    @Published var isAllSet: OptInView.LoadState = .initializing
 
-    func initializeWidget(categoryModel: CategoryModel) {
+    func initializeWidget() {
+        guard let categoryModel = CategoryModelInstance.shared.categoryModel else {
+            isAllSet = .noCategoryMappingInfo
+            UserDefaults.standard.OrderOptedIn = false
+            return
+        }
         if items.isEmpty {
             isAllSet = .paramIssue
+            UserDefaults.standard.OrderOptedIn = false
             return
         }
         isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible

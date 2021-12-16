@@ -76,7 +76,7 @@ private extension AirRobeConfirmation {
                 switch allSet {
                 case .initializing:
                     #if DEBUG
-                    print(AirRobeOptInModel.LoadState.initializing.rawValue)
+                    print(AirRobeConfirmationModel.LoadState.initializing.rawValue)
                     #endif
                 case .eligible:
                     self.initView()
@@ -85,7 +85,7 @@ private extension AirRobeConfirmation {
                 case .paramIssue:
                     self.isHidden = true
                     #if DEBUG
-                    print(AirRobeOptInModel.LoadState.paramIssue.rawValue)
+                    print(AirRobeConfirmationModel.LoadState.paramIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)

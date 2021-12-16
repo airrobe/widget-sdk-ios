@@ -13,36 +13,44 @@ open class AirRobeMultiOptIn: UIView {
     private(set) lazy var viewModel = AirRobeMultiOptInModel()
     private var subscribers: [AnyCancellable] = []
     private lazy var optInview: OptInView = OptInView.loadFromNib()
+    private var isAdded: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupBindings()
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupBindings()
     }
 
     public func initialize(
         items: [String]
     ) {
         viewModel.items = items
+    }
 
-        setupBindings()
-        if let categoryModel = CategoryModelInstance.shared.categoryModel {
-            viewModel.initializeWidget(categoryModel: categoryModel)
-        }
+    /// When the cart is updated, we are supposed to call this function
+    public func updateCategories(
+        items: [String]
+    ) {
+        viewModel.items = items
     }
 
     private func initView() {
         optInview.potentialValueLabel.isHidden = true
-        addSubview(optInview)
-        optInview.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            optInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            optInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            optInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            optInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-        ])
+        if !isAdded {
+            addSubview(optInview)
+            optInview.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                optInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+                optInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+                optInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+                optInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            ])
+            isAdded = true
+        }
     }
 }
 
@@ -65,11 +73,11 @@ private extension AirRobeMultiOptIn {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
-            }, receiveValue: { [weak self] categoryModel in
-                guard let self = self, let categoryModel = categoryModel else {
+            }, receiveValue: { [weak self] (categoryModel) in
+                guard let self = self, categoryModel != nil else {
                     return
                 }
-                self.viewModel.initializeWidget(categoryModel: categoryModel)
+                self.viewModel.initializeWidget()
             }).store(in: &subscribers)
 
         viewModel.$isAllSet
@@ -77,24 +85,33 @@ private extension AirRobeMultiOptIn {
             .sink(receiveCompletion: {
                 print($0)
             }, receiveValue: { [weak self] allSet in
-                guard let self = self else {
-                    return
-                }
                 switch allSet {
                 case .initializing:
                     #if DEBUG
-                    print(AirRobeOptInModel.LoadState.initializing.rawValue)
+                    print(OptInView.LoadState.initializing.rawValue)
+                    #endif
+                case .noCategoryMappingInfo:
+                    #if DEBUG
+                    print(OptInView.LoadState.noCategoryMappingInfo.rawValue)
                     #endif
                 case .eligible:
-                    self.initView()
+                    self?.initView()
                 case .notEligible:
-                    self.isHidden = true
+                    self?.isHidden = true
                 case .paramIssue:
-                    self.isHidden = true
+                    self?.isHidden = true
                     #if DEBUG
-                    print(AirRobeOptInModel.LoadState.paramIssue.rawValue)
+                    print(OptInView.LoadState.paramIssue.rawValue)
                     #endif
                 }
+            }).store(in: &subscribers)
+
+        viewModel.$items
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] (items) in
+                self?.viewModel.initializeWidget()
             }).store(in: &subscribers)
     }
 }
