@@ -49,7 +49,7 @@ open class AirRobeMultiOptIn: UIView {
 private extension AirRobeMultiOptIn {
     func setupBindings() {
         UserDefaults.standard
-            .publisher(for: \.OptInfo)
+            .publisher(for: \.OptedIn)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
@@ -58,6 +58,7 @@ private extension AirRobeMultiOptIn {
                     return
                 }
                 self.optInview.addToAirRobeSwitch.isOn = optInfo
+                UserDefaults.standard.OrderOptedIn = self.viewModel.isAllSet == .eligible && optInfo ? true : false
             }).store(in: &subscribers)
 
         CategoryModelInstance.shared.$categoryModel

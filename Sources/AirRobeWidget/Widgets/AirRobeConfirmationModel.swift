@@ -33,7 +33,7 @@ final class AirRobeConfirmationModel {
             isAllSet = .paramIssue
             return
         }
-        isAllSet = UserDefaults.standard.OptInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
+        isAllSet = UserDefaults.standard.OrderOptedIn ? .eligible : .notEligible
         if isAllSet == .eligible {
             emailCheck(email: email)
         }

@@ -49,7 +49,7 @@ final class OptInView: UIView, NibLoadable {
         mainContainerView.addBorder(cornerRadius: 0)
 
         // Initializing Static Texts & Links
-        titleLabel.text = UserDefaults.standard.OptInfo ? Strings.added : Strings.add
+        titleLabel.text = UserDefaults.standard.OptedIn ? Strings.added : Strings.add
         descriptionLabel.text = Strings.description
         potentialValueLabel.text = Strings.potentialValue
         potentialValueLoading.hidesWhenStopped = true
@@ -67,7 +67,7 @@ final class OptInView: UIView, NibLoadable {
             link: Strings.extraLink,
             tapHandler: onTapExtraInfoLink)
 
-        addToAirRobeSwitch.isOn = UserDefaults.standard.OptInfo
+        addToAirRobeSwitch.isOn = UserDefaults.standard.OptedIn
         addToAirRobeSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
         addToAirRobeSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
 
@@ -90,7 +90,7 @@ final class OptInView: UIView, NibLoadable {
 
     @IBAction func onTapSwitch(_ sender: UISwitch) {
         titleLabel.text = sender.isOn ? Strings.added : Strings.add
-        UserDefaults.standard.OptInfo = sender.isOn
+        UserDefaults.standard.OptedIn = sender.isOn
     }
 
     @IBAction func onTapExpand(_ sender: Any) {

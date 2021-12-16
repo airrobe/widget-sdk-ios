@@ -29,7 +29,7 @@ final class AirRobeMultiOptInModel {
             return
         }
         isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
-        UserDefaults.standard.Eligibility = categoryModel.checkCategoryEligible(items: items).eligible ? true : false
+        UserDefaults.standard.OrderOptedIn = categoryModel.checkCategoryEligible(items: items).eligible && UserDefaults.standard.OptedIn ? true : false
     }
 }
 #endif

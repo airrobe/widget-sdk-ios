@@ -80,7 +80,7 @@ open class AirRobeOptIn: UIView {
 private extension AirRobeOptIn {
     func setupBindings() {
         UserDefaults.standard
-            .publisher(for: \.OptInfo)
+            .publisher(for: \.OptedIn)
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)

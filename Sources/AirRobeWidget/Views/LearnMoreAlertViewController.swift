@@ -43,7 +43,7 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
             linkText: Strings.learnMoreFindMoreText,
             link: Strings.learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
-        optSwitch.isOn = UserDefaults.standard.OptInfo
+        optSwitch.isOn = UserDefaults.standard.OptedIn
         optSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
         optSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
 
@@ -63,7 +63,7 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
     }
 
     @IBAction func onToggleOptSwitch(_ sender: UISwitch) {
-        UserDefaults.standard.OptInfo = sender.isOn
+        UserDefaults.standard.OptedIn = sender.isOn
     }
 
     @IBAction func onTapClose(_ sender: Any) {

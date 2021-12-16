@@ -119,7 +119,7 @@ final class AirRobeWidgetTests: XCTestCase {
         XCTAssertEqual(widgetInputs.count, expectedResults.count)
         zip(widgetInputs, expectedResults).forEach { input, exp in
             let vm = AirRobeConfirmation()
-            UserDefaults.standard.OptInfo = input.otpIn
+            UserDefaults.standard.OptedIn = input.otpIn
             UserDefaults.standard.Eligibility = input.eligibility
             vm.initialize(orderId: input.orderId, email: input.email)
             let results = vm.viewModel.isAllSet == .eligible ? true : false

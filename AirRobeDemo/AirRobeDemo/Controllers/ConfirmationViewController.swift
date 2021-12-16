@@ -31,4 +31,3 @@ final class ConfirmationViewController: UIViewController {
         print(AirRobeWidgetInfo.current)
     }
 }
-
