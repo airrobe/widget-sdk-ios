@@ -1,15 +1,15 @@
 //
-//  AirRobeOptInModel.swift
+//  OptInViewModel.swift
 //  
 //
-//  Created by King on 11/25/21.
+//  Created by King on 12/16/21.
 //
 
-#if canImport(UIKit)
-import UIKit
+import Foundation
 import Combine
 
-final class AirRobeOptInModel {
+final class OptInViewModel {
+
     /// Describes which brand the widget belongs to.
     var brand: String?
     /// Describes which material the widget belongs to.
@@ -27,17 +27,22 @@ final class AirRobeOptInModel {
     /// Describes the current locale of the device.
     var locale: String?
 
-    @Published var isAllSet: OptInView.LoadState = .initializing
-    @Published var potentialPrice: String = ""
+    /// Describes the categorys mapping info in String array for the items in the cart.
+    @Published var items: [String] = []
 
     private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
+    var alreadyInitialized: Bool = false
 
-    func initializeWidget() {
+    @Published var isAllSet: WidgetLoadState = .initializing
+    @Published var potentialPrice: String = ""
+
+    func initializeOptInWidget() {
         guard let categoryModel = CategoryModelInstance.shared.categoryModel else {
             isAllSet = .noCategoryMappingInfo
             return
         }
+        alreadyInitialized = true
         if category.isEmpty {
             isAllSet = .paramIssue
             return
@@ -47,9 +52,26 @@ final class AirRobeOptInModel {
             callPriceEngine(category: categoryModel.checkCategoryEligible(items: [category]).to)
         }
     }
+
+    func initializeMultiOptInWidget() {
+        guard let categoryModel = CategoryModelInstance.shared.categoryModel else {
+            isAllSet = .noCategoryMappingInfo
+            UserDefaults.standard.OrderOptedIn = false
+            return
+        }
+        alreadyInitialized = true
+        if items.isEmpty {
+            isAllSet = .paramIssue
+            UserDefaults.standard.OrderOptedIn = false
+            return
+        }
+        isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
+        UserDefaults.standard.OrderOptedIn = categoryModel.checkCategoryEligible(items: items).eligible && UserDefaults.standard.OptedIn ? true : false
+    }
+
 }
 
-private extension AirRobeOptInModel {
+private extension OptInViewModel {
 
     func callPriceEngine(category: String) {
         let rrp: Double? = {
@@ -91,5 +113,5 @@ private extension AirRobeOptInModel {
         let resaleValue = round(100 * ((priceCents * 65) / 100)) / 100
         return String(resaleValue)
     }
+
 }
-#endif

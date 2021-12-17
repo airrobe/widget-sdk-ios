@@ -7,22 +7,10 @@
 
 #if canImport(UIKit)
 import UIKit
+import Combine
 
 // AirRobe view which will be shown on Shopping page.
 final class OptInView: UIView, NibLoadable {
-    enum ExpandState {
-        case opened
-        case closed
-    }
-
-    enum LoadState: String {
-        case initializing = "Widget Initializing"
-        case noCategoryMappingInfo = "Category Mapping Info is not loaded"
-        case eligible
-        case notEligible
-        case paramIssue = "Required params can't be empty"
-    }
-
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var mainContainerExpandButton: UIButton!
@@ -36,6 +24,20 @@ final class OptInView: UIView, NibLoadable {
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var detailedDescriptionLabel: HyperlinkLabel!
 
+    enum ExpandState {
+        case opened
+        case closed
+    }
+
+    enum ViewType {
+        case optIn
+        case multiOptIn
+    }
+
+    var superView: UIView?
+    var viewType: ViewType = .optIn
+    private(set) lazy var viewModel = OptInViewModel()
+    private var subscribers: [AnyCancellable] = []
     private var expandType: ExpandState = .closed
 
     public override init(frame: CGRect) {
@@ -61,6 +63,7 @@ final class OptInView: UIView, NibLoadable {
         descriptionLabel.text = Strings.description
         potentialValueLabel.text = Strings.potentialValue
         potentialValueLoading.hidesWhenStopped = true
+        potentialValueLoading.startAnimating()
 
         detailedDescriptionLabel.setLinkText(
             orgText: Strings.detailedDescription,
@@ -81,6 +84,8 @@ final class OptInView: UIView, NibLoadable {
 
         arrowImageView.image = arrowImageView.image?.withRenderingMode(.alwaysTemplate)
         arrowImageView.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
+
+        setupBindings()
     }
 
     private func onTapExtraInfoLink(_ url: URL) {
@@ -123,5 +128,92 @@ final class OptInView: UIView, NibLoadable {
             self.widgetStackView.layoutIfNeeded()
         })
     }
+}
+
+private extension OptInView {
+
+    func setupBindings() {
+        UserDefaults.standard
+            .publisher(for: \.OptedIn)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] (optInfo) in
+                self?.addToAirRobeSwitch.isOn = optInfo
+                if self?.viewType == .multiOptIn {
+                    UserDefaults.standard.OrderOptedIn = self?.viewModel.isAllSet == .eligible && optInfo ? true : false
+                }
+            }).store(in: &subscribers)
+
+        CategoryModelInstance.shared.$categoryModel
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] (categoryModel) in
+                guard let self = self, categoryModel != nil, !self.viewModel.alreadyInitialized else {
+                    return
+                }
+                switch self.viewType {
+                case .optIn:
+                    self.viewModel.initializeOptInWidget()
+                case .multiOptIn:
+                    self.viewModel.initializeMultiOptInWidget()
+                }
+            }).store(in: &subscribers)
+
+        viewModel.$isAllSet
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] allSet in
+                switch allSet {
+                case .initializing:
+                    #if DEBUG
+                    print(WidgetLoadState.initializing.rawValue)
+                    #endif
+                case .noCategoryMappingInfo:
+                    #if DEBUG
+                    print(WidgetLoadState.noCategoryMappingInfo.rawValue)
+                    #endif
+                case .eligible:
+                    self?.addToSuperView(superView: self?.superView)
+                case .notEligible:
+                    self?.removeFromSuperview()
+                case .paramIssue:
+                    self?.removeFromSuperview()
+                    #if DEBUG
+                    print(WidgetLoadState.paramIssue.rawValue)
+                    #endif
+                }
+            }).store(in: &subscribers)
+
+        viewModel.$items
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] (items) in
+                guard let self = self, self.viewType == .multiOptIn else {
+                    return
+                }
+                self.potentialValueLabel.isHidden = true
+                self.potentialValueLoading.isHidden = true
+                self.viewModel.initializeMultiOptInWidget()
+            }).store(in: &subscribers)
+
+        viewModel.$potentialPrice
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] price in
+                guard let self = self, !price.isEmpty else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.potentialValueLoading.stopAnimating()
+                    self.potentialValueLabel.text = Strings.potentialValue + "$" + price
+                }
+            }).store(in: &subscribers)
+    }
+
 }
 #endif

@@ -10,21 +10,27 @@ import UIKit
 import Combine
 
 open class AirRobeOptIn: UIView {
-    private(set) lazy var viewModel = AirRobeOptInModel()
     private var subscribers: [AnyCancellable] = []
-    private lazy var optInview: OptInView = OptInView.loadFromNib()
-    private var isAdded: Bool = false
-    
+    private lazy var optInView: OptInView = OptInView.loadFromNib()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupBindings()
     }
 
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupBindings()
     }
 
+    /// initalizing AirRobeMultiOptIn
+    /// - Parameters:
+    ///   - brand: brand of the shopping item, optional value and can be dismissed
+    ///   - material: material of the shopping item, optional value and can be dismissed
+    ///   - category: category of the shopping item
+    ///   - priceCents: price of the shopping item
+    ///   - originalFullPriceCents: original full price of the shopping item, optional value and can be dismissed
+    ///   - rrpCents: recommended retail price of the shopping item, optional value and can be dismissed
+    ///   - currency: currency in 3 lettered characters, optional value and default value is "AUD"
+    ///   - locale: locale, optional value and default value is "en-AU"
     public func initialize(
         brand: String? = nil,
         material: String? = nil,
@@ -35,101 +41,18 @@ open class AirRobeOptIn: UIView {
         currency: String? = "AUD",
         locale: String? = "en-AU"
     ) {
-        viewModel.brand = brand
-        viewModel.material = material
-        viewModel.category = category
-        viewModel.priceCents = priceCents
-        viewModel.originalFullPriceCents = originalFullPriceCents
-        viewModel.rrpCents = rrpCents
-        viewModel.currency = currency
-        viewModel.locale = locale
+        optInView.viewModel.brand = brand
+        optInView.viewModel.material = material
+        optInView.viewModel.category = category
+        optInView.viewModel.priceCents = priceCents
+        optInView.viewModel.originalFullPriceCents = originalFullPriceCents
+        optInView.viewModel.rrpCents = rrpCents
+        optInView.viewModel.currency = currency
+        optInView.viewModel.locale = locale
+        optInView.viewType = .optIn
+        optInView.superView = self
 
-        viewModel.initializeWidget()
-    }
-
-    private func initView() {
-        optInview.potentialValueLoading.startAnimating()
-        if !isAdded {
-            addSubview(optInview)
-            optInview.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                optInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-                optInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-                optInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-                optInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            ])
-            isAdded = true
-        }
-    }
-}
-
-private extension AirRobeOptIn {
-    func setupBindings() {
-        UserDefaults.standard
-            .publisher(for: \.OptedIn)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] (optInfo) in
-                guard let self = self else {
-                    return
-                }
-                self.optInview.addToAirRobeSwitch.isOn = optInfo
-            }).store(in: &subscribers)
-
-        CategoryModelInstance.shared.$categoryModel
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] (categoryModel) in
-                guard let self = self, categoryModel != nil else {
-                    return
-                }
-                self.viewModel.initializeWidget()
-            }).store(in: &subscribers)
-
-        viewModel.$isAllSet
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] allSet in
-                guard let self = self else {
-                    return
-                }
-                switch allSet {
-                case .initializing:
-                    #if DEBUG
-                    print(OptInView.LoadState.initializing.rawValue)
-                    #endif
-                case .noCategoryMappingInfo:
-                    #if DEBUG
-                    print(OptInView.LoadState.noCategoryMappingInfo.rawValue)
-                    #endif
-                case .eligible:
-                    self.initView()
-                case .notEligible:
-                    self.isHidden = true
-                case .paramIssue:
-                    self.isHidden = true
-                    #if DEBUG
-                    print(OptInView.LoadState.paramIssue.rawValue)
-                    #endif
-                }
-            }).store(in: &subscribers)
-
-        viewModel.$potentialPrice
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] price in
-                guard let self = self, !price.isEmpty else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.optInview.potentialValueLoading.stopAnimating()
-                    self.optInview.potentialValueLabel.text = Strings.potentialValue + "$" + price
-                }
-            }).store(in: &subscribers)
+        optInView.viewModel.initializeOptInWidget()
     }
 }
 #endif
