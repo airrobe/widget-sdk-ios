@@ -41,6 +41,7 @@ open class AirRobeOptIn: UIView {
         currency: String? = "AUD",
         locale: String? = "en-AU"
     ) {
+        translatesAutoresizingMaskIntoConstraints = false
         optInView.viewModel.brand = brand
         optInView.viewModel.material = material
         optInView.viewModel.category = category

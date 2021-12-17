@@ -28,6 +28,7 @@ open class AirRobeConfirmation: UIView {
         orderId: String,
         email: String
     ) {
+        translatesAutoresizingMaskIntoConstraints = false
         orderConfirmationView.viewModel.orderId = orderId
         orderConfirmationView.viewModel.email = email
         orderConfirmationView.superView = self

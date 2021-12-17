@@ -26,6 +26,7 @@ open class AirRobeMultiOptIn: UIView {
     public func initialize(
         items: [String]
     ) {
+        translatesAutoresizingMaskIntoConstraints = false
         optInView.viewModel.items = items
         optInView.viewType = .multiOptIn
         optInView.superView = self
