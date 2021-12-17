@@ -30,6 +30,8 @@ open class AirRobeConfirmation: UIView {
     ) {
         orderConfirmationView.viewModel.orderId = orderId
         orderConfirmationView.viewModel.email = email
+        orderConfirmationView.superView = self
+
         orderConfirmationView.viewModel.initializeConfirmationWidget()
     }
 }

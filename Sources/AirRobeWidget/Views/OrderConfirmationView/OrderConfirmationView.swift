@@ -47,6 +47,8 @@ final class OrderConfirmationView: UIView, NibLoadable {
 
         activateLoading.hidesWhenStopped = true
         activateLoading.startAnimating()
+
+        setupBindings()
     }
 
     @IBAction func onTapActivate(_ sender: Any) {
@@ -90,6 +92,18 @@ private extension OrderConfirmationView {
                     print(WidgetLoadState.paramIssue.rawValue)
                     #endif
                 }
+            }).store(in: &subscribers)
+
+        viewModel.$activateText
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: {
+                print($0)
+            }, receiveValue: { [weak self] activateText in
+                guard let self = self, !activateText.isEmpty else {
+                    return
+                }
+                self.activateLoading.stopAnimating()
+                self.activateLabel.text = activateText
             }).store(in: &subscribers)
     }
 
