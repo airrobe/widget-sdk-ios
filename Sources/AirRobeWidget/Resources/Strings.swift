@@ -73,4 +73,7 @@ enum Strings {
 
     // MARK: - Order Activate baseURL
     static let orderActivateBaseUrl = "https://shop.airrobe.com/en/orders/"
+
+    // MARK: - Delimeter
+    static let delimeter: String.Element = "/"
 }
