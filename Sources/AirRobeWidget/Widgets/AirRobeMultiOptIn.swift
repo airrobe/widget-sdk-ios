@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 open class AirRobeMultiOptIn: UIView {
-    private lazy var optInView: OptInView = OptInView.loadFromNib()
+    lazy var optInView: OptInView = OptInView.loadFromNib()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

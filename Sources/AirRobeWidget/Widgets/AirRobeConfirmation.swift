@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 open class AirRobeConfirmation: UIView {
-    private lazy var orderConfirmationView: OrderConfirmationView = OrderConfirmationView.loadFromNib()
+    lazy var orderConfirmationView: OrderConfirmationView = OrderConfirmationView.loadFromNib()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

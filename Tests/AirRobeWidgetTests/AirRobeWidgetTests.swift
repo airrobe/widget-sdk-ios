@@ -31,7 +31,7 @@ final class AirRobeWidgetTests: XCTestCase {
         zip(widgetInputs, expectedResults).forEach { input, exp in
             let vm = AirRobeOptIn()
             vm.initialize(brand: input.brand, material: input.material, category: input.category, priceCents: input.priceCents, originalFullPriceCents: input.originalFullPriceCents, rrpCents: input.rrpCents, currency: input.currency, locale: input.locale)
-            let results = vm.viewModel.isAllSet == .eligible ? true : false
+            let results = vm.optInView.viewModel.isAllSet == .eligible ? true : false
             XCTAssertEqual(results, exp)
         }
     }
@@ -48,7 +48,13 @@ final class AirRobeWidgetTests: XCTestCase {
 
         (nil, nil, "", 100.0, 80.0, 80.0, "AUD", "en-AU"), //empty string for category
         (nil, nil, "Accessories/Bags and Wallets/Bags", 100.0, 80.0, 80.0, "AUD", "en-AU"), //category input that `to` value is nil
-        (nil, nil, "Shoes/Ankle Boots/Heeled Ankle Boots", 100.0, 80.0, 80.0, "AUD", "en-AU") //category input that `to` value is empty string
+        (nil, nil, "Shoes/Ankle Boots/Heeled Ankle Boots", 100.0, 80.0, 80.0, "AUD", "en-AU"), //category input that `to` value is empty string
+
+        (nil, nil, "Accessories/Travel and Luggage", 100.0, 80.0, 80.0, "AUD", "en-AU"), //all case meets
+        (nil, nil, "Accessories/Travel and Luggage/Test Category", 100.0, 80.0, 80.0, "AUD", "en-AU"), // applied for best category mapping logic - should true
+        (nil, nil, "Accessories/Travel and Luggage/Home", 100.0, 80.0, 80.0, "AUD", "en-AU"), // applied for best category mapping logic - should be false because this category has `nil` for `to` value
+        (nil, nil, "Accessories/Underwear & Socks", 100.0, 80.0, 80.0, "AUD", "en-AU"), // all case meets except excluded is true - so should be false
+        (nil, nil, "Accessories/Underwear & Socks/Test Category", 100.0, 80.0, 80.0, "AUD", "en-AU"), // applied for best category mapping logic - should be false
     ]
 
     lazy var otpInExpectedResults: [Bool] = [
@@ -60,7 +66,13 @@ final class AirRobeWidgetTests: XCTestCase {
         true,
         true,
         true,
-        
+
+        false,
+        false,
+        false,
+
+        true,
+        true,
         false,
         false,
         false
@@ -77,7 +89,7 @@ final class AirRobeWidgetTests: XCTestCase {
         zip(widgetInputs, expectedResults).forEach { input, exp in
             let vm = AirRobeMultiOptIn()
             vm.initialize(items: input)
-            let results = vm.viewModel.isAllSet == .eligible ? true : false
+            let results = vm.optInView.viewModel.isAllSet == .eligible ? true : false
             XCTAssertEqual(results, exp)
         }
     }
@@ -120,9 +132,9 @@ final class AirRobeWidgetTests: XCTestCase {
         zip(widgetInputs, expectedResults).forEach { input, exp in
             let vm = AirRobeConfirmation()
             UserDefaults.standard.OptedIn = input.otpIn
-            UserDefaults.standard.Eligibility = input.eligibility
+            UserDefaults.standard.OrderOptedIn = input.eligibility
             vm.initialize(orderId: input.orderId, email: input.email)
-            let results = vm.viewModel.isAllSet == .eligible ? true : false
+            let results = vm.orderConfirmationView.viewModel.isAllSet == .eligible ? true : false
             XCTAssertEqual(results, exp)
         }
     }
