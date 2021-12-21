@@ -92,8 +92,8 @@ airRobeOptIn.initialize(
     priceCents: Double,              // required - e.g. 100.95
     originalFullPriceCents: Double?, // optional - e.g. 62.00
     rrpCents: Double?,               // optional - e.g. 62.00
-    currency: String?,               // optional - e.g. "AUD"
-    locale: String?                  // optional - e.g. "en-AU"
+    currency: String,                // optional - default is "AUD"
+    locale: String                   // optional - default is "en-AU"
 )
 ```
 
