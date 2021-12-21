@@ -25,10 +25,11 @@ public struct AirRobeWidgetConfig {
     /// default value = .production
     var mode: Mode = .production
 
-    /// set AirRobWidget AppId and SecretKey
+    /// set AirRobeWidget AppId and SecretKey
     /// - Parameters:
     ///   - appId: App ID from https://connector.airrobe.com
-    ///   - secretKey: Secret Key from https://connector.airrobe.com
+    ///   - color: Primary color for the widgets
+    ///   - mode: Selector for production or sandbox mode
     public init(
         appId: String,
         color: String = "42abc8",
@@ -38,4 +39,5 @@ public struct AirRobeWidgetConfig {
         self.mode = mode
         UserDefaults.standard.BaseColor = color
     }
+
 }

@@ -30,6 +30,10 @@ public func initialize(config: AirRobeWidgetConfig) {
         })
 }
 
-public func clearCache() {
-    UserDefaults.standard.OptInfo = false
+public func resetOptedIn() {
+    UserDefaults.standard.OptedIn = false
+}
+
+public func orderOptedIn() -> Bool {
+    return UserDefaults.standard.OrderOptedIn
 }

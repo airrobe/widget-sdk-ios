@@ -33,7 +33,7 @@ final class AirRobeApiService: NetworkClient {
         self.additionalRequestBodyParams = additionalRequestBodyParams
     }
 
-    func priceEngine(price: Double, rrp: Double, category: String, brand: String, material: String) -> AnyPublisher<PriceEngineResponseModel, Error> {
+    func priceEngine(price: Double, rrp: Double? = nil, category: String, brand: String? = nil, material: String? = nil) -> AnyPublisher<PriceEngineResponseModel, Error> {
         var endpoint = Endpoint.priceEngine(price: price, rrp: rrp, category: category, brand: brand, material: material)
         endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
         #if DEBUG

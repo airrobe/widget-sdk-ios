@@ -1,51 +1,40 @@
 //
-//  AirRobeConfirmationModel.swift
+//  OrderConfirmationViewModel.swift
 //  
 //
-//  Created by King on 12/2/21.
+//  Created by King on 12/17/21.
 //
 
-#if canImport(UIKit)
-import UIKit
+import Foundation
 import Combine
 
-final class AirRobeConfirmationModel {
-
-    enum LoadState: String {
-        case initializing = "Widget Initializing"
-        case eligible
-        case notEligible
-        case paramIssue = "Please initialize the widget with the valid information"
-    }
+final class OrderConfirmationViewModel {
 
     /// Describes the order Id of the purchase.
     var orderId: String = ""
-    var email: String?
+    /// Describes the email of the logged in account.
+    var email: String = ""
 
     private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
 
-    @Published var isAllSet: LoadState = .initializing
+    @Published var isAllSet: WidgetLoadState = .initializing
     @Published var activateText: String = ""
 
-    func initializeWidget() {
-        if orderId.isEmpty {
+    func initializeConfirmationWidget() {
+        if orderId.isEmpty || email.isEmpty {
             isAllSet = .paramIssue
             return
         }
-        isAllSet = UserDefaults.standard.OptInfo && UserDefaults.standard.Eligibility ? .eligible : .notEligible
+        isAllSet = UserDefaults.standard.OrderOptedIn ? .eligible : .notEligible
         if isAllSet == .eligible {
-            if let email = email, !email.isEmpty {
-                emailCheck(email: email)
-            } else {
-                activateText = Strings.orderconrifmrationActivateText
-            }
+            emailCheck(email: email)
         }
     }
 
 }
 
-private extension AirRobeConfirmationModel {
+private extension OrderConfirmationViewModel {
 
     func emailCheck(email: String) {
         cancellable = apiService.emailCheck(operation: GraphQLOperation.fetchPost(with: email))
@@ -71,4 +60,3 @@ private extension AirRobeConfirmationModel {
     }
 
 }
-#endif

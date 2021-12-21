@@ -49,5 +49,20 @@ extension UIView {
             layer.cornerRadius = 10
         }
     }
+
+    func addToSuperView(superView: UIView?) {
+        guard let superView = superView else {
+            return
+        }
+
+        superView.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topAnchor.constraint(equalTo: superView.topAnchor, constant: 0),
+            bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: 0),
+            leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 0),
+            trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: 0),
+        ])
+    }
 }
 #endif

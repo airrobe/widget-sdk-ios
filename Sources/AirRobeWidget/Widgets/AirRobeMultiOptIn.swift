@@ -10,9 +10,7 @@ import UIKit
 import Combine
 
 open class AirRobeMultiOptIn: UIView {
-    private(set) lazy var viewModel = AirRobeMultiOptInModel()
-    private var subscribers: [AnyCancellable] = []
-    private lazy var optInview: OptInView = OptInView.loadFromNib()
+    lazy var optInView: OptInView = OptInView.loadFromNib()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,79 +20,25 @@ open class AirRobeMultiOptIn: UIView {
         super.init(coder: coder)
     }
 
+    /// initalizing AirRobeMultiOptIn
+    /// - Parameters:
+    ///   - items: A string array value that contains category of items that are in the shopping cart
     public func initialize(
         items: [String]
     ) {
-        viewModel.items = items
+        translatesAutoresizingMaskIntoConstraints = false
+        optInView.viewModel.items = items
+        optInView.viewType = .multiOptIn
+        optInView.superView = self
 
-        setupBindings()
-        if let categoryModel = CategoryModelInstance.shared.categoryModel {
-            viewModel.initializeWidget(categoryModel: categoryModel)
-        }
+        optInView.viewModel.initializeMultiOptInWidget()
     }
 
-    private func initView() {
-        optInview.potentialValueLabel.isHidden = true
-        addSubview(optInview)
-        optInview.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            optInview.topAnchor.constraint(equalTo: topAnchor, constant: 0),
-            optInview.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
-            optInview.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            optInview.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-        ])
-    }
-}
-
-private extension AirRobeMultiOptIn {
-    func setupBindings() {
-        UserDefaults.standard
-            .publisher(for: \.OptInfo)
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] (optInfo) in
-                guard let self = self else {
-                    return
-                }
-                self.optInview.addToAirRobeSwitch.isOn = optInfo
-            }).store(in: &subscribers)
-
-        CategoryModelInstance.shared.$categoryModel
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] categoryModel in
-                guard let self = self, let categoryModel = categoryModel else {
-                    return
-                }
-                self.viewModel.initializeWidget(categoryModel: categoryModel)
-            }).store(in: &subscribers)
-
-        viewModel.$isAllSet
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] allSet in
-                guard let self = self else {
-                    return
-                }
-                switch allSet {
-                case .initializing:
-                    #if DEBUG
-                    print(AirRobeOptInModel.LoadState.initializing.rawValue)
-                    #endif
-                case .eligible:
-                    self.initView()
-                case .notEligible:
-                    self.isHidden = true
-                case .paramIssue:
-                    self.isHidden = true
-                    #if DEBUG
-                    print(AirRobeOptInModel.LoadState.paramIssue.rawValue)
-                    #endif
-                }
-            }).store(in: &subscribers)
+    /// When the cart is updated, we are supposed to call this function
+    public func updateCategories(
+        items: [String]
+    ) {
+        optInView.viewModel.items = items
     }
 }
 #endif

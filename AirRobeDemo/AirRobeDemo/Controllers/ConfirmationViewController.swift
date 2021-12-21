@@ -22,13 +22,10 @@ final class ConfirmationViewController: UIViewController {
             email: email
         )
         view.addSubview(airRobeConfirmation)
-        airRobeConfirmation.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             airRobeConfirmation.topAnchor.constraint(equalTo: thankyouLabel.bottomAnchor, constant: 20),
             airRobeConfirmation.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             airRobeConfirmation.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
         ])
-        print(AirRobeWidgetInfo.current)
     }
 }
-
