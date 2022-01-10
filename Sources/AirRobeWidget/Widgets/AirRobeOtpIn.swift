@@ -38,8 +38,8 @@ open class AirRobeOptIn: UIView {
         priceCents: Double,
         originalFullPriceCents: Double? = nil,
         rrpCents: Double? = nil,
-        currency: String? = "AUD",
-        locale: String? = "en-AU"
+        currency: String = "AUD",
+        locale: String = "en-AU"
     ) {
         translatesAutoresizingMaskIntoConstraints = false
         optInView.viewModel.brand = brand

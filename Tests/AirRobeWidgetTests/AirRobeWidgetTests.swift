@@ -24,37 +24,37 @@ final class AirRobeWidgetTests: XCTestCase {
         try testJSONMapping()
         CategoryModelInstance.shared.categoryModel = categoryModel
 
-        let widgetInputs = [("Chanel", "Leather", "Accessories/Belts", 100.0, 80.0, 80.0, "AUD", "en-AU")] + self.otpInInputs
+        let widgetInputs = [("Chanel", "Leather", "Accessories/Belts", 100.0, 80.0, 80.0)] + self.otpInInputs
         let expectedResults = [true] + self.otpInExpectedResults
 
         XCTAssertEqual(widgetInputs.count, expectedResults.count)
         zip(widgetInputs, expectedResults).forEach { input, exp in
             let vm = AirRobeOptIn()
-            vm.initialize(brand: input.brand, material: input.material, category: input.category, priceCents: input.priceCents, originalFullPriceCents: input.originalFullPriceCents, rrpCents: input.rrpCents, currency: input.currency, locale: input.locale)
+            vm.initialize(brand: input.brand, material: input.material, category: input.category, priceCents: input.priceCents, originalFullPriceCents: input.originalFullPriceCents, rrpCents: input.rrpCents)
             let results = vm.optInView.viewModel.isAllSet == .eligible ? true : false
             XCTAssertEqual(results, exp)
         }
     }
 
-    let otpInInputs: [(brand: String?, material: String?, category: String, priceCents: Double, originalFullPriceCents: Double?, rrpCents: Double?, currency: String?, locale: String?)] = [
-        ("", "", "Accessories/Belts", 100.0, 80.0, 80.0, "AUD", "en-AU"), // empty brand, material
-        (nil, nil, "Accessories", 100.0, 80.0, 80.0, nil, nil), //nil brand, material
-        (nil, nil, "Accessories", 100.0, nil, nil, "AUD", "en-AU"), //nil originalPrice, rrp
-        (nil, nil, "Accessories", 100.0, 80.0, nil, "AUD", "en-AU"), //nil rrp
-        (nil, nil, "Accessories", 100.0, nil, 80.0, "AUD", "en-AU"), //nil originalPrice
-        ("brand", "material", "Accessories", 100.0, nil, nil, "AUD", "en-AU"), //nil brand, material
-        ("brand", "material", "Accessories", 0, nil, nil, "AUD", "en-AU"), // 0 price
-        (nil, nil, "Accessories", 0, nil, nil, nil, nil), //nil brand, material
+    let otpInInputs: [(brand: String?, material: String?, category: String, priceCents: Double, originalFullPriceCents: Double?, rrpCents: Double?)] = [
+        ("", "", "Accessories/Belts", 100.0, 80.0, 80.0), // empty brand, material
+        (nil, nil, "Accessories", 100.0, 80.0, 80.0), //nil brand, material
+        (nil, nil, "Accessories", 100.0, nil, nil), //nil originalPrice, rrp
+        (nil, nil, "Accessories", 100.0, 80.0, nil), //nil rrp
+        (nil, nil, "Accessories", 100.0, nil, 80.0), //nil originalPrice
+        ("brand", "material", "Accessories", 100.0, nil, nil), //nil brand, material
+        ("brand", "material", "Accessories", 0, nil, nil), // 0 price
+        (nil, nil, "Accessories", 0, nil, nil), //nil brand, material
 
-        (nil, nil, "", 100.0, 80.0, 80.0, "AUD", "en-AU"), //empty string for category
-        (nil, nil, "Accessories/Bags and Wallets/Bags", 100.0, 80.0, 80.0, "AUD", "en-AU"), //category input that `to` value is nil
-        (nil, nil, "Shoes/Ankle Boots/Heeled Ankle Boots", 100.0, 80.0, 80.0, "AUD", "en-AU"), //category input that `to` value is empty string
+        (nil, nil, "", 100.0, 80.0, 80.0), //empty string for category
+        (nil, nil, "Accessories/Bags and Wallets/Bags", 100.0, 80.0, 80.0), //category input that `to` value is nil
+        (nil, nil, "Shoes/Ankle Boots/Heeled Ankle Boots", 100.0, 80.0, 80.0), //category input that `to` value is empty string
 
-        (nil, nil, "Accessories/Travel and Luggage", 100.0, 80.0, 80.0, "AUD", "en-AU"), //all case meets
-        (nil, nil, "Accessories/Travel and Luggage/Test Category", 100.0, 80.0, 80.0, "AUD", "en-AU"), // applied for best category mapping logic - should true
-        (nil, nil, "Accessories/Travel and Luggage/Home", 100.0, 80.0, 80.0, "AUD", "en-AU"), // applied for best category mapping logic - should be false because this category has `nil` for `to` value
-        (nil, nil, "Accessories/Underwear & Socks", 100.0, 80.0, 80.0, "AUD", "en-AU"), // all case meets except excluded is true - so should be false
-        (nil, nil, "Accessories/Underwear & Socks/Test Category", 100.0, 80.0, 80.0, "AUD", "en-AU"), // applied for best category mapping logic - should be false
+        (nil, nil, "Accessories/Travel and Luggage", 100.0, 80.0, 80.0), //all case meets
+        (nil, nil, "Accessories/Travel and Luggage/Test Category", 100.0, 80.0, 80.0), // applied for best category mapping logic - should true
+        (nil, nil, "Accessories/Travel and Luggage/Home", 100.0, 80.0, 80.0), // applied for best category mapping logic - should be false because this category has `nil` for `to` value
+        (nil, nil, "Accessories/Underwear & Socks", 100.0, 80.0, 80.0), // all case meets except excluded is true - so should be false
+        (nil, nil, "Accessories/Underwear & Socks/Test Category", 100.0, 80.0, 80.0), // applied for best category mapping logic - should be false
     ]
 
     lazy var otpInExpectedResults: [Bool] = [

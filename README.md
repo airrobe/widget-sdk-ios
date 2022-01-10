@@ -17,7 +17,7 @@ This is the recommended integration method, but we assume that you already have 
 
 ```
 dependencies: [
-    .package(url: "https://github.com/airrobe/widget-sdk-ios.git", .upToNextMajor(from: "1.0.1"))
+    .package(url: "https://github.com/airrobe/widget-sdk-ios.git", .upToNextMajor(from: "1.0.2"))
 ]
 ```
 
@@ -40,7 +40,7 @@ Add the AirRobeWidget SDK as a [git submodule][git-submodule] by navigating to t
 ```
 git submodule add https://github.com/airrobe/widget-sdk-ios.git AirRobeWidget
 cd AirRobeWidget
-git checkout 1.0.1
+git checkout 1.0.2
 ```
 
 #### Project / Workspace Integration
@@ -86,14 +86,14 @@ AirRobeWidget.initialize(
 var airRobeOptIn = AirRobeOptIn()
 ...
 airRobeOptIn.initialize(
-    brand: String,                  // required - e.g. "Chanel" - Can be empty string
-    material: String,               // required - e.g. "Leather" - Can be empty string
-    category: String,               // required - e.g. "Hats/fancy-hats"
-    priceCents: Double,             // required - e.g. 100.95
-    originalFullPriceCents: Double, // required - e.g. 62.00
-    rrpCents: Double,               // required - e.g. 62.00
-    currency: String,               // required - e.g. "AUD"
-    locale: String                  // required - e.g. "en-AU"
+    brand: String?,                  // optional - e.g. "Chanel"
+    material: String?,               // optional - e.g. "Leather"
+    category: String,                // required - e.g. "Hats/fancy-hats"
+    priceCents: Double,              // required - e.g. 100.95
+    originalFullPriceCents: Double?, // optional - e.g. 62.00
+    rrpCents: Double?,               // optional - e.g. 62.00
+    currency: String,                // optional - default is "AUD"
+    locale: String                   // optional - default is "en-AU"
 )
 ```
 
@@ -116,7 +116,7 @@ var airRobeConfirmation = AirRobeConfirmation()
 ...
 airRobeConfirmation.initialize(
     orderId: String // required - e.g. "123456" - the order id you got from the checkout.
-    email: String   // optional
+    email: String   // required
 )
 ```
 
@@ -124,8 +124,16 @@ airRobeConfirmation.initialize(
 ### Clear Cache (Opt value reset)
 
 ```swift
-AirRobeWidget.clearCache()
+AirRobeWidget.resetOptedIn()
 ```
+
+
+### Get Order-Opt-In value
+
+```swift
+AirRobeWidget.orderOptedIn()
+```
+
 
 # Examples
 
