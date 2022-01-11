@@ -65,17 +65,22 @@ final class OptInView: UIView, NibLoadable {
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
+        guard let appConfig = configuration, let privacyLink = URL(string: appConfig.privacyPolicyLinkForIconic) else {
+            #if DEBUG
+            fatalError("Privacy Policy is not valid")
+            #endif
+        }
         detailedDescriptionLabel.setLinkText(
             orgText: Strings.detailedDescription,
             linkText: Strings.learnMoreLinkText,
-            link: Strings.extraLink,
+            link: privacyLink,
             tapHandler: onTapLearnMore)
         detailedDescriptionLabel.isHidden = true
         margin.isHidden = true
         extraInfoLabel.setLinkText(
             orgText: Strings.extraInfo,
             linkText: Strings.extraLinkText,
-            link: Strings.extraLink,
+            link: privacyLink,
             tapHandler: onTapExtraInfoLink)
 
         addToAirRobeSwitch.isOn = UserDefaults.standard.OptedIn
