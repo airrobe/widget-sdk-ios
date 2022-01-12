@@ -47,7 +47,7 @@ private extension OrderConfirmationViewModel {
                     #if DEBUG
                     print("Email Checking Issue: ", error)
                     #endif
-                    self.activateText = Strings.orderconrifmrationActivateText
+                    self.activateText = Strings.orderConfirmationActivateText
                 case .finished:
                     print(completion)
                 }
@@ -55,7 +55,7 @@ private extension OrderConfirmationViewModel {
                 guard let self = self else {
                     return
                 }
-                self.activateText = $0.data.isCustomer ? Strings.orderconrifmrationVisitText : Strings.orderconrifmrationActivateText
+                self.activateText = $0.data.isCustomer ? Strings.orderConfirmationVisitText : Strings.orderConfirmationActivateText
             })
     }
 

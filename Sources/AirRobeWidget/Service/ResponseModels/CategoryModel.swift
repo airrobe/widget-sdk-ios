@@ -48,7 +48,7 @@ extension CategoryModel {
 }
 
 private extension CategoryModel {
-    func factorize(category: String, delimeter: String.Element = Strings.delimeter) -> [String] {
+    func factorize(category: String, delimeter: String.Element = Strings.delimiter) -> [String] {
         let parts = category.split(separator: delimeter)
         var array: [String] = []
         for i in 0..<parts.count {

@@ -67,12 +67,12 @@ enum Strings {
     // MARK: - Order Confirmation View Strings
     static let orderConfirmationTitle = "Your items are in"
     static let orderConfirmationDescription = "Simply activate your free account below to re-sell your items back into a circular economy after you`ve worn and loved them."
-    static let orderconrifmrationActivateText = "ACTIVATE YOUR AIRROBE ACCOUNT"
-    static let orderconrifmrationVisitText = "VISIT YOUR AIRROBE ACCOUNT"
+    static let orderConfirmationActivateText = "ACTIVATE YOUR AIRROBE ACCOUNT"
+    static let orderConfirmationVisitText = "VISIT YOUR AIRROBE ACCOUNT"
 
     // MARK: - Order Activate baseURL
     static let orderActivateBaseUrl = "https://shop.airrobe.com/en/orders/"
 
-    // MARK: - Delimeter
-    static let delimeter: String.Element = "/"
+    // MARK: - Delimiter
+    static let delimiter: String.Element = "/"
 }
