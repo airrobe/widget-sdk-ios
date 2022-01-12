@@ -23,7 +23,8 @@ final class OptInView: UIView, NibLoadable {
     @IBOutlet weak var potentialValueLoading: UIActivityIndicatorView!
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var detailedDescriptionLabel: HyperlinkLabel!
-
+    @IBOutlet weak var subTitleContainer: UIStackView!
+    
     enum ExpandState {
         case opened
         case closed
@@ -36,6 +37,7 @@ final class OptInView: UIView, NibLoadable {
 
     var superView: UIView?
     var viewType: ViewType = .optIn
+    private var potentialValueLabelMaxWidth: CGFloat = 0.0
     private(set) lazy var viewModel = OptInViewModel()
     private var subscribers: [AnyCancellable] = []
     private var expandType: ExpandState = .closed
@@ -54,6 +56,21 @@ final class OptInView: UIView, NibLoadable {
         commonInit()
     }
 
+    override func layoutSubviews() {
+        let maxWidth = subTitleContainer.bounds.width - descriptionLabel.bounds.width - 10 - potentialValueLoading.bounds.width
+        if potentialValueLabelMaxWidth != maxWidth {
+            potentialValueLabelMaxWidth = maxWidth
+            guard let value = potentialValueLabel.text, value.isEmpty || value == Strings.potentialValue else {
+                return
+            }
+            if (Strings.potentialValue).width(withFont: potentialValueLabel.font).width > potentialValueLabelMaxWidth {
+                potentialValueLabel.text = ""
+            } else {
+                potentialValueLabel.text = Strings.potentialValue
+            }
+        }
+    }
+
     private func commonInit() {
         // Widget Border Style
         mainContainerView.addBorder(cornerRadius: 0)
@@ -61,7 +78,6 @@ final class OptInView: UIView, NibLoadable {
         // Initializing Static Texts & Links
         titleLabel.text = UserDefaults.standard.OptedIn ? Strings.added : Strings.add
         descriptionLabel.text = Strings.description
-        potentialValueLabel.text = Strings.potentialValue
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
@@ -210,7 +226,11 @@ private extension OptInView {
                 }
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
-                    self.potentialValueLabel.text = Strings.potentialValue + "$" + price
+                    guard (Strings.potentialValue + "$" + price).width(withFont: self.potentialValueLabel.font).width > self.potentialValueLabelMaxWidth else {
+                        self.potentialValueLabel.text = Strings.potentialValue + "$" + price
+                        return
+                    }
+                    self.potentialValueLabel.text = "$" + price
                 }
             }).store(in: &subscribers)
     }
