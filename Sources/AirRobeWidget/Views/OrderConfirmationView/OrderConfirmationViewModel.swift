@@ -14,6 +14,8 @@ final class OrderConfirmationViewModel {
     var orderId: String = ""
     /// Describes the email of the logged in account.
     var email: String = ""
+    /// Describes the fraud status of the widget.
+    var fraudRisk: Bool = false
 
     private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
@@ -26,7 +28,7 @@ final class OrderConfirmationViewModel {
             isAllSet = .paramIssue
             return
         }
-        isAllSet = UserDefaults.standard.OrderOptedIn ? .eligible : .notEligible
+        isAllSet = UserDefaults.standard.OrderOptedIn && !fraudRisk ? .eligible : .notEligible
         if isAllSet == .eligible {
             emailCheck(email: email)
         }
