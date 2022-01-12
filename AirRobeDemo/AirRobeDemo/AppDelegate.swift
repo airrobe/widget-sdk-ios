@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AirRobeWidget.initialize(
             config: AirRobeWidgetConfig(
                 appId: "c43f2be28f1f",
-                privacyPolicyLinkForIconic: "https://www.theiconic.com.au/privacy-policy",
+                privacyPolicyURL: "https://www.theiconic.com.au/privacy-policy",
                 mode: .production
             )
         )

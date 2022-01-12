@@ -65,7 +65,7 @@ final class OptInView: UIView, NibLoadable {
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
-        guard let appConfig = configuration, let privacyLink = URL(string: appConfig.privacyPolicyLinkForIconic) else {
+        guard let appConfig = configuration, let privacyLink = URL(string: appConfig.privacyPolicyURL) else {
             #if DEBUG
             fatalError("Privacy Policy is not valid")
             #endif
