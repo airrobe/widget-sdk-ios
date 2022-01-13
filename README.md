@@ -70,9 +70,10 @@ You are going to need `AppId` from the Provider which will be used to get the Ca
 ```swift
 AirRobeWidget.initialize(
     config: AirRobeWidgetConfig(
-        appId: "APP_ID",  // required
-        color: String,    // optional - color HexCode without "#"
-        mode: enum        // optional - (.production or .sandbox) Default value is .production
+        appId: "APP_ID",           // required
+        privacyPolicyURL: String,  // required - privacy policy url of The Iconic
+        color: String,             // optional - color HexCode without "#", default value is "42abc8"
+        mode: enum                 // optional - (.production or .sandbox), default value is .production
     )
 )
 ```
@@ -86,12 +87,12 @@ AirRobeWidget.initialize(
 var airRobeOptIn = AirRobeOptIn()
 ...
 airRobeOptIn.initialize(
-    brand: String?,                  // optional - e.g. "Chanel"
-    material: String?,               // optional - e.g. "Leather"
+    brand: String?,                  // optional - e.g. "Chanel", can be nil
+    material: String?,               // optional - e.g. "Leather", can be nil
     category: String,                // required - e.g. "Hats/fancy-hats"
     priceCents: Double,              // required - e.g. 100.95
-    originalFullPriceCents: Double?, // optional - e.g. 62.00
-    rrpCents: Double?,               // optional - e.g. 62.00
+    originalFullPriceCents: Double?, // optional - e.g. 62.00, can be nil
+    rrpCents: Double?,               // optional - e.g. 62.00, can be nil
     currency: String,                // optional - default is "AUD"
     locale: String                   // optional - default is "en-AU"
 )
@@ -115,8 +116,9 @@ airRobeMultiOptIn.initialize(
 var airRobeConfirmation = AirRobeConfirmation()
 ...
 airRobeConfirmation.initialize(
-    orderId: String // required - e.g. "123456" - the order id you got from the checkout.
-    email: String   // required
+    orderId: String, // required - e.g. "123456" - the order id you got from the checkout.
+    email: String,   // required
+    fraudRisk: Bool  // optional - fraud status for the confirmation widget, default value is false.
 )
 ```
 
