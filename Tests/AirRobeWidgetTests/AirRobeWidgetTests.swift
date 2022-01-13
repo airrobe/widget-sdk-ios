@@ -24,8 +24,8 @@ final class AirRobeWidgetTests: XCTestCase {
         try testJSONMapping()
         CategoryModelInstance.shared.categoryModel = categoryModel
 
-        let widgetInputs = [("Chanel", "Leather", "Accessories/Belts", 100.0, 80.0, 80.0)] + self.otpInInputs
-        let expectedResults = [true] + self.otpInExpectedResults
+        let widgetInputs = [("Chanel", "Leather", "Accessories/Belts", 100.0, 80.0, 80.0)] + self.optInInputs
+        let expectedResults = [true] + self.optInExpectedResults
 
         XCTAssertEqual(widgetInputs.count, expectedResults.count)
         zip(widgetInputs, expectedResults).forEach { input, exp in
@@ -36,7 +36,7 @@ final class AirRobeWidgetTests: XCTestCase {
         }
     }
 
-    let otpInInputs: [(brand: String?, material: String?, category: String, priceCents: Double, originalFullPriceCents: Double?, rrpCents: Double?)] = [
+    let optInInputs: [(brand: String?, material: String?, category: String, priceCents: Double, originalFullPriceCents: Double?, rrpCents: Double?)] = [
         ("", "", "Accessories/Belts", 100.0, 80.0, 80.0), // empty brand, material
         (nil, nil, "Accessories", 100.0, 80.0, 80.0), //nil brand, material
         (nil, nil, "Accessories", 100.0, nil, nil), //nil originalPrice, rrp
@@ -57,7 +57,7 @@ final class AirRobeWidgetTests: XCTestCase {
         (nil, nil, "Accessories/Underwear & Socks/Test Category", 100.0, 80.0, 80.0), // applied for best category mapping logic - should be false
     ]
 
-    lazy var otpInExpectedResults: [Bool] = [
+    lazy var optInExpectedResults: [Bool] = [
         true,
         true,
         true,
@@ -82,8 +82,8 @@ final class AirRobeWidgetTests: XCTestCase {
         try testJSONMapping()
         CategoryModelInstance.shared.categoryModel = categoryModel
         
-        let widgetInputs = [["Accessories"]] + self.multiOtpInInputs
-        let expectedResults = [true] + self.multiOtpInExpectedResults
+        let widgetInputs = [["Accessories"]] + self.multiOptInInputs
+        let expectedResults = [true] + self.multiOptInExpectedResults
 
         XCTAssertEqual(widgetInputs.count, expectedResults.count)
         zip(widgetInputs, expectedResults).forEach { input, exp in
@@ -94,7 +94,7 @@ final class AirRobeWidgetTests: XCTestCase {
         }
     }
 
-    let multiOtpInInputs: [([String])] = [
+    let multiOptInInputs: [([String])] = [
         (["Accessories"]), // Contain a category that meets condition
         (["Accessories", "Accessories/Belts", ]), // Contain multiple categories that meets condition
         (["Accessories", "RandomCategory"]), // Contain 1 category that is in Mapping info that meets condition
@@ -107,7 +107,7 @@ final class AirRobeWidgetTests: XCTestCase {
         (["Accessories/Underwear & Socks", "RandomCategory"]) // Contain a category that excluded equals true, and with random category
     ]
 
-    lazy var multiOtpInExpectedResults: [Bool] = [
+    lazy var multiOptInExpectedResults: [Bool] = [
         true,
         true,
         true,
@@ -131,7 +131,7 @@ final class AirRobeWidgetTests: XCTestCase {
         XCTAssertEqual(widgetInputs.count, expectedResults.count)
         zip(widgetInputs, expectedResults).forEach { input, exp in
             let vm = AirRobeConfirmation()
-            UserDefaults.standard.OptedIn = input.otpIn
+            UserDefaults.standard.OptedIn = input.optIn
             UserDefaults.standard.OrderOptedIn = input.eligibility
             vm.initialize(orderId: input.orderId, email: input.email)
             let results = vm.orderConfirmationView.viewModel.isAllSet == .eligible ? true : false
@@ -139,16 +139,16 @@ final class AirRobeWidgetTests: XCTestCase {
         }
     }
 
-    let confirmationInputs: [(orderId: String, email: String, eligibility: Bool, otpIn: Bool)] = [
-        ("123456", "raj@airrobe.com", true, true), // otpInfo in cache is set to true
+    let confirmationInputs: [(orderId: String, email: String, eligibility: Bool, optIn: Bool)] = [
+        ("123456", "raj@airrobe.com", true, true), // optInfo in cache is set to true
         ("123456", "eli@airrobe.com", true, true), // with not available email
 
         ("", "", true, true), // order id and email is empty
-        ("", "", true, false), // order id and email are empty and otpInfo is false
-        ("", "", true, false), // order id and email are empty and otpInfo is false
+        ("", "", true, false), // order id and email are empty and optInfo is false
+        ("", "", true, false), // order id and email are empty and optInfo is false
         ("123456", "", true, true), // email is empty
-        ("123456", "", true, false), // email is empty, otpInfo in cache is set to false
-        ("", "raj@airrobe.com", true, false), // orderId is empty, otpInfo in cache is set to false
+        ("123456", "", true, false), // email is empty, optInfo in cache is set to false
+        ("", "raj@airrobe.com", true, false), // orderId is empty, optInfo in cache is set to false
         ("", "raj@airrobe.com", true, true), // orderId is empty
 
         ("123456", "raj@airrobe.com", true, false), // with available email

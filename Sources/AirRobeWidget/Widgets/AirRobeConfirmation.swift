@@ -24,13 +24,16 @@ open class AirRobeConfirmation: UIView {
     /// - Parameters:
     ///   - orderId: string value of order Id generated from purchase
     ///   - email: email address that used for the purchase
+    ///   - fraudRisk: fraud status for the confirmation widget
     public func initialize(
         orderId: String,
-        email: String
+        email: String,
+        fraudRisk: Bool = false
     ) {
         translatesAutoresizingMaskIntoConstraints = false
         orderConfirmationView.viewModel.orderId = orderId
         orderConfirmationView.viewModel.email = email
+        orderConfirmationView.viewModel.fraudRisk = fraudRisk
         orderConfirmationView.superView = self
 
         orderConfirmationView.viewModel.initializeConfirmationWidget()
