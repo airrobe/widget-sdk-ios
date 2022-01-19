@@ -81,10 +81,17 @@ final class OptInView: UIView, NibLoadable {
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
-        guard let appConfig = configuration, let privacyLink = URL(string: appConfig.privacyPolicyURL) else {
+        guard let appConfig = configuration else {
             #if DEBUG
-            fatalError("Privacy Policy is not valid")
+            print("Widget is not yet configured.")
             #endif
+            return
+        }
+        guard let privacyLink = URL(string: appConfig.privacyPolicyURL) else {
+            #if DEBUG
+            print("Privacy policy url is not valid.")
+            #endif
+            return
         }
         detailedDescriptionLabel.setLinkText(
             orgText: Strings.detailedDescription,
