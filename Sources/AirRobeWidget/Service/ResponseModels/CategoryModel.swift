@@ -48,11 +48,11 @@ extension CategoryModel {
 }
 
 private extension CategoryModel {
-    func factorize(category: String, delimeter: String.Element = Strings.delimiter) -> [String] {
-        let parts = category.split(separator: delimeter)
+    func factorize(category: String, delimiter: String.Element = Strings.delimiter) -> [String] {
+        let parts = category.split(separator: delimiter)
         var array: [String] = []
         for i in 0..<parts.count {
-            array.append(parts[0..<i+1].joined(separator:String(delimeter)))
+            array.append(parts[0..<i+1].joined(separator:String(delimiter)))
         }
         return array.reversed()
     }
