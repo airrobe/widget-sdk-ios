@@ -1,5 +1,5 @@
 //
-//  Endpoint.swift
+//  AirRobeEndpoint.swift
 //  
 //
 //  Created by King on 11/26/21.
@@ -17,13 +17,13 @@ enum RequestMethod: String {
     case PATCH
 }
 
-struct Endpoint {
+struct AirRobeEndpoint {
     let method: RequestMethod
     let path: String
     var queryItems: [URLQueryItem]
     var requestBody: [String: Any]
-    var categoryMappingRequestBody: GraphQLOperation<AppIdInput>?
-    var emailCheckRequestBody: GraphQLOperation<EmailInput>?
+    var categoryMappingRequestBody: AirRobeGraphQLOperation<AppIdInput>?
+    var emailCheckRequestBody: AirRobeGraphQLOperation<EmailInput>?
     var customHeaders: [String: String]
     var scheme: String
     var host: String
@@ -34,8 +34,8 @@ struct Endpoint {
         path: String,
         queryItems: [URLQueryItem] = [],
         requestBody: [String: Any] = [:],
-        categoryMappingRequestBody: GraphQLOperation<AppIdInput>? = nil,
-        emailCheckRequestBody: GraphQLOperation<EmailInput>? = nil,
+        categoryMappingRequestBody: AirRobeGraphQLOperation<AppIdInput>? = nil,
+        emailCheckRequestBody: AirRobeGraphQLOperation<EmailInput>? = nil,
         customHeaders: [String: String] = [:],
         scheme: String = "https",
         host: String = priceEngineHost,
@@ -54,7 +54,7 @@ struct Endpoint {
     }
 }
 
-extension Endpoint {
+extension AirRobeEndpoint {
     func asURLRequest() -> URLRequest {
         var components = URLComponents()
         components.scheme = scheme

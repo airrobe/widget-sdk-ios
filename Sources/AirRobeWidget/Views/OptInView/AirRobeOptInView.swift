@@ -1,5 +1,5 @@
 //
-//  OptInView.swift
+//  AirRobeOptInView.swift
 //  
 //
 //  Created by King on 11/18/21.
@@ -10,19 +10,19 @@ import UIKit
 import Combine
 
 // AirRobe view which will be shown on Shopping page.
-final class OptInView: UIView, NibLoadable {
+final class AirRobeOptInView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var mainContainerExpandButton: UIButton!
     @IBOutlet weak var margin: UIView!
-    @IBOutlet weak var extraInfoLabel: HyperlinkLabel!
+    @IBOutlet weak var extraInfoLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var addToAirRobeSwitch: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var potentialValueLabel: UILabel!
     @IBOutlet weak var potentialValueLoading: UIActivityIndicatorView!
     @IBOutlet weak var arrowImageView: UIImageView!
-    @IBOutlet weak var detailedDescriptionLabel: HyperlinkLabel!
+    @IBOutlet weak var detailedDescriptionLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var subTitleContainer: UIStackView!
     
     enum ExpandState {
@@ -38,7 +38,7 @@ final class OptInView: UIView, NibLoadable {
     var superView: UIView?
     var viewType: ViewType = .optIn
     private var potentialValueLabelMaxWidth: CGFloat = 0.0
-    private(set) lazy var viewModel = OptInViewModel()
+    private(set) lazy var viewModel = AirRobeOptInViewModel()
     private var subscribers: [AnyCancellable] = []
     private var expandType: ExpandState = .closed
 
@@ -60,13 +60,13 @@ final class OptInView: UIView, NibLoadable {
         let maxWidth = subTitleContainer.bounds.width - descriptionLabel.bounds.width - 10 - potentialValueLoading.bounds.width
         if potentialValueLabelMaxWidth != maxWidth {
             potentialValueLabelMaxWidth = maxWidth
-            guard let value = potentialValueLabel.text, value.isEmpty || value == Strings.potentialValue else {
+            guard let value = potentialValueLabel.text, value.isEmpty || value == AirRobeStrings.potentialValue else {
                 return
             }
-            if (Strings.potentialValue).width(withFont: potentialValueLabel.font).width > potentialValueLabelMaxWidth {
+            if (AirRobeStrings.potentialValue).width(withFont: potentialValueLabel.font).width > potentialValueLabelMaxWidth {
                 potentialValueLabel.text = ""
             } else {
-                potentialValueLabel.text = Strings.potentialValue
+                potentialValueLabel.text = AirRobeStrings.potentialValue
             }
         }
     }
@@ -76,8 +76,8 @@ final class OptInView: UIView, NibLoadable {
         mainContainerView.addBorder(cornerRadius: 0)
 
         // Initializing Static Texts & Links
-        titleLabel.text = UserDefaults.standard.OptedIn ? Strings.added : Strings.add
-        descriptionLabel.text = Strings.description
+        titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
+        descriptionLabel.text = AirRobeStrings.description
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
@@ -94,15 +94,15 @@ final class OptInView: UIView, NibLoadable {
             return
         }
         detailedDescriptionLabel.setLinkText(
-            orgText: Strings.detailedDescription,
-            linkText: Strings.learnMoreLinkText,
+            orgText: AirRobeStrings.detailedDescription,
+            linkText: AirRobeStrings.learnMoreLinkText,
             link: privacyLink,
             tapHandler: onTapLearnMore)
         detailedDescriptionLabel.isHidden = true
         margin.isHidden = true
         extraInfoLabel.setLinkText(
-            orgText: Strings.extraInfo,
-            linkText: Strings.extraLinkText,
+            orgText: AirRobeStrings.extraInfo,
+            linkText: AirRobeStrings.extraLinkText,
             link: privacyLink,
             tapHandler: onTapExtraInfoLink)
 
@@ -117,20 +117,20 @@ final class OptInView: UIView, NibLoadable {
     }
 
     private func onTapExtraInfoLink(_ url: URL) {
-        Utils.openUrl(url)
+        AirRobeUtils.openUrl(url)
     }
 
     private func onTapLearnMore(_ url: URL) {
         guard let vc = parentViewController else {
             return
         }
-        let alert = LearnMoreAlertViewController.instantiate()
+        let alert = AirRobeLearnMoreAlertViewController.instantiate()
         alert.modalPresentationStyle = .overCurrentContext
         vc.present(alert, animated: true)
     }
 
     @IBAction func onTapSwitch(_ sender: UISwitch) {
-        titleLabel.text = sender.isOn ? Strings.added : Strings.add
+        titleLabel.text = sender.isOn ? AirRobeStrings.added : AirRobeStrings.add
         UserDefaults.standard.OptedIn = sender.isOn
     }
 
@@ -158,7 +158,7 @@ final class OptInView: UIView, NibLoadable {
     }
 }
 
-private extension OptInView {
+private extension AirRobeOptInView {
 
     func setupBindings() {
         UserDefaults.standard
@@ -173,7 +173,7 @@ private extension OptInView {
                 }
             }).store(in: &subscribers)
 
-        CategoryModelInstance.shared.$categoryModel
+        AirRobeCategoryModelInstance.shared.$categoryModel
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
@@ -197,11 +197,11 @@ private extension OptInView {
                 switch allSet {
                 case .initializing:
                     #if DEBUG
-                    print(WidgetLoadState.initializing.rawValue)
+                    print(AirRobeWidgetLoadState.initializing.rawValue)
                     #endif
                 case .noCategoryMappingInfo:
                     #if DEBUG
-                    print(WidgetLoadState.noCategoryMappingInfo.rawValue)
+                    print(AirRobeWidgetLoadState.noCategoryMappingInfo.rawValue)
                     #endif
                 case .eligible:
                     self?.addToSuperView(superView: self?.superView)
@@ -210,7 +210,7 @@ private extension OptInView {
                 case .paramIssue:
                     self?.removeFromSuperview()
                     #if DEBUG
-                    print(WidgetLoadState.paramIssue.rawValue)
+                    print(AirRobeWidgetLoadState.paramIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)
@@ -238,8 +238,8 @@ private extension OptInView {
                 }
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
-                    guard (Strings.potentialValue + "$" + price).width(withFont: self.potentialValueLabel.font).width > self.potentialValueLabelMaxWidth else {
-                        self.potentialValueLabel.text = Strings.potentialValue + "$" + price
+                    guard (AirRobeStrings.potentialValue + "$" + price).width(withFont: self.potentialValueLabel.font).width > self.potentialValueLabelMaxWidth else {
+                        self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
                         return
                     }
                     self.potentialValueLabel.text = "$" + price

@@ -11,7 +11,7 @@ import Combine
 
 open class AirRobeOptIn: UIView {
     private var subscribers: [AnyCancellable] = []
-    lazy var optInView: OptInView = OptInView.loadFromNib()
+    lazy var optInView: AirRobeOptInView = AirRobeOptInView.loadFromNib()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

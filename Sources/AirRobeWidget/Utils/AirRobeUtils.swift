@@ -8,7 +8,7 @@
 #if canImport(UIKit)
 import UIKit
 
-struct Utils {
+struct AirRobeUtils {
     static func openUrl(_ url: URL?) {
         guard let url = url else {
             return

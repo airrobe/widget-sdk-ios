@@ -1,5 +1,5 @@
 //
-//  CategoryModel.swift
+//  AirRobeCategoryModel.swift
 //  
 //
 //  Created by King on 11/25/21.
@@ -8,47 +8,47 @@
 import Foundation
 
 // MARK: - CategoryModel
-struct CategoryModel: Codable {
-    let data: DataModel
+struct AirRobeCategoryModel: Codable {
+    let data: AirRobeDataModel
 }
 
 // MARK: - DataModel
-struct DataModel: Codable {
-    let shop: ShopModel
+struct AirRobeDataModel: Codable {
+    let shop: AirRobeShopModel
 }
 
 // MARK: - ShopModel
-struct ShopModel: Codable {
-    let categoryMappings: [CategoryMapping]
+struct AirRobeShopModel: Codable {
+    let categoryMappings: [AirRobeCategoryMapping]
 }
 
 // MARK: - CategoryMapping
-struct CategoryMapping: Codable {
+struct AirRobeCategoryMapping: Codable {
     let from: String
     let to: String?
     let excluded: Bool
 }
 
 // MARK: - Return struct for Category Eligibility
-struct CategoryEligibility: Codable {
+struct AirRobeCategoryEligibility: Codable {
     let eligible: Bool
     let to: String
 }
 
 // MARK: - Extension for checking category Eligibility
-extension CategoryModel {
-    func checkCategoryEligible(items: [String]) -> CategoryEligibility {
+extension AirRobeCategoryModel {
+    func checkCategoryEligible(items: [String]) -> AirRobeCategoryEligibility {
         guard
             let eligibleItem = items.first(where: { bestCategoryMapping(categoryArray: factorize(category: $0)).eligible })
         else {
-            return CategoryEligibility(eligible: false, to: "")
+            return AirRobeCategoryEligibility(eligible: false, to: "")
         }
-        return CategoryEligibility(eligible: true, to: bestCategoryMapping(categoryArray: factorize(category: eligibleItem)).to)
+        return AirRobeCategoryEligibility(eligible: true, to: bestCategoryMapping(categoryArray: factorize(category: eligibleItem)).to)
     }
 }
 
-private extension CategoryModel {
-    func factorize(category: String, delimiter: String.Element = Strings.delimiter) -> [String] {
+private extension AirRobeCategoryModel {
+    func factorize(category: String, delimiter: String.Element = AirRobeStrings.delimiter) -> [String] {
         let parts = category.split(separator: delimiter)
         var array: [String] = []
         for i in 0..<parts.count {
@@ -57,17 +57,17 @@ private extension CategoryModel {
         return array.reversed()
     }
 
-    func bestCategoryMapping(categoryArray: [String]) -> CategoryEligibility {
+    func bestCategoryMapping(categoryArray: [String]) -> AirRobeCategoryEligibility {
         let categoryMappings = data.shop.categoryMappings
         for category in categoryArray {
             let filteredMapping = categoryMappings.first { $0.from == category }
             if let filteredMapping = filteredMapping {
                 guard let to = filteredMapping.to, !to.isEmpty, !filteredMapping.excluded else {
-                    return CategoryEligibility(eligible: false, to: "")
+                    return AirRobeCategoryEligibility(eligible: false, to: "")
                 }
-                return CategoryEligibility(eligible: true, to: to)
+                return AirRobeCategoryEligibility(eligible: true, to: to)
             }
         }
-        return CategoryEligibility(eligible: false, to: "")
+        return AirRobeCategoryEligibility(eligible: false, to: "")
     }
 }

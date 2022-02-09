@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="OptInView" customModule="AirRobeWidget">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AirRobeOptInView" customModule="AirRobeWidget">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -124,7 +124,7 @@
                                         <constraint firstAttribute="height" constant="10" id="VcM-4E-Mi1"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMv-u6-Ipi" customClass="HyperlinkLabel" customModule="AirRobeWidget">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMv-u6-Ipi" customClass="AirRobeHyperlinkLabel" customModule="AirRobeWidget">
                                     <rect key="frame" x="0.0" y="50" width="394" height="728"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <nil key="textColor"/>
@@ -141,7 +141,7 @@
                         <constraint firstAttribute="trailing" secondItem="vZ6-M6-d25" secondAttribute="trailing" constant="10" id="oQK-p7-GCF"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dp7-jD-L3u" customClass="HyperlinkLabel" customModule="AirRobeWidget">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dp7-jD-L3u" customClass="AirRobeHyperlinkLabel" customModule="AirRobeWidget">
                     <rect key="frame" x="10" y="852" width="394" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="textColor"/>

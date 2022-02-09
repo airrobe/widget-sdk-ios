@@ -1,5 +1,5 @@
 //
-//  AirRobeWidgetEndpoints.swift
+//  AirRobeAirRobeWidgetEndpoints.swift
 //  
 //
 //  Created by King on 11/26/21.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-extension Endpoint {
+extension AirRobeEndpoint {
 
-    static func getCategoryMapping(operation: GraphQLOperation<AppIdInput>) -> Endpoint {
-        return Endpoint(method: .POST, path: "/graphql", categoryMappingRequestBody: operation, host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue)
+    static func getCategoryMapping(operation: AirRobeGraphQLOperation<AppIdInput>) -> AirRobeEndpoint {
+        return AirRobeEndpoint(method: .POST, path: "/graphql", categoryMappingRequestBody: operation, host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue)
     }
 
-    static func emailCheck(operation: GraphQLOperation<EmailInput>) -> Endpoint {
-        return Endpoint(method: .POST, path: "/graphql", emailCheckRequestBody: operation, host: emailCheckHost)
+    static func emailCheck(operation: AirRobeGraphQLOperation<EmailInput>) -> AirRobeEndpoint {
+        return AirRobeEndpoint(method: .POST, path: "/graphql", emailCheckRequestBody: operation, host: emailCheckHost)
     }
 
-    static func priceEngine(price: Double, rrp: Double?, category: String, brand: String?, material: String?) -> Endpoint {
+    static func priceEngine(price: Double, rrp: Double?, category: String, brand: String?, material: String?) -> AirRobeEndpoint {
         let rrpVal: String? = {
             if let rrp = rrp {
                 return String(rrp)
@@ -25,7 +25,7 @@ extension Endpoint {
                 return nil
             }
         }()
-        return Endpoint(method: .GET, path: "/v1",
+        return AirRobeEndpoint(method: .GET, path: "/v1",
                         queryItems: [
                             URLQueryItem(name: "price", value: String(price)),
                             URLQueryItem(name: "rrp", value: rrpVal),

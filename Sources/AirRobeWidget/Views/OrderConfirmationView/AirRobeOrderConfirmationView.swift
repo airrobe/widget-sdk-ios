@@ -1,5 +1,5 @@
 //
-//  OrderConfirmationView.swift
+//  AirRobeOrderConfirmationView.swift
 //  
 //
 //  Created by King on 12/2/21.
@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-final class OrderConfirmationView: UIView, NibLoadable {
+final class AirRobeOrderConfirmationView: UIView, NibLoadable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var activateContainerView: UIView!
@@ -17,7 +17,7 @@ final class OrderConfirmationView: UIView, NibLoadable {
     @IBOutlet weak var activateLoading: UIActivityIndicatorView!
 
     var superView: UIView?
-    private(set) lazy var viewModel = OrderConfirmationViewModel()
+    private(set) lazy var viewModel = AirRobeOrderConfirmationViewModel()
     private var subscribers: [AnyCancellable] = []
 
     public override init(frame: CGRect) {
@@ -38,8 +38,8 @@ final class OrderConfirmationView: UIView, NibLoadable {
         addBorder()
         addShadow()
 
-        titleLabel.text = Strings.orderConfirmationTitle
-        descriptionLabel.text = Strings.orderConfirmationDescription
+        titleLabel.text = AirRobeStrings.orderConfirmationTitle
+        descriptionLabel.text = AirRobeStrings.orderConfirmationDescription
 
         activateContainerView.backgroundColor = UIColor.black
         activateContainerView.addBorder(borderWidth: 0, cornerRadius: 20)
@@ -56,16 +56,16 @@ final class OrderConfirmationView: UIView, NibLoadable {
             return
         }
         let url = URL(
-            string: "\(Strings.orderActivateBaseUrl)\(configuration.appId)-\(viewModel.orderId)"
+            string: "\(AirRobeStrings.orderActivateBaseUrl)\(configuration.appId)-\(viewModel.orderId)"
         )
         guard let url = url else {
             return
         }
-        Utils.openUrl(url)
+        AirRobeUtils.openUrl(url)
     }
 }
 
-private extension OrderConfirmationView {
+private extension AirRobeOrderConfirmationView {
 
     func setupBindings() {
         viewModel.$isAllSet
@@ -76,11 +76,11 @@ private extension OrderConfirmationView {
                 switch allSet {
                 case .initializing:
                     #if DEBUG
-                    print(WidgetLoadState.initializing.rawValue)
+                    print(AirRobeWidgetLoadState.initializing.rawValue)
                     #endif
                 case .noCategoryMappingInfo:
                     #if DEBUG
-                    print(WidgetLoadState.noCategoryMappingInfo.rawValue)
+                    print(AirRobeWidgetLoadState.noCategoryMappingInfo.rawValue)
                     #endif
                 case .eligible:
                     self?.addToSuperView(superView: self?.superView)
@@ -89,7 +89,7 @@ private extension OrderConfirmationView {
                 case .paramIssue:
                     self?.removeFromSuperview()
                     #if DEBUG
-                    print(WidgetLoadState.paramIssue.rawValue)
+                    print(AirRobeWidgetLoadState.paramIssue.rawValue)
                     #endif
                 }
             }).store(in: &subscribers)

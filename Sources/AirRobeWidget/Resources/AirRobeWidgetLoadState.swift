@@ -1,11 +1,11 @@
 //
-//  WidgetLoadState.swift
+//  AirRobeWidgetLoadState.swift
 //  
 //
 //  Created by King on 12/17/21.
 //
 
-enum WidgetLoadState: String {
+enum AirRobeWidgetLoadState: String {
     case initializing = "Widget Initializing"
     case noCategoryMappingInfo = "Category Mapping Info is not loaded"
     case eligible

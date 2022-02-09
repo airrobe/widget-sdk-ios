@@ -1,5 +1,5 @@
 //
-//  GraphQLOperation.swift
+//  AirRobeGraphQLOperation.swift
 //  
 //
 //  Created by King on 11/25/21.
@@ -15,7 +15,7 @@ struct EmailInput: Encodable {
     let email: String
 }
 
-struct GraphQLOperation<Input: Encodable>: Encodable {
+struct AirRobeGraphQLOperation<Input: Encodable>: Encodable {
     var input: Input
     var operationString: String
 
@@ -31,20 +31,20 @@ struct GraphQLOperation<Input: Encodable>: Encodable {
     }
 }
 
-extension GraphQLOperation where Input == AppIdInput {
+extension AirRobeGraphQLOperation where Input == AppIdInput {
     static func fetchPost(with appId: String) -> Self {
-        GraphQLOperation(
+        AirRobeGraphQLOperation(
             input: AppIdInput(appId: appId),
-            operationString: Strings.GetMappingInfoQuery
+            operationString: AirRobeStrings.GetMappingInfoQuery
         )
     }
 }
 
-extension GraphQLOperation where Input == EmailInput {
+extension AirRobeGraphQLOperation where Input == EmailInput {
     static func fetchPost(with email: String) -> Self {
-        GraphQLOperation(
+        AirRobeGraphQLOperation(
             input: EmailInput(email: email),
-            operationString: Strings.CheckEmailQuery
+            operationString: AirRobeStrings.CheckEmailQuery
         )
     }
 }

@@ -1,5 +1,5 @@
 //
-//  LearnMoreAlertViewController.swift
+//  AirRobeLearnMoreAlertViewController.swift
 //  
 //
 //  Created by King on 11/30/21.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
+final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBased {
     @IBOutlet weak var outsideView: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var closeButton: UIButton!
@@ -25,23 +25,23 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
     @IBOutlet weak var toggleOnLabel: UILabel!
     @IBOutlet weak var switchContainerView: UIView!
     @IBOutlet weak var optSwitch: UISwitch!
-    @IBOutlet weak var findMoreLabel: HyperlinkLabel!
+    @IBOutlet weak var findMoreLabel: AirRobeHyperlinkLabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = Strings.learnMoreTitle
-        step1TitleLabel.text = Strings.learnMoreStep1Title
-        step1DescriptionLabel.text = Strings.learnMoreStep1Description
-        step2TitleLabel.text = Strings.learnMoreStep2Title
-        step2DescriptionLabel.text = Strings.learnMoreStep2Description
-        questionLabel.text = Strings.learnMoreQuestion
-        answerLabel.text = Strings.learnMoreAnswer
-        readyLabel.text = Strings.learnMoreReady
-        toggleOnLabel.text = Strings.learnMoreToggleOn
+        titleLabel.text = AirRobeStrings.learnMoreTitle
+        step1TitleLabel.text = AirRobeStrings.learnMoreStep1Title
+        step1DescriptionLabel.text = AirRobeStrings.learnMoreStep1Description
+        step2TitleLabel.text = AirRobeStrings.learnMoreStep2Title
+        step2DescriptionLabel.text = AirRobeStrings.learnMoreStep2Description
+        questionLabel.text = AirRobeStrings.learnMoreQuestion
+        answerLabel.text = AirRobeStrings.learnMoreAnswer
+        readyLabel.text = AirRobeStrings.learnMoreReady
+        toggleOnLabel.text = AirRobeStrings.learnMoreToggleOn
         findMoreLabel.setLinkText(
-            orgText: Strings.learnMoreFindMoreText,
-            linkText: Strings.learnMoreFindMoreText,
-            link: Strings.learnMoreFindMoreLink,
+            orgText: AirRobeStrings.learnMoreFindMoreText,
+            linkText: AirRobeStrings.learnMoreFindMoreText,
+            link: AirRobeStrings.learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
         optSwitch.isOn = UserDefaults.standard.OptedIn
         optSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
@@ -59,7 +59,7 @@ final class LearnMoreAlertViewController: UIViewController, StoryboardBased {
     }
 
     private func onTapFindMoreLink(_ url: URL) {
-        Utils.openUrl(url)
+        AirRobeUtils.openUrl(url)
     }
 
     @IBAction func onToggleOptSwitch(_ sender: UISwitch) {

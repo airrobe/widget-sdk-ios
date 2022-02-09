@@ -1,5 +1,5 @@
 //
-//  NetworkClient.swift
+//  AirRobeNetworkClient.swift
 //  
 //
 //  Created by King on 11/26/21.
@@ -23,7 +23,7 @@ enum NetworkClientError: Error {
     }
 }
 
-protocol NetworkClient {
+protocol AirRobeNetworkClient {
     var session: URLSession { get }
 
     func execute<T>(_ request: URLRequest,
@@ -33,7 +33,7 @@ protocol NetworkClient {
                     retries: Int) -> AnyPublisher<T, Error> where T: Decodable
 }
 
-extension NetworkClient {
+extension AirRobeNetworkClient {
     func execute<T>(_ request: URLRequest,
                     decodingType: T.Type,
                     decoder: JSONDecoder = JSONDecoder(),

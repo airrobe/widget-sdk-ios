@@ -1,5 +1,5 @@
 //
-//  HyperlinkLabel.swift
+//  AirRobeHyperlinkLabel.swift
 //  
 //
 //  Created by King on 12/1/21.
@@ -8,10 +8,7 @@
 #if canImport(UIKit)
 import UIKit
 
-final class HyperlinkLabel: UILabel {
-
-    // MARK: - Creating the Label
-
+final class AirRobeHyperlinkLabel: UILabel {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -129,7 +126,7 @@ extension NSAttributedString.Key {
     static let hyperlink = NSAttributedString.Key("hyperlink")
 }
 
-extension HyperlinkLabel {
+extension AirRobeHyperlinkLabel {
     func setLinkText(orgText: String, linkText: String, link: URL, tapHandler: @escaping (URL) -> Void) {
         var attText: NSMutableAttributedString? = NSMutableAttributedString(string: orgText)
         let linkWasSet = attText?.setAsLink(textToFind: linkText, linkURL: link) == true

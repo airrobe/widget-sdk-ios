@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import UIKit
 
-final class AirRobeApiService: NetworkClient {
+final class AirRobeApiService: AirRobeNetworkClient {
     let session: URLSession
     let additionalRequestBodyParams: [String: String]
 
@@ -33,30 +33,30 @@ final class AirRobeApiService: NetworkClient {
         self.additionalRequestBodyParams = additionalRequestBodyParams
     }
 
-    func priceEngine(price: Double, rrp: Double? = nil, category: String, brand: String? = nil, material: String? = nil) -> AnyPublisher<PriceEngineResponseModel, Error> {
-        var endpoint = Endpoint.priceEngine(price: price, rrp: rrp, category: category, brand: brand, material: material)
+    func priceEngine(price: Double, rrp: Double? = nil, category: String, brand: String? = nil, material: String? = nil) -> AnyPublisher<AirRobePriceEngineResponseModel, Error> {
+        var endpoint = AirRobeEndpoint.priceEngine(price: price, rrp: rrp, category: category, brand: brand, material: material)
         endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
         #if DEBUG
         dump(endpoint.asURLRequest())
         #endif
-        return execute(endpoint.asURLRequest(), decodingType: PriceEngineResponseModel.self)
+        return execute(endpoint.asURLRequest(), decodingType: AirRobePriceEngineResponseModel.self)
     }
 
-    func getCategoryMapping(operation: GraphQLOperation<AppIdInput>) -> AnyPublisher<CategoryModel, Error> {
-        var endpoint = Endpoint.getCategoryMapping(operation: operation)
+    func getCategoryMapping(operation: AirRobeGraphQLOperation<AppIdInput>) -> AnyPublisher<AirRobeCategoryModel, Error> {
+        var endpoint = AirRobeEndpoint.getCategoryMapping(operation: operation)
         endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
         #if DEBUG
         dump(endpoint.asURLRequest())
         #endif
-        return execute(endpoint.asURLRequest(), decodingType: CategoryModel.self)
+        return execute(endpoint.asURLRequest(), decodingType: AirRobeCategoryModel.self)
     }
 
-    func emailCheck(operation: GraphQLOperation<EmailInput>) -> AnyPublisher<EmailCheckResponseModel, Error> {
-        var endpoint = Endpoint.emailCheck(operation: operation)
+    func emailCheck(operation: AirRobeGraphQLOperation<EmailInput>) -> AnyPublisher<AirRobeEmailCheckResponseModel, Error> {
+        var endpoint = AirRobeEndpoint.emailCheck(operation: operation)
         endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
         #if DEBUG
         dump(endpoint.asURLRequest())
         #endif
-        return execute(endpoint.asURLRequest(), decodingType: EmailCheckResponseModel.self)
+        return execute(endpoint.asURLRequest(), decodingType: AirRobeEmailCheckResponseModel.self)
     }
 }

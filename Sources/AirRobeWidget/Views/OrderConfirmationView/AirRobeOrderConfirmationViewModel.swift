@@ -1,5 +1,5 @@
 //
-//  OrderConfirmationViewModel.swift
+//  AirRobeOrderConfirmationViewModel.swift
 //  
 //
 //  Created by King on 12/17/21.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class OrderConfirmationViewModel {
+final class AirRobeOrderConfirmationViewModel {
 
     /// Describes the order Id of the purchase.
     var orderId: String = ""
@@ -20,7 +20,7 @@ final class OrderConfirmationViewModel {
     private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
 
-    @Published var isAllSet: WidgetLoadState = .initializing
+    @Published var isAllSet: AirRobeWidgetLoadState = .initializing
     @Published var activateText: String = ""
 
     func initializeConfirmationWidget() {
@@ -36,10 +36,10 @@ final class OrderConfirmationViewModel {
 
 }
 
-private extension OrderConfirmationViewModel {
+private extension AirRobeOrderConfirmationViewModel {
 
     func emailCheck(email: String) {
-        cancellable = apiService.emailCheck(operation: GraphQLOperation.fetchPost(with: email))
+        cancellable = apiService.emailCheck(operation: AirRobeGraphQLOperation.fetchPost(with: email))
             .sink(receiveCompletion: { [weak self] (completion) in
                 guard let self = self else {
                     return
@@ -49,7 +49,7 @@ private extension OrderConfirmationViewModel {
                     #if DEBUG
                     print("Email Checking Issue: ", error)
                     #endif
-                    self.activateText = Strings.orderConfirmationActivateText
+                    self.activateText = AirRobeStrings.orderConfirmationActivateText
                 case .finished:
                     print(completion)
                 }
@@ -57,7 +57,7 @@ private extension OrderConfirmationViewModel {
                 guard let self = self else {
                     return
                 }
-                self.activateText = $0.data.isCustomer ? Strings.orderConfirmationVisitText : Strings.orderConfirmationActivateText
+                self.activateText = $0.data.isCustomer ? AirRobeStrings.orderConfirmationVisitText : AirRobeStrings.orderConfirmationActivateText
             })
     }
 

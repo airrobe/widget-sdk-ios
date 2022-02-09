@@ -1,5 +1,5 @@
 //
-//  OptInViewModel.swift
+//  AirRobeOptInViewModel.swift
 //  
 //
 //  Created by King on 12/16/21.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class OptInViewModel {
+final class AirRobeOptInViewModel {
 
     /// Describes which brand the widget belongs to.
     var brand: String?
@@ -34,11 +34,11 @@ final class OptInViewModel {
     private var cancellable: AnyCancellable?
     var alreadyInitialized: Bool = false
 
-    @Published var isAllSet: WidgetLoadState = .initializing
+    @Published var isAllSet: AirRobeWidgetLoadState = .initializing
     @Published var potentialPrice: String = ""
 
     func initializeOptInWidget() {
-        guard let categoryModel = CategoryModelInstance.shared.categoryModel else {
+        guard let categoryModel = AirRobeCategoryModelInstance.shared.categoryModel else {
             isAllSet = .noCategoryMappingInfo
             return
         }
@@ -54,7 +54,7 @@ final class OptInViewModel {
     }
 
     func initializeMultiOptInWidget() {
-        guard let categoryModel = CategoryModelInstance.shared.categoryModel else {
+        guard let categoryModel = AirRobeCategoryModelInstance.shared.categoryModel else {
             isAllSet = .noCategoryMappingInfo
             UserDefaults.standard.OrderOptedIn = false
             return
@@ -71,7 +71,7 @@ final class OptInViewModel {
 
 }
 
-private extension OptInViewModel {
+private extension AirRobeOptInViewModel {
 
     func callPriceEngine(category: String) {
         let rrp: Double? = {

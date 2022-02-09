@@ -1,5 +1,5 @@
 //
-//  Strings.swift
+//  AirRobeStrings.swift
 //  
 //
 //  Created by King on 11/23/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Strings {
+enum AirRobeStrings {
     // MARK: - Title Strings
 
     static let added = "Added To"

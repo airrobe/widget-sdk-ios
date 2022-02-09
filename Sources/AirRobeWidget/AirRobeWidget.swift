@@ -15,7 +15,7 @@ private var cancellable: AnyCancellable?
 public func initialize(config: AirRobeWidgetConfig) {
     AirRobeWidget.configuration = config
 
-    cancellable = apiService.getCategoryMapping(operation: GraphQLOperation.fetchPost(with: config.appId))
+    cancellable = apiService.getCategoryMapping(operation: AirRobeGraphQLOperation.fetchPost(with: config.appId))
         .sink(receiveCompletion: { completion in
             switch completion {
             case .failure(let error):
@@ -26,7 +26,7 @@ public func initialize(config: AirRobeWidgetConfig) {
                 print(completion)
             }
         }, receiveValue: {
-            CategoryModelInstance.shared.categoryModel = $0
+            AirRobeCategoryModelInstance.shared.categoryModel = $0
         })
 }
 
