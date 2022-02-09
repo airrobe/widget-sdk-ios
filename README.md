@@ -149,5 +149,5 @@ Building and running the project is as simple as cloning the repository, opening
 
 [latest-release]: https://github.com/airrobe/widget-sdk-ios/releases/latest
 [git-submodule]: https://git-scm.com/docs/git-submodule
-[example]: https://github.com/airrobe/widget-sdk-ios/tree/develop/AirRobeDemo
+[example]: https://github.com/airrobe/widget-sdk-ios/tree/master/AirRobeDemo
 [airrobedemo-workspace]: AirRobeDemo/AirRobeDemo.xcodeproj
