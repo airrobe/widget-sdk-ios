@@ -35,8 +35,12 @@ final class ProductListViewController: UIViewController {
     }
 
     @IBAction func onTapBag1(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ProductPageViewController") as! ProductPageViewController
-        vc.viewModel.cellViewModel = vc.viewModel.initCell(at: 0)
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "ProductPageViewController") as! ProductPageViewController
+//        vc.viewModel.cellViewModel = vc.viewModel.initCell(at: 0)
+//        navigationController?.pushViewController(vc, animated: true)
+
+        // For table view demonstration purpose
+        let vc = ProductPageTableViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
 
