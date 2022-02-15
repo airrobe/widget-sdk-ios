@@ -7,11 +7,12 @@
 
 import Foundation
 import UIKit
+import AirRobeWidget
 
 class ProductPageTableViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(ProductPageTableViewCell.self, forCellReuseIdentifier: ProductPageTableViewCell.identifier)
+        tableView.register(AirRobeOptInTableCell.self, forCellReuseIdentifier: AirRobeOptInTableCell.identifier)
         return tableView
     }()
 
@@ -35,14 +36,17 @@ extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath as IndexPath) as? ProductPageTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeOptInTableCell.identifier, for: indexPath as IndexPath) as? AirRobeOptInTableCell else {
             return UITableViewCell()
         }
-        cell.selectionStyle = .none
+        cell.initialize(
+            category: "Accessories",
+            priceCents: 120
+        )
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 240
+        return UITableView.automaticDimension
     }
 }
