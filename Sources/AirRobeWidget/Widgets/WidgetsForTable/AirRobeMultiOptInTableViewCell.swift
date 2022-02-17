@@ -20,6 +20,7 @@ open class AirRobeMultiOptInTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var detailedDescriptionLabel: AirRobeHyperlinkLabel!
+    @IBOutlet weak var extraInfoContainer: UIView!
 
     enum ExpandState {
         case opened
@@ -173,21 +174,21 @@ private extension AirRobeMultiOptInTableViewCell {
             }, receiveValue: { [weak self] allSet in
                 switch allSet {
                 case .initializing:
-                    self?.isHidden = true
+                    self?.isCellHidden(hidden: true)
                     #if DEBUG
                     print(AirRobeWidgetLoadState.initializing.rawValue)
                     #endif
                 case .noCategoryMappingInfo:
-                    self?.isHidden = true
+                    self?.isCellHidden(hidden: true)
                     #if DEBUG
                     print(AirRobeWidgetLoadState.noCategoryMappingInfo.rawValue)
                     #endif
                 case .eligible:
-                    self?.isHidden = false
+                    self?.isCellHidden(hidden: false)
                 case .notEligible:
-                    self?.isHidden = true
+                    self?.isCellHidden(hidden: true)
                 case .paramIssue:
-                    self?.isHidden = true
+                    self?.isCellHidden(hidden: true)
                     #if DEBUG
                     print(AirRobeWidgetLoadState.paramIssue.rawValue)
                     #endif
@@ -201,6 +202,16 @@ private extension AirRobeMultiOptInTableViewCell {
             }, receiveValue: { [weak self] (items) in
                 self?.viewModel.initializeMultiOptInWidget()
             }).store(in: &subscribers)
+    }
+
+    func isCellHidden(hidden: Bool) {
+        guard superview != nil, let tableView = superview as? UITableView else {
+            return
+        }
+        tableView.beginUpdates()
+        mainContainerView.isHidden = hidden
+        extraInfoContainer.isHidden = hidden
+        tableView.endUpdates()
     }
 }
 #endif

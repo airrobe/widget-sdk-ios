@@ -10,6 +10,7 @@ import UIKit
 import Combine
 
 open class AirRobeConfirmationTableViewCell: UITableViewCell {
+    @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var activateContainerView: UIView!
@@ -43,8 +44,8 @@ open class AirRobeConfirmationTableViewCell: UITableViewCell {
     }
 
     private func commonInit() {
-        addBorder()
-        addShadow()
+        mainContainerView.addBorder()
+        mainContainerView.addShadow()
 
         titleLabel.text = AirRobeStrings.orderConfirmationTitle
         descriptionLabel.text = AirRobeStrings.orderConfirmationDescription
@@ -83,21 +84,21 @@ private extension AirRobeConfirmationTableViewCell {
             }, receiveValue: { [weak self] allSet in
                 switch allSet {
                 case .initializing:
-                    self?.isHidden = true
+                    self?.isCellHidden(hidden: true)
                     #if DEBUG
                     print(AirRobeWidgetLoadState.initializing.rawValue)
                     #endif
                 case .noCategoryMappingInfo:
-                    self?.isHidden = true
+                    self?.isCellHidden(hidden: true)
                     #if DEBUG
                     print(AirRobeWidgetLoadState.noCategoryMappingInfo.rawValue)
                     #endif
                 case .eligible:
-                    self?.isHidden = false
+                    self?.isCellHidden(hidden: false)
                 case .notEligible:
-                    self?.isHidden = true
+                    self?.isCellHidden(hidden: true)
                 case .paramIssue:
-                    self?.isHidden = true
+                    self?.isCellHidden(hidden: true)
                     #if DEBUG
                     print(AirRobeWidgetLoadState.paramIssue.rawValue)
                     #endif
@@ -117,5 +118,13 @@ private extension AirRobeConfirmationTableViewCell {
             }).store(in: &subscribers)
     }
 
+    func isCellHidden(hidden: Bool) {
+        guard superview != nil, let tableView = superview as? UITableView else {
+            return
+        }
+        tableView.beginUpdates()
+        mainContainerView.isHidden = hidden
+        tableView.endUpdates()
+    }
 }
 #endif

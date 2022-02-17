@@ -23,6 +23,7 @@ class ProductPageTableViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         view.addSubview(tableView)
     }
 
@@ -39,21 +40,21 @@ extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeConfirmationTableViewCell.reuseIdentifier, for: indexPath) as? AirRobeConfirmationTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.initialize(
+                orderId: "abc123",
+                email: "raj@airrobe.com"
+            )
+            return cell
+        } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeOptInTableViewCell.reuseIdentifier, for: indexPath) as? AirRobeOptInTableViewCell else {
                 return UITableViewCell()
             }
             cell.initialize(
                 category: "Accessories",
                 priceCents: 120
-            )
-            return cell
-        } else if indexPath.row == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeConfirmationTableViewCell.reuseIdentifier, for: indexPath) as? AirRobeConfirmationTableViewCell else {
-                return UITableViewCell()
-            }
-            cell.initialize(
-                orderId: "abc123",
-                email: ""
             )
             return cell
         } else {
@@ -63,9 +64,5 @@ extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSo
             cell.initialize(items: ["Accessories", "Accessories"])
             return cell
         }
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
     }
 }

@@ -72,7 +72,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="1543"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkS-bO-KkL">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1349"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1402"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEN / ACCESSORIES / BAGS (In our Mapping Data)" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9J4-M4-iLb">
                                                 <rect key="frame" x="20" y="20" width="374" height="17"/>
@@ -250,19 +250,19 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stale Superior" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbR-Vy-ZA2">
-                                                                        <rect key="frame" x="0.0" y="210" width="142" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="210" width="142" height="21.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downtown Weekender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaF-Bl-E6v">
-                                                                        <rect key="frame" x="0.0" y="238" width="177" height="19.5"/>
+                                                                        <rect key="frame" x="0.0" y="236.5" width="177" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="dKW-AW-HUr">
-                                                                        <rect key="frame" x="152" y="211.5" width="25" height="20"/>
+                                                                        <rect key="frame" x="152" y="211" width="25" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="aXi-j6-Db0"/>
                                                                             <constraint firstAttribute="width" constant="25" id="zNm-UW-x6U"/>
@@ -698,20 +698,31 @@
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CI7-GK-5CZ">
+                                                <rect key="frame" x="105.5" y="1349" width="203" height="33"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Or Demo For UITableView"/>
+                                                <connections>
+                                                    <action selector="onTapDemoForTableView:" destination="BKQ-me-PJB" eventType="touchUpInside" id="7Bp-gh-htG"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="9J4-M4-iLb" firstAttribute="leading" secondItem="bkS-bO-KkL" secondAttribute="leading" constant="20" id="3N6-aJ-3XX"/>
                                             <constraint firstItem="HZy-rj-RiF" firstAttribute="leading" secondItem="bkS-bO-KkL" secondAttribute="leading" constant="20" id="A64-jX-Dk7"/>
+                                            <constraint firstItem="CI7-GK-5CZ" firstAttribute="centerX" secondItem="bkS-bO-KkL" secondAttribute="centerX" id="GlM-Gc-K3o"/>
                                             <constraint firstAttribute="trailing" secondItem="HZy-rj-RiF" secondAttribute="trailing" constant="20" id="PHc-qD-Q0t"/>
                                             <constraint firstItem="DBg-Z0-8vr" firstAttribute="top" secondItem="SWV-ON-qDl" secondAttribute="bottom" constant="20" id="U6B-lP-Ob3"/>
+                                            <constraint firstItem="CI7-GK-5CZ" firstAttribute="top" secondItem="DBg-Z0-8vr" secondAttribute="bottom" constant="20" id="cPO-1J-U69"/>
                                             <constraint firstItem="SWV-ON-qDl" firstAttribute="leading" secondItem="bkS-bO-KkL" secondAttribute="leading" constant="20" id="dqd-GS-uFD"/>
                                             <constraint firstAttribute="trailing" secondItem="SWV-ON-qDl" secondAttribute="trailing" constant="20" id="frK-Vi-9io"/>
+                                            <constraint firstAttribute="bottom" secondItem="CI7-GK-5CZ" secondAttribute="bottom" constant="20" id="hn6-5g-n8v"/>
                                             <constraint firstItem="DBg-Z0-8vr" firstAttribute="leading" secondItem="bkS-bO-KkL" secondAttribute="leading" constant="20" id="oth-Kb-g1H"/>
-                                            <constraint firstAttribute="bottom" secondItem="DBg-Z0-8vr" secondAttribute="bottom" constant="20" id="q9X-et-lgQ"/>
-                                            <constraint firstItem="9J4-M4-iLb" firstAttribute="top" secondItem="bkS-bO-KkL" secondAttribute="top" constant="20" id="ssZ-SU-ud1"/>
                                             <constraint firstAttribute="trailing" secondItem="9J4-M4-iLb" secondAttribute="trailing" constant="20" id="wdJ-8A-djF"/>
                                             <constraint firstAttribute="trailing" secondItem="DBg-Z0-8vr" secondAttribute="trailing" constant="20" id="x96-Xx-32n"/>
+                                            <constraint firstItem="9J4-M4-iLb" firstAttribute="top" secondItem="bkS-bO-KkL" secondAttribute="top" constant="20" id="y3d-oX-9cV"/>
                                             <constraint firstItem="HZy-rj-RiF" firstAttribute="top" secondItem="9J4-M4-iLb" secondAttribute="bottom" constant="20" id="zZI-eo-iDl"/>
                                         </constraints>
                                     </view>
