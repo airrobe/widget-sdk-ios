@@ -13,6 +13,7 @@ class ProductPageTableViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(AirRobeOptInTableViewCell.nib, forCellReuseIdentifier: AirRobeOptInTableViewCell.reuseIdentifier)
+        tableView.register(AirRobeMultiOptInTableViewCell.nib, forCellReuseIdentifier: AirRobeMultiOptInTableViewCell.reuseIdentifier)
         return tableView
     }()
 
@@ -36,14 +37,22 @@ extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeOptInTableViewCell.reuseIdentifier, for: indexPath) as? AirRobeOptInTableViewCell else {
-            return UITableViewCell()
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeOptInTableViewCell.reuseIdentifier, for: indexPath) as? AirRobeOptInTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.initialize(
+                category: "Accessories",
+                priceCents: 120
+            )
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeMultiOptInTableViewCell.reuseIdentifier, for: indexPath) as? AirRobeMultiOptInTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.initialize(items: ["Accessories", "Accessories"])
+            return cell
         }
-        cell.initialize(
-            category: "Accessories",
-            priceCents: 120
-        )
-        return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

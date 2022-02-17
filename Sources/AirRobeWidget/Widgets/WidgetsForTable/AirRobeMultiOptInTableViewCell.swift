@@ -1,15 +1,15 @@
 //
-//  AirRobeOptInTableViewCell.swift
+//  AirRobeMultiOptInTableViewCell.swift
 //  
 //
-//  Created by King on 2/10/22.
+//  Created by King on 2/17/22.
 //
 
 #if canImport(UIKit)
 import UIKit
 import Combine
 
-open class AirRobeOptInTableViewCell: UITableViewCell {
+open class AirRobeMultiOptInTableViewCell: UITableViewCell {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var mainContainerExpandButton: UIButton!
@@ -18,19 +18,16 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
     @IBOutlet weak var addToAirRobeSwitch: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var potentialValueLabel: UILabel!
-    @IBOutlet weak var potentialValueLoading: UIActivityIndicatorView!
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var detailedDescriptionLabel: AirRobeHyperlinkLabel!
-    @IBOutlet weak var subTitleContainer: UIStackView!
 
     enum ExpandState {
         case opened
         case closed
     }
 
-    public static var reuseIdentifier: String { return "AirRobeOptInTableViewCell" }
-    public static var nib: UINib { return UINib(nibName: "AirRobeOptInTableViewCell", bundle: .module) }
+    public static var reuseIdentifier: String { return "AirRobeMultiOptInTableViewCell" }
+    public static var nib: UINib { return UINib(nibName: "AirRobeMultiOptInTableViewCell", bundle: .module) }
     private var potentialValueLabelMaxWidth: CGFloat = 0.0
     private(set) lazy var viewModel = AirRobeOptInViewModel()
     private var subscribers: [AnyCancellable] = []
@@ -41,36 +38,21 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
         commonInit()
     }
 
-    /// initalizing AirRobeOptInTableViewCell
+    /// initalizing AirRobeMultiOptInTableViewCell
     /// - Parameters:
-    ///   - brand: brand of the shopping item, optional value and can be dismissed
-    ///   - material: material of the shopping item, optional value and can be dismissed
-    ///   - category: category of the shopping item
-    ///   - priceCents: price of the shopping item
-    ///   - originalFullPriceCents: original full price of the shopping item, optional value and can be dismissed
-    ///   - rrpCents: recommended retail price of the shopping item, optional value and can be dismissed
-    ///   - currency: currency in 3 lettered characters, optional value and default value is "AUD"
-    ///   - locale: locale, optional value and default value is "en-AU"
+    ///   - items: A string array value that contains category of items that are in the shopping cart
     public func initialize(
-        brand: String? = nil,
-        material: String? = nil,
-        category: String,
-        priceCents: Double,
-        originalFullPriceCents: Double? = nil,
-        rrpCents: Double? = nil,
-        currency: String = "AUD",
-        locale: String = "en-AU"
+        items: [String]
     ) {
-        viewModel.brand = brand
-        viewModel.material = material
-        viewModel.category = category
-        viewModel.priceCents = priceCents
-        viewModel.originalFullPriceCents = originalFullPriceCents
-        viewModel.rrpCents = rrpCents
-        viewModel.currency = currency
-        viewModel.locale = locale
+        viewModel.items = items
+        viewModel.initializeMultiOptInWidget()
+    }
 
-        viewModel.initializeOptInWidget()
+    /// When the cart is updated, we are supposed to call this function
+    public func updateCategories(
+        items: [String]
+    ) {
+        viewModel.items = items
     }
 
     private func commonInit() {
@@ -80,8 +62,6 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
         // Initializing Static Texts & Links
         titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
         descriptionLabel.text = AirRobeStrings.description
-        potentialValueLoading.hidesWhenStopped = true
-        potentialValueLoading.startAnimating()
 
         guard let appConfig = configuration else {
             #if DEBUG
@@ -162,7 +142,7 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
     }
 }
 
-private extension AirRobeOptInTableViewCell {
+private extension AirRobeMultiOptInTableViewCell {
 
     func setupBindings() {
         UserDefaults.standard
@@ -172,6 +152,7 @@ private extension AirRobeOptInTableViewCell {
                 print($0)
             }, receiveValue: { [weak self] (optInfo) in
                 self?.addToAirRobeSwitch.isOn = optInfo
+                UserDefaults.standard.OrderOptedIn = self?.viewModel.isAllSet == .eligible && optInfo ? true : false
             }).store(in: &subscribers)
 
         AirRobeCategoryModelInstance.shared.$categoryModel
@@ -182,7 +163,7 @@ private extension AirRobeOptInTableViewCell {
                 guard let self = self, categoryModel != nil, !self.viewModel.alreadyInitialized else {
                     return
                 }
-                self.viewModel.initializeOptInWidget()
+                self.viewModel.initializeMultiOptInWidget()
             }).store(in: &subscribers)
 
         viewModel.$isAllSet
@@ -213,24 +194,13 @@ private extension AirRobeOptInTableViewCell {
                 }
             }).store(in: &subscribers)
 
-        viewModel.$potentialPrice
+        viewModel.$items
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
-            }, receiveValue: { [weak self] price in
-                guard let self = self, !price.isEmpty else {
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.potentialValueLoading.stopAnimating()
-                    guard (AirRobeStrings.potentialValue + "$" + price).width(withFont: self.potentialValueLabel.font).width > self.potentialValueLabelMaxWidth else {
-                        self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
-                        return
-                    }
-                    self.potentialValueLabel.text = "$" + price
-                }
+            }, receiveValue: { [weak self] (items) in
+                self?.viewModel.initializeMultiOptInWidget()
             }).store(in: &subscribers)
     }
-
 }
 #endif
