@@ -14,6 +14,7 @@ class ProductPageTableViewController: UIViewController {
         let tableView = UITableView()
         tableView.register(AirRobeOptInTableViewCell.nib, forCellReuseIdentifier: AirRobeOptInTableViewCell.reuseIdentifier)
         tableView.register(AirRobeMultiOptInTableViewCell.nib, forCellReuseIdentifier: AirRobeMultiOptInTableViewCell.reuseIdentifier)
+        tableView.register(AirRobeConfirmationTableViewCell.nib, forCellReuseIdentifier: AirRobeConfirmationTableViewCell.reuseIdentifier)
         return tableView
     }()
 
@@ -33,7 +34,7 @@ class ProductPageTableViewController: UIViewController {
 
 extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,6 +45,15 @@ extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSo
             cell.initialize(
                 category: "Accessories",
                 priceCents: 120
+            )
+            return cell
+        } else if indexPath.row == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeConfirmationTableViewCell.reuseIdentifier, for: indexPath) as? AirRobeConfirmationTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.initialize(
+                orderId: "abc123",
+                email: ""
             )
             return cell
         } else {
