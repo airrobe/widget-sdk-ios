@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AirRobeOptInTableViewCell" rowHeight="166" id="KGk-i7-Jjw" customClass="AirRobeOptInTableViewCell" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AirRobeOptInTableViewCell" rowHeight="166" id="KGk-i7-Jjw" customClass="AirRobeOptInTableViewCell" customModule="AirRobeWidget">
             <rect key="frame" x="0.0" y="0.0" width="449" height="166"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -30,7 +30,7 @@
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-M0-uDs">
                                                 <rect key="frame" x="0.0" y="4.5" width="51" height="31"/>
                                                 <connections>
-                                                    <action selector="onTapSwitch:" destination="KGk-i7-Jjw" eventType="valueChanged" id="LC9-SC-Phk"/>
+                                                    <action selector="onTapSwitch:" destination="KGk-i7-Jjw" eventType="valueChanged" id="v7H-UK-orC"/>
                                                 </connections>
                                             </switch>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hv-Pd-83t">
@@ -163,13 +163,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="addToAirRobeSwitch" destination="Ach-M0-uDs" id="9dV-tf-HlF"/>
-                <outlet property="arrowImageView" destination="pBd-1q-BAV" id="8qE-PT-w0y"/>
+                <outlet property="addToAirRobeSwitch" destination="Ach-M0-uDs" id="oFw-kW-saI"/>
+                <outlet property="arrowImageView" destination="gP7-zE-B9q" id="xHV-Cc-lqh"/>
                 <outlet property="descriptionLabel" destination="iz7-fp-Pw1" id="Lcb-XT-x0t"/>
                 <outlet property="detailedDescriptionLabel" destination="VFp-MS-WCN" id="JTx-LJ-4UV"/>
                 <outlet property="extraInfoLabel" destination="eE8-yl-n4w" id="v1v-b1-MJ6"/>
                 <outlet property="mainContainerExpandButton" destination="uEE-fu-6ZP" id="GmT-cs-gEz"/>
-                <outlet property="mainContainerView" destination="aed-qC-35M" id="g0T-N7-mp5"/>
+                <outlet property="mainContainerView" destination="owh-kY-Rdf" id="Lfd-mQ-H8I"/>
                 <outlet property="margin" destination="PMC-DM-fbD" id="NlI-OQ-cIP"/>
                 <outlet property="potentialValueLabel" destination="Pl1-cS-T53" id="AHT-xY-cjd"/>
                 <outlet property="potentialValueLoading" destination="Llr-sp-HOK" id="fdM-fi-c7o"/>

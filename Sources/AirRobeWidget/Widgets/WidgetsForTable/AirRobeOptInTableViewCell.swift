@@ -29,7 +29,8 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
         case closed
     }
 
-    public static let identifier = "AirRobeOptInTableViewCell"
+    public static var reuseIdentifier: String { return "AirRobeOptInTableViewCell" }
+    public static var nib: UINib { return UINib(nibName: "AirRobeOptInTableViewCell", bundle: .module) }
     private var potentialValueLabelMaxWidth: CGFloat = 0.0
     private(set) lazy var viewModel = AirRobeOptInViewModel()
     private var subscribers: [AnyCancellable] = []
@@ -40,15 +41,7 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
         commonInit()
     }
 
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    /// initalizing AirRobeMultiOptIn
+    /// initalizing AirRobeOptInTableViewCell
     /// - Parameters:
     ///   - brand: brand of the shopping item, optional value and can be dismissed
     ///   - material: material of the shopping item, optional value and can be dismissed
@@ -108,8 +101,6 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
             linkText: AirRobeStrings.learnMoreLinkText,
             link: privacyLink,
             tapHandler: onTapLearnMore)
-        detailedDescriptionLabel.isHidden = true
-        margin.isHidden = true
         extraInfoLabel.setLinkText(
             orgText: AirRobeStrings.extraInfo,
             linkText: AirRobeStrings.extraLinkText,
@@ -145,6 +136,11 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
     }
 
     @IBAction func onTapExpand(_ sender: Any) {
+        guard superview != nil, let tableView = superview as? UITableView else {
+            return
+        }
+        tableView.beginUpdates()
+
         let degree: CGFloat = {
             switch expandType {
             case .opened:
@@ -164,6 +160,7 @@ open class AirRobeOptInTableViewCell: UITableViewCell {
             self.detailedDescriptionLabel.isHidden.toggle()
             self.margin.isHidden.toggle()
             self.widgetStackView.layoutIfNeeded()
+            tableView.endUpdates()
         })
     }
 }
@@ -217,19 +214,6 @@ private extension AirRobeOptInTableViewCell {
                     print(AirRobeWidgetLoadState.paramIssue.rawValue)
                     #endif
                 }
-            }).store(in: &subscribers)
-
-        viewModel.$items
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                print($0)
-            }, receiveValue: { [weak self] (items) in
-                guard let self = self else {
-                    return
-                }
-                self.potentialValueLabel.isHidden = true
-                self.potentialValueLoading.isHidden = true
-                self.viewModel.initializeMultiOptInWidget()
             }).store(in: &subscribers)
 
         viewModel.$potentialPrice

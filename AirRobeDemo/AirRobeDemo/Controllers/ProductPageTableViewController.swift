@@ -12,7 +12,7 @@ import AirRobeWidget
 class ProductPageTableViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.register(AirRobeOptInTableCell.self, forCellReuseIdentifier: AirRobeOptInTableCell.identifier)
+        tableView.register(AirRobeOptInTableViewCell.nib, forCellReuseIdentifier: AirRobeOptInTableViewCell.reuseIdentifier)
         return tableView
     }()
 
@@ -32,11 +32,11 @@ class ProductPageTableViewController: UIViewController {
 
 extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeOptInTableCell.identifier, for: indexPath as IndexPath) as? AirRobeOptInTableCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AirRobeOptInTableViewCell.reuseIdentifier, for: indexPath) as? AirRobeOptInTableViewCell else {
             return UITableViewCell()
         }
         cell.initialize(
