@@ -56,13 +56,18 @@ extension UIView {
         }
 
         superView.addSubview(self)
-        translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            topAnchor.constraint(equalTo: superView.topAnchor, constant: 0),
-            bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: 0),
-            leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: 0),
-            trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: 0),
-        ])
+        frame = superView.bounds
+        if let tableView = tableView {
+            tableView.beginUpdates()
+        } else {
+            translatesAutoresizingMaskIntoConstraints = true
+        }
+        autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        /// This code smells, but for now, UI's going to break if we don't give an itty-bitty delay.
+        /// There's probably a better way to handle this. so in TODO list.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.tableView?.endUpdates()
+        }
     }
 }
 #endif

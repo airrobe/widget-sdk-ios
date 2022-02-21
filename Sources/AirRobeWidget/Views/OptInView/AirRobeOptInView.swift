@@ -147,14 +147,12 @@ final class AirRobeOptInView: UIView, NibLoadable {
         }()
 
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
-            self.detailedDescriptionLabel.isHidden.toggle()
-            self.margin.isHidden.toggle()
-            self.widgetStackView.layoutIfNeeded()
+            self?.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
         })
+        tableView?.beginUpdates()
+        detailedDescriptionLabel.isHidden.toggle()
+        margin.isHidden.toggle()
+        tableView?.endUpdates()
     }
 }
 
