@@ -50,24 +50,29 @@ extension UIView {
         }
     }
 
-    func addToSuperView(superView: UIView?) {
+    func addToSuperView(superView: UIView?, alreadyAddedToTable: Bool) -> Bool {
         guard let superView = superView else {
-            return
+            return false
         }
 
         superView.addSubview(self)
         frame = superView.bounds
         if let tableView = tableView {
-            tableView.beginUpdates()
+            if !alreadyAddedToTable {
+                tableView.beginUpdates()
+            }
         } else {
             translatesAutoresizingMaskIntoConstraints = true
         }
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
         /// This code smells, but for now, UI's going to break if we don't give an itty-bitty delay.
         /// There's probably a better way to handle this. so in TODO list.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.tableView?.endUpdates()
+        if !alreadyAddedToTable {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView?.endUpdates()
+            }
         }
+        return true
     }
 }
 #endif

@@ -37,6 +37,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
 
     var superView: UIView?
     var viewType: ViewType = .optIn
+    private var alreadyAdded: Bool = false
     private var potentialValueLabelMaxWidth: CGFloat = 0.0
     private(set) lazy var viewModel = AirRobeOptInViewModel()
     private var subscribers: [AnyCancellable] = []
@@ -192,6 +193,9 @@ private extension AirRobeOptInView {
             .sink(receiveCompletion: {
                 print($0)
             }, receiveValue: { [weak self] allSet in
+                guard let self = self else {
+                    return
+                }
                 switch allSet {
                 case .initializing:
                     #if DEBUG
@@ -202,11 +206,11 @@ private extension AirRobeOptInView {
                     print(AirRobeWidgetLoadState.noCategoryMappingInfo.rawValue)
                     #endif
                 case .eligible:
-                    self?.addToSuperView(superView: self?.superView)
+                    self.alreadyAdded = self.addToSuperView(superView: self.superView, alreadyAddedToTable: self.alreadyAdded)
                 case .notEligible:
-                    self?.removeFromSuperview()
+                    self.removeFromSuperview()
                 case .paramIssue:
-                    self?.removeFromSuperview()
+                    self.removeFromSuperview()
                     #if DEBUG
                     print(AirRobeWidgetLoadState.paramIssue.rawValue)
                     #endif

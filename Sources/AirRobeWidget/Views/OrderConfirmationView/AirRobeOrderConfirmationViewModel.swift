@@ -19,18 +19,22 @@ final class AirRobeOrderConfirmationViewModel {
 
     private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
+    var alreadyInitialized: Bool = false
 
     @Published var isAllSet: AirRobeWidgetLoadState = .initializing
     @Published var activateText: String = ""
 
     func initializeConfirmationWidget() {
-        if orderId.isEmpty || email.isEmpty {
-            isAllSet = .paramIssue
-            return
-        }
-        isAllSet = UserDefaults.standard.OrderOptedIn && !fraudRisk ? .eligible : .notEligible
-        if isAllSet == .eligible {
-            emailCheck(email: email)
+        if !alreadyInitialized {
+            alreadyInitialized = true
+            if orderId.isEmpty || email.isEmpty {
+                isAllSet = .paramIssue
+                return
+            }
+            isAllSet = UserDefaults.standard.OrderOptedIn && !fraudRisk ? .eligible : .notEligible
+            if isAllSet == .eligible {
+                emailCheck(email: email)
+            }
         }
     }
 

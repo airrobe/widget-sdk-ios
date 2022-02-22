@@ -12,6 +12,7 @@ import AirRobeWidget
 class ProductPageTableViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(LabelTableViewCell.self, forCellReuseIdentifier: LabelTableViewCell.identifier)
         tableView.register(ProductPageTableViewCell.self, forCellReuseIdentifier: ProductPageTableViewCell.identifier)
         return tableView
     }()
@@ -23,6 +24,7 @@ class ProductPageTableViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.allowsSelection = false
+        tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
     }
@@ -35,23 +37,42 @@ class ProductPageTableViewController: UIViewController {
 
 extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
-            return UITableViewCell()
-        }
-        if indexPath.row == 0 {
+        if indexPath.row == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
+                return UITableViewCell()
+            }
             cell.initialize(type: .optIn)
-        } else if indexPath.row == 1 {
-            cell.initialize(type: .multiOptIn)
+            return cell
         } else if indexPath.row == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.initialize(type: .multiOptIn)
+            return cell
+        } else if indexPath.row == 4 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
+                return UITableViewCell()
+            }
             cell.initialize(type: .confirmation)
+            return cell
         } else {
-            cell.initialize(type: .optIn)
+            guard let labelCell = tableView.dequeueReusableCell(withIdentifier: LabelTableViewCell.identifier, for: indexPath) as? LabelTableViewCell else {
+                return UITableViewCell()
+            }
+            return labelCell
         }
-        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 4 {
+            return UITableView.automaticDimension
+        } else {
+            return 200
+        }
     }
 }
 
@@ -112,5 +133,33 @@ class ProductPageTableViewCell: UITableViewCell {
                 airRobeConfirmation.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             ])
         }
+    }
+}
+
+class LabelTableViewCell: UITableViewCell {
+    static let identifier = "LabelTableViewCell"
+    private let label: UILabel = {
+        let label = UILabel()
+        label.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = .black
+        return label
+    }()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func commonInit() {
+        contentView.addSubview(label)
+        label.frame = contentView.bounds
+        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 }
