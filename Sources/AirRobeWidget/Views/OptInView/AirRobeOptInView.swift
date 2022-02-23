@@ -74,7 +74,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
 
     private func commonInit() {
         // Widget Border Style
-        mainContainerView.addBorder(cornerRadius: 0)
+        mainContainerView.addBorder(color: UIColor(colorCode: "DFDFDF").cgColor, cornerRadius: 0)
 
         // Initializing Static Texts & Links
         titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add

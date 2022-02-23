@@ -48,11 +48,11 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
         optSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
 
         mainView.addShadow()
-        step1View.addBorder()
+        step1View.addBorder(color: UIColor(colorCode: "DFDFDF").cgColor)
         step1View.addShadow()
         step2View.addBorder()
-        step2View.addShadow()
-        switchContainerView.addBorder(cornerRadius: 22)
+        step2View.addShadow(color: UIColor(colorCode: "DFDFDF").cgColor)
+        switchContainerView.addBorder(color: UIColor(colorCode: "DFDFDF").cgColor, cornerRadius: 22)
 
         let outTap = UITapGestureRecognizer(target: self, action: #selector(dismissController))
         outsideView.addGestureRecognizer(outTap)
