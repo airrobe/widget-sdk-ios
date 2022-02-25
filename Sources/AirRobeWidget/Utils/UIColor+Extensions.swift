@@ -25,24 +25,31 @@ extension UIColor {
     static var AirRobeDefaultBorderColor: UIColor {
         return UIColor(colorCode: "DFDFDF")
     }
+
     static var AirRobeDefaultTextColor: UIColor {
         return UIColor(colorCode: "232323")
     }
+
     static var AirRobeDefaultSwitchColor: UIColor {
         return UIColor(colorCode: "42abc8")
     }
+
     static var AirRobeDefaultArrowColor: UIColor {
         return UIColor(colorCode: "42abc8")
     }
+
     static var AirRobeDefaultLinkTextColor: UIColor {
         return UIColor(colorCode: "696969")
     }
+
     static var AirRobeDefaultButtonBackgroundColor: UIColor {
         return UIColor(colorCode: "232323")
     }
+
     static var AirRobeDefaultButtonTextColor: UIColor {
         return UIColor(colorCode: "ffffff")
     }
+
     static var AirRobeDefaultSeparatorColor: UIColor {
         return UIColor(colorCode: "DFDFDF")
     }
