@@ -21,7 +21,7 @@ open class AirRobeOptIn: UIView {
         super.init(coder: coder)
     }
 
-    /// initalizing AirRobeMultiOptIn
+    /// initalizing AirRobeOptIn
     /// - Parameters:
     ///   - brand: brand of the shopping item, optional value and can be dismissed
     ///   - material: material of the shopping item, optional value and can be dismissed

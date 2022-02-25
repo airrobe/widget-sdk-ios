@@ -81,4 +81,10 @@ final class ProductListViewController: UIViewController {
         vc.viewModel.cellViewModel = vc.viewModel.initCell(at: 7)
         navigationController?.pushViewController(vc, animated: true)
     }
+
+    @IBAction func onTapDemoForTableView(_ sender: Any) {
+        // For table view demonstration purpose
+        let vc = ProductPageTableViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

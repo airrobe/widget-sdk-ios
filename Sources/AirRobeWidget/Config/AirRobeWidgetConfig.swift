@@ -37,7 +37,7 @@ public struct AirRobeWidgetConfig {
     public init(
         appId: String,
         privacyPolicyURL: String,
-        color: String = "42abc8",
+        color: String = "696969",
         mode: Mode = .production
     ) {
         self.appId = appId
