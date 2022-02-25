@@ -38,8 +38,6 @@ final class AirRobeHyperlinkLabel: UILabel {
                     guard let value = value else { return }
                     assert(value is URL)
                     text.addAttributes(hyperlinkAttributes, range: subrange)
-                    text.addAttribute(.foregroundColor, value: UIColor(colorCode: UserDefaults.standard.BaseColor), range: subrange)
-                    text.addAttribute(.underlineColor, value: UIColor(colorCode: UserDefaults.standard.BaseColor), range: subrange)
                     text.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: subrange)
                 }
 
@@ -54,8 +52,11 @@ final class AirRobeHyperlinkLabel: UILabel {
     }
 
     // MARK: - Finding Hyperlink Under Touch
-
-    var hyperlinkAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.systemBlue]
+    var hyperlinkAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.systemBlue] {
+        didSet {
+            attributedText = attributedText
+        }
+    }
 
     var didTapOnURL: (URL) -> Void = { url in
         if UIApplication.shared.canOpenURL(url) {

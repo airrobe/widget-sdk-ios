@@ -19,10 +19,4 @@ extension UserDefaults {
         get { return bool(forKey: UserDefaults.OrderOptedInKey) }
         set { set(newValue, forKey: UserDefaults.OrderOptedInKey) }
     }
-
-    static let BaseColorKey = "BaseColorKey"
-    var BaseColor: String {
-        get { return string(forKey: UserDefaults.BaseColorKey) ?? "" }
-        set { set(newValue, forKey: UserDefaults.BaseColorKey) }
-    }
 }

@@ -26,33 +26,49 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
     @IBOutlet weak var switchContainerView: UIView!
     @IBOutlet weak var optSwitch: UISwitch!
     @IBOutlet weak var findMoreLabel: AirRobeHyperlinkLabel!
-
+    @IBOutlet weak var separator1: UIView!
+    @IBOutlet weak var separator2: UIView!
+    @IBOutlet weak var separator3: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = AirRobeStrings.learnMoreTitle
+        titleLabel.textColor = AirRobeTextColor
         step1TitleLabel.text = AirRobeStrings.learnMoreStep1Title
+        step1TitleLabel.textColor = AirRobeTextColor
         step1DescriptionLabel.text = AirRobeStrings.learnMoreStep1Description
+        step1DescriptionLabel.textColor = AirRobeTextColor
         step2TitleLabel.text = AirRobeStrings.learnMoreStep2Title
+        step2TitleLabel.textColor = AirRobeTextColor
         step2DescriptionLabel.text = AirRobeStrings.learnMoreStep2Description
+        step2DescriptionLabel.textColor = AirRobeTextColor
         questionLabel.text = AirRobeStrings.learnMoreQuestion
+        questionLabel.textColor = AirRobeTextColor
         answerLabel.text = AirRobeStrings.learnMoreAnswer
+        answerLabel.textColor = AirRobeTextColor
         readyLabel.text = AirRobeStrings.learnMoreReady
+        readyLabel.textColor = AirRobeTextColor
         toggleOnLabel.text = AirRobeStrings.learnMoreToggleOn
+        toggleOnLabel.textColor = AirRobeTextColor
+        findMoreLabel.hyperlinkAttributes = [.foregroundColor: AirRobeLinkTextColor]
         findMoreLabel.setLinkText(
             orgText: AirRobeStrings.learnMoreFindMoreText,
             linkText: AirRobeStrings.learnMoreFindMoreText,
             link: AirRobeStrings.learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
         optSwitch.isOn = UserDefaults.standard.OptedIn
-        optSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
-        optSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
+        optSwitch.onTintColor = AirRobeSwitchColor
+        optSwitch.tintColor = AirRobeSwitchColor
 
         mainView.addShadow()
-        step1View.addBorder()
+        step1View.addBorder(color: AirRobeBorderColor.cgColor)
         step1View.addShadow()
-        step2View.addBorder()
+        step2View.addBorder(color: AirRobeBorderColor.cgColor)
         step2View.addShadow()
-        switchContainerView.addBorder(cornerRadius: 22)
+        switchContainerView.addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 22)
+        separator1.backgroundColor = AirRobeSeparatorColor
+        separator2.backgroundColor = AirRobeSeparatorColor
+        separator3.backgroundColor = AirRobeSeparatorColor
 
         let outTap = UITapGestureRecognizer(target: self, action: #selector(dismissController))
         outsideView.addGestureRecognizer(outTap)

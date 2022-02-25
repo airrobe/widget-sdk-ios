@@ -41,7 +41,6 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
         titleLabel.text = AirRobeStrings.orderConfirmationTitle
         descriptionLabel.text = AirRobeStrings.orderConfirmationDescription
 
-        activateContainerView.backgroundColor = UIColor.black
         activateContainerView.addBorder(borderWidth: 0, cornerRadius: 20)
         activateContainerView.addShadow()
 

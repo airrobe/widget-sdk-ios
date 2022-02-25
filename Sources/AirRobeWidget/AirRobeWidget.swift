@@ -5,8 +5,10 @@
 //  Created by King on 11/22/21.
 //
 
+#if canImport(UIKit)
 import Foundation
 import Combine
+import UIKit
 
 var configuration: AirRobeWidgetConfig?
 private var apiService = AirRobeApiService()
@@ -37,3 +39,29 @@ public func resetOptedIn() {
 public func orderOptedIn() -> Bool {
     return UserDefaults.standard.OrderOptedIn
 }
+
+/// Border color of the widget - Default value is #DFDFDF
+public var AirRobeBorderColor: UIColor = .AirRobeDefaultBorderColor
+
+/// Text color of the widget - Default value is #232323
+public var AirRobeTextColor: UIColor = .AirRobeDefaultTextColor
+
+/// AirRobe switch ON color - Default value is #42ABC8
+public var AirRobeSwitchColor: UIColor = .AirRobeDefaultSwitchColor
+
+/// AirRobe OptIn Widget drop down arrow icon color - Default value is #42ABC8
+public var AirRobeArrowColor: UIColor = .AirRobeDefaultArrowColor
+
+/// Legal copy text color of the widget - Default value is #696969
+public var AirRobeLinkTextColor: UIColor = .AirRobeDefaultLinkTextColor
+
+/// AirRobe Confirmation Widget activate button background color - Default value is #232323
+public var AirRobeButtonBackgroundColor: UIColor = .AirRobeDefaultButtonBackgroundColor
+
+/// AirRobe Confirmation Widget activate button text color - Default value is #232323
+public var AirRobeButtonTextColor: UIColor = .AirRobeDefaultButtonTextColor
+
+/// AirRobe Learn More Widget Separator color - Default value is #232323
+public var AirRobeSeparatorColor: UIColor = .AirRobeDefaultSeparatorColor
+
+#endif

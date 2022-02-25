@@ -105,14 +105,8 @@ final class AirRobeOptInView: UIView, NibLoadable {
             linkText: AirRobeStrings.extraLinkText,
             link: privacyLink,
             tapHandler: onTapExtraInfoLink)
-
         addToAirRobeSwitch.isOn = UserDefaults.standard.OptedIn
-        addToAirRobeSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
-        addToAirRobeSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
-
         arrowImageView.image = arrowImageView.image?.withRenderingMode(.alwaysTemplate)
-        arrowImageView.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
-
         setupBindings()
     }
 

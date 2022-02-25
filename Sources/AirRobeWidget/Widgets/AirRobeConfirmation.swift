@@ -10,6 +10,35 @@ import UIKit
 import Combine
 
 open class AirRobeConfirmation: UIView {
+    /// Border color of the widget - Default value is #DFDFDF
+    @IBInspectable open var borderColor: UIColor = .AirRobeDefaultBorderColor {
+        didSet {
+            orderConfirmationView.layer.borderColor = borderColor.cgColor
+        }
+    }
+
+    /// Text color of the widget - Default value is #232323
+    @IBInspectable open var textColor: UIColor = .AirRobeDefaultTextColor {
+        didSet {
+            orderConfirmationView.titleLabel.textColor = textColor
+            orderConfirmationView.descriptionLabel.textColor = textColor
+        }
+    }
+
+    /// AirRobe Confirmation Widget activate button background color - Default value is #232323
+    @IBInspectable open var buttonBackgroundColor: UIColor = .AirRobeDefaultButtonBackgroundColor {
+        didSet {
+            orderConfirmationView.activateContainerView.backgroundColor = buttonBackgroundColor
+        }
+    }
+
+    /// AirRobe Confirmation Widget activate button text color - Default value is #232323
+    @IBInspectable open var buttonTextColor: UIColor = .AirRobeDefaultButtonTextColor {
+        didSet {
+            orderConfirmationView.activateLabel.textColor = buttonTextColor
+        }
+    }
+
     lazy var orderConfirmationView: AirRobeOrderConfirmationView = AirRobeOrderConfirmationView.loadFromNib()
 
     override init(frame: CGRect) {
@@ -37,6 +66,12 @@ open class AirRobeConfirmation: UIView {
         orderConfirmationView.superView = self
 
         orderConfirmationView.viewModel.initializeConfirmationWidget()
+
+        // Default Colors for the widget
+        borderColor = AirRobeBorderColor
+        textColor = AirRobeTextColor
+        buttonBackgroundColor = AirRobeButtonBackgroundColor
+        buttonTextColor = AirRobeButtonTextColor
     }
 }
 #endif
