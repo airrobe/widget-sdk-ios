@@ -42,14 +42,16 @@ final class AirRobeOptInViewModel {
             isAllSet = .noCategoryMappingInfo
             return
         }
-        alreadyInitialized = true
-        if category.isEmpty {
-            isAllSet = .paramIssue
-            return
-        }
-        isAllSet = categoryModel.checkCategoryEligible(items: [category]).eligible ? .eligible : .notEligible
-        if isAllSet == .eligible {
-            callPriceEngine(category: categoryModel.checkCategoryEligible(items: [category]).to)
+        if !alreadyInitialized {
+            alreadyInitialized = true
+            if category.isEmpty {
+                isAllSet = .paramIssue
+                return
+            }
+            isAllSet = categoryModel.checkCategoryEligible(items: [category]).eligible ? .eligible : .notEligible
+            if isAllSet == .eligible {
+                callPriceEngine(category: categoryModel.checkCategoryEligible(items: [category]).to)
+            }
         }
     }
 
@@ -59,14 +61,16 @@ final class AirRobeOptInViewModel {
             UserDefaults.standard.OrderOptedIn = false
             return
         }
-        alreadyInitialized = true
-        if items.isEmpty {
-            isAllSet = .paramIssue
-            UserDefaults.standard.OrderOptedIn = false
-            return
+        if !alreadyInitialized {
+            alreadyInitialized = true
+            if items.isEmpty {
+                isAllSet = .paramIssue
+                UserDefaults.standard.OrderOptedIn = false
+                return
+            }
+            isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
+            UserDefaults.standard.OrderOptedIn = categoryModel.checkCategoryEligible(items: items).eligible && UserDefaults.standard.OptedIn ? true : false
         }
-        isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
-        UserDefaults.standard.OrderOptedIn = categoryModel.checkCategoryEligible(items: items).eligible && UserDefaults.standard.OptedIn ? true : false
     }
 
 }

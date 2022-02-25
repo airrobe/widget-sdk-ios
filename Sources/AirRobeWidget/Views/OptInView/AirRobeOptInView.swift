@@ -37,6 +37,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
 
     var superView: UIView?
     var viewType: ViewType = .optIn
+    private var alreadyAdded: Bool = false
     private var potentialValueLabelMaxWidth: CGFloat = 0.0
     private(set) lazy var viewModel = AirRobeOptInViewModel()
     private var subscribers: [AnyCancellable] = []
@@ -73,7 +74,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
 
     private func commonInit() {
         // Widget Border Style
-        mainContainerView.addBorder(cornerRadius: 0)
+        mainContainerView.addBorder(color: UIColor(colorCode: "DFDFDF").cgColor, cornerRadius: 0)
 
         // Initializing Static Texts & Links
         titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
@@ -141,14 +142,12 @@ final class AirRobeOptInView: UIView, NibLoadable {
         }()
 
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
-            guard let self = self else {
-                return
-            }
-            self.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
-            self.detailedDescriptionLabel.isHidden.toggle()
-            self.margin.isHidden.toggle()
-            self.widgetStackView.layoutIfNeeded()
+            self?.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
         })
+        tableView?.beginUpdates()
+        detailedDescriptionLabel.isHidden.toggle()
+        margin.isHidden.toggle()
+        tableView?.endUpdates()
     }
 }
 
@@ -188,6 +187,9 @@ private extension AirRobeOptInView {
             .sink(receiveCompletion: {
                 print($0)
             }, receiveValue: { [weak self] allSet in
+                guard let self = self else {
+                    return
+                }
                 switch allSet {
                 case .initializing:
                     #if DEBUG
@@ -198,11 +200,11 @@ private extension AirRobeOptInView {
                     print(AirRobeWidgetLoadState.noCategoryMappingInfo.rawValue)
                     #endif
                 case .eligible:
-                    self?.addToSuperView(superView: self?.superView)
+                    self.alreadyAdded = self.addToSuperView(superView: self.superView, alreadyAddedToTable: self.alreadyAdded)
                 case .notEligible:
-                    self?.removeFromSuperview()
+                    self.removeFromSuperview()
                 case .paramIssue:
-                    self?.removeFromSuperview()
+                    self.removeFromSuperview()
                     #if DEBUG
                     print(AirRobeWidgetLoadState.paramIssue.rawValue)
                     #endif

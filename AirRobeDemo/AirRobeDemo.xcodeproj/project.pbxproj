@@ -17,6 +17,7 @@
 		3C5B27B32760CC29006CB5B6 /* CartPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5B27B22760CC29006CB5B6 /* CartPageViewController.swift */; };
 		3C5B27B62760CC95006CB5B6 /* CartItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5B27B52760CC95006CB5B6 /* CartItemView.xib */; };
 		3C5B27B82760CE3E006CB5B6 /* CartItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5B27B72760CE3E006CB5B6 /* CartItemView.swift */; };
+		3CC9F10D27B5704B006E7D94 /* ProductPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC9F10C27B5704B006E7D94 /* ProductPageTableViewController.swift */; };
 		3CE54689275B01F000FBE205 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE54688275B01F000FBE205 /* AppDelegate.swift */; };
 		3CE5468B275B01F000FBE205 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5468A275B01F000FBE205 /* SceneDelegate.swift */; };
 		3CE5468D275B01F000FBE205 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5468C275B01F000FBE205 /* ConfirmationViewController.swift */; };
@@ -35,6 +36,7 @@
 		3C5B27B22760CC29006CB5B6 /* CartPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPageViewController.swift; sourceTree = "<group>"; };
 		3C5B27B52760CC95006CB5B6 /* CartItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemView.xib; sourceTree = "<group>"; };
 		3C5B27B72760CE3E006CB5B6 /* CartItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemView.swift; sourceTree = "<group>"; };
+		3CC9F10C27B5704B006E7D94 /* ProductPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPageTableViewController.swift; sourceTree = "<group>"; };
 		3CE54685275B01F000FBE205 /* AirRobeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirRobeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE54688275B01F000FBE205 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CE5468A275B01F000FBE205 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				3C5B27A427609541006CB5B6 /* ProductPageViewController.swift */,
 				3C5B27A627609BEC006CB5B6 /* ProductPageViewModel.swift */,
 				3C5B27B22760CC29006CB5B6 /* CartPageViewController.swift */,
+				3CC9F10C27B5704B006E7D94 /* ProductPageTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				3CE54689275B01F000FBE205 /* AppDelegate.swift in Sources */,
 				3C5B27A527609542006CB5B6 /* ProductPageViewController.swift in Sources */,
 				3C5B27AA27609D8C006CB5B6 /* Consts.swift in Sources */,
+				3CC9F10D27B5704B006E7D94 /* ProductPageTableViewController.swift in Sources */,
 				3C5B27A327601728006CB5B6 /* ProductListViewController.swift in Sources */,
 				3C5B27B12760C3CE006CB5B6 /* UserDefaults+Extension.swift in Sources */,
 				3CE5468B275B01F000FBE205 /* SceneDelegate.swift in Sources */,
