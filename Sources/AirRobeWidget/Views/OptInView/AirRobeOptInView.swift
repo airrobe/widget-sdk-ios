@@ -24,7 +24,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var detailedDescriptionLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var subTitleContainer: UIStackView!
-    
+
     enum ExpandState {
         case opened
         case closed

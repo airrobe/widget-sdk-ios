@@ -29,7 +29,6 @@ public struct AirRobeWidgetConfig {
     /// - Parameters:
     ///   - appId: App ID from https://connector.airrobe.com
     ///   - privacyPolicyLink: Privacy Policy link for Iconic
-    ///   - color: Primary color for the widgets
     ///   - mode: Selector for production or sandbox mode
     public init(
         appId: String,
