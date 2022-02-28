@@ -42,7 +42,6 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
         descriptionLabel.text = AirRobeStrings.orderConfirmationDescription
 
         activateContainerView.addBorder(borderWidth: 0, cornerRadius: 20)
-        activateContainerView.addShadow()
 
         activateLoading.hidesWhenStopped = true
         activateLoading.startAnimating()
