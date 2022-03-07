@@ -32,7 +32,7 @@ open class AirRobeConfirmation: UIView {
         }
     }
 
-    /// AirRobe Confirmation Widget activate button text color - Default value is #232323
+    /// AirRobe Confirmation Widget activate button text color - Default value is #FFFFFF
     @IBInspectable open var buttonTextColor: UIColor = .AirRobeDefaultButtonTextColor {
         didSet {
             orderConfirmationView.activateLabel.textColor = buttonTextColor
