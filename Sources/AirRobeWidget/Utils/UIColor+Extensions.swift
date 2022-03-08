@@ -42,12 +42,12 @@ extension UIColor {
         return UIColor(colorCode: "696969")
     }
 
-    static var AirRobeDefaultButtonBackgroundColor: UIColor {
+    static var AirRobeDefaultButtonBorderColor: UIColor {
         return UIColor(colorCode: "232323")
     }
 
     static var AirRobeDefaultButtonTextColor: UIColor {
-        return UIColor(colorCode: "ffffff")
+        return UIColor(colorCode: "232323")
     }
 
     static var AirRobeDefaultSeparatorColor: UIColor {

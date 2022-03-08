@@ -25,16 +25,17 @@ open class AirRobeConfirmation: UIView {
         }
     }
 
-    /// AirRobe Confirmation Widget activate button background color - Default value is #232323
-    @IBInspectable open var buttonBackgroundColor: UIColor = .AirRobeDefaultButtonBackgroundColor {
+    /// AirRobe Confirmation Widget activate button border color - Default value is #232323
+    @IBInspectable open var buttonBorderColor: UIColor = .AirRobeDefaultButtonBorderColor {
         didSet {
-            orderConfirmationView.activateContainerView.backgroundColor = buttonBackgroundColor
+            orderConfirmationView.activateContainerView.layer.borderColor = buttonBorderColor.cgColor
         }
     }
 
-    /// AirRobe Confirmation Widget activate button text color - Default value is #FFFFFF
+    /// AirRobe Confirmation Widget activate button text color - Default value is #232323
     @IBInspectable open var buttonTextColor: UIColor = .AirRobeDefaultButtonTextColor {
         didSet {
+            orderConfirmationView.activateLoading.color = buttonTextColor
             orderConfirmationView.activateLabel.textColor = buttonTextColor
         }
     }
@@ -70,7 +71,7 @@ open class AirRobeConfirmation: UIView {
         // Default Colors for the widget
         borderColor = AirRobeBorderColor
         textColor = AirRobeTextColor
-        buttonBackgroundColor = AirRobeButtonBackgroundColor
+        buttonBorderColor = AirRobeButtonBorderColor
         buttonTextColor = AirRobeButtonTextColor
     }
 }

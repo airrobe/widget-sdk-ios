@@ -56,12 +56,12 @@ public var AirRobeArrowColor: UIColor = .AirRobeDefaultArrowColor
 public var AirRobeLinkTextColor: UIColor = .AirRobeDefaultLinkTextColor
 
 /// AirRobe Confirmation Widget activate button background color - Default value is #232323
-public var AirRobeButtonBackgroundColor: UIColor = .AirRobeDefaultButtonBackgroundColor
+public var AirRobeButtonBorderColor: UIColor = .AirRobeDefaultButtonBorderColor
 
 /// AirRobe Confirmation Widget activate button text color - Default value is #232323
 public var AirRobeButtonTextColor: UIColor = .AirRobeDefaultButtonTextColor
 
-/// AirRobe Learn More Widget Separator color - Default value is #232323
+/// AirRobe Learn More Widget Separator color - Default value is #DFDFDF
 public var AirRobeSeparatorColor: UIColor = .AirRobeDefaultSeparatorColor
 
 #endif
