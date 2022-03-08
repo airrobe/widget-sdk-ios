@@ -69,6 +69,7 @@ open class AirRobeOptIn: UIView {
     ///   - brand: brand of the shopping item, optional value and can be dismissed
     ///   - material: material of the shopping item, optional value and can be dismissed
     ///   - category: category of the shopping item
+    ///   - department: department of the shopping item
     ///   - priceCents: price of the shopping item
     ///   - originalFullPriceCents: original full price of the shopping item, optional value and can be dismissed
     ///   - rrpCents: recommended retail price of the shopping item, optional value and can be dismissed
@@ -78,6 +79,7 @@ open class AirRobeOptIn: UIView {
         brand: String? = nil,
         material: String? = nil,
         category: String,
+        department: String? = nil,
         priceCents: Double,
         originalFullPriceCents: Double? = nil,
         rrpCents: Double? = nil,
@@ -88,6 +90,7 @@ open class AirRobeOptIn: UIView {
         optInView.viewModel.brand = brand
         optInView.viewModel.material = material
         optInView.viewModel.category = category
+        optInView.viewModel.department = department
         optInView.viewModel.priceCents = priceCents
         optInView.viewModel.originalFullPriceCents = originalFullPriceCents
         optInView.viewModel.rrpCents = rrpCents

@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 mode: .production
             )
         )
-        
+
         // This part is how you can configure the colors of the Widgets globally
 //        AirRobeWidget.AirRobeTextColor = .systemBlue
 //        AirRobeWidget.AirRobeBorderColor = .blue

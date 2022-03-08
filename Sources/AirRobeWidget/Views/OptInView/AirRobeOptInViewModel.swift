@@ -10,12 +10,14 @@ import Combine
 
 final class AirRobeOptInViewModel {
 
-    /// Describes which brand the widget belongs to.
+    /// Describes which brand the shopping item belongs to.
     var brand: String?
-    /// Describes which material the widget belongs to.
+    /// Describes which material the shopping item belongs to.
     var material: String?
-    /// Describes which category the widget belongs to.
+    /// Describes which category the shopping item belongs to.
     var category: String = ""
+    /// Describes which department the shopping item belongs to.
+    var department: String?
     /// Describes the price of the shopping item.
     var priceCents: Double = 0.0
     /// Describes the original full price of the shopping item.
