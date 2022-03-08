@@ -21,6 +21,11 @@ final class ConfirmationViewController: UIViewController {
             orderId: orderId,
             email: email
         )
+        // This part is how you can configure the colors of the widget
+//        airRobeConfirmation.borderColor = .red
+//        airRobeConfirmation.textColor = .blue
+//        airRobeConfirmation.buttonBorderColor = .black
+//        airRobeConfirmation.buttonTextColor = .black
         view.addSubview(airRobeConfirmation)
         NSLayoutConstraint.activate([
             airRobeConfirmation.topAnchor.constraint(equalTo: thankyouLabel.bottomAnchor, constant: 20),

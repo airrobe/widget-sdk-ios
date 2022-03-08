@@ -36,15 +36,12 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
     }
 
     private func commonInit() {
-        addBorder(color: UIColor(colorCode: "DFDFDF").cgColor)
-        addShadow()
+        addBorder(color: AirRobeBorderColor.cgColor)
 
         titleLabel.text = AirRobeStrings.orderConfirmationTitle
         descriptionLabel.text = AirRobeStrings.orderConfirmationDescription
 
-        activateContainerView.backgroundColor = UIColor.black
-        activateContainerView.addBorder(borderWidth: 0, cornerRadius: 20)
-        activateContainerView.addShadow()
+        activateContainerView.addBorder(borderWidth: 1, cornerRadius: 20)
 
         activateLoading.hidesWhenStopped = true
         activateLoading.startAnimating()

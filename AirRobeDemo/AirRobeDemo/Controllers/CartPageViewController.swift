@@ -48,6 +48,12 @@ final class CartPageViewController: UIViewController {
         airRobeMultiOptIn.initialize(
             items: categories
         )
+        // This part is how you can configure the colors of the widget
+//        airRobeMultiOptIn.borderColor = .red
+//        airRobeMultiOptIn.linkTextColor = .yellow
+//        airRobeMultiOptIn.textColor = .blue
+//        airRobeMultiOptIn.arrowColor = .black
+//        airRobeMultiOptIn.switchColor = .black
         if let index = stackView.arrangedSubviews.firstIndex(of: margin) {
             stackView.insertArrangedSubview(airRobeMultiOptIn, at: index)
         }

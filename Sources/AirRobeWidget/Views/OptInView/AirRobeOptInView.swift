@@ -24,7 +24,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var detailedDescriptionLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var subTitleContainer: UIStackView!
-    
+
     enum ExpandState {
         case opened
         case closed
@@ -74,7 +74,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
 
     private func commonInit() {
         // Widget Border Style
-        mainContainerView.addBorder(color: UIColor(colorCode: "DFDFDF").cgColor, cornerRadius: 0)
+        mainContainerView.addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 0)
 
         // Initializing Static Texts & Links
         titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
@@ -106,14 +106,8 @@ final class AirRobeOptInView: UIView, NibLoadable {
             linkText: AirRobeStrings.extraLinkText,
             link: privacyLink,
             tapHandler: onTapExtraInfoLink)
-
         addToAirRobeSwitch.isOn = UserDefaults.standard.OptedIn
-        addToAirRobeSwitch.onTintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
-        addToAirRobeSwitch.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
-
         arrowImageView.image = arrowImageView.image?.withRenderingMode(.alwaysTemplate)
-        arrowImageView.tintColor = UIColor(colorCode: UserDefaults.standard.BaseColor)
-
         setupBindings()
     }
 

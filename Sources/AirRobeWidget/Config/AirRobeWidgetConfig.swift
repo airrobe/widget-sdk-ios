@@ -21,9 +21,6 @@ public struct AirRobeWidgetConfig {
     /// Privacy Policy link for Iconic
     var privacyPolicyURL: String = ""
 
-    /// AirRobe Widget Base Theme Color
-    var color: UIColor?
-
     /// AirRobe Widget Select Mode whether production or sandbox
     /// default value = .production
     var mode: Mode = .production
@@ -32,18 +29,15 @@ public struct AirRobeWidgetConfig {
     /// - Parameters:
     ///   - appId: App ID from https://connector.airrobe.com
     ///   - privacyPolicyLink: Privacy Policy link for Iconic
-    ///   - color: Primary color for the widgets
     ///   - mode: Selector for production or sandbox mode
     public init(
         appId: String,
         privacyPolicyURL: String,
-        color: String = "696969",
         mode: Mode = .production
     ) {
         self.appId = appId
         self.privacyPolicyURL = privacyPolicyURL
         self.mode = mode
-        UserDefaults.standard.BaseColor = color
     }
 
 }
