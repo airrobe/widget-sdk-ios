@@ -23,14 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
         
         // This part is how you can configure the colors of the Widgets globally
-        AirRobeWidget.AirRobeTextColor = .systemBlue
-        AirRobeWidget.AirRobeBorderColor = .blue
-        AirRobeWidget.AirRobeLinkTextColor = .brown
-        AirRobeWidget.AirRobeArrowColor = .yellow
-        AirRobeWidget.AirRobeSeparatorColor = .yellow
-        AirRobeWidget.AirRobeSwitchColor = .yellow
-        AirRobeWidget.AirRobeButtonTextColor = .yellow
-        AirRobeWidget.AirRobeButtonBorderColor = .yellow
+//        AirRobeWidget.AirRobeTextColor = .systemBlue
+//        AirRobeWidget.AirRobeBorderColor = .blue
+//        AirRobeWidget.AirRobeLinkTextColor = .brown
+//        AirRobeWidget.AirRobeArrowColor = .yellow
+//        AirRobeWidget.AirRobeSeparatorColor = .yellow
+//        AirRobeWidget.AirRobeSwitchColor = .yellow
+//        AirRobeWidget.AirRobeButtonTextColor = .yellow
+//        AirRobeWidget.AirRobeButtonBorderColor = .yellow
         return true
     }
 
