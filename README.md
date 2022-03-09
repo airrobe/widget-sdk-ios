@@ -17,7 +17,7 @@ This is the recommended integration method, but we assume that you already have 
 
 ```
 dependencies: [
-    .package(url: "https://github.com/airrobe/widget-sdk-ios.git", .upToNextMajor(from: "1.0.2"))
+    .package(url: "https://github.com/airrobe/widget-sdk-ios.git", .upToNextMajor(from: "x.x.x"))
 ]
 ```
 
@@ -40,7 +40,7 @@ Add the AirRobeWidget SDK as a [git submodule][git-submodule] by navigating to t
 ```
 git submodule add https://github.com/airrobe/widget-sdk-ios.git AirRobeWidget
 cd AirRobeWidget
-git checkout 1.0.2
+git checkout x.x.x
 ```
 
 #### Project / Workspace Integration
@@ -72,12 +72,22 @@ AirRobeWidget.initialize(
     config: AirRobeWidgetConfig(
         appId: "APP_ID",           // required
         privacyPolicyURL: String,  // required - privacy policy url of The Iconic
-        color: String,             // optional - color HexCode without "#", default value is "42abc8"
         mode: enum                 // optional - (.production or .sandbox), default value is .production
     )
 )
 ```
 
+### Color configuration
+```swift
+AirRobeWidget.AirRobeTextColor = .systemBlue       // the color of the widget text. default value is "#232323"
+AirRobeWidget.AirRobeBorderColor = .blue           // the color of the widget border. default value is "#DFDFDF"
+AirRobeWidget.AirRobeLinkTextColor = .brown        // the color of the widget legal copy text. default value is "#696969"
+AirRobeWidget.AirRobeArrowColor = .yellow          // the color of the widget drop down arrow icon. default value is "#42ABC8"
+AirRobeWidget.AirRobeSeparatorColor = .yellow      // the color of the learn more popup view separators. default value is "#DFDFDF"
+AirRobeWidget.AirRobeSwitchColor = .yellow         // the color of the widget switch ON color. default value is "#42ABC8"
+AirRobeWidget.AirRobeButtonTextColor = .yellow     // the color of the widget activate button text. default value is "#232323"
+AirRobeWidget.AirRobeButtonBorderColor = .yellow   // the color of the widget activate button border. default value is "#232323"
+```
 
 ## Widget
 
@@ -90,12 +100,20 @@ airRobeOptIn.initialize(
     brand: String?,                  // optional - e.g. "Chanel", can be nil
     material: String?,               // optional - e.g. "Leather", can be nil
     category: String,                // required - e.g. "Hats/fancy-hats"
+    department: String?,             // optional - e.g. "Kidswear"
     priceCents: Double,              // required - e.g. 100.95
     originalFullPriceCents: Double?, // optional - e.g. 62.00, can be nil
     rrpCents: Double?,               // optional - e.g. 62.00, can be nil
     currency: String,                // optional - default is "AUD"
     locale: String                   // optional - default is "en-AU"
 )
+
+// Color configuration
+airRobeOptIn.borderColor = .red         // the color of the widget border. default value is "#DFDFDF"
+airRobeOptIn.linkTextColor = .yellow    // the color of the widget legal copy text. default value is "#696969"
+airRobeOptIn.textColor = .blue          // the color of the widget text. default value is "#232323"
+airRobeOptIn.arrowColor = .black        // the color of the widget drop down arrow icon. default value is "#42ABC8"
+airRobeOptIn.switchColor = .black       // the color of the widget switch ON color. default value is "#42ABC8"
 ```
 
 
@@ -107,6 +125,13 @@ var airRobeMultiOptIn = AirRobeMultiOptIn()
 airRobeMultiOptIn.initialize(
     items: [String], // required - e.g. ["Accessories", "Accessories/Beauty", "Accessories/Bags/Leather bags/Weekender/Handbags", "Accessories/Bags/Clutches/Bum Bags"]
 )
+
+// Color configuration
+airRobeMultiOptIn.borderColor = .red         // the color of the widget border. default value is "#DFDFDF"
+airRobeMultiOptIn.linkTextColor = .yellow    // the color of the widget legal copy text. default value is "#696969"
+airRobeMultiOptIn.textColor = .blue          // the color of the widget text. default value is "#232323"
+airRobeMultiOptIn.arrowColor = .black        // the color of the widget drop down arrow icon. default value is "#42ABC8"
+airRobeMultiOptIn.switchColor = .black       // the color of the widget switch ON color. default value is "#42ABC8"
 ```
 
 
@@ -120,6 +145,12 @@ airRobeConfirmation.initialize(
     email: String,   // required
     fraudRisk: Bool  // optional - fraud status for the confirmation widget, default value is false.
 )
+
+// Color configuration
+airRobeConfirmation.borderColor = .red           // the color of the widget border. default value is "#DFDFDF"
+airRobeConfirmation.textColor = .blue            // the color of the widget text. default value is "#232323"
+airRobeConfirmation.buttonBorderColor = .black   // the color of the widget activate button border. default value is "#232323"
+airRobeConfirmation.buttonTextColor = .black     // the color of the widget activate button text. default value is "#232323"
 ```
 
 
