@@ -32,6 +32,13 @@ public func initialize(config: AirRobeWidgetConfig) {
         })
 }
 
+public func checkMultiOptInEligibility(items: [String]) -> Bool {
+    guard let categoryModel = AirRobeCategoryModelInstance.shared.categoryModel, !items.isEmpty else {
+        return false
+    }
+    return categoryModel.checkCategoryEligible(items: items).eligible
+}
+
 public func resetOptedIn() {
     UserDefaults.standard.OptedIn = false
 }
