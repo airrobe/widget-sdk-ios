@@ -31,7 +31,8 @@ final class ProductPageViewController: UIViewController {
             // Initialize airRobeOptIn view
             airRobeOptIn.initialize(
                 category: cellViewModel.category,
-                priceCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0)
+                priceCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0
+            )
             
             // This part is how you can configure the colors of the widget
 //            airRobeOptIn.borderColor = .red

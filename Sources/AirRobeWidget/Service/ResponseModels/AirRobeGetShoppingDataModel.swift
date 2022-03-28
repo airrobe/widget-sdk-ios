@@ -1,5 +1,5 @@
 //
-//  AirRobeCategoryModel.swift
+//  AirRobeGetShoppingDataModel.swift
 //  
 //
 //  Created by King on 11/25/21.
@@ -7,19 +7,20 @@
 
 import Foundation
 
-// MARK: - CategoryModel
-struct AirRobeCategoryModel: Codable {
-    let data: AirRobeDataModel
+// MARK: - GetShoppingDataModel
+struct AirRobeGetShoppingDataModel: Codable {
+    let data: AirRobeShoppingDataModel
 }
 
-// MARK: - DataModel
-struct AirRobeDataModel: Codable {
+// MARK: - ShoppingDataModel
+struct AirRobeShoppingDataModel: Codable {
     let shop: AirRobeShopModel
 }
 
 // MARK: - ShopModel
 struct AirRobeShopModel: Codable {
     let categoryMappings: [AirRobeCategoryMapping]
+    let minimumPriceThresholds: [AirRobeMinPriceThresholds]
 }
 
 // MARK: - CategoryMapping
@@ -29,6 +30,13 @@ struct AirRobeCategoryMapping: Codable {
     let excluded: Bool
 }
 
+// MARK: - MinPriceThresholds
+struct AirRobeMinPriceThresholds: Codable {
+    let minimumPriceCents: Double
+    let department: String?
+    let `default`: Bool
+}
+
 // MARK: - Return struct for Category Eligibility
 struct AirRobeCategoryEligibility: Codable {
     let eligible: Bool
@@ -36,7 +44,7 @@ struct AirRobeCategoryEligibility: Codable {
 }
 
 // MARK: - Extension for checking category Eligibility
-extension AirRobeCategoryModel {
+extension AirRobeGetShoppingDataModel {
     func checkCategoryEligible(items: [String]) -> AirRobeCategoryEligibility {
         guard
             let eligibleItem = items.first(where: { bestCategoryMapping(categoryArray: factorize(category: $0)).eligible })
@@ -45,9 +53,22 @@ extension AirRobeCategoryModel {
         }
         return AirRobeCategoryEligibility(eligible: true, to: bestCategoryMapping(categoryArray: factorize(category: eligibleItem)).to)
     }
+
+    func isBelowPriceThreshold(department: String?, price: Double) -> Bool {
+        guard let department = department else {
+            return false
+        }
+        if let applicablePriceThreshold = data.shop.minimumPriceThresholds.first(where: { $0.department?.lowercased() == department.lowercased() }) {
+            return price < (applicablePriceThreshold.minimumPriceCents / 100)
+        }
+        if let applicablePriceThreshold = data.shop.minimumPriceThresholds.first(where: { $0.default }) {
+            return price < (applicablePriceThreshold.minimumPriceCents / 100)
+        }
+        return false
+    }
 }
 
-private extension AirRobeCategoryModel {
+private extension AirRobeGetShoppingDataModel {
     func factorize(category: String, delimiter: String.Element = AirRobeStrings.delimiter) -> [String] {
         let parts = category.split(separator: delimiter)
         var array: [String] = []

@@ -166,12 +166,12 @@ private extension AirRobeOptInView {
                 }
             }).store(in: &subscribers)
 
-        AirRobeCategoryModelInstance.shared.$categoryModel
+        AirRobeShoppingDataModelInstance.shared.$shoppingDataModel
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
                 print($0)
-            }, receiveValue: { [weak self] (categoryModel) in
-                guard let self = self, categoryModel != nil, !self.viewModel.alreadyInitialized else {
+            }, receiveValue: { [weak self] (shoppingDataModel) in
+                guard let self = self, shoppingDataModel != nil, !self.viewModel.alreadyInitialized else {
                     return
                 }
                 switch self.viewType {

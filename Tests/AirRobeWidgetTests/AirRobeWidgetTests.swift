@@ -2,7 +2,7 @@ import XCTest
 @testable import AirRobeWidget
 
 final class AirRobeWidgetTests: XCTestCase {
-    var categoryModel: AirRobeCategoryModel?
+    var categoryModel: AirRobeGetShoppingDataModel?
 
     func testJSONMapping() throws {
         let bundle = Bundle.module
@@ -12,7 +12,7 @@ final class AirRobeWidgetTests: XCTestCase {
         }
 
         let json = try Data(contentsOf: url)
-        categoryModel = try JSONDecoder().decode(AirRobeCategoryModel.self, from: json)
+        categoryModel = try JSONDecoder().decode(AirRobeGetShoppingDataModel.self, from: json)
 
         if categoryModel == nil {
             XCTFail("Parsing issue: mappingInfo.json")
@@ -22,7 +22,7 @@ final class AirRobeWidgetTests: XCTestCase {
 
     func testAirRobeOptInView() throws {
         try testJSONMapping()
-        AirRobeCategoryModelInstance.shared.categoryModel = categoryModel
+        AirRobeShoppingDataModelInstance.shared.shoppingDataModel = categoryModel
 
         let widgetInputs = [("Chanel", "Leather", "Accessories/Belts", 100.0, 80.0, 80.0)] + self.optInInputs
         let expectedResults = [true] + self.optInExpectedResults
@@ -80,7 +80,7 @@ final class AirRobeWidgetTests: XCTestCase {
 
     func testAirRobeMultiOptInView() throws {
         try testJSONMapping()
-        AirRobeCategoryModelInstance.shared.categoryModel = categoryModel
+        AirRobeShoppingDataModelInstance.shared.shoppingDataModel = categoryModel
         
         let widgetInputs = [["Accessories"]] + self.multiOptInInputs
         let expectedResults = [true] + self.multiOptInExpectedResults
@@ -123,7 +123,7 @@ final class AirRobeWidgetTests: XCTestCase {
     // TODO: Add check email availablity Test
     func testAirRobeConfirmationView() throws {
         try testJSONMapping()
-        AirRobeCategoryModelInstance.shared.categoryModel = categoryModel
+        AirRobeShoppingDataModelInstance.shared.shoppingDataModel = categoryModel
         
         let widgetInputs = [("123456", "michael@airrobe.com", true, true)] + self.confirmationInputs
         let expectedResults = [true] + self.confirmationExpectedResults

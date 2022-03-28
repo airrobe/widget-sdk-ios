@@ -18,7 +18,7 @@ struct ItemModel: Codable {
 typealias ItemModels = [ItemModel]
 
 let products: ItemModels = [
-    ItemModel(image: "bag1", title: "Aquila", subTitle: "Montoro Messenger", price: "$340.00", category: "Accessories"),
+    ItemModel(image: "bag1", title: "Aquila", subTitle: "Montoro Messenger", price: "$34.00", category: "Accessories"),
     ItemModel(image: "bag4", title: "Fjallraven", subTitle: "Kanken Totepack", price: "$174.95", category: "Accessories"),
     ItemModel(image: "bag5", title: "Stale Superior", subTitle: "Downtown Weekender", price: "$59.99", category: "Accessories"),
     ItemModel(image: "bag6", title: "Stale Superior", subTitle: "Downtown Weekender", price: "$59.99", category: "Accessories"),

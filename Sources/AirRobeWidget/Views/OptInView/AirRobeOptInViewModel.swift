@@ -40,7 +40,7 @@ final class AirRobeOptInViewModel {
     @Published var potentialPrice: String = ""
 
     func initializeOptInWidget() {
-        guard let categoryModel = AirRobeCategoryModelInstance.shared.categoryModel else {
+        guard let shoppingDataModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel else {
             isAllSet = .noCategoryMappingInfo
             return
         }
@@ -50,15 +50,15 @@ final class AirRobeOptInViewModel {
                 isAllSet = .paramIssue
                 return
             }
-            isAllSet = categoryModel.checkCategoryEligible(items: [category]).eligible ? .eligible : .notEligible
+            isAllSet = (shoppingDataModel.checkCategoryEligible(items: [category]).eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
             if isAllSet == .eligible {
-                callPriceEngine(category: categoryModel.checkCategoryEligible(items: [category]).to)
+                callPriceEngine(category: shoppingDataModel.checkCategoryEligible(items: [category]).to)
             }
         }
     }
 
     func initializeMultiOptInWidget() {
-        guard let categoryModel = AirRobeCategoryModelInstance.shared.categoryModel else {
+        guard let categoryModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel else {
             isAllSet = .noCategoryMappingInfo
             UserDefaults.standard.OrderOptedIn = false
             return
