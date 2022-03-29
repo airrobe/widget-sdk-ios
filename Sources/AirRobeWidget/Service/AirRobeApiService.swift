@@ -42,13 +42,13 @@ final class AirRobeApiService: AirRobeNetworkClient {
         return execute(endpoint.asURLRequest(), decodingType: AirRobePriceEngineResponseModel.self)
     }
 
-    func getCategoryMapping(operation: AirRobeGraphQLOperation<AppIdInput>) -> AnyPublisher<AirRobeCategoryModel, Error> {
+    func getShoppingData(operation: AirRobeGraphQLOperation<AppIdInput>) -> AnyPublisher<AirRobeGetShoppingDataModel, Error> {
         var endpoint = AirRobeEndpoint.getCategoryMapping(operation: operation)
         endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
         #if DEBUG
         dump(endpoint.asURLRequest())
         #endif
-        return execute(endpoint.asURLRequest(), decodingType: AirRobeCategoryModel.self)
+        return execute(endpoint.asURLRequest(), decodingType: AirRobeGetShoppingDataModel.self)
     }
 
     func emailCheck(operation: AirRobeGraphQLOperation<EmailInput>) -> AnyPublisher<AirRobeEmailCheckResponseModel, Error> {

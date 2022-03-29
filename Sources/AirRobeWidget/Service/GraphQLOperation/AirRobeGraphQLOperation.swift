@@ -35,7 +35,7 @@ extension AirRobeGraphQLOperation where Input == AppIdInput {
     static func fetchPost(with appId: String) -> Self {
         AirRobeGraphQLOperation(
             input: AppIdInput(appId: appId),
-            operationString: AirRobeStrings.GetMappingInfoQuery
+            operationString: AirRobeStrings.GetShoppingDataQuery
         )
     }
 }

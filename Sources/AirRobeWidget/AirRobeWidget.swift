@@ -17,7 +17,7 @@ private var cancellable: AnyCancellable?
 public func initialize(config: AirRobeWidgetConfig) {
     AirRobeWidget.configuration = config
 
-    cancellable = apiService.getCategoryMapping(operation: AirRobeGraphQLOperation.fetchPost(with: config.appId))
+    cancellable = apiService.getShoppingData(operation: AirRobeGraphQLOperation.fetchPost(with: config.appId))
         .sink(receiveCompletion: { completion in
             switch completion {
             case .failure(let error):
@@ -28,15 +28,15 @@ public func initialize(config: AirRobeWidgetConfig) {
                 print(completion)
             }
         }, receiveValue: {
-            AirRobeCategoryModelInstance.shared.categoryModel = $0
+            AirRobeShoppingDataModelInstance.shared.shoppingDataModel = $0
         })
 }
 
 public func checkMultiOptInEligibility(items: [String]) -> Bool {
-    guard let categoryModel = AirRobeCategoryModelInstance.shared.categoryModel, !items.isEmpty else {
+    guard let shoppingDataModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel, !items.isEmpty else {
         return false
     }
-    return categoryModel.checkCategoryEligible(items: items).eligible
+    return shoppingDataModel.checkCategoryEligible(items: items).eligible
 }
 
 public func resetOptedIn() {
