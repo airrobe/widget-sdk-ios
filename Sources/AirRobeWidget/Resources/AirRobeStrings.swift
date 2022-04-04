@@ -35,7 +35,7 @@ enum AirRobeStrings {
     static let GetShoppingDataQuery = """
                 query GetShoppingData ($appId: String) {
                   shop(appId: $appId) {
-                    categoryMappings {
+                    categoryMappings(mappedOrExcludedOnly: true) {
                       from
                       to
                       excluded
