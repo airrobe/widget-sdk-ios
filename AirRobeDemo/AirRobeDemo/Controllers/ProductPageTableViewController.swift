@@ -12,10 +12,12 @@ import AirRobeWidget
 class ProductPageTableViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(ButtonTableViewCell.self, forCellReuseIdentifier: ButtonTableViewCell.identifier)
         tableView.register(LabelTableViewCell.self, forCellReuseIdentifier: LabelTableViewCell.identifier)
         tableView.register(ProductPageTableViewCell.self, forCellReuseIdentifier: ProductPageTableViewCell.identifier)
         return tableView
     }()
+    private var dataCount: Int = 10
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +35,26 @@ class ProductPageTableViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+
+    @objc func onTapAction(_ button: UIButton) {
+        dataCount = 1
+        tableView.reloadData()
+    }
 }
 
 extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return dataCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 1 {
+        if indexPath.row == 0 {
+            guard let buttonCell = tableView.dequeueReusableCell(withIdentifier: ButtonTableViewCell.identifier, for: indexPath) as? ButtonTableViewCell else {
+                return UITableViewCell()
+            }
+            buttonCell.button.addTarget(self, action: #selector(onTapAction), for: .touchUpInside)
+            return buttonCell
+        } else if indexPath.row == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
                 return UITableViewCell()
             }
@@ -68,7 +81,9 @@ extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 4 {
+        if indexPath.row == 0 {
+            return 50
+        } else if indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 4 {
             return UITableView.automaticDimension
         } else {
             return 200
@@ -82,7 +97,7 @@ enum ViewType {
     case confirmation
 }
 
-class ProductPageTableViewCell: UITableViewCell {
+private final class ProductPageTableViewCell: UITableViewCell {
     static let identifier = "ProductPageTableViewCell"
     private lazy var airRobeOptIn: AirRobeOptIn = AirRobeOptIn()
     private lazy var airRobeMultiOptIn: AirRobeMultiOptIn = AirRobeMultiOptIn()
@@ -136,7 +151,7 @@ class ProductPageTableViewCell: UITableViewCell {
     }
 }
 
-class LabelTableViewCell: UITableViewCell {
+private final class LabelTableViewCell: UITableViewCell {
     static let identifier = "LabelTableViewCell"
     private let label: UILabel = {
         let label = UILabel()
@@ -161,5 +176,30 @@ class LabelTableViewCell: UITableViewCell {
         contentView.addSubview(label)
         label.frame = contentView.bounds
         label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    }
+}
+
+private final class ButtonTableViewCell: UITableViewCell {
+    static let identifier = "ButtonTableViewCell"
+    let button: UIButton = {
+        let button = UIButton()
+        button.setTitle("Make row count to 1", for: .normal)
+        button.setTitleColor(UIColor.blue, for: .normal)
+        return button
+    }()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func commonInit() {
+        contentView.addSubview(button)
+        button.frame = contentView.bounds
+        button.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 }

@@ -65,12 +65,8 @@ extension UIView {
             translatesAutoresizingMaskIntoConstraints = true
         }
         autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        /// This code smells, but for now, UI's going to break if we don't give an itty-bitty delay.
-        /// There's probably a better way to handle this. so in TODO list.
         if !alreadyAddedToTable {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView?.endUpdates()
-            }
+            self.tableView?.endUpdates()
         }
         return true
     }
