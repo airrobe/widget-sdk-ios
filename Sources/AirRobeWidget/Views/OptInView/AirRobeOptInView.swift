@@ -127,6 +127,19 @@ final class AirRobeOptInView: UIView, NibLoadable {
     @IBAction func onTapSwitch(_ sender: UISwitch) {
         titleLabel.text = sender.isOn ? AirRobeStrings.added : AirRobeStrings.add
         UserDefaults.standard.OptedIn = sender.isOn
+        if sender.isOn {
+            if viewType == .optIn {
+                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", widgetName: "OptedIn Widget")
+            } else {
+                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", widgetName: "Multi-OptedIn Widget")
+            }
+        } else {
+            if viewType == .optIn {
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", widgetName: "OptedIn Widget")
+            } else {
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", widgetName: "Multi-OptedIn Widget")
+            }
+        }
     }
 
     @IBAction func onTapExpand(_ sender: Any) {
@@ -134,9 +147,19 @@ final class AirRobeOptInView: UIView, NibLoadable {
             switch expandType {
             case .opened:
                 expandType = .closed
+                if viewType == .optIn {
+                    AirRobeUtils.telemetryEvent(eventName: "Widget folded", widgetName: "OptedIn Widget")
+                } else {
+                    AirRobeUtils.telemetryEvent(eventName: "Widget folded", widgetName: "Multi-OptedIn Widget")
+                }
                 return 0.0
             case .closed:
                 expandType = .opened
+                if viewType == .optIn {
+                    AirRobeUtils.telemetryEvent(eventName: "Widget expanded", widgetName: "OptedIn Widget")
+                } else {
+                    AirRobeUtils.telemetryEvent(eventName: "Widget expanded", widgetName: "Multi-OptedIn Widget")
+                }
                 return 1.0
             }
         }()

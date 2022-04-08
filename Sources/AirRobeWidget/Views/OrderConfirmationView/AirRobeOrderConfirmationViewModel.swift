@@ -31,6 +31,7 @@ final class AirRobeOrderConfirmationViewModel {
                 isAllSet = .paramIssue
                 return
             }
+            AirRobeUtils.telemetryEvent(eventName: "Initializing", widgetName: "Confirmation Widget")
             isAllSet = UserDefaults.standard.OrderOptedIn && !fraudRisk ? .eligible : .notEligible
             if isAllSet == .eligible {
                 emailCheck(email: email)

@@ -9,6 +9,7 @@
 import UIKit
 
 struct AirRobeUtils {
+
     static func openUrl(_ url: URL?) {
         guard let url = url else {
             return
@@ -28,5 +29,12 @@ struct AirRobeUtils {
             print("Can't open the URL: \(url)")
         }
     }
+
+    static func telemetryEvent(eventName: String, widgetName: String) {
+        let apiService = AirRobeApiService()
+        _ = apiService.telemetryEvent(eventName: eventName, widgetName: widgetName)
+        print("Telemetry Event => event: " + eventName + ", widgetName: " + widgetName)
+    }
+
 }
 #endif

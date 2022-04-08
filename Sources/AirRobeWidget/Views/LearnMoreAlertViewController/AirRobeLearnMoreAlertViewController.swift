@@ -80,6 +80,11 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
 
     @IBAction func onToggleOptSwitch(_ sender: UISwitch) {
         UserDefaults.standard.OptedIn = sender.isOn
+        if sender.isOn {
+            AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", widgetName: "Learn More Widget")
+        } else {
+            AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", widgetName: "Learn More Widget")
+        }
     }
 
     @IBAction func onTapClose(_ sender: Any) {
