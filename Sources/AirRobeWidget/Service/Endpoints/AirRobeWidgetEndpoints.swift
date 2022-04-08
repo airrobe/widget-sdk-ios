@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 extension AirRobeEndpoint {
 
     static func getCategoryMapping(operation: AirRobeGraphQLOperation<AppIdInput>) -> AirRobeEndpoint {
-        return AirRobeEndpoint(method: .POST, path: "/graphql", categoryMappingRequestBody: operation, host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue)
+        return AirRobeEndpoint(method: .POST, path: "/graphql", getShoppingDataRequestBody: operation, host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue)
     }
 
     static func emailCheck(operation: AirRobeGraphQLOperation<EmailInput>) -> AirRobeEndpoint {
@@ -33,6 +34,27 @@ extension AirRobeEndpoint {
                             URLQueryItem(name: "brand", value: brand),
                             URLQueryItem(name: "material", value: material)
                         ]
+        )
+    }
+
+    static func telemetryEvent(eventName: String, widgetName: String) -> AirRobeEndpoint {
+        let requestBody: [String: Any] = [
+            "app_id": configuration?.appId ?? "",
+            "anonymous_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
+            "session_id": UIDevice.current.systemVersion,
+            "event_name": eventName,
+            "properties": [
+                "source": AirRobeWidgetInfo.platform,
+                "version": AirRobeWidgetInfo.version,
+                "split_test_variant": "default",
+                "page_name": widgetName
+            ]
+        ]
+        return AirRobeEndpoint(
+            method: .POST,
+            path: "/telemetry_events",
+            requestBody: requestBody,
+            host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue
         )
     }
 

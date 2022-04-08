@@ -17,6 +17,7 @@ private var cancellable: AnyCancellable?
 public func initialize(config: AirRobeWidgetConfig) {
     AirRobeWidget.configuration = config
 
+    _ = apiService.telemetryEvent(eventName: "Initializing AirRobe Widget", widgetName: "SDK initialization")
     cancellable = apiService.getShoppingData(operation: AirRobeGraphQLOperation.fetchPost(with: config.appId))
         .sink(receiveCompletion: { completion in
             switch completion {

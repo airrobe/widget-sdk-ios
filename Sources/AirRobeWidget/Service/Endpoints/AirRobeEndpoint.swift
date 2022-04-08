@@ -22,7 +22,7 @@ struct AirRobeEndpoint {
     let path: String
     var queryItems: [URLQueryItem]
     var requestBody: [String: Any]
-    var categoryMappingRequestBody: AirRobeGraphQLOperation<AppIdInput>?
+    var getShoppingDataRequestBody: AirRobeGraphQLOperation<AppIdInput>?
     var emailCheckRequestBody: AirRobeGraphQLOperation<EmailInput>?
     var customHeaders: [String: String]
     var scheme: String
@@ -34,7 +34,7 @@ struct AirRobeEndpoint {
         path: String,
         queryItems: [URLQueryItem] = [],
         requestBody: [String: Any] = [:],
-        categoryMappingRequestBody: AirRobeGraphQLOperation<AppIdInput>? = nil,
+        getShoppingDataRequestBody: AirRobeGraphQLOperation<AppIdInput>? = nil,
         emailCheckRequestBody: AirRobeGraphQLOperation<EmailInput>? = nil,
         customHeaders: [String: String] = [:],
         scheme: String = "https",
@@ -45,7 +45,7 @@ struct AirRobeEndpoint {
         self.path = path
         self.queryItems = queryItems
         self.requestBody = requestBody
-        self.categoryMappingRequestBody = categoryMappingRequestBody
+        self.getShoppingDataRequestBody = getShoppingDataRequestBody
         self.emailCheckRequestBody = emailCheckRequestBody
         self.customHeaders = customHeaders
         self.scheme = scheme
@@ -75,21 +75,24 @@ extension AirRobeEndpoint {
             request.setValue($0.value, forHTTPHeaderField: $0.key)
         }
 
-        if !requestBody.isEmpty {
-            let bodyData = try? JSONSerialization.data(withJSONObject: requestBody, options: [])
+        if !requestBody.isEmpty, let bodyData = try? JSONSerialization.data(withJSONObject: requestBody, options: []) {
             request.httpBody = bodyData
-        }
-        if let graphQLRequestBody = categoryMappingRequestBody {
-            request.httpBody = try? JSONEncoder().encode(graphQLRequestBody)
             #if DEBUG
-            let str = String(decoding: request.httpBody!, as: UTF8.self)
+            let str = String(decoding: bodyData, as: UTF8.self)
             print(str)
             #endif
         }
-        if let graphQLRequestBody = emailCheckRequestBody {
-            request.httpBody = try? JSONEncoder().encode(graphQLRequestBody)
+        if let graphQLRequestBody = getShoppingDataRequestBody, let bodyData = try? JSONEncoder().encode(graphQLRequestBody) {
+            request.httpBody = bodyData
             #if DEBUG
-            let str = String(decoding: request.httpBody!, as: UTF8.self)
+            let str = String(decoding: bodyData, as: UTF8.self)
+            print(str)
+            #endif
+        }
+        if let graphQLRequestBody = emailCheckRequestBody, let bodyData = try? JSONEncoder().encode(graphQLRequestBody) {
+            request.httpBody = bodyData
+            #if DEBUG
+            let str = String(decoding: bodyData, as: UTF8.self)
             print(str)
             #endif
         }
