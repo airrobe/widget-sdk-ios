@@ -40,6 +40,13 @@ public func checkMultiOptInEligibility(items: [String]) -> Bool {
     return shoppingDataModel.checkCategoryEligible(items: items).eligible
 }
 
+public func checkConfirmationEligibility(orderId: String, email: String, fraudRisk: Bool) -> Bool {
+    if orderId.isEmpty || email.isEmpty {
+        return false
+    }
+    return UserDefaults.standard.OrderOptedIn && !fraudRisk
+}
+
 public func resetOptedIn() {
     UserDefaults.standard.OptedIn = false
 }
