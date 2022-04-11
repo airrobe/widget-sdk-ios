@@ -135,9 +135,9 @@ final class AirRobeOptInView: UIView, NibLoadable {
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", pageName: "Product")
+                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Product")
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", pageName: "Cart")
+                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Cart")
             }
         } else {
             if viewType == .optIn {
