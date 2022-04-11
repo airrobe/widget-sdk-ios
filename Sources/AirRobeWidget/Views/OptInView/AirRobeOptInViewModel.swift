@@ -50,7 +50,6 @@ final class AirRobeOptInViewModel {
                 isAllSet = .paramIssue
                 return
             }
-            AirRobeUtils.telemetryEvent(eventName: "Initializing", widgetName: "OptedIn Widget")
             isAllSet = (shoppingDataModel.checkCategoryEligible(items: [category]).eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
             if isAllSet == .eligible {
                 callPriceEngine(category: shoppingDataModel.checkCategoryEligible(items: [category]).to)
@@ -71,7 +70,6 @@ final class AirRobeOptInViewModel {
                 UserDefaults.standard.OrderOptedIn = false
                 return
             }
-            AirRobeUtils.telemetryEvent(eventName: "Initializing", widgetName: "Multi-OptedIn Widget")
             isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
             UserDefaults.standard.OrderOptedIn = categoryModel.checkCategoryEligible(items: items).eligible && UserDefaults.standard.OptedIn ? true : false
         }

@@ -29,6 +29,8 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
     @IBOutlet weak var separator1: UIView!
     @IBOutlet weak var separator2: UIView!
     @IBOutlet weak var separator3: UIView!
+
+    var viewType: AirRobeOptInView.ViewType = .optIn
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,9 +83,17 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
     @IBAction func onToggleOptSwitch(_ sender: UISwitch) {
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
-            AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", widgetName: "Learn More Widget")
+            if viewType == .optIn {
+                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", pageName: "Product")
+            } else {
+                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", pageName: "Cart")
+            }
         } else {
-            AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", widgetName: "Learn More Widget")
+            if viewType == .optIn {
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
+            } else {
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
+            }
         }
     }
 

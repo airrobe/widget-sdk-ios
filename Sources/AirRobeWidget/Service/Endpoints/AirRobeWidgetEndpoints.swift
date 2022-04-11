@@ -37,7 +37,7 @@ extension AirRobeEndpoint {
         )
     }
 
-    static func telemetryEvent(eventName: String, widgetName: String) -> AirRobeEndpoint {
+    static func telemetryEvent(eventName: String, pageName: String) -> AirRobeEndpoint {
         let requestBody: [String: Any] = [
             "app_id": configuration?.appId ?? "",
             "anonymous_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
@@ -47,7 +47,7 @@ extension AirRobeEndpoint {
                 "source": AirRobeWidgetInfo.platform,
                 "version": AirRobeWidgetInfo.version,
                 "split_test_variant": "default",
-                "page_name": widgetName
+                "page_name": pageName
             ]
         ]
         return AirRobeEndpoint(

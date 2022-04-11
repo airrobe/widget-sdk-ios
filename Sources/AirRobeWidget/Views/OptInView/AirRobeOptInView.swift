@@ -121,7 +121,13 @@ final class AirRobeOptInView: UIView, NibLoadable {
         }
         let alert = AirRobeLearnMoreAlertViewController.instantiate()
         alert.modalPresentationStyle = .overCurrentContext
+        alert.viewType = viewType
         vc.present(alert, animated: true)
+        if viewType == .optIn {
+            AirRobeUtils.telemetryEvent(eventName: "Pop up click", pageName: "Product")
+        } else {
+            AirRobeUtils.telemetryEvent(eventName: "Pop up click", pageName: "Cart")
+        }
     }
 
     @IBAction func onTapSwitch(_ sender: UISwitch) {
@@ -129,15 +135,15 @@ final class AirRobeOptInView: UIView, NibLoadable {
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", widgetName: "OptedIn Widget")
+                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", pageName: "Product")
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", widgetName: "Multi-OptedIn Widget")
+                AirRobeUtils.telemetryEvent(eventName: "Opted in of AirRobe", pageName: "Cart")
             }
         } else {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", widgetName: "OptedIn Widget")
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", widgetName: "Multi-OptedIn Widget")
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
             }
         }
     }
@@ -147,18 +153,13 @@ final class AirRobeOptInView: UIView, NibLoadable {
             switch expandType {
             case .opened:
                 expandType = .closed
-                if viewType == .optIn {
-                    AirRobeUtils.telemetryEvent(eventName: "Widget folded", widgetName: "OptedIn Widget")
-                } else {
-                    AirRobeUtils.telemetryEvent(eventName: "Widget folded", widgetName: "Multi-OptedIn Widget")
-                }
                 return 0.0
             case .closed:
                 expandType = .opened
                 if viewType == .optIn {
-                    AirRobeUtils.telemetryEvent(eventName: "Widget expanded", widgetName: "OptedIn Widget")
+                    AirRobeUtils.telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Product")
                 } else {
-                    AirRobeUtils.telemetryEvent(eventName: "Widget expanded", widgetName: "Multi-OptedIn Widget")
+                    AirRobeUtils.telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Cart")
                 }
                 return 1.0
             }

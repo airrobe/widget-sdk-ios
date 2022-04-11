@@ -30,10 +30,10 @@ struct AirRobeUtils {
         }
     }
 
-    static func telemetryEvent(eventName: String, widgetName: String) {
+    static func telemetryEvent(eventName: String, pageName: String) {
         let apiService = AirRobeApiService()
-        _ = apiService.telemetryEvent(eventName: eventName, widgetName: widgetName)
-        print("Telemetry Event => event: " + eventName + ", widgetName: " + widgetName)
+        _ = apiService.telemetryEvent(eventName: eventName, pageName: pageName)
+        print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
     }
 
 }
