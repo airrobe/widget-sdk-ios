@@ -11,12 +11,13 @@ import Combine
 import UIKit
 
 var configuration: AirRobeWidgetConfig?
+var sessionId = ""
 private var apiService = AirRobeApiService()
 private var cancellable: AnyCancellable?
 
 public func initialize(config: AirRobeWidgetConfig) {
     AirRobeWidget.configuration = config
-
+    sessionId = Date().millisecondsSince1970
     cancellable = apiService.getShoppingData(operation: AirRobeGraphQLOperation.fetchPost(with: config.appId))
         .sink(receiveCompletion: { completion in
             switch completion {
