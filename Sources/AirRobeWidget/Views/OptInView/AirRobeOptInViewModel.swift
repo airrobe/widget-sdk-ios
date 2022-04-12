@@ -52,6 +52,7 @@ final class AirRobeOptInViewModel {
             }
             isAllSet = (shoppingDataModel.checkCategoryEligible(items: [category]).eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
             if isAllSet == .eligible {
+                AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Product")
                 callPriceEngine(category: shoppingDataModel.checkCategoryEligible(items: [category]).to)
             }
         }
@@ -72,6 +73,9 @@ final class AirRobeOptInViewModel {
             }
             isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
             UserDefaults.standard.OrderOptedIn = categoryModel.checkCategoryEligible(items: items).eligible && UserDefaults.standard.OptedIn ? true : false
+            if isAllSet == .eligible {
+                AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Cart")
+            }
         }
     }
 
