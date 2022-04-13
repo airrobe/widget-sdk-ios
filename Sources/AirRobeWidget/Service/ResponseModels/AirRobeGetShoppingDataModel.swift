@@ -37,6 +37,11 @@ struct AirRobeMinPriceThresholds: Codable {
     let `default`: Bool
 }
 
+// MARK: - HashMap for the Category Mapping
+struct AirRobeCategoryMappingHashMap: Codable {
+    var categoryMappingsHashMap: [String:AirRobeCategoryMapping]
+}
+
 // MARK: - Return struct for Category Eligibility
 struct AirRobeCategoryEligibility: Codable {
     let eligible: Bool
@@ -45,15 +50,6 @@ struct AirRobeCategoryEligibility: Codable {
 
 // MARK: - Extension for checking category Eligibility
 extension AirRobeGetShoppingDataModel {
-    func checkCategoryEligible(items: [String]) -> AirRobeCategoryEligibility {
-        guard
-            let eligibleItem = items.first(where: { bestCategoryMapping(categoryArray: factorize(category: $0)).eligible })
-        else {
-            return AirRobeCategoryEligibility(eligible: false, to: "")
-        }
-        return AirRobeCategoryEligibility(eligible: true, to: bestCategoryMapping(categoryArray: factorize(category: eligibleItem)).to)
-    }
-
     func isBelowPriceThreshold(department: String?, price: Double) -> Bool {
         guard let department = department else {
             return false
@@ -68,7 +64,18 @@ extension AirRobeGetShoppingDataModel {
     }
 }
 
-private extension AirRobeGetShoppingDataModel {
+extension AirRobeCategoryMappingHashMap {
+    func checkCategoryEligible(items: [String]) -> AirRobeCategoryEligibility {
+        guard
+            let eligibleItem = items.first(where: { bestCategoryMapping(categoryArray: factorize(category: $0)).eligible })
+        else {
+            return AirRobeCategoryEligibility(eligible: false, to: "")
+        }
+        return AirRobeCategoryEligibility(eligible: true, to: bestCategoryMapping(categoryArray: factorize(category: eligibleItem)).to)
+    }
+}
+
+private extension AirRobeCategoryMappingHashMap {
     func factorize(category: String, delimiter: String.Element = AirRobeStrings.delimiter) -> [String] {
         let parts = category.split(separator: delimiter)
         var array: [String] = []
@@ -79,10 +86,8 @@ private extension AirRobeGetShoppingDataModel {
     }
 
     func bestCategoryMapping(categoryArray: [String]) -> AirRobeCategoryEligibility {
-        let categoryMappings = data.shop.categoryMappings
         for category in categoryArray {
-            let filteredMapping = categoryMappings.first { $0.from == category }
-            if let filteredMapping = filteredMapping {
+            if let filteredMapping = categoryMappingsHashMap[category] {
                 guard let to = filteredMapping.to, !to.isEmpty, !filteredMapping.excluded else {
                     return AirRobeCategoryEligibility(eligible: false, to: "")
                 }
