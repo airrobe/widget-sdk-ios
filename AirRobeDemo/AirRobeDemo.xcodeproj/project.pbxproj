@@ -22,6 +22,7 @@
 		3C5B27B62760CC95006CB5B6 /* CartItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3C5B27B52760CC95006CB5B6 /* CartItemView.xib */; };
 		3C5B27B82760CE3E006CB5B6 /* CartItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5B27B72760CE3E006CB5B6 /* CartItemView.swift */; };
 		3CBCFD2E2811FBD300FDD3FC /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCFD2D2811FBD300FDD3FC /* StartViewController.swift */; };
+		3CBCFD3028120B0B00FDD3FC /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCFD2F28120B0B00FDD3FC /* UIView+Shadow.swift */; };
 		3CC9F10D27B5704B006E7D94 /* ProductPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC9F10C27B5704B006E7D94 /* ProductPageTableViewController.swift */; };
 		3CE54689275B01F000FBE205 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE54688275B01F000FBE205 /* AppDelegate.swift */; };
 		3CE5468B275B01F000FBE205 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE5468A275B01F000FBE205 /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 		3C5B27B52760CC95006CB5B6 /* CartItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartItemView.xib; sourceTree = "<group>"; };
 		3C5B27B72760CE3E006CB5B6 /* CartItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemView.swift; sourceTree = "<group>"; };
 		3CBCFD2D2811FBD300FDD3FC /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		3CBCFD2F28120B0B00FDD3FC /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		3CC9F10C27B5704B006E7D94 /* ProductPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPageTableViewController.swift; sourceTree = "<group>"; };
 		3CE54685275B01F000FBE205 /* AirRobeDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirRobeDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CE54688275B01F000FBE205 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				3C5B27AE2760A4CD006CB5B6 /* UIBarButtonItem+Badge.swift */,
 				3C5B27B02760C3CE006CB5B6 /* UserDefaults+Extension.swift */,
+				3CBCFD2F28120B0B00FDD3FC /* UIView+Shadow.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				3CBCFD2E2811FBD300FDD3FC /* StartViewController.swift in Sources */,
 				3CE54689275B01F000FBE205 /* AppDelegate.swift in Sources */,
 				3C47E5BC2810B8BF0057519E /* CategoryViewController.swift in Sources */,
+				3CBCFD3028120B0B00FDD3FC /* UIView+Shadow.swift in Sources */,
 				3C5B27A527609542006CB5B6 /* ProductPageViewController.swift in Sources */,
 				3C5B27AA27609D8C006CB5B6 /* Consts.swift in Sources */,
 				3CC9F10D27B5704B006E7D94 /* ProductPageTableViewController.swift in Sources */,
