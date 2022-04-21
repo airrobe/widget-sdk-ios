@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        AirRobeWidget.AirRobeSwitchColor = .yellow
 //        AirRobeWidget.AirRobeButtonTextColor = .yellow
 //        AirRobeWidget.AirRobeButtonBorderColor = .yellow
+
         return true
     }
 

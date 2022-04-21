@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct ItemModel: Codable {
     let image: String
@@ -26,4 +27,20 @@ let products: ItemModels = [
     ItemModel(image: "gift2", title: "Happy Socks", subTitle: "Get Set Sports 3-Pack", price: "$54.95", category: "Accessories/Beauty"),
     ItemModel(image: "gift3", title: "Tissot", subTitle: "Supersport Gent", price: "$500.00", category: "Accessories/Beauty"),
     ItemModel(image: "gift4", title: "Typo", subTitle: "Art Gift Set", price: "$49.99", category: "Accessories/Beauty")
+]
+
+struct CategoryModel {
+    let category: String
+    let image: UIImage
+}
+
+typealias CategoryModels = [CategoryModel]
+
+let categories: CategoryModels = [
+    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
+    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
+    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
+    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
+    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
+    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
 ]
