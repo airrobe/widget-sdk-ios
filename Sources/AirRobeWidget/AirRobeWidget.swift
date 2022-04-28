@@ -30,14 +30,17 @@ public func initialize(config: AirRobeWidgetConfig) {
             }
         }, receiveValue: {
             AirRobeShoppingDataModelInstance.shared.shoppingDataModel = $0
+            for i in 0..<$0.data.shop.categoryMappings.count {
+                AirRobeShoppingDataModelInstance.shared.categoryMapping.categoryMappingsHashMap[$0.data.shop.categoryMappings[i].from] = $0.data.shop.categoryMappings[i]
+            }
         })
 }
 
 public func checkMultiOptInEligibility(items: [String]) -> Bool {
-    guard let shoppingDataModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel, !items.isEmpty else {
+    guard !AirRobeShoppingDataModelInstance.shared.categoryMapping.categoryMappingsHashMap.isEmpty, !items.isEmpty else {
         return false
     }
-    return shoppingDataModel.checkCategoryEligible(items: items).eligible
+    return AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: items).eligible
 }
 
 public func checkConfirmationEligibility(orderId: String, email: String, fraudRisk: Bool) -> Bool {

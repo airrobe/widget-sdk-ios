@@ -40,7 +40,10 @@ final class AirRobeOptInViewModel {
     @Published var potentialPrice: String = ""
 
     func initializeOptInWidget() {
-        guard let shoppingDataModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel else {
+        guard
+            let shoppingDataModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel,
+            !AirRobeShoppingDataModelInstance.shared.categoryMapping.categoryMappingsHashMap.isEmpty
+        else {
             isAllSet = .noCategoryMappingInfo
             return
         }
@@ -50,16 +53,20 @@ final class AirRobeOptInViewModel {
                 isAllSet = .paramIssue
                 return
             }
-            isAllSet = (shoppingDataModel.checkCategoryEligible(items: [category]).eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
+            let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: [category])
+            isAllSet = (eligibility.eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
             if isAllSet == .eligible {
                 AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Product")
-                callPriceEngine(category: shoppingDataModel.checkCategoryEligible(items: [category]).to)
+                callPriceEngine(category: eligibility.to)
             }
         }
     }
 
     func initializeMultiOptInWidget() {
-        guard let categoryModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel else {
+        guard
+            AirRobeShoppingDataModelInstance.shared.shoppingDataModel != nil,
+            !AirRobeShoppingDataModelInstance.shared.categoryMapping.categoryMappingsHashMap.isEmpty
+        else {
             isAllSet = .noCategoryMappingInfo
             UserDefaults.standard.OrderOptedIn = false
             return
@@ -71,8 +78,9 @@ final class AirRobeOptInViewModel {
                 UserDefaults.standard.OrderOptedIn = false
                 return
             }
-            isAllSet = categoryModel.checkCategoryEligible(items: items).eligible ? .eligible : .notEligible
-            UserDefaults.standard.OrderOptedIn = categoryModel.checkCategoryEligible(items: items).eligible && UserDefaults.standard.OptedIn ? true : false
+            let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: items)
+            isAllSet = eligibility.eligible ? .eligible : .notEligible
+            UserDefaults.standard.OrderOptedIn = eligibility.eligible && UserDefaults.standard.OptedIn ? true : false
             if isAllSet == .eligible {
                 AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Cart")
             }
