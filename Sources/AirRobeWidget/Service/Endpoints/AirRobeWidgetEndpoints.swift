@@ -41,7 +41,7 @@ extension AirRobeEndpoint {
         let requestBody: [String: Any] = [
             "app_id": configuration?.appId ?? "",
             "anonymous_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
-            "session_id": UIDevice.current.systemVersion,
+            "session_id": sessionId,
             "event_name": eventName,
             "properties": [
                 "source": AirRobeWidgetInfo.platform,
