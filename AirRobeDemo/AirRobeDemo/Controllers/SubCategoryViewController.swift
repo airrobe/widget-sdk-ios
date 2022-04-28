@@ -86,8 +86,10 @@ final class SubCategoryViewController: UIViewController {
         ])
     }
 
-    @objc func onTapCategory(_ button: UIButton) {
-        
+    @objc func onTapCategory(_ sender: UIButton) {
+        let vc = ProductsListViewController()
+        vc.title = subCategories[sender.tag]
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

@@ -21,6 +21,7 @@ class ProductPageTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "TableView Demo"
         tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.delegate = self

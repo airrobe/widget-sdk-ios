@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,32 +10,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CartItemView" customModule="AirRobeDemo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="131"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0fI-hk-GUa">
-                    <rect key="frame" x="0.0" y="44" width="207" height="798"/>
+                    <rect key="frame" x="0.0" y="0.0" width="207" height="111"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9x2-ty-4gl">
-                    <rect key="frame" x="227" y="44" width="187" height="0.0"/>
+                    <rect key="frame" x="227" y="0.0" width="187" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKx-87-ncU">
-                    <rect key="frame" x="227" y="49" width="187" height="0.0"/>
+                    <rect key="frame" x="227" y="5" width="187" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wva-3U-tqu">
-                    <rect key="frame" x="227" y="54" width="187" height="0.0"/>
+                    <rect key="frame" x="227" y="10" width="187" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tp9-Pm-MGN">
-                    <rect key="frame" x="217" y="84" width="109.5" height="34"/>
+                    <rect key="frame" x="217" y="40" width="109.5" height="34"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system" title="Remove" imagePadding="5">
                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
@@ -44,34 +43,34 @@
                     </buttonConfiguration>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Qty: 1     Size: 30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Vt-DU-VIR">
-                    <rect key="frame" x="227" y="820" width="187" height="22"/>
+                    <rect key="frame" x="227" y="89" width="187" height="22"/>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="0fI-hk-GUa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="1Yi-K9-8R3"/>
+                <constraint firstItem="0fI-hk-GUa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1Yi-K9-8R3"/>
                 <constraint firstItem="Wva-3U-tqu" firstAttribute="top" secondItem="HKx-87-ncU" secondAttribute="bottom" constant="5" id="283-85-USS"/>
-                <constraint firstItem="9x2-ty-4gl" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="5Vy-MA-9zP"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0Vt-DU-VIR" secondAttribute="bottom" constant="20" id="8ac-lU-dIi"/>
+                <constraint firstItem="9x2-ty-4gl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5Vy-MA-9zP"/>
+                <constraint firstAttribute="bottom" secondItem="0Vt-DU-VIR" secondAttribute="bottom" constant="20" id="8ac-lU-dIi"/>
                 <constraint firstItem="HKx-87-ncU" firstAttribute="leading" secondItem="0fI-hk-GUa" secondAttribute="trailing" constant="20" id="8z3-lg-7wW"/>
-                <constraint firstItem="0fI-hk-GUa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="DH6-Mp-voi"/>
+                <constraint firstItem="0fI-hk-GUa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DH6-Mp-voi"/>
                 <constraint firstItem="Tp9-Pm-MGN" firstAttribute="top" secondItem="Wva-3U-tqu" secondAttribute="bottom" constant="30" id="IDS-N3-ZjE"/>
                 <constraint firstItem="0Vt-DU-VIR" firstAttribute="leading" secondItem="0fI-hk-GUa" secondAttribute="trailing" constant="20" id="KQ1-ws-pQv"/>
                 <constraint firstItem="HKx-87-ncU" firstAttribute="top" secondItem="9x2-ty-4gl" secondAttribute="bottom" constant="5" id="RLy-hX-DLy"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HKx-87-ncU" secondAttribute="trailing" id="Ylm-U4-6fL"/>
+                <constraint firstAttribute="trailing" secondItem="HKx-87-ncU" secondAttribute="trailing" id="Ylm-U4-6fL"/>
                 <constraint firstItem="Wva-3U-tqu" firstAttribute="leading" secondItem="0fI-hk-GUa" secondAttribute="trailing" constant="20" id="anj-O2-cFf"/>
                 <constraint firstItem="9x2-ty-4gl" firstAttribute="leading" secondItem="0fI-hk-GUa" secondAttribute="trailing" constant="20" id="c1T-l3-WRy"/>
                 <constraint firstItem="Tp9-Pm-MGN" firstAttribute="leading" secondItem="0fI-hk-GUa" secondAttribute="trailing" constant="10" id="dB1-qu-nMy"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wva-3U-tqu" secondAttribute="trailing" id="fIS-bw-c42"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0Vt-DU-VIR" secondAttribute="trailing" id="mOH-Jy-zb6"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="0fI-hk-GUa" secondAttribute="bottom" constant="20" id="sN9-yZ-Roj"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9x2-ty-4gl" secondAttribute="trailing" id="uRa-1h-6cC"/>
+                <constraint firstAttribute="trailing" secondItem="Wva-3U-tqu" secondAttribute="trailing" id="fIS-bw-c42"/>
+                <constraint firstAttribute="trailing" secondItem="0Vt-DU-VIR" secondAttribute="trailing" id="mOH-Jy-zb6"/>
+                <constraint firstAttribute="bottom" secondItem="0fI-hk-GUa" secondAttribute="bottom" constant="20" id="sN9-yZ-Roj"/>
+                <constraint firstAttribute="trailing" secondItem="9x2-ty-4gl" secondAttribute="trailing" id="uRa-1h-6cC"/>
                 <constraint firstItem="0fI-hk-GUa" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.5" id="vmS-tw-NAu"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="itemImageView" destination="0fI-hk-GUa" id="ywl-ml-QUu"/>
                 <outlet property="priceLabel" destination="Wva-3U-tqu" id="Vxf-vf-tXh"/>
@@ -79,7 +78,7 @@
                 <outlet property="subtitleLabel" destination="HKx-87-ncU" id="kzx-9c-wB6"/>
                 <outlet property="titleLabel" destination="9x2-ty-4gl" id="lwp-la-H9p"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="67.633928571428569"/>
+            <point key="canvasLocation" x="128.98550724637681" y="-178.45982142857142"/>
         </view>
     </objects>
     <resources>

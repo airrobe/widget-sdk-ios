@@ -33,10 +33,10 @@ final class CategoryViewController: UIViewController {
         tableView.sectionHeaderTopPadding = 10
     }
 
-    @objc func onTapCategory(_ button: UIButton) {
+    @objc func onTapCategory(_ sender: UIButton) {
         let vc = SubCategoryViewController()
-        vc.title = categories[button.tag].category
-        vc.selectedCategory = categories[button.tag]
+        vc.title = categories[sender.tag].category
+        vc.selectedCategory = categories[sender.tag]
         navigationController?.pushViewController(vc, animated: true)
     }
 }
