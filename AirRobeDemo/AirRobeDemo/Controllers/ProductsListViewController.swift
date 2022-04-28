@@ -49,7 +49,7 @@ final class ProductsListViewController: UIViewController {
     }
 
     @objc func onTapCart(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "CartPageViewController") as! CartPageViewController
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CartPageViewController") as! CartPageViewController
         navigationController?.pushViewController(vc, animated: true)
     }
 
