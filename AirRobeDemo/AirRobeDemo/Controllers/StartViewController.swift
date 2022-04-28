@@ -13,13 +13,14 @@ final class StartViewController: UIViewController {
         super.viewDidLoad()
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .lightGray
+        appearance.backgroundColor = .white
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
     }
 
     @IBAction func onTapGetStarted(_ sender: Any) {
-        let vc = CategoryViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let vc = BrandViewController()
+        vc.title = "airrobe"
+        navigationController?.setViewControllers([vc], animated: true)
     }
 }

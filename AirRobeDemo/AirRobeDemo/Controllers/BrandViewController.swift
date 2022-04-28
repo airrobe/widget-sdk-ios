@@ -1,13 +1,13 @@
 //
-//  CateogryViewController.swift
+//  BrandViewController.swift
 //  AirRobeDemo
 //
-//  Created by King on 4/20/22.
+//  Created by King on 4/27/22.
 //
 
 import UIKit
 
-final class CategoryViewController: UIViewController {
+final class BrandViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(CategoryTableViewCell.self, forCellReuseIdentifier: "CategoryTableViewCell")
@@ -34,16 +34,15 @@ final class CategoryViewController: UIViewController {
     }
 
     @objc func onTapCategory(_ button: UIButton) {
-        let vc = SubCategoryViewController()
-        vc.title = categories[button.tag].category
-        vc.selectedCategory = categories[button.tag]
+        let vc = CategoryViewController()
+        vc.title = brands[button.tag].category
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
+extension BrandViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return brands.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,8 +54,8 @@ extension CategoryViewController: UITableViewDelegate, UITableViewDataSource {
         categoryTableViewCell.categoryButton.addTarget(self, action: #selector(onTapCategory), for: .touchUpInside)
         categoryTableViewCell.categoryButton.tag = indexPath.row
 
-        categoryTableViewCell.categoryLabel.text = categories[indexPath.row].category
-        categoryTableViewCell.categoryImageView.image = categories[indexPath.row].image
+        categoryTableViewCell.categoryLabel.text = brands[indexPath.row].category
+        categoryTableViewCell.categoryImageView.image = brands[indexPath.row].image
 
         return categoryTableViewCell
     }

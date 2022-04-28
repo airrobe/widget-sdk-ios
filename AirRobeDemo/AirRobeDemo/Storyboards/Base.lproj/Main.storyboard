@@ -11,9 +11,8 @@
         <!--Navigation Controller-->
         <scene sceneID="bFz-8d-Yd5">
             <objects>
-                <navigationController id="Hnj-AC-hAl" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="Hnj-AC-hAl" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="XJt-nY-aeb">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -24,19 +23,19 @@
             </objects>
             <point key="canvasLocation" x="-1271" y="100"/>
         </scene>
-        <!--airrobe-->
+        <!--Start View Controller-->
         <scene sceneID="4hg-cP-Dui">
             <objects>
                 <viewController id="yWD-dp-PYb" customClass="StartViewController" customModule="AirRobeDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fah-KN-dQu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airRobeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-FC-IxP">
-                                <rect key="frame" x="83" y="130" width="248" height="115"/>
+                                <rect key="frame" x="83" y="174" width="248" height="115"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUC-mn-pV5">
-                                <rect key="frame" x="157.5" y="513" width="99" height="31"/>
+                                <rect key="frame" x="157.5" y="601" width="99" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Get Started"/>
                                 <connections>
@@ -54,7 +53,7 @@
                             <constraint firstItem="KUC-mn-pV5" firstAttribute="centerX" secondItem="p98-ce-TxN" secondAttribute="centerX" id="Sbp-ee-j4t"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="airrobe" id="hiS-1L-0Qq"/>
+                    <navigationItem key="navigationItem" id="hiS-1L-0Qq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfD-h1-VUm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,26 +95,26 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aquila" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ou-Vt-1yx">
-                                                                        <rect key="frame" x="0.0" y="210" width="142" height="21.5"/>
+                                                                        <rect key="frame" x="0.0" y="210" width="142" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Montoro Messenger" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30T-s1-KBc">
-                                                                        <rect key="frame" x="0.0" y="236.5" width="177" height="19.5"/>
+                                                                        <rect key="frame" x="0.0" y="238" width="177" height="19.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="rN0-vJ-CT7">
-                                                                        <rect key="frame" x="152" y="211" width="25" height="20"/>
+                                                                        <rect key="frame" x="152" y="211.5" width="25" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="Bpr-Tt-wZR"/>
                                                                             <constraint firstAttribute="width" constant="25" id="M6j-h1-hnm"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$340.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Bo-Ba-Q0x">
-                                                                        <rect key="frame" x="0.0" y="261" width="177" height="21"/>
+                                                                        <rect key="frame" x="0.0" y="262.5" width="177" height="19.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -250,19 +249,19 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stale Superior" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbR-Vy-ZA2">
-                                                                        <rect key="frame" x="0.0" y="210" width="142" height="23"/>
+                                                                        <rect key="frame" x="0.0" y="210" width="142" height="21.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downtown Weekender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eaF-Bl-E6v">
-                                                                        <rect key="frame" x="0.0" y="238" width="177" height="19.5"/>
+                                                                        <rect key="frame" x="0.0" y="236.5" width="177" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="dKW-AW-HUr">
-                                                                        <rect key="frame" x="152" y="211.5" width="25" height="20"/>
+                                                                        <rect key="frame" x="152" y="211" width="25" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="aXi-j6-Db0"/>
                                                                             <constraint firstAttribute="width" constant="25" id="zNm-UW-x6U"/>

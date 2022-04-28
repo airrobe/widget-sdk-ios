@@ -36,11 +36,41 @@ struct CategoryModel {
 
 typealias CategoryModels = [CategoryModel]
 
+let brands: CategoryModels = [
+    CategoryModel(category: "Women", image: UIImage(named: "woman") ?? UIImage()),
+    CategoryModel(category: "Men", image: UIImage(named: "man") ?? UIImage()),
+    CategoryModel(category: "Kids", image: UIImage(named: "toy") ?? UIImage()),
+    CategoryModel(category: "Beauty", image: UIImage(named: "beauty") ?? UIImage()),
+    CategoryModel(category: "Sport", image: UIImage(named: "sports") ?? UIImage()),
+    CategoryModel(category: "Home", image: UIImage(named: "home") ?? UIImage()),
+]
+
 let categories: CategoryModels = [
-    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
-    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
-    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
-    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
-    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
-    CategoryModel(category: "New Arrivals", image: UIImage(named: "") ?? UIImage()),
+    CategoryModel(category: "New Arrivals", image: UIImage(named: "new_arrival") ?? UIImage()),
+    CategoryModel(category: "Clothing", image: UIImage(named: "clothing") ?? UIImage()),
+    CategoryModel(category: "Sport", image: UIImage(named: "sports_wear") ?? UIImage()),
+    CategoryModel(category: "Shoes", image: UIImage(named: "shoes") ?? UIImage()),
+    CategoryModel(category: "Accessories", image: UIImage(named: "accessories") ?? UIImage()),
+    CategoryModel(category: "Gifts", image: UIImage(named: "gifts") ?? UIImage()),
+    CategoryModel(category: "Designer", image: UIImage(named: "designer") ?? UIImage()),
+    CategoryModel(category: "Essentials", image: UIImage(named: "essentials") ?? UIImage()),
+    CategoryModel(category: "Denim", image: UIImage(named: "denim") ?? UIImage()),
+    CategoryModel(category: "Sale", image: UIImage(named: "sales") ?? UIImage())
+]
+
+let subCategories: [String] = [
+    "All Clothing",
+    "T-shirt & Singlets",
+    "Shirts & Polos",
+    "Pants",
+    "Sweats & Hoodies",
+    "Shorts",
+    "Coats & Jackets",
+    "Jeans",
+    "Swimwear",
+    "Suits & Blazers",
+    "Jumpers & Cardigans",
+    "Sleepwear",
+    "Underwear & Socks",
+    "Tops"
 ]
