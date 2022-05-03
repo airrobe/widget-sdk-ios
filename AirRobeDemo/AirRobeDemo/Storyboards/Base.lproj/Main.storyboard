@@ -35,9 +35,9 @@
                                 <rect key="frame" x="83" y="174" width="248" height="115"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUC-mn-pV5">
-                                <rect key="frame" x="157.5" y="601" width="99" height="31"/>
+                                <rect key="frame" x="158.5" y="601" width="97.5" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Get Started"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Start Demo"/>
                                 <connections>
                                     <action selector="onTapGetStarted:" destination="yWD-dp-PYb" eventType="touchUpInside" id="qhc-7P-pYk"/>
                                 </connections>
