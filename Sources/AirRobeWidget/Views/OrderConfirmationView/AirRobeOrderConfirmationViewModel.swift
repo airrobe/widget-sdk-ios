@@ -33,6 +33,7 @@ final class AirRobeOrderConfirmationViewModel {
             }
             isAllSet = UserDefaults.standard.OrderOptedIn && !fraudRisk ? .eligible : .notEligible
             if isAllSet == .eligible {
+                AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Thank you")
                 emailCheck(email: email)
             }
         }

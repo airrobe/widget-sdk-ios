@@ -121,12 +121,31 @@ final class AirRobeOptInView: UIView, NibLoadable {
         }
         let alert = AirRobeLearnMoreAlertViewController.instantiate()
         alert.modalPresentationStyle = .overCurrentContext
+        alert.viewType = viewType
         vc.present(alert, animated: true)
+        if viewType == .optIn {
+            AirRobeUtils.telemetryEvent(eventName: "Pop up click", pageName: "Product")
+        } else {
+            AirRobeUtils.telemetryEvent(eventName: "Pop up click", pageName: "Cart")
+        }
     }
 
     @IBAction func onTapSwitch(_ sender: UISwitch) {
         titleLabel.text = sender.isOn ? AirRobeStrings.added : AirRobeStrings.add
         UserDefaults.standard.OptedIn = sender.isOn
+        if sender.isOn {
+            if viewType == .optIn {
+                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Product")
+            } else {
+                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Cart")
+            }
+        } else {
+            if viewType == .optIn {
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
+            } else {
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
+            }
+        }
     }
 
     @IBAction func onTapExpand(_ sender: Any) {
@@ -137,6 +156,11 @@ final class AirRobeOptInView: UIView, NibLoadable {
                 return 0.0
             case .closed:
                 expandType = .opened
+                if viewType == .optIn {
+                    AirRobeUtils.telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Product")
+                } else {
+                    AirRobeUtils.telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Cart")
+                }
                 return 1.0
             }
         }()

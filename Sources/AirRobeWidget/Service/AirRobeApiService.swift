@@ -59,4 +59,13 @@ final class AirRobeApiService: AirRobeNetworkClient {
         #endif
         return execute(endpoint.asURLRequest(), decodingType: AirRobeEmailCheckResponseModel.self)
     }
+
+    func telemetryEvent(eventName: String, pageName: String) -> AnyPublisher<AirRobeTelemetryEventResponseModel, Error> {
+        var endpoint = AirRobeEndpoint.telemetryEvent(eventName: eventName, pageName: pageName)
+        endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
+        #if DEBUG
+        dump(endpoint.asURLRequest())
+        #endif
+        return execute(endpoint.asURLRequest(), decodingType: AirRobeTelemetryEventResponseModel.self)
+    }
 }

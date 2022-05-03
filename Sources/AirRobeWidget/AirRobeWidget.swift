@@ -11,12 +11,13 @@ import Combine
 import UIKit
 
 var configuration: AirRobeWidgetConfig?
+var sessionId = ""
 private var apiService = AirRobeApiService()
 private var cancellable: AnyCancellable?
 
 public func initialize(config: AirRobeWidgetConfig) {
     AirRobeWidget.configuration = config
-
+    sessionId = Date().millisecondsSince1970
     cancellable = apiService.getShoppingData(operation: AirRobeGraphQLOperation.fetchPost(with: config.appId))
         .sink(receiveCompletion: { completion in
             switch completion {
@@ -40,6 +41,13 @@ public func checkMultiOptInEligibility(items: [String]) -> Bool {
         return false
     }
     return AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: items).eligible
+}
+
+public func checkConfirmationEligibility(orderId: String, email: String, fraudRisk: Bool) -> Bool {
+    if orderId.isEmpty || email.isEmpty {
+        return false
+    }
+    return UserDefaults.standard.OrderOptedIn && !fraudRisk
 }
 
 public func resetOptedIn() {
