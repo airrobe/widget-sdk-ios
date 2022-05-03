@@ -7,9 +7,10 @@
 
 #if canImport(UIKit)
 import UIKit
+import Combine
 
+private var cancellable: AnyCancellable?
 struct AirRobeUtils {
-
     static func openUrl(_ url: URL?) {
         guard let url = url else {
             return
@@ -32,7 +33,19 @@ struct AirRobeUtils {
 
     static func telemetryEvent(eventName: String, pageName: String) {
         let apiService = AirRobeApiService()
-        _ = apiService.telemetryEvent(eventName: eventName, pageName: pageName)
+        cancellable = apiService.telemetryEvent(eventName: eventName, pageName: pageName)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .failure(let error):
+                    #if DEBUG
+                    print("Telemetry Event error: ", error)
+                    #endif
+                case .finished:
+                    print(completion)
+                }
+            }, receiveValue: {
+                print("Telemetry Event Succeed:", $0)
+            })
         print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
     }
 
