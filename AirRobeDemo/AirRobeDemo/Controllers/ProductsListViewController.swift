@@ -73,6 +73,7 @@ extension ProductsListViewController: UICollectionViewDataSource, UICollectionVi
         cell.productImageView.image = UIImage(named: products[indexPath.row].image)
         cell.productTitleLabel.text = products[indexPath.row].title
         cell.productSubTitleLabel.text = products[indexPath.row].subTitle
+        cell.priceLabel.text = products[indexPath.row].price
         cell.productButton.tag = indexPath.row
         cell.productButton.addTarget(self, action: #selector(onTapProduct), for: .touchUpInside)
         return cell
