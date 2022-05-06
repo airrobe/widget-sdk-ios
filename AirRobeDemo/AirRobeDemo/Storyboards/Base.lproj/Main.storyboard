@@ -32,28 +32,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airRobeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="2kC-FC-IxP">
-                                <rect key="frame" x="83" y="174" width="248" height="115"/>
+                                <rect key="frame" x="83" y="237" width="248" height="115"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUC-mn-pV5">
-                                <rect key="frame" x="158.5" y="601" width="97.5" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Start Demo"/>
-                                <connections>
-                                    <action selector="onTapGetStarted:" destination="yWD-dp-PYb" eventType="touchUpInside" id="qhc-7P-pYk"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p98-ce-TxN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2kC-FC-IxP" firstAttribute="top" secondItem="p98-ce-TxN" secondAttribute="top" constant="130" id="1m7-BA-Z5a"/>
                             <constraint firstItem="2kC-FC-IxP" firstAttribute="centerX" secondItem="p98-ce-TxN" secondAttribute="centerX" id="52x-ln-vIH"/>
                             <constraint firstItem="2kC-FC-IxP" firstAttribute="width" secondItem="fah-KN-dQu" secondAttribute="width" multiplier="0.6" id="Iz9-yZ-YkY"/>
-                            <constraint firstItem="p98-ce-TxN" firstAttribute="bottom" secondItem="KUC-mn-pV5" secondAttribute="bottom" constant="230" id="QBk-ej-E4K"/>
-                            <constraint firstItem="KUC-mn-pV5" firstAttribute="centerX" secondItem="p98-ce-TxN" secondAttribute="centerX" id="Sbp-ee-j4t"/>
+                            <constraint firstItem="2kC-FC-IxP" firstAttribute="centerY" secondItem="p98-ce-TxN" secondAttribute="centerY" multiplier="0.65" id="Z9c-8q-g3R"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hiS-1L-0Qq"/>
+                    <connections>
+                        <outlet property="logoImageView" destination="2kC-FC-IxP" id="c1s-vF-uRG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfD-h1-VUm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

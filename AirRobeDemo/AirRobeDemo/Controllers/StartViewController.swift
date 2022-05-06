@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 final class StartViewController: UIViewController {
+    @IBOutlet weak var logoImageView: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let appearance = UINavigationBarAppearance()
@@ -16,11 +18,17 @@ final class StartViewController: UIViewController {
         appearance.backgroundColor = .white
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
-    }
 
-    @IBAction func onTapGetStarted(_ sender: Any) {
-        let vc = BrandViewController()
-        vc.title = "airrobe"
-        navigationController?.setViewControllers([vc], animated: true)
+        logoImageView.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        let scaledLogoTransform = logoImageView.transform.scaledBy(x: 1.25, y: 1.25)
+
+        UIView.animate(withDuration: 2, animations: {
+            self.logoImageView.transform = scaledLogoTransform
+            self.logoImageView.alpha = 1
+        }) { isCompleted in
+            let vc = BrandViewController()
+            vc.title = "airrobe"
+            self.navigationController?.setViewControllers([vc], animated: true)
+        }
     }
 }
