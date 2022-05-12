@@ -84,15 +84,15 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Product")
+                telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Product")
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Cart")
+                telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Cart")
             }
         } else {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
+                telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
+                telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
             }
         }
     }
