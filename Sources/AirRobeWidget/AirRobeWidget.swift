@@ -36,22 +36,8 @@ public func initialize(config: AirRobeWidgetConfig) {
         })
 }
 
-public func telemetryEvent(eventName: String, pageName: String) {
-    let apiService = AirRobeApiService()
-    cancellable = apiService.telemetryEvent(eventName: eventName, pageName: pageName)
-        .sink(receiveCompletion: { completion in
-            switch completion {
-            case .failure(let error):
-                #if DEBUG
-                print("Telemetry Event error: ", error)
-                #endif
-            case .finished:
-                print(completion)
-            }
-        }, receiveValue: {
-            print("Telemetry Event Succeed:", $0)
-        })
-    print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
+public func telemetryEvent(pageName: String) {
+    AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: pageName)
 }
 
 public func checkMultiOptInEligibility(items: [String]) -> Bool {

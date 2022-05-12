@@ -124,9 +124,9 @@ final class AirRobeOptInView: UIView, NibLoadable {
         alert.viewType = viewType
         vc.present(alert, animated: true)
         if viewType == .optIn {
-            telemetryEvent(eventName: "Pop up click", pageName: "Product")
+            AirRobeUtils.telemetryEvent(eventName: "Pop up click", pageName: "Product")
         } else {
-            telemetryEvent(eventName: "Pop up click", pageName: "Cart")
+            AirRobeUtils.telemetryEvent(eventName: "Pop up click", pageName: "Cart")
         }
     }
 
@@ -135,15 +135,15 @@ final class AirRobeOptInView: UIView, NibLoadable {
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
-                telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Product")
+                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Product")
             } else {
-                telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Cart")
+                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Cart")
             }
         } else {
             if viewType == .optIn {
-                telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
             } else {
-                telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
+                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
             }
         }
     }
@@ -157,9 +157,9 @@ final class AirRobeOptInView: UIView, NibLoadable {
             case .closed:
                 expandType = .opened
                 if viewType == .optIn {
-                    telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Product")
+                    AirRobeUtils.telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Product")
                 } else {
-                    telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Cart")
+                    AirRobeUtils.telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Cart")
                 }
                 return 1.0
             }
