@@ -54,7 +54,7 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
             return
         }
         let url = URL(
-            string: "\(AirRobeStrings.orderActivateBaseUrl)\(configuration.appId)-\(viewModel.orderId)"
+            string: "\(configuration.mode == .production ? AirRobeStrings.orderActivateBaseUrl : AirRobeStrings.orderActivateSandBoxBaseUrl)\(configuration.appId)-\(viewModel.orderId)/claim"
         )
         guard let url = url else {
             return

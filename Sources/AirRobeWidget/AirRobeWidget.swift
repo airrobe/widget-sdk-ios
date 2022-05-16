@@ -36,7 +36,7 @@ public func initialize(config: AirRobeWidgetConfig) {
         })
 }
 
-public func telemetryEvent(pageName: String) {
+public func trackPageView(pageName: String) {
     AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: pageName)
 }
 
