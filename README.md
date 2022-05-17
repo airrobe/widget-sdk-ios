@@ -161,12 +161,29 @@ AirRobeWidget.resetOptedIn()
 ```
 
 
-### Get Order-Opt-In value
+### Get Order-Opted-In value
 
 ```swift
 AirRobeWidget.orderOptedIn()
 ```
 
+### Check Multi-Opt-In Eligibility
+
+```swift
+AirRobeWidget.checkMultiOptInEligibility(items: [String]) -> Bool
+```
+
+### Check Confirmation Widget Eligibility
+
+```swift
+AirRobeWidget.checkConfirmationEligibility(orderId: String, email: String, fraudRisk: Bool) -> Bool
+```
+
+### Track Page View
+
+```swift
+AirRobeWidget.trackPageView(pageName: String)
+```
 
 # Examples
 
