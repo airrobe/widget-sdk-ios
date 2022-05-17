@@ -77,6 +77,7 @@ enum AirRobeStrings {
 
     // MARK: - Order Activate baseURL
     static let orderActivateBaseUrl = "https://shop.airrobe.com/en/orders/"
+    static let orderActivateSandBoxBaseUrl = "https://stg.marketplace.airdemo.link/en/orders/"
 
     // MARK: - Delimiter
     static let delimiter: String.Element = "/"

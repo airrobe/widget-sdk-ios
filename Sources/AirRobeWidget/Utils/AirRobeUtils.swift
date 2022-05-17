@@ -11,6 +11,7 @@ import Combine
 
 private var cancellable: AnyCancellable?
 struct AirRobeUtils {
+
     static func openUrl(_ url: URL?) {
         guard let url = url else {
             return

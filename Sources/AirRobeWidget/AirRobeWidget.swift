@@ -36,6 +36,10 @@ public func initialize(config: AirRobeWidgetConfig) {
         })
 }
 
+public func trackPageView(pageName: String) {
+    AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: pageName)
+}
+
 public func checkMultiOptInEligibility(items: [String]) -> Bool {
     guard !AirRobeShoppingDataModelInstance.shared.categoryMapping.categoryMappingsHashMap.isEmpty, !items.isEmpty else {
         return false
