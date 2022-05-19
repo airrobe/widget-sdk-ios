@@ -40,15 +40,16 @@ struct AirRobeUtils {
                 case .failure(let error):
                     #if DEBUG
                     print("Telemetry Event error: ", error)
+                    delegate?.onEventEmitted(event: "Telemetry Event error: " + error.localizedDescription)
                     #endif
                 case .finished:
                     print(completion)
                 }
             }, receiveValue: {
                 print("Telemetry Event Succeed:", $0)
+                delegate?.onEventEmitted(event: "Telemetry Event => event: " + eventName + ", pageName: " + pageName)
             })
-        print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
-        delegate?.onEventEmitted(event: "Event Emitted")
+//        print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
     }
 
 }
