@@ -9,7 +9,11 @@ import UIKit
 import AirRobeWidget
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
+    func onEventEmitted(event: String) {
+        print(event)
+    }
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -21,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 mode: .production
             )
         )
+        AirRobeWidget.delegate = self
 
         // This part is how you can configure the colors of the Widgets globally
 //        AirRobeWidget.AirRobeTextColor = .systemBlue

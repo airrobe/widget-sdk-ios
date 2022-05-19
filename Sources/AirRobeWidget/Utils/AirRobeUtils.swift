@@ -48,6 +48,7 @@ struct AirRobeUtils {
                 print("Telemetry Event Succeed:", $0)
             })
         print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
+        delegate?.onEventEmitted(event: "Event Emitted")
     }
 
 }
