@@ -10,10 +10,9 @@ import AirRobeWidget
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
-    func onEventEmitted(event: String) {
+    func onEventEmitted(event: [String : Any]) {
         print(event)
     }
-    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
