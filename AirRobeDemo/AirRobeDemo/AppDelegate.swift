@@ -10,7 +10,7 @@ import AirRobeWidget
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
-    func onEventEmitted(event: [String : Any]) {
+    func onEventEmitted(event: [String: Any]) {
         print(event)
     }
 

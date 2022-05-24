@@ -52,7 +52,6 @@ struct AirRobeUtils {
                 case .failure(let error):
                     #if DEBUG
                     print("Telemetry Event error: ", error)
-                    delegate?.onEventEmitted(event: ["error": "Telemetry Event error: " + error.localizedDescription)
                     #endif
                 case .finished:
                     print(completion)
