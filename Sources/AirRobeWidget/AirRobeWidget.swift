@@ -36,10 +36,6 @@ public func initialize(config: AirRobeWidgetConfig) {
         })
 }
 
-@objc public protocol AirRobeEventDelegate: AnyObject {
-    func onEventEmitted(event: [String: Any])
-}
-
 public weak var delegate: AirRobeEventDelegate?
 
 public func trackPageView(pageName: String) {

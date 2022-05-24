@@ -34,18 +34,18 @@ struct AirRobeUtils {
 
     static func telemetryEvent(eventName: String, pageName: String) {
         let apiService = AirRobeApiService()
-        let eventBody: [String: Any] = [
-            "app_id": configuration?.appId ?? "",
-            "anonymous_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
-            "session_id": sessionId,
-            "event_name": eventName,
-            "properties": [
-                "source": AirRobeWidgetInfo.platform,
-                "version": AirRobeWidgetInfo.version,
-                "split_test_variant": "default",
-                "page_name": pageName
-            ]
-        ]
+
+        let eventData = AirRobeEventData(
+            app_id: configuration?.appId ?? "",
+            anonymous_id: UIDevice.current.identifierForVendor?.uuidString ?? "",
+            session_id: sessionId,
+            event_name: eventName,
+            source: AirRobeWidgetInfo.platform,
+            version: AirRobeWidgetInfo.version,
+            split_test_variant: "default",
+            page_name: pageName
+        )
+
         cancellable = apiService.telemetryEvent(eventName: eventName, pageName: pageName)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -58,9 +58,9 @@ struct AirRobeUtils {
                 }
             }, receiveValue: {
                 print("Telemetry Event Succeed:", $0)
-                delegate?.onEventEmitted(event: eventBody)
+                delegate?.onEventEmitted(event: eventData)
             })
-//        print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
+        print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
     }
 
 }
