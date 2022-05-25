@@ -22,7 +22,7 @@ public struct AirRobeWidgetInfo {
     fileprivate(set) var version: String
 
     /// Version of Widget being used
-    static let version = "1.0.6"
+    static let version = "1.0.7"
 
     #if os(iOS)
     /// Platform that is being used: ios, macos, unknown

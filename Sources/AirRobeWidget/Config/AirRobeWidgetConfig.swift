@@ -41,3 +41,20 @@ public struct AirRobeWidgetConfig {
     }
 
 }
+
+public enum EventName: String {
+    case pageView = "pageview"
+    case widgetNotRendered = "Widget not rendered"
+    case optedIn = "Opted in to AirRobe"
+    case optedOut = "Opted out of AirRobe"
+    case widgetExpand = "Widget Expand Arrow Click"
+    case widgetCollapse = "Widget Collapse Arrow Click"
+    case popupClick = "Pop up click"
+    case claimLinkClick = "Claim link click"
+}
+
+public enum PageName: String {
+    case product = "Product"
+    case cart = "Cart"
+    case thankYou = "Thank You"
+}

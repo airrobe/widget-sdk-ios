@@ -56,7 +56,7 @@ final class AirRobeOptInViewModel {
             let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: [category])
             isAllSet = (eligibility.eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
             if isAllSet == .eligible {
-                AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Product")
+                AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.product.rawValue)
                 callPriceEngine(category: eligibility.to)
             }
         }
@@ -82,7 +82,7 @@ final class AirRobeOptInViewModel {
             isAllSet = eligibility.eligible ? .eligible : .notEligible
             UserDefaults.standard.OrderOptedIn = eligibility.eligible && UserDefaults.standard.OptedIn ? true : false
             if isAllSet == .eligible {
-                AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Cart")
+                AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
             }
         }
     }

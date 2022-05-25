@@ -124,9 +124,9 @@ final class AirRobeOptInView: UIView, NibLoadable {
         alert.viewType = viewType
         vc.present(alert, animated: true)
         if viewType == .optIn {
-            AirRobeUtils.telemetryEvent(eventName: "Pop up click", pageName: "Product")
+            AirRobeUtils.telemetryEvent(eventName: EventName.popupClick.rawValue, pageName: PageName.product.rawValue)
         } else {
-            AirRobeUtils.telemetryEvent(eventName: "Pop up click", pageName: "Cart")
+            AirRobeUtils.telemetryEvent(eventName: EventName.popupClick.rawValue, pageName: PageName.cart.rawValue)
         }
     }
 
@@ -135,15 +135,15 @@ final class AirRobeOptInView: UIView, NibLoadable {
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Product")
+                AirRobeUtils.telemetryEvent(eventName: EventName.optedIn.rawValue, pageName: PageName.product.rawValue)
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Cart")
+                AirRobeUtils.telemetryEvent(eventName: EventName.optedIn.rawValue, pageName: PageName.cart.rawValue)
             }
         } else {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
+                AirRobeUtils.telemetryEvent(eventName: EventName.optedOut.rawValue, pageName: PageName.product.rawValue)
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
+                AirRobeUtils.telemetryEvent(eventName: EventName.optedOut.rawValue, pageName: PageName.cart.rawValue)
             }
         }
     }
@@ -157,9 +157,9 @@ final class AirRobeOptInView: UIView, NibLoadable {
             case .closed:
                 expandType = .opened
                 if viewType == .optIn {
-                    AirRobeUtils.telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Product")
+                    AirRobeUtils.telemetryEvent(eventName: EventName.widgetExpand.rawValue, pageName: PageName.product.rawValue)
                 } else {
-                    AirRobeUtils.telemetryEvent(eventName: "Widget Expand Arrow Click", pageName: "Cart")
+                    AirRobeUtils.telemetryEvent(eventName: EventName.widgetExpand.rawValue, pageName: PageName.cart.rawValue)
                 }
                 return 1.0
             }
