@@ -39,11 +39,11 @@ struct AirRobeUtils {
             app_id: configuration?.appId ?? "",
             anonymous_id: UIDevice.current.identifierForVendor?.uuidString ?? "",
             session_id: sessionId,
-            event_name: eventName,
+            event_name: EventName.init(rawValue: eventName) ?? .other,
             source: AirRobeWidgetInfo.platform,
             version: AirRobeWidgetInfo.version,
             split_test_variant: "default",
-            page_name: pageName
+            page_name: PageName.init(rawValue: pageName) ?? .other
         )
 
         cancellable = apiService.telemetryEvent(eventName: eventName, pageName: pageName)

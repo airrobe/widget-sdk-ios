@@ -12,7 +12,39 @@ import AirRobeWidget
 class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
 
     func onEventEmitted(event: AirRobeEventData) {
-        print(event)
+
+        switch event.event_name {
+        case .pageView:
+            print("pageview")
+        case .widgetNotRendered:
+            print("widget not rendered")
+        case .optedIn:
+            print("opted in")
+        case .optedOut:
+            print("opted out")
+        case .widgetExpand:
+            print("widget expand")
+        case .widgetCollapse:
+            print("widget collapse")
+        case .popupClick:
+            print("popup click")
+        case .claimLinkClick:
+            print("claim link click")
+        case .other:
+            print("other")
+        }
+
+        switch event.page_name {
+        case .product:
+            print("product")
+        case .cart:
+            print("cart")
+        case .thankYou:
+            print("thank you")
+        case .other:
+            print("other")
+        }
+
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

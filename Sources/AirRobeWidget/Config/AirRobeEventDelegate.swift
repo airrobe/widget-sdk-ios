@@ -11,13 +11,13 @@ public protocol AirRobeEventDelegate: AnyObject {
     func onEventEmitted(event: AirRobeEventData)
 }
 
-public struct AirRobeEventData: Codable {
-    let app_id: String
-    let anonymous_id: String
-    let session_id: String
-    let event_name: String
-    let source: String
-    let version: String
-    let split_test_variant: String
-    let page_name: String
+public struct AirRobeEventData {
+    public let app_id: String
+    public let anonymous_id: String
+    public let session_id: String
+    public let event_name: EventName
+    public let source: String
+    public let version: String
+    public let split_test_variant: String
+    public let page_name: PageName
 }

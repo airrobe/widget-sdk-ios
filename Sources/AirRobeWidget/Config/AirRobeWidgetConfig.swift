@@ -51,10 +51,12 @@ public enum EventName: String {
     case widgetCollapse = "Widget Collapse Arrow Click"
     case popupClick = "Pop up click"
     case claimLinkClick = "Claim link click"
+    case other = "Other"
 }
 
 public enum PageName: String {
     case product = "Product"
     case cart = "Cart"
     case thankYou = "Thank You"
+    case other = "Other"
 }
