@@ -153,6 +153,11 @@ final class AirRobeOptInView: UIView, NibLoadable {
             switch expandType {
             case .opened:
                 expandType = .closed
+                if viewType == .optIn {
+                    AirRobeUtils.telemetryEvent(eventName: EventName.widgetCollapse.rawValue, pageName: PageName.product.rawValue)
+                } else {
+                    AirRobeUtils.telemetryEvent(eventName: EventName.widgetCollapse.rawValue, pageName: PageName.cart.rawValue)
+                }
                 return 0.0
             case .closed:
                 expandType = .opened
