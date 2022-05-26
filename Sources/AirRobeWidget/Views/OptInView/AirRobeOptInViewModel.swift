@@ -51,7 +51,6 @@ final class AirRobeOptInViewModel {
             alreadyInitialized = true
             if category.isEmpty {
                 isAllSet = .paramIssue
-                AirRobeUtils.telemetryEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.product.rawValue)
                 return
             }
             let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: [category])
@@ -59,8 +58,6 @@ final class AirRobeOptInViewModel {
             if isAllSet == .eligible {
                 AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.product.rawValue)
                 callPriceEngine(category: eligibility.to)
-            } else {
-                AirRobeUtils.telemetryEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.product.rawValue)
             }
         }
     }
@@ -79,7 +76,6 @@ final class AirRobeOptInViewModel {
             if items.isEmpty {
                 isAllSet = .paramIssue
                 UserDefaults.standard.OrderOptedIn = false
-                AirRobeUtils.telemetryEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.cart.rawValue)
                 return
             }
             let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: items)
@@ -87,8 +83,6 @@ final class AirRobeOptInViewModel {
             UserDefaults.standard.OrderOptedIn = eligibility.eligible && UserDefaults.standard.OptedIn ? true : false
             if isAllSet == .eligible {
                 AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
-            } else {
-                AirRobeUtils.telemetryEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.cart.rawValue)
             }
         }
     }

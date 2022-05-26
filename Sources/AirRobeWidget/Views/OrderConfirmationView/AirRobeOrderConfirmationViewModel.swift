@@ -29,15 +29,12 @@ final class AirRobeOrderConfirmationViewModel {
             alreadyInitialized = true
             if orderId.isEmpty || email.isEmpty {
                 isAllSet = .paramIssue
-                AirRobeUtils.telemetryEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.thankYou.rawValue)
                 return
             }
             isAllSet = UserDefaults.standard.OrderOptedIn && !fraudRisk ? .eligible : .notEligible
             if isAllSet == .eligible {
                 AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
                 emailCheck(email: email)
-            } else {
-                AirRobeUtils.telemetryEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.thankYou.rawValue)
             }
         }
     }
