@@ -127,7 +127,6 @@ airRobeConfirmation.buttonTextColor = .black     // the color of the widget acti
 AirRobeWidget.resetOptedIn()
 ```
 
-
 ### Get Order-Opted-In value
 
 ```swift
