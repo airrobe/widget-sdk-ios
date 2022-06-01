@@ -68,4 +68,13 @@ final class AirRobeApiService: AirRobeNetworkClient {
         #endif
         return execute(endpoint.asURLRequest(), decodingType: AirRobeTelemetryEventResponseModel.self)
     }
+
+    func identifyOrder(orderId: String) -> AnyPublisher<AirRobeIdentifyOrderResponseModel, Error> {
+        var endpoint = AirRobeEndpoint.identifyOrder(orderId: orderId)
+        endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
+        #if DEBUG
+        dump(endpoint.asURLRequest())
+        #endif
+        return execute(endpoint.asURLRequest(), decodingType: AirRobeIdentifyOrderResponseModel.self)
+    }
 }

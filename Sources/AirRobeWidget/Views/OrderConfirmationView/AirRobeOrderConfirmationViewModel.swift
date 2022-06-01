@@ -35,6 +35,20 @@ final class AirRobeOrderConfirmationViewModel {
             if isAllSet == .eligible {
                 AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Thank you")
                 emailCheck(email: email)
+
+                cancellable = apiService.identifyOrder(orderId: orderId)
+                    .sink(receiveCompletion: { (completion) in
+                        switch completion {
+                        case .failure(let error):
+                            #if DEBUG
+                            print("Identify Order Call Issue: ", error)
+                            #endif
+                        case .finished:
+                            print(completion)
+                        }
+                    }, receiveValue: { _ in
+                        
+                    })
             }
         }
     }
