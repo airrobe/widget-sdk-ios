@@ -13,46 +13,13 @@ The AirRobeWidget iOS SDK provides conveniences to make your AirRobeWidget integ
 
 ## Swift Package Manager (recommended)
 
-This is the recommended integration method, but we assume that you already have the access to our Repo since its access is restricted for purposes.
+This is the recommended integration method.
 
 ```
 dependencies: [
     .package(url: "https://github.com/airrobe/widget-sdk-ios.git", .upToNextMajor(from: "x.x.x"))
 ]
 ```
-
-
-## Manual
-
-Currently, we do not have any of other the supported dependency managers, so for now choose to manually integrate the AirRobe SDK into your project.
-
-### Source
-
-#### GitHub Release
-
-Download the [latest release][latest-release] source zip from GitHub and unzip into an `AirRobeWidget` directory in the root of your working directory.
-
-#### Git Submodule
-
-We assume that you already have the access to our Repo since its access is restricted for purposes.
-Add the AirRobeWidget SDK as a [git submodule][git-submodule] by navigating to the root of your working directory and running the following commands:
-
-```
-git submodule add https://github.com/airrobe/widget-sdk-ios.git AirRobeWidget
-cd AirRobeWidget
-git checkout x.x.x
-```
-
-#### Project / Workspace Integration
-
-Now that the AirRobeWidget SDK resides in the `AirRobeWidget` directory in the root of your working directory, it can be added to your project or workspace with the following steps:
-
-1. Select your application project in the Project Navigator to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
-2. In the tab bar at the top of that window, open the "General" panel.
-3. Click on the `+` button under the "Frameworks, Libraries, and Embedded Content" section.
-4. Select the `Workspace -> AirRobeWidget -> AirRobeWidget` for your target platform.
-
-And that's it, the AirRobeWidget SDK is now ready to import and use within your application.
 
 ## TODOs: CocoaPods, Carthage - Coming Soon
 
@@ -160,7 +127,6 @@ airRobeConfirmation.buttonTextColor = .black     // the color of the widget acti
 AirRobeWidget.resetOptedIn()
 ```
 
-
 ### Get Order-Opted-In value
 
 ```swift
@@ -195,7 +161,5 @@ The [example project][example] demonstrates how to include AirRobeWidget UI comp
 
 Building and running the project is as simple as cloning the repository, opening [`AirRobeDemo.xcodeproj`][airrobedemo-workspace] and building the `AirRobeDemo` target.
 
-[latest-release]: https://github.com/airrobe/widget-sdk-ios/releases/latest
-[git-submodule]: https://git-scm.com/docs/git-submodule
 [example]: https://github.com/airrobe/widget-sdk-ios/tree/master/AirRobeDemo
 [airrobedemo-workspace]: AirRobeDemo/AirRobeDemo.xcodeproj

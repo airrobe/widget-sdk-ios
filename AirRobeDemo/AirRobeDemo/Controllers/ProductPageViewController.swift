@@ -11,6 +11,7 @@ import AirRobeWidget
 final class ProductPageViewController: UIViewController {
     @IBOutlet weak var itemImageView: UIImageView!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -24,6 +25,7 @@ final class ProductPageViewController: UIViewController {
         super.viewDidLoad()
         if let cellViewModel = viewModel.cellViewModel {
             itemImageView.image = UIImage(named: cellViewModel.image)
+            categoryLabel.text = cellViewModel.category
             titleLabel.text = cellViewModel.title
             subTitleLabel.text = cellViewModel.subTitle
             priceLabel.text = cellViewModel.price
@@ -33,7 +35,7 @@ final class ProductPageViewController: UIViewController {
                 category: cellViewModel.category,
                 priceCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0
             )
-            
+
             // This part is how you can configure the colors of the widget
 //            airRobeOptIn.borderColor = .red
 //            airRobeOptIn.linkTextColor = .yellow
