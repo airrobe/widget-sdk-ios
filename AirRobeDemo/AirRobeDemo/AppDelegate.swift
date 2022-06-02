@@ -16,19 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
         switch event.event_name {
         case .pageView:
             print("pageview")
+        case .widgetRender:
+            print("widget rendered")
         case .widgetNotRendered:
             print("widget not rendered")
-        case .optedIn:
+        case .optIn:
             print("opted in")
-        case .optedOut:
+        case .optOut:
             print("opted out")
-        case .widgetExpand:
+        case .expand:
             print("widget expand")
-        case .widgetCollapse:
+        case .collapse:
             print("widget collapse")
-        case .popupClick:
-            print("popup click")
-        case .claimLinkClick:
+        case .popupOpen:
+            print("popup open")
+        case .popupClose:
+            print("popup close")
+        case .confirmationRender:
+            print("confirmation rendered")
+        case .confirmationClick:
             print("claim link click")
         case .other:
             print("other")

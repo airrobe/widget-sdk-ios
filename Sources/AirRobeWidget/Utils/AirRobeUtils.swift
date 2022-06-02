@@ -63,5 +63,20 @@ struct AirRobeUtils {
         print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
     }
 
+    static func dispatchEvent(eventName: String, pageName: String) {
+        let eventData = AirRobeEventData(
+            app_id: configuration?.appId ?? "",
+            anonymous_id: UIDevice.current.identifierForVendor?.uuidString ?? "",
+            session_id: sessionId,
+            event_name: EventName.init(rawValue: eventName) ?? .other,
+            source: AirRobeWidgetInfo.platform,
+            version: AirRobeWidgetInfo.version,
+            split_test_variant: "default",
+            page_name: PageName.init(rawValue: pageName) ?? .other
+        )
+
+        delegate?.onEventEmitted(event: eventData)
+    }
+
 }
 #endif

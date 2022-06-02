@@ -26,6 +26,7 @@ final class AirRobeOrderConfirmationViewModel {
 
     func initializeConfirmationWidget() {
         if !alreadyInitialized {
+            AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
             alreadyInitialized = true
             if orderId.isEmpty || email.isEmpty {
                 isAllSet = .paramIssue
@@ -33,7 +34,7 @@ final class AirRobeOrderConfirmationViewModel {
             }
             isAllSet = UserDefaults.standard.OrderOptedIn && !fraudRisk ? .eligible : .notEligible
             if isAllSet == .eligible {
-                AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
+                AirRobeUtils.dispatchEvent(eventName: EventName.confirmationRender.rawValue, pageName: PageName.thankYou.rawValue)
                 emailCheck(email: email)
             }
         }

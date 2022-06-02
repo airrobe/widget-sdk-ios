@@ -124,9 +124,9 @@ final class AirRobeOptInView: UIView, NibLoadable {
         alert.viewType = viewType
         vc.present(alert, animated: true)
         if viewType == .optIn {
-            AirRobeUtils.telemetryEvent(eventName: EventName.popupClick.rawValue, pageName: PageName.product.rawValue)
+            AirRobeUtils.telemetryEvent(eventName: EventName.popupOpen.rawValue, pageName: PageName.product.rawValue)
         } else {
-            AirRobeUtils.telemetryEvent(eventName: EventName.popupClick.rawValue, pageName: PageName.cart.rawValue)
+            AirRobeUtils.telemetryEvent(eventName: EventName.popupOpen.rawValue, pageName: PageName.cart.rawValue)
         }
     }
 
@@ -135,15 +135,15 @@ final class AirRobeOptInView: UIView, NibLoadable {
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: EventName.optedIn.rawValue, pageName: PageName.product.rawValue)
+                AirRobeUtils.telemetryEvent(eventName: EventName.optIn.rawValue, pageName: PageName.product.rawValue)
             } else {
-                AirRobeUtils.telemetryEvent(eventName: EventName.optedIn.rawValue, pageName: PageName.cart.rawValue)
+                AirRobeUtils.telemetryEvent(eventName: EventName.optIn.rawValue, pageName: PageName.cart.rawValue)
             }
         } else {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: EventName.optedOut.rawValue, pageName: PageName.product.rawValue)
+                AirRobeUtils.telemetryEvent(eventName: EventName.optOut.rawValue, pageName: PageName.product.rawValue)
             } else {
-                AirRobeUtils.telemetryEvent(eventName: EventName.optedOut.rawValue, pageName: PageName.cart.rawValue)
+                AirRobeUtils.telemetryEvent(eventName: EventName.optOut.rawValue, pageName: PageName.cart.rawValue)
             }
         }
     }
@@ -153,13 +153,18 @@ final class AirRobeOptInView: UIView, NibLoadable {
             switch expandType {
             case .opened:
                 expandType = .closed
+                if viewType == .optIn {
+                    AirRobeUtils.dispatchEvent(eventName: EventName.collapse.rawValue, pageName: PageName.product.rawValue)
+                } else {
+                    AirRobeUtils.dispatchEvent(eventName: EventName.collapse.rawValue, pageName: PageName.cart.rawValue)
+                }
                 return 0.0
             case .closed:
                 expandType = .opened
                 if viewType == .optIn {
-                    AirRobeUtils.telemetryEvent(eventName: EventName.widgetExpand.rawValue, pageName: PageName.product.rawValue)
+                    AirRobeUtils.telemetryEvent(eventName: EventName.expand.rawValue, pageName: PageName.product.rawValue)
                 } else {
-                    AirRobeUtils.telemetryEvent(eventName: EventName.widgetExpand.rawValue, pageName: PageName.cart.rawValue)
+                    AirRobeUtils.telemetryEvent(eventName: EventName.expand.rawValue, pageName: PageName.cart.rawValue)
                 }
                 return 1.0
             }
