@@ -31,7 +31,7 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
     @IBOutlet weak var separator3: UIView!
 
     var viewType: AirRobeOptInView.ViewType = .optIn
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = AirRobeStrings.learnMoreTitle
@@ -84,24 +84,34 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Product")
+                AirRobeUtils.telemetryEvent(eventName: EventName.optIn.rawValue, pageName: PageName.product.rawValue)
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted in to AirRobe", pageName: "Cart")
+                AirRobeUtils.telemetryEvent(eventName: EventName.optIn.rawValue, pageName: PageName.cart.rawValue)
             }
         } else {
             if viewType == .optIn {
-                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Product")
+                AirRobeUtils.telemetryEvent(eventName: EventName.optOut.rawValue, pageName: PageName.product.rawValue)
             } else {
-                AirRobeUtils.telemetryEvent(eventName: "Opted out of AirRobe", pageName: "Cart")
+                AirRobeUtils.telemetryEvent(eventName: EventName.optOut.rawValue, pageName: PageName.cart.rawValue)
             }
         }
     }
 
     @IBAction func onTapClose(_ sender: Any) {
         dismiss(animated: true)
+        if viewType == .optIn {
+            AirRobeUtils.dispatchEvent(eventName: EventName.popupClose.rawValue, pageName: PageName.product.rawValue)
+        } else {
+            AirRobeUtils.dispatchEvent(eventName: EventName.popupClose.rawValue, pageName: PageName.cart.rawValue)
+        }
     }
 
     @objc func dismissController() {
         dismiss(animated: true)
+        if viewType == .optIn {
+            AirRobeUtils.dispatchEvent(eventName: EventName.popupClose.rawValue, pageName: PageName.product.rawValue)
+        } else {
+            AirRobeUtils.dispatchEvent(eventName: EventName.popupClose.rawValue, pageName: PageName.cart.rawValue)
+        }
     }
 }

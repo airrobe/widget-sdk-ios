@@ -36,8 +36,10 @@ public func initialize(config: AirRobeWidgetConfig) {
         })
 }
 
+public weak var delegate: AirRobeEventDelegate?
+
 public func trackPageView(pageName: String) {
-    AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: pageName)
+    AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: pageName)
 }
 
 public func checkMultiOptInEligibility(items: [String]) -> Bool {

@@ -9,7 +9,49 @@ import UIKit
 import AirRobeWidget
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
+
+    func onEventEmitted(event: AirRobeEventData) {
+
+        switch event.event_name {
+        case .pageView:
+            print("pageview")
+        case .widgetRender:
+            print("widget rendered")
+        case .widgetNotRendered:
+            print("widget not rendered")
+        case .optIn:
+            print("opted in")
+        case .optOut:
+            print("opted out")
+        case .expand:
+            print("widget expand")
+        case .collapse:
+            print("widget collapse")
+        case .popupOpen:
+            print("popup open")
+        case .popupClose:
+            print("popup close")
+        case .confirmationRender:
+            print("confirmation rendered")
+        case .confirmationClick:
+            print("claim link click")
+        case .other:
+            print("other")
+        }
+
+        switch event.page_name {
+        case .product:
+            print("product")
+        case .cart:
+            print("cart")
+        case .thankYou:
+            print("thank you")
+        case .other:
+            print("other")
+        }
+
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -21,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 mode: .production
             )
         )
+        AirRobeWidget.delegate = self
 
         // This part is how you can configure the colors of the Widgets globally
 //        AirRobeWidget.AirRobeTextColor = .systemBlue

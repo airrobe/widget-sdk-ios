@@ -48,6 +48,7 @@ final class AirRobeOptInViewModel {
             return
         }
         if !alreadyInitialized {
+            AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.product.rawValue)
             alreadyInitialized = true
             if category.isEmpty {
                 isAllSet = .paramIssue
@@ -56,8 +57,10 @@ final class AirRobeOptInViewModel {
             let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: [category])
             isAllSet = (eligibility.eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
             if isAllSet == .eligible {
-                AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Product")
+                AirRobeUtils.dispatchEvent(eventName: EventName.widgetRender.rawValue, pageName: PageName.product.rawValue)
                 callPriceEngine(category: eligibility.to)
+            } else {
+                AirRobeUtils.dispatchEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.product.rawValue)
             }
         }
     }
@@ -72,6 +75,7 @@ final class AirRobeOptInViewModel {
             return
         }
         if !alreadyInitialized {
+            AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
             alreadyInitialized = true
             if items.isEmpty {
                 isAllSet = .paramIssue
@@ -82,7 +86,9 @@ final class AirRobeOptInViewModel {
             isAllSet = eligibility.eligible ? .eligible : .notEligible
             UserDefaults.standard.OrderOptedIn = eligibility.eligible && UserDefaults.standard.OptedIn ? true : false
             if isAllSet == .eligible {
-                AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Cart")
+                AirRobeUtils.dispatchEvent(eventName: EventName.widgetRender.rawValue, pageName: PageName.cart.rawValue)
+            } else {
+                AirRobeUtils.dispatchEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.cart.rawValue)
             }
         }
     }

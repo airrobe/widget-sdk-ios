@@ -41,3 +41,25 @@ public struct AirRobeWidgetConfig {
     }
 
 }
+
+public enum EventName: String {
+    case pageView = "airrobe-pageview"
+    case widgetRender = "airrobe-widget-render"
+    case widgetNotRendered = "airrobe-widget-not-rendered"
+    case optIn = "airrobe-widget-opt-in"
+    case optOut = "airrobe-widget-opt-out"
+    case expand = "airrobe-widget-expand"
+    case collapse = "airrobe-widget-collapse"
+    case popupOpen = "airrobe-widget-popup-open"
+    case popupClose = "airrobe-widget-popup-close"
+    case confirmationRender = "airrobe-confirmation-render"
+    case confirmationClick = "airrobe-confirmation-click"
+    case other = "Other"
+}
+
+public enum PageName: String {
+    case product = "Product"
+    case cart = "Cart"
+    case thankYou = "Thank You"
+    case other = "Other"
+}

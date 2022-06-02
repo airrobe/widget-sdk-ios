@@ -59,7 +59,7 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
         guard let url = url else {
             return
         }
-        AirRobeUtils.telemetryEvent(eventName: "Claim link click", pageName: "Thank You")
+        AirRobeUtils.telemetryEvent(eventName: EventName.confirmationClick.rawValue, pageName: PageName.thankYou.rawValue)
         AirRobeUtils.openUrl(url)
     }
 }
