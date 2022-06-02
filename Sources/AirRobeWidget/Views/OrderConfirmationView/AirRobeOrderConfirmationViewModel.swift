@@ -36,7 +36,7 @@ final class AirRobeOrderConfirmationViewModel {
                 AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Thank you")
                 emailCheck(email: email)
 
-                identifyOrderCancellable = apiService.identifyOrder(orderId: orderId)
+                identifyOrderCancellable = apiService.identifyOrder(orderId: orderId, orderOptedIn: UserDefaults.standard.OrderOptedIn)
                     .sink(receiveCompletion: { (completion) in
                         switch completion {
                         case .failure(let error):
