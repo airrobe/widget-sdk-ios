@@ -58,4 +58,20 @@ extension AirRobeEndpoint {
         )
     }
 
+    static func identifyOrder(orderId: String, orderOptedIn: Bool) -> AirRobeEndpoint {
+        let requestBody: [String: Any] = [
+            "app_id": configuration?.appId ?? "",
+            "anonymous_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
+            "session_id": sessionId,
+            "external_order_id": orderId,
+            "split_test_variant": "default",
+            "opted_in": orderOptedIn
+        ]
+        return AirRobeEndpoint(
+            method: .POST,
+            path: "/internal_webhooks/identify_order",
+            requestBody: requestBody,
+            host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue
+        )
+    }
 }

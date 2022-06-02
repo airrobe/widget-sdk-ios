@@ -18,7 +18,7 @@ final class AirRobeOrderConfirmationViewModel {
     var fraudRisk: Bool = false
 
     private lazy var apiService = AirRobeApiService()
-    private var cancellable: AnyCancellable?
+    private var emailCheckCancellable, identifyOrderCancellable: AnyCancellable?
     var alreadyInitialized: Bool = false
 
     @Published var isAllSet: AirRobeWidgetLoadState = .initializing
@@ -35,6 +35,20 @@ final class AirRobeOrderConfirmationViewModel {
             if isAllSet == .eligible {
                 AirRobeUtils.telemetryEvent(eventName: "pageview", pageName: "Thank you")
                 emailCheck(email: email)
+
+                identifyOrderCancellable = apiService.identifyOrder(orderId: orderId, orderOptedIn: UserDefaults.standard.OrderOptedIn)
+                    .sink(receiveCompletion: { (completion) in
+                        switch completion {
+                        case .failure(let error):
+                            #if DEBUG
+                            print("Identify Order Call Issue: ", error)
+                            #endif
+                        case .finished:
+                            print(completion)
+                        }
+                    }, receiveValue: { _ in
+                        
+                    })
             }
         }
     }
@@ -44,7 +58,7 @@ final class AirRobeOrderConfirmationViewModel {
 private extension AirRobeOrderConfirmationViewModel {
 
     func emailCheck(email: String) {
-        cancellable = apiService.emailCheck(operation: AirRobeGraphQLOperation.fetchPost(with: email))
+        emailCheckCancellable = apiService.emailCheck(operation: AirRobeGraphQLOperation.fetchPost(with: email))
             .sink(receiveCompletion: { [weak self] (completion) in
                 guard let self = self else {
                     return
