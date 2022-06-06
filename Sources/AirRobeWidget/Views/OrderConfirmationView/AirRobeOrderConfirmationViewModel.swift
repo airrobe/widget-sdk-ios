@@ -26,7 +26,8 @@ final class AirRobeOrderConfirmationViewModel {
 
     func initializeConfirmationWidget() {
         if !alreadyInitialized {
-            AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
+            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
+            AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
             alreadyInitialized = true
             if orderId.isEmpty || email.isEmpty {
                 isAllSet = .paramIssue
