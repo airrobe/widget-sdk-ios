@@ -48,7 +48,15 @@ final class AirRobeOptInViewModel {
             return
         }
         if !alreadyInitialized {
-            AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.product.rawValue)
+            AirRobeUtils.telemetryEvent(
+                eventName: TelemetryEventName.pageView.rawValue,
+                pageName: PageName.product.rawValue,
+                brand: brand,
+                material: material,
+                category: category,
+                department: department
+            )
+            AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.product.rawValue)
             alreadyInitialized = true
             if category.isEmpty {
                 isAllSet = .paramIssue
@@ -75,7 +83,8 @@ final class AirRobeOptInViewModel {
             return
         }
         if !alreadyInitialized {
-            AirRobeUtils.telemetryEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
+            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.cart.rawValue)
+            AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
             alreadyInitialized = true
             if items.isEmpty {
                 isAllSet = .paramIssue

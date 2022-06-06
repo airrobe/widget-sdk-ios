@@ -54,7 +54,15 @@ public enum EventName: String {
     case popupClose = "airrobe-widget-popup-close"
     case confirmationRender = "airrobe-confirmation-render"
     case confirmationClick = "airrobe-confirmation-click"
-    case other = "Other"
+}
+
+public enum TelemetryEventName: String {
+    case pageView = "pageview"
+    case optIn = "Opted in to AirRobe"
+    case optOut = "Opted out of AirRobe"
+    case expand = "Widget Expand Arrow Click"
+    case popupOpen = "Pop up click"
+    case confirmationClick = "Claim link click"
 }
 
 public enum PageName: String {

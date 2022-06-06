@@ -32,7 +32,10 @@ final class ProductPageViewController: UIViewController {
 
             // Initialize airRobeOptIn view
             airRobeOptIn.initialize(
+                brand: "Gucci",
+                material: "Leather",
                 category: cellViewModel.category,
+                department: "Womenswear",
                 priceCents: Double(String(cellViewModel.price.replacingOccurrences(of: "$", with: ""))) ?? 0.0
             )
 

@@ -32,21 +32,23 @@ struct AirRobeUtils {
         }
     }
 
-    static func telemetryEvent(eventName: String, pageName: String) {
+    static func telemetryEvent(
+        eventName: String,
+        pageName: String,
+        brand: String? = nil,
+        material: String? = nil,
+        category: String? = nil,
+        department: String? = nil
+    ) {
         let apiService = AirRobeApiService()
-
-        let eventData = AirRobeEventData(
-            app_id: configuration?.appId ?? "",
-            anonymous_id: UIDevice.current.identifierForVendor?.uuidString ?? "",
-            session_id: sessionId,
-            event_name: EventName.init(rawValue: eventName) ?? .other,
-            source: AirRobeWidgetInfo.platform,
-            version: AirRobeWidgetInfo.version,
-            split_test_variant: "default",
-            page_name: PageName.init(rawValue: pageName) ?? .other
+        cancellable = apiService.telemetryEvent(
+            eventName: eventName,
+            pageName: pageName,
+            brand: brand,
+            material: material,
+            category: category,
+            department: department
         )
-
-        cancellable = apiService.telemetryEvent(eventName: eventName, pageName: pageName)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error):
@@ -58,7 +60,6 @@ struct AirRobeUtils {
                 }
             }, receiveValue: {
                 print("Telemetry Event Succeed:", $0)
-                delegate?.onEventEmitted(event: eventData)
             })
         print("Telemetry Event => event: " + eventName + ", pageName: " + pageName)
     }
@@ -68,7 +69,7 @@ struct AirRobeUtils {
             app_id: configuration?.appId ?? "",
             anonymous_id: UIDevice.current.identifierForVendor?.uuidString ?? "",
             session_id: sessionId,
-            event_name: EventName.init(rawValue: eventName) ?? .other,
+            event_name: EventName.init(rawValue: eventName)!,
             source: AirRobeWidgetInfo.platform,
             version: AirRobeWidgetInfo.version,
             split_test_variant: "default",
