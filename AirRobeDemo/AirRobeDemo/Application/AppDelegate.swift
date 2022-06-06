@@ -36,8 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
             print("confirmation rendered")
         case .confirmationClick:
             print("claim link click")
-        case .other:
-            print("other")
         }
 
         switch event.page_name {
@@ -58,9 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
         // Initialize AirRobeWidget with appId and privacy policy link for The Iconic
         AirRobeWidget.initialize(
             config: AirRobeWidgetConfig(
-                appId: "c43f2be28f1f",
-                privacyPolicyURL: "https://www.theiconic.com.au/privacy-policy",
-                mode: .production
+                appId: "515b6ee129da",
+                privacyPolicyURL: "https://www.example.com/privacy-policy",
+                mode: .sandbox
             )
         )
         AirRobeWidget.delegate = self

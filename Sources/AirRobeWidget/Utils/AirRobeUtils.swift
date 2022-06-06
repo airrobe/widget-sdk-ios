@@ -62,7 +62,7 @@ struct AirRobeUtils {
             app_id: configuration?.appId ?? "",
             anonymous_id: UIDevice.current.identifierForVendor?.uuidString ?? "",
             session_id: sessionId,
-            event_name: EventName.init(rawValue: eventName) ?? .other,
+            event_name: EventName.init(rawValue: eventName)!,
             source: AirRobeWidgetInfo.platform,
             version: AirRobeWidgetInfo.version,
             split_test_variant: "default",
