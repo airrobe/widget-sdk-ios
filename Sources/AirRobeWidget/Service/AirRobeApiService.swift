@@ -68,7 +68,14 @@ final class AirRobeApiService: AirRobeNetworkClient {
         category: String? = nil,
         department: String? = nil
     ) -> AnyPublisher<AirRobeTelemetryEventResponseModel, Error> {
-        var endpoint = AirRobeEndpoint.telemetryEvent(eventName: eventName, pageName: pageName)
+        var endpoint = AirRobeEndpoint.telemetryEvent(
+            eventName: eventName,
+            pageName: pageName,
+            brand: brand,
+            material: material,
+            category: category,
+            department: department
+        )
         endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
         #if DEBUG
         dump(endpoint.asURLRequest())

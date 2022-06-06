@@ -41,7 +41,14 @@ struct AirRobeUtils {
         department: String? = nil
     ) {
         let apiService = AirRobeApiService()
-        cancellable = apiService.telemetryEvent(eventName: eventName, pageName: pageName)
+        cancellable = apiService.telemetryEvent(
+            eventName: eventName,
+            pageName: pageName,
+            brand: brand,
+            material: material,
+            category: category,
+            department: department
+        )
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error):
