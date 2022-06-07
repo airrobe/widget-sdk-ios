@@ -38,7 +38,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
     var superView: UIView?
     var viewType: ViewType = .optIn
     private var alreadyAdded: Bool = false
-    private var potentialValueLabelMaxWidth: CGFloat = 0.0
+    private var descriptionValueLabelMaxWidth: CGFloat = 0.0
     private(set) lazy var viewModel = AirRobeOptInViewModel()
     private var subscribers: [AnyCancellable] = []
     private var expandType: ExpandState = .closed
@@ -58,16 +58,16 @@ final class AirRobeOptInView: UIView, NibLoadable {
     }
 
     override func layoutSubviews() {
-        let maxWidth = subTitleContainer.bounds.width - descriptionLabel.bounds.width - 10 - potentialValueLoading.bounds.width
-        if potentialValueLabelMaxWidth != maxWidth {
-            potentialValueLabelMaxWidth = maxWidth
-            guard let value = potentialValueLabel.text, value.isEmpty || value == AirRobeStrings.potentialValue else {
+        let maxWidth = subTitleContainer.bounds.width - potentialValueLabel.bounds.width - 10 - potentialValueLoading.bounds.width
+        if descriptionValueLabelMaxWidth != maxWidth {
+            descriptionValueLabelMaxWidth = maxWidth
+            guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeStrings.description else {
                 return
             }
-            if (AirRobeStrings.potentialValue).width(withFont: potentialValueLabel.font).width > potentialValueLabelMaxWidth {
-                potentialValueLabel.text = ""
+            if (AirRobeStrings.description).width(withFont: descriptionLabel.font).width > descriptionValueLabelMaxWidth {
+                descriptionLabel.text = AirRobeStrings.descriptionCutOffText
             } else {
-                potentialValueLabel.text = AirRobeStrings.potentialValue
+                descriptionLabel.text = AirRobeStrings.description
             }
         }
     }
@@ -79,6 +79,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
         // Initializing Static Texts & Links
         titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
         descriptionLabel.text = AirRobeStrings.description
+        potentialValueLabel.text = AirRobeStrings.potentialValue
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
@@ -271,11 +272,11 @@ private extension AirRobeOptInView {
                 }
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
-                    guard (AirRobeStrings.potentialValue + "$" + price).width(withFont: self.potentialValueLabel.font).width > self.potentialValueLabelMaxWidth else {
-                        self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
+                    self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
+                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + 15) < self.descriptionValueLabelMaxWidth {
+                        self.descriptionLabel.text = AirRobeStrings.descriptionCutOffText
                         return
                     }
-                    self.potentialValueLabel.text = "$" + price
                 }
             }).store(in: &subscribers)
     }

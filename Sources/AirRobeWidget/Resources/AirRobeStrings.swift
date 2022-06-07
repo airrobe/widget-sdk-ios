@@ -16,6 +16,7 @@ enum AirRobeStrings {
     // MARK: - Description Strings
 
     static let description = "Wear now, re-sell later."
+    static let descriptionCutOffText = "Re-sell later."
 
     // MARK: - Potential Value Strings
 
