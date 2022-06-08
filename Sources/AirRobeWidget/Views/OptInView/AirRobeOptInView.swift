@@ -59,7 +59,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
 
     override func layoutSubviews() {
         let maxWidth = subTitleContainer.bounds.width - potentialValueLabel.bounds.width - 10 - potentialValueLoading.bounds.width
-        if descriptionValueLabelMaxWidth != maxWidth {
+        if descriptionValueLabelMaxWidth != maxWidth && viewType == .optIn {
             descriptionValueLabelMaxWidth = maxWidth
             guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeStrings.description else {
                 return
