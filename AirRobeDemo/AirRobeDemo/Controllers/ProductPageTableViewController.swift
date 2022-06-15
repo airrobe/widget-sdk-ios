@@ -38,7 +38,13 @@ class ProductPageTableViewController: UIViewController {
     }
 
     @objc func onTapAction(_ button: UIButton) {
-        dataCount = 1
+        if dataCount == 1 {
+            dataCount = 10
+            button.setTitle("Make row count to 1", for: .normal)
+        } else {
+            dataCount = 1
+            button.setTitle("Make row count to 10", for: .normal)
+        }
         tableView.reloadData()
     }
 }
