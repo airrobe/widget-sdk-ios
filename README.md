@@ -129,7 +129,7 @@ airRobeConfirmation.buttonTextColor = .black     // the color of the widget acti
 AirRobeWidget.resetOptedIn()
 ```
 
-### Reset Order (When the order is completed and the confirmation widget is already rendered)
+### Reset Order (OrderOptedIn value reset)
 
 ```swift
 AirRobeWidget.resetOrder()
