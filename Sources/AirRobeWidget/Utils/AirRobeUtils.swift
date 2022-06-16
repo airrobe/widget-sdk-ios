@@ -65,11 +65,14 @@ struct AirRobeUtils {
     }
 
     static func dispatchEvent(eventName: String, pageName: String) {
+        guard let event = EventName.init(rawValue: eventName) else {
+            return
+        }
         let eventData = AirRobeEventData(
             app_id: configuration?.appId ?? "",
             anonymous_id: UIDevice.current.identifierForVendor?.uuidString ?? "",
             session_id: sessionId,
-            event_name: EventName.init(rawValue: eventName)!,
+            event_name: event,
             source: AirRobeWidgetInfo.platform,
             version: AirRobeWidgetInfo.version,
             split_test_variant: "default",
