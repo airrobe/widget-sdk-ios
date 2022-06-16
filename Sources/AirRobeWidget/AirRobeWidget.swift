@@ -56,8 +56,8 @@ public func checkConfirmationEligibility(orderId: String, email: String, fraudRi
     return UserDefaults.standard.OrderOptedIn && !fraudRisk
 }
 
-public func setOrderOptedIn(orderOptedIn: Bool) {
-    UserDefaults.standard.OrderOptedIn = orderOptedIn
+public func resetOrder() {
+    UserDefaults.standard.OrderOptedIn = false
 }
 
 public func resetOptedIn() {
