@@ -102,8 +102,9 @@ final class AirRobeOptInView: UIView, NibLoadable {
             tapHandler: onTapLearnMore)
         detailedDescriptionLabel.isHidden = true
         margin.isHidden = true
+        let extraInfo = AirRobeStrings.extraInfo.replacingOccurrences(of: AirRobeStrings.companyNameText, with: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.name ?? "")
         extraInfoLabel.setLinkText(
-            orgText: AirRobeStrings.extraInfo,
+            orgText: extraInfo,
             linkText: AirRobeStrings.extraLinkText,
             link: privacyLink,
             tapHandler: onTapExtraInfoLink)
