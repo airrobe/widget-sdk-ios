@@ -57,7 +57,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
         AirRobeWidget.initialize(
             config: AirRobeWidgetConfig(
                 appId: "515b6ee129da",
-                privacyPolicyURL: "https://www.example.com/privacy-policy",
                 mode: .sandbox
             )
         )

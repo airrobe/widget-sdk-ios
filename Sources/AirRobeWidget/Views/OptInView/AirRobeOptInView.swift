@@ -83,13 +83,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
-        guard let appConfig = configuration else {
-            #if DEBUG
-            print("Widget is not yet configured.")
-            #endif
-            return
-        }
-        guard let privacyLink = URL(string: appConfig.privacyPolicyURL) else {
+        guard let privacyLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.privacyUrl ?? "") else {
             #if DEBUG
             print("Privacy policy url is not valid.")
             #endif

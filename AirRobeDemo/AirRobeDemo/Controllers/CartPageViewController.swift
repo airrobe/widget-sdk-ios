@@ -18,8 +18,17 @@ final class CartPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+
         initCart()
         initMultiOptIn()
+
+        emailTextField.delegate = self
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
     private func initCart() {
@@ -81,5 +90,12 @@ final class CartPageViewController: UIViewController {
         vc.orderId = "random_order_id"
         vc.email = emailTextField.text ?? ""
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension CartPageViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
     }
 }

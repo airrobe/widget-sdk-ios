@@ -20,6 +20,8 @@ struct AirRobeShoppingDataModel: Codable {
 // MARK: - ShopModel
 struct AirRobeShopModel: Codable {
     let name: String
+    let privacyUrl: String
+    let popupFindOutMoreUrl: String
     let categoryMappings: [AirRobeCategoryMapping]
     let minimumPriceThresholds: [AirRobeMinPriceThresholds]
 }

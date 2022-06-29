@@ -18,25 +18,19 @@ public struct AirRobeWidgetConfig {
     /// AirRobe Widget App ID from https://connector.airrobe.com
     var appId: String = ""
 
-    /// Privacy Policy link for Iconic
-    var privacyPolicyURL: String = ""
-
     /// AirRobe Widget Select Mode whether production or sandbox
     /// default value = .production
     var mode: Mode = .production
 
-    /// set AirRobeWidget AppId and SecretKey
+    /// set AirRobeWidget AppId
     /// - Parameters:
     ///   - appId: App ID from https://connector.airrobe.com
-    ///   - privacyPolicyLink: Privacy Policy link for Iconic
     ///   - mode: Selector for production or sandbox mode
     public init(
         appId: String,
-        privacyPolicyURL: String,
         mode: Mode = .production
     ) {
         self.appId = appId
-        self.privacyPolicyURL = privacyPolicyURL
         self.mode = mode
     }
 

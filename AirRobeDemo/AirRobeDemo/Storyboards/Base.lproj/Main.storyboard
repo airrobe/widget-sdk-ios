@@ -280,6 +280,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="9F5-rY-EnD" id="OwQ-jg-gU0"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8k-zo-xef">
                                                 <rect key="frame" x="0.0" y="126.5" width="374" height="20"/>
@@ -306,6 +309,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="street-address"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="9F5-rY-EnD" id="sbJ-ib-BTM"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1m-Wp-89e">
                                                 <rect key="frame" x="0.0" y="213.5" width="374" height="20"/>
@@ -332,6 +338,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="9F5-rY-EnD" id="ueH-YL-vhb"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qPe-xB-nK3">
                                                 <rect key="frame" x="0.0" y="300.5" width="374" height="20"/>
@@ -358,6 +367,9 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="307.5" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="9F5-rY-EnD" id="60k-NH-LmF"/>
+                                                        </connections>
                                                     </textField>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0F-r6-QCD">
                                                         <rect key="frame" x="307.5" y="0.0" width="66.5" height="40"/>
