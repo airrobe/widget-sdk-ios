@@ -14,7 +14,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var mainContainerExpandButton: UIButton!
-    @IBOutlet weak var margin: UIView!
+    @IBOutlet weak var extraInfoContainer: UIView!
     @IBOutlet weak var extraInfoLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var addToAirRobeSwitch: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
@@ -83,25 +83,28 @@ final class AirRobeOptInView: UIView, NibLoadable {
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
-        guard let privacyLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.privacyUrl ?? "") else {
-            #if DEBUG
-            print("Privacy policy url is not valid.")
-            #endif
-            return
-        }
         detailedDescriptionLabel.setLinkText(
             orgText: AirRobeStrings.detailedDescription,
             linkText: AirRobeStrings.learnMoreLinkText,
-            link: privacyLink,
+            link: AirRobeStrings.learnMoreLinkForPurpose,
             tapHandler: onTapLearnMore)
         detailedDescriptionLabel.isHidden = true
-        margin.isHidden = true
-        let extraInfo = AirRobeStrings.extraInfo.replacingOccurrences(of: AirRobeStrings.companyNameText, with: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.name ?? "")
-        extraInfoLabel.setLinkText(
-            orgText: extraInfo,
-            linkText: AirRobeStrings.extraLinkText,
-            link: privacyLink,
-            tapHandler: onTapExtraInfoLink)
+
+        if let privacyLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.privacyUrl ?? "") {
+            extraInfoContainer.isHidden = false
+            let extraInfo = AirRobeStrings.extraInfo.replacingOccurrences(of: AirRobeStrings.companyNameText, with: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.name ?? "")
+            extraInfoLabel.setLinkText(
+                orgText: extraInfo,
+                linkText: AirRobeStrings.extraLinkText,
+                link: privacyLink,
+                tapHandler: onTapExtraInfoLink)
+        } else {
+            extraInfoContainer.isHidden = true
+            #if DEBUG
+            print("Privacy policy url is not valid.")
+            #endif
+        }
+
         addToAirRobeSwitch.isOn = UserDefaults.standard.OptedIn
         arrowImageView.image = arrowImageView.image?.withRenderingMode(.alwaysTemplate)
         setupBindings()
@@ -179,7 +182,6 @@ final class AirRobeOptInView: UIView, NibLoadable {
         })
         tableView?.beginUpdates()
         detailedDescriptionLabel.isHidden.toggle()
-        margin.isHidden.toggle()
         tableView?.endUpdates()
     }
 }
