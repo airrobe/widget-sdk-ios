@@ -13,7 +13,7 @@ import Combine
 final class AirRobeOptInView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
-    @IBOutlet weak var mainContainerExpandButton: UIButton!
+    @IBOutlet weak var topContentContainer: UIStackView!
     @IBOutlet weak var extraInfoContainer: UIView!
     @IBOutlet weak var extraInfoLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var addToAirRobeSwitch: UISwitch!
@@ -75,6 +75,13 @@ final class AirRobeOptInView: UIView, NibLoadable {
     private func commonInit() {
         // Widget Border Style
         mainContainerView.addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 0)
+
+        let tapOnArrowImage = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
+        arrowImageView.isUserInteractionEnabled = true
+        arrowImageView.addGestureRecognizer(tapOnArrowImage)
+
+        let tapOnTopContentContainer = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
+        topContentContainer.addGestureRecognizer(tapOnTopContentContainer)
 
         // Initializing Static Texts & Links
         titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
@@ -153,7 +160,11 @@ final class AirRobeOptInView: UIView, NibLoadable {
         }
     }
 
-    @IBAction func onTapExpand(_ sender: Any) {
+    @objc func onTapArrow(_ sender: UITapGestureRecognizer) {
+        onExpand()
+    }
+
+    func onExpand() {
         let degree: CGFloat = {
             switch expandType {
             case .opened:
