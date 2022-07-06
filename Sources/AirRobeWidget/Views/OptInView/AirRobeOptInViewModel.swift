@@ -34,7 +34,6 @@ final class AirRobeOptInViewModel {
 
     private lazy var apiService = AirRobeApiService()
     private var cancellable: AnyCancellable?
-    var alreadyInitialized: Bool = false
 
     @Published var isAllSet: AirRobeWidgetLoadState = .initializing
     @Published var potentialPrice: String = ""
@@ -47,29 +46,28 @@ final class AirRobeOptInViewModel {
             isAllSet = .noCategoryMappingInfo
             return
         }
-        if !alreadyInitialized {
-            AirRobeUtils.telemetryEvent(
-                eventName: TelemetryEventName.pageView.rawValue,
-                pageName: PageName.product.rawValue,
-                brand: brand,
-                material: material,
-                category: category,
-                department: department
-            )
-            AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.product.rawValue)
-            alreadyInitialized = true
-            if category.isEmpty {
-                isAllSet = .paramIssue
-                return
-            }
-            let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: [category])
-            isAllSet = (eligibility.eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
-            if isAllSet == .eligible {
-                AirRobeUtils.dispatchEvent(eventName: EventName.widgetRender.rawValue, pageName: PageName.product.rawValue)
-                callPriceEngine(category: eligibility.to)
-            } else {
-                AirRobeUtils.dispatchEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.product.rawValue)
-            }
+
+        AirRobeUtils.telemetryEvent(
+            eventName: TelemetryEventName.pageView.rawValue,
+            pageName: PageName.product.rawValue,
+            brand: brand,
+            material: material,
+            category: category,
+            department: department
+        )
+        AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.product.rawValue)
+
+        if category.isEmpty {
+            isAllSet = .paramIssue
+            return
+        }
+        let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: [category])
+        isAllSet = (eligibility.eligible && !shoppingDataModel.isBelowPriceThreshold(department: department, price: priceCents)) ? .eligible : .notEligible
+        if isAllSet == .eligible {
+            AirRobeUtils.dispatchEvent(eventName: EventName.widgetRender.rawValue, pageName: PageName.product.rawValue)
+            callPriceEngine(category: eligibility.to)
+        } else {
+            AirRobeUtils.dispatchEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.product.rawValue)
         }
     }
 
@@ -82,23 +80,22 @@ final class AirRobeOptInViewModel {
             UserDefaults.standard.OrderOptedIn = false
             return
         }
-        if !alreadyInitialized {
-            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.cart.rawValue)
-            AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
-            alreadyInitialized = true
-            if items.isEmpty {
-                isAllSet = .paramIssue
-                UserDefaults.standard.OrderOptedIn = false
-                return
-            }
-            let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: items)
-            isAllSet = eligibility.eligible ? .eligible : .notEligible
-            UserDefaults.standard.OrderOptedIn = eligibility.eligible && UserDefaults.standard.OptedIn ? true : false
-            if isAllSet == .eligible {
-                AirRobeUtils.dispatchEvent(eventName: EventName.widgetRender.rawValue, pageName: PageName.cart.rawValue)
-            } else {
-                AirRobeUtils.dispatchEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.cart.rawValue)
-            }
+
+        AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.cart.rawValue)
+        AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
+
+        if items.isEmpty {
+            isAllSet = .paramIssue
+            UserDefaults.standard.OrderOptedIn = false
+            return
+        }
+        let eligibility = AirRobeShoppingDataModelInstance.shared.categoryMapping.checkCategoryEligible(items: items)
+        isAllSet = eligibility.eligible ? .eligible : .notEligible
+        UserDefaults.standard.OrderOptedIn = eligibility.eligible && UserDefaults.standard.OptedIn ? true : false
+        if isAllSet == .eligible {
+            AirRobeUtils.dispatchEvent(eventName: EventName.widgetRender.rawValue, pageName: PageName.cart.rawValue)
+        } else {
+            AirRobeUtils.dispatchEvent(eventName: EventName.widgetNotRendered.rawValue, pageName: PageName.cart.rawValue)
         }
     }
 
