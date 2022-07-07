@@ -58,13 +58,13 @@ final class AirRobeOptInView: UIView, NibLoadable {
     }
 
     override func layoutSubviews() {
-        let maxWidth = subTitleContainer.bounds.width - potentialValueLabel.bounds.width - 10 - potentialValueLoading.bounds.width
-        if descriptionValueLabelMaxWidth != maxWidth && viewType == .optIn {
+        let maxWidth = subTitleContainer.bounds.width - potentialValueLabel.bounds.width - potentialValueLoading.bounds.width
+        if descriptionValueLabelMaxWidth != maxWidth {
             descriptionValueLabelMaxWidth = maxWidth
             guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeStrings.description else {
                 return
             }
-            if (AirRobeStrings.description).width(withFont: descriptionLabel.font).width > descriptionValueLabelMaxWidth {
+            if ((AirRobeStrings.description).width(withFont: descriptionLabel.font).width + 20) > descriptionValueLabelMaxWidth {
                 descriptionLabel.text = AirRobeStrings.descriptionCutOffText
             } else {
                 descriptionLabel.text = AirRobeStrings.description
@@ -283,7 +283,7 @@ private extension AirRobeOptInView {
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
                     self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
-                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + 15) < self.descriptionValueLabelMaxWidth {
+                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + 20) > self.descriptionValueLabelMaxWidth {
                         self.descriptionLabel.text = AirRobeStrings.descriptionCutOffText
                         return
                     }
