@@ -219,7 +219,7 @@ private extension AirRobeOptInView {
             .sink(receiveCompletion: {
                 print($0)
             }, receiveValue: { [weak self] (shoppingDataModel) in
-                guard let self = self, shoppingDataModel != nil else {
+                guard let self = self, shoppingDataModel != nil, !self.viewModel.alreadyInitialized else {
                     return
                 }
                 switch self.viewType {
