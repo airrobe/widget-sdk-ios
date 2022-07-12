@@ -18,17 +18,10 @@ final class CartPageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-
         initCart()
         initMultiOptIn()
 
         emailTextField.delegate = self
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 
     private func initCart() {
