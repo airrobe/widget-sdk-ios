@@ -20,12 +20,12 @@ enum AirRobeStrings {
     static let potentialValue = "Potential value: "
 
     // MARK: - Detailed Description Strings
-    static let detailedDescription = "We’ve partnered with AirRobe to enable you to join the circular fashion movement. Re-sell or rent your purchases on AirRobe’s marketplace – all with one simple click. Together, we can do our part to keep fashion out of landfill. Learn more."
+    static let detailedDescription = "We’ve partnered with AirRobe to enable you to join the circular fashion movement. Re-sell or rent your purchases on AirRobe’s marketplace – all with one simple click. Together, we can do our part to keep fashion out of landfill. \(learnMoreLinkText)"
     static let learnMoreLinkText = "Learn more."
     static let learnMoreLinkForPurpose = URL(string: "https://airrobe.com/")!
 
     // MARK: - Extra Info Strings
-    static let extraInfo = "By opting in you agree to COMPANY NAME’s Privacy Policy and consent for us to share your details with AirRobe."
+    static let extraInfo = "By opting in you agree to \(companyNameText)’s \(extraLinkText) and consent for us to share your details with AirRobe."
     static let extraLinkText = "Privacy Policy"
     static let companyNameText = "COMPANY NAME"
 
