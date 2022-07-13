@@ -25,6 +25,8 @@ final class AirRobeOptInView: UIView, NibLoadable {
     @IBOutlet weak var detailedDescriptionLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var subTitleContainer: UIStackView!
 
+    private let EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH = 20.0
+
     enum ExpandState {
         case opened
         case closed
@@ -58,18 +60,22 @@ final class AirRobeOptInView: UIView, NibLoadable {
     }
 
     override func layoutSubviews() {
-        let maxWidth = subTitleContainer.bounds.width - potentialValueLabel.bounds.width - potentialValueLoading.bounds.width
+        let maxWidth = usableHorizontalSpace()
         if descriptionValueLabelMaxWidth != maxWidth {
             descriptionValueLabelMaxWidth = maxWidth
             guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeStrings.description else {
                 return
             }
-            if ((AirRobeStrings.description).width(withFont: descriptionLabel.font).width + 20) > descriptionValueLabelMaxWidth {
+            if ((AirRobeStrings.description).width(withFont: descriptionLabel.font).width + EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > descriptionValueLabelMaxWidth {
                 descriptionLabel.text = AirRobeStrings.descriptionCutOffText
             } else {
                 descriptionLabel.text = AirRobeStrings.description
             }
         }
+    }
+
+    private func usableHorizontalSpace() -> CGFloat {
+        return subTitleContainer.bounds.width - potentialValueLabel.bounds.width - potentialValueLoading.bounds.width
     }
 
     private func commonInit() {
@@ -283,7 +289,7 @@ private extension AirRobeOptInView {
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
                     self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
-                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + 20) > self.descriptionValueLabelMaxWidth {
+                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + self.EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > self.descriptionValueLabelMaxWidth {
                         self.descriptionLabel.text = AirRobeStrings.descriptionCutOffText
                         return
                     }
