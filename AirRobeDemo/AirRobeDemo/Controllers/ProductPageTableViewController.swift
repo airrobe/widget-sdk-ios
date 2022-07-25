@@ -55,18 +55,18 @@ extension ProductPageTableViewController: UITableViewDelegate, UITableViewDataSo
             }
             buttonCell.button.addTarget(self, action: #selector(onTapAction), for: .touchUpInside)
             return buttonCell
-//        } else if indexPath.row == 1 {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
-//                return UITableViewCell()
-//            }
-//            cell.initialize(type: .optIn)
-//            return cell
-//        } else if indexPath.row == 2 {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
-//                return UITableViewCell()
-//            }
-//            cell.initialize(type: .multiOptIn)
-//            return cell
+        } else if indexPath.row == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.initialize(type: .optIn)
+            return cell
+        } else if indexPath.row == 2 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.initialize(type: .multiOptIn)
+            return cell
         } else if indexPath.row == 4 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductPageTableViewCell.identifier, for: indexPath) as? ProductPageTableViewCell else {
                 return UITableViewCell()
