@@ -21,16 +21,28 @@
                             <rect key="frame" x="0.0" y="0.0" width="374" height="143"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="s4B-2k-ZST">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="143"/>
+                                    <rect key="frame" x="23.5" y="0.0" width="327" height="143"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1on-WJ-75x">
-                                            <rect key="frame" x="0.0" y="46.5" width="287" height="50"/>
-                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                            <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbM-5Z-nEb">
+                                            <rect key="frame" x="0.0" y="7.5" width="240" height="128"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1on-WJ-75x">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="133"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                    <color key="textColor" red="0.13725490200000001" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="1on-WJ-75x" firstAttribute="top" secondItem="CbM-5Z-nEb" secondAttribute="top" id="K4x-oM-n7x"/>
+                                                <constraint firstItem="1on-WJ-75x" firstAttribute="leading" secondItem="CbM-5Z-nEb" secondAttribute="leading" id="NsZ-Ig-c2Z"/>
+                                                <constraint firstAttribute="trailing" secondItem="1on-WJ-75x" secondAttribute="trailing" id="VdT-ic-jlI"/>
+                                                <constraint firstAttribute="bottom" secondItem="1on-WJ-75x" secondAttribute="bottom" constant="-5" id="Xyx-Sb-O8Y"/>
+                                            </constraints>
+                                        </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airRobeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="mOd-bW-Lwo">
-                                            <rect key="frame" x="292" y="60" width="82" height="23"/>
+                                            <rect key="frame" x="245" y="60" width="82" height="23"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="23" id="Dig-W4-gyr"/>
                                                 <constraint firstAttribute="width" constant="82" id="PQO-k2-j2m"/>
