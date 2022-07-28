@@ -30,10 +30,32 @@ final class SubCategoryViewController: UIViewController {
     }()
     var selectedCategory: CategoryModel?
 
+    var cartButton: UIBarButtonItem?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: false)
         addViews()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        addCartButton()
+    }
+
+    private func addCartButton() {
+        let customButton = UIButton(frame: CGRect.init(x: 0, y: 0, width: 30, height: 30))
+        customButton.setImage(UIImage(named:"cart"), for: .normal)
+        customButton.addTarget(self, action: #selector(onTapCart), for: .touchUpInside)
+        cartButton = UIBarButtonItem(customView: customButton)
+        cartButton?.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        cartButton?.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        cartButton?.addBadge(number: UserDefaults.standard.cartItems.count)
+        navigationItem.rightBarButtonItem = cartButton
+    }
+
+    @objc func onTapCart(_ sender: Any) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CartPageViewController") as! CartPageViewController
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     func addViews() {
