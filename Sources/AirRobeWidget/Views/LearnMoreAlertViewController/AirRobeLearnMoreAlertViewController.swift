@@ -53,10 +53,16 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
         toggleOnLabel.text = AirRobeStrings.learnMoreToggleOn
         toggleOnLabel.textColor = AirRobeTextColor
         findMoreLabel.hyperlinkAttributes = [.foregroundColor: AirRobeLinkTextColor]
+        guard let learnMoreFindMoreLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.popupFindOutMoreUrl ?? "") else {
+            #if DEBUG
+            print("Popup find out more url is not valid.")
+            #endif
+            return
+        }
         findMoreLabel.setLinkText(
             orgText: AirRobeStrings.learnMoreFindMoreText,
             linkText: AirRobeStrings.learnMoreFindMoreText,
-            link: AirRobeStrings.learnMoreFindMoreLink,
+            link: learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
         optSwitch.isOn = UserDefaults.standard.OptedIn
         optSwitch.onTintColor = AirRobeSwitchColor

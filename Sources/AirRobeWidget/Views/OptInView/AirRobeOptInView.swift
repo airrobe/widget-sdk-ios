@@ -13,8 +13,8 @@ import Combine
 final class AirRobeOptInView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
-    @IBOutlet weak var mainContainerExpandButton: UIButton!
-    @IBOutlet weak var margin: UIView!
+    @IBOutlet weak var topContentContainer: UIStackView!
+    @IBOutlet weak var extraInfoContainer: UIView!
     @IBOutlet weak var extraInfoLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var addToAirRobeSwitch: UISwitch!
     @IBOutlet weak var titleLabel: UILabel!
@@ -24,6 +24,8 @@ final class AirRobeOptInView: UIView, NibLoadable {
     @IBOutlet weak var arrowImageView: UIImageView!
     @IBOutlet weak var detailedDescriptionLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var subTitleContainer: UIStackView!
+
+    private let EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH = 20.0
 
     enum ExpandState {
         case opened
@@ -58,13 +60,13 @@ final class AirRobeOptInView: UIView, NibLoadable {
     }
 
     override func layoutSubviews() {
-        let maxWidth = subTitleContainer.bounds.width - potentialValueLabel.bounds.width - 10 - potentialValueLoading.bounds.width
-        if descriptionValueLabelMaxWidth != maxWidth && viewType == .optIn {
+        let maxWidth = usableHorizontalSpace()
+        if descriptionValueLabelMaxWidth != maxWidth {
             descriptionValueLabelMaxWidth = maxWidth
             guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeStrings.description else {
                 return
             }
-            if (AirRobeStrings.description).width(withFont: descriptionLabel.font).width > descriptionValueLabelMaxWidth {
+            if ((AirRobeStrings.description).width(withFont: descriptionLabel.font).width + EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > descriptionValueLabelMaxWidth {
                 descriptionLabel.text = AirRobeStrings.descriptionCutOffText
             } else {
                 descriptionLabel.text = AirRobeStrings.description
@@ -72,9 +74,20 @@ final class AirRobeOptInView: UIView, NibLoadable {
         }
     }
 
+    private func usableHorizontalSpace() -> CGFloat {
+        return subTitleContainer.bounds.width - potentialValueLabel.bounds.width - potentialValueLoading.bounds.width
+    }
+
     private func commonInit() {
         // Widget Border Style
         mainContainerView.addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 0)
+
+        let tapOnArrowImage = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
+        arrowImageView.isUserInteractionEnabled = true
+        arrowImageView.addGestureRecognizer(tapOnArrowImage)
+
+        let tapOnTopContentContainer = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
+        topContentContainer.addGestureRecognizer(tapOnTopContentContainer)
 
         // Initializing Static Texts & Links
         titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
@@ -83,30 +96,28 @@ final class AirRobeOptInView: UIView, NibLoadable {
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
-        guard let appConfig = configuration else {
-            #if DEBUG
-            print("Widget is not yet configured.")
-            #endif
-            return
-        }
-        guard let privacyLink = URL(string: appConfig.privacyPolicyURL) else {
-            #if DEBUG
-            print("Privacy policy url is not valid.")
-            #endif
-            return
-        }
         detailedDescriptionLabel.setLinkText(
             orgText: AirRobeStrings.detailedDescription,
             linkText: AirRobeStrings.learnMoreLinkText,
-            link: privacyLink,
+            link: AirRobeStrings.learnMoreLinkForPurpose,
             tapHandler: onTapLearnMore)
         detailedDescriptionLabel.isHidden = true
-        margin.isHidden = true
-        extraInfoLabel.setLinkText(
-            orgText: AirRobeStrings.extraInfo,
-            linkText: AirRobeStrings.extraLinkText,
-            link: privacyLink,
-            tapHandler: onTapExtraInfoLink)
+
+        if let privacyLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.privacyUrl ?? "") {
+            extraInfoContainer.isHidden = false
+            let extraInfo = AirRobeStrings.extraInfo.replacingOccurrences(of: AirRobeStrings.companyNameText, with: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.name ?? "")
+            extraInfoLabel.setLinkText(
+                orgText: extraInfo,
+                linkText: AirRobeStrings.extraLinkText,
+                link: privacyLink,
+                tapHandler: onTapExtraInfoLink)
+        } else {
+            extraInfoContainer.isHidden = true
+            #if DEBUG
+            print("Privacy policy url is not valid.")
+            #endif
+        }
+
         addToAirRobeSwitch.isOn = UserDefaults.standard.OptedIn
         arrowImageView.image = arrowImageView.image?.withRenderingMode(.alwaysTemplate)
         setupBindings()
@@ -155,7 +166,11 @@ final class AirRobeOptInView: UIView, NibLoadable {
         }
     }
 
-    @IBAction func onTapExpand(_ sender: Any) {
+    @objc func onTapArrow(_ sender: UITapGestureRecognizer) {
+        onExpand()
+    }
+
+    func onExpand() {
         let degree: CGFloat = {
             switch expandType {
             case .opened:
@@ -182,10 +197,11 @@ final class AirRobeOptInView: UIView, NibLoadable {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
             self?.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
         })
-        tableView?.beginUpdates()
-        detailedDescriptionLabel.isHidden.toggle()
-        margin.isHidden.toggle()
-        tableView?.endUpdates()
+        AirRobeOptInView.performWithoutAnimation {
+            tableView?.beginUpdates()
+            detailedDescriptionLabel.isHidden.toggle()
+            tableView?.endUpdates()
+        }
     }
 }
 
@@ -273,7 +289,7 @@ private extension AirRobeOptInView {
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
                     self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
-                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + 15) < self.descriptionValueLabelMaxWidth {
+                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + self.EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > self.descriptionValueLabelMaxWidth {
                         self.descriptionLabel.text = AirRobeStrings.descriptionCutOffText
                         return
                     }
