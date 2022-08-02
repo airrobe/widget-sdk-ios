@@ -20,6 +20,8 @@ final class CartPageViewController: UIViewController {
         super.viewDidLoad()
         initCart()
         initMultiOptIn()
+
+        emailTextField.delegate = self
     }
 
     private func initCart() {
@@ -79,7 +81,18 @@ final class CartPageViewController: UIViewController {
     @IBAction func onTapPlaceOrder(_ sender: Any) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "ConfirmationViewController") as! ConfirmationViewController
         vc.orderId = "random_order_id"
-        vc.email = emailTextField.text ?? ""
+        guard let email = emailTextField.text, Utils.isValidEmail(email: email) else {
+            Utils.showAlert(title: "AirRobeDemo", message: "Email is invalid.", vc: self)
+            return
+        }
+        vc.email = email
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension CartPageViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
     }
 }

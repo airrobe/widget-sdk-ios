@@ -13,10 +13,10 @@ final class AirRobeApiService: AirRobeNetworkClient {
     let session: URLSession
     let additionalRequestBodyParams: [String: String]
 
-    /// AirRobWidget PriceEngine Api Service Initialization
+    /// AirRobWidget Api Service Initialization
     /// - Parameters:
     ///   - configuration: URLSessionConfiguration here - most likely to add the app & system information to the URLRequest header
-    ///   - additionalRequestBodyParams: In case we need to have something like Device ID, App version, Country or etc.
+    ///   - additionalRequestBodyParams: In case we need to have something like Device ID, App version or etc.
     init(configuration: URLSessionConfiguration? = nil,
          additionalRequestBodyParams: [String: String] = [:]) {
 
