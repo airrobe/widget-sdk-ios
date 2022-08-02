@@ -40,7 +40,6 @@ You are going to need `AppId` from the Provider which will be used to get the Ca
 AirRobeWidget.initialize(
     config: AirRobeWidgetConfig(
         appId: "APP_ID",           // required
-        privacyPolicyURL: String,  // required - privacy policy url of The Iconic
         mode: enum                 // optional - (.production or .sandbox), default value is .production
     )
 )
