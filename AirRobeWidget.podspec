@@ -10,7 +10,6 @@ Pod::Spec.new do |spec|
   spec.author        = "AirRobeWidget"
   spec.platform      = :ios, "13.0"
   spec.ios.deployment_target  = "13.0"
-  spec.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER': 'com.afterpay.Afterpay' }
   spec.source        = { :git => "https://github.com/airrobe/widget-sdk-ios.git", :tag => "#{spec.version}" }
   spec.resources     = "Sources/AirRobeWidget/**/*.{pdf,xcassets,json}"
   spec.source_files  = "Sources/AirRobeWidget/**/*.{plist,swift}"
