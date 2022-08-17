@@ -87,7 +87,7 @@ private extension AirRobeOrderConfirmationViewModel {
 
     func createOptedOutOrder(appId: String, orderId: String, orderSubTotalCents: Int, currency: String) {
         createOptedOutOrderCancellable = apiService.createOptedOutOrder(operation: AirRobeGraphQLOperation.fetchPost(with: appId, with: orderId, with: orderSubTotalCents, with: currency))
-            .sink(receiveCompletion: { [weak self] (completion) in
+            .sink(receiveCompletion: { (completion) in
                 switch completion {
                 case .failure(let error):
                     #if DEBUG
@@ -96,7 +96,7 @@ private extension AirRobeOrderConfirmationViewModel {
                 case .finished:
                     print(completion)
                 }
-            }, receiveValue: { [weak self] result in
+            }, receiveValue: { result in
                 #if DEBUG
                 print("Create Opted Out Order Data", result.data.createOptedOutOrder)
                 #endif

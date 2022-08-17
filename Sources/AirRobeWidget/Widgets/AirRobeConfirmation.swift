@@ -58,8 +58,8 @@ open class AirRobeConfirmation: UIView {
     public func initialize(
         orderId: String,
         email: String,
-        orderSubTotalCents: Int? = nil
-        currency: String = "AUD"
+        orderSubTotalCents: Int? = nil,
+        currency: String = "AUD",
         fraudRisk: Bool = false
     ) {
         translatesAutoresizingMaskIntoConstraints = false

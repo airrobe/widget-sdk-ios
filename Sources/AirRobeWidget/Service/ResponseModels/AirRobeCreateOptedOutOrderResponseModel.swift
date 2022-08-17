@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - GetShoppingDataModel
+// MARK: - CreateOptedOutOrderResponseModel
 struct AirRobeCreateOptedOutOrderResponseModel: Codable {
     let data: AirRobeCreateOptedOutOrderDataModel
 }
