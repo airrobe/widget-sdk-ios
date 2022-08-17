@@ -22,7 +22,7 @@ struct CreateOptedOutOrderInput: Encodable {
 struct CreateOptedOutOrderInputModel: Encodable {
     let id: String
     let shopAppId: String
-    let subTotal: SubTotalInput
+    let subtotal: SubTotalInput
 }
 
 struct SubTotalInput: Encodable {
@@ -71,7 +71,7 @@ extension AirRobeGraphQLOperation where Input == CreateOptedOutOrderInput {
                 input: CreateOptedOutOrderInputModel(
                     id: orderId,
                     shopAppId: appId,
-                    subTotal: SubTotalInput(
+                    subtotal: SubTotalInput(
                         cents: cents,
                         currency: currency
                     )
