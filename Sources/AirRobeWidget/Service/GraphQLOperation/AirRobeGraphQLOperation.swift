@@ -15,6 +15,17 @@ struct EmailInput: Encodable {
     let email: String
 }
 
+struct CreateOptedOutOrderInput: Encodable {
+    let id: String
+    let shopAppId: String
+    let subTotal: SubTotalInput
+}
+
+struct SubTotalInput: Encodable {
+    let cents: Int
+    let currency: String
+}
+
 struct AirRobeGraphQLOperation<Input: Encodable>: Encodable {
     var input: Input
     var operationString: String
@@ -45,6 +56,15 @@ extension AirRobeGraphQLOperation where Input == EmailInput {
         AirRobeGraphQLOperation(
             input: EmailInput(email: email),
             operationString: AirRobeStrings.CheckEmailQuery
+        )
+    }
+}
+
+extension AirRobeGraphQLOperation where Input == CreateOptedOutOrderInput {
+    static func fetchPost(with appId: String, with orderId: String, with cents: Int, with currency: String) -> Self {
+        AirRobeGraphQLOperation(
+            input: CreateOptedOutOrderInput(id: orderId, shopAppId: appId, subTotal: SubTotalInput(cents: cents, currency: currency)),
+            operationString: AirRobeStrings.CreateOptedOutOrderQuery
         )
     }
 }

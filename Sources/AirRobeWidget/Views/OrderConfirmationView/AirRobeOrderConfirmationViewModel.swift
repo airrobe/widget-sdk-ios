@@ -14,11 +14,15 @@ final class AirRobeOrderConfirmationViewModel {
     var orderId: String = ""
     /// Describes the email of the logged in account.
     var email: String = ""
+    /// Describes the sub total amount of the order in cents
+    var orderSubTotalCents: Int?
+    /// Describes the currency of the order
+    var currency: String = "AUD"
     /// Describes the fraud status of the widget.
     var fraudRisk: Bool = false
 
     private lazy var apiService = AirRobeApiService()
-    private var emailCheckCancellable, identifyOrderCancellable: AnyCancellable?
+    private var emailCheckCancellable, identifyOrderCancellable, createOptedOutOrderCancellable: AnyCancellable?
     var alreadyInitialized: Bool = false
 
     @Published var isAllSet: AirRobeWidgetLoadState = .initializing
@@ -51,6 +55,11 @@ final class AirRobeOrderConfirmationViewModel {
                     }, receiveValue: { _ in
                         
                     })
+            } else {
+                guard let orderSubTotalCents = orderSubTotalCents, let appId = configuration?.appId else {
+                    return
+                }
+                createOptedOutOrder(appId: appId, orderId: orderId, orderSubTotalCents: orderSubTotalCents, currency: currency)
             }
         }
     }
@@ -62,23 +71,35 @@ private extension AirRobeOrderConfirmationViewModel {
     func emailCheck(email: String) {
         emailCheckCancellable = apiService.emailCheck(operation: AirRobeGraphQLOperation.fetchPost(with: email))
             .sink(receiveCompletion: { [weak self] (completion) in
-                guard let self = self else {
-                    return
-                }
                 switch completion {
                 case .failure(let error):
                     #if DEBUG
                     print("Email Checking Issue: ", error)
                     #endif
-                    self.activateText = AirRobeStrings.orderConfirmationActivateText
+                    self?.activateText = AirRobeStrings.orderConfirmationActivateText
                 case .finished:
                     print(completion)
                 }
             }, receiveValue: { [weak self] in
-                guard let self = self else {
-                    return
+                self?.activateText = $0.data.isCustomer ? AirRobeStrings.orderConfirmationVisitText : AirRobeStrings.orderConfirmationActivateText
+            })
+    }
+
+    func createOptedOutOrder(appId: String, orderId: String, orderSubTotalCents: Int, currency: String) {
+        createOptedOutOrderCancellable = apiService.createOptedOutOrder(operation: AirRobeGraphQLOperation.fetchPost(with: appId, with: orderId, with: orderSubTotalCents, with: currency))
+            .sink(receiveCompletion: { [weak self] (completion) in
+                switch completion {
+                case .failure(let error):
+                    #if DEBUG
+                    print("Create Opted Out Order Issue: ", error)
+                    #endif
+                case .finished:
+                    print(completion)
                 }
-                self.activateText = $0.data.isCustomer ? AirRobeStrings.orderConfirmationVisitText : AirRobeStrings.orderConfirmationActivateText
+            }, receiveValue: { [weak self] result in
+                #if DEBUG
+                print("Create Opted Out Order Data", result.data.createOptedOutOrder)
+                #endif
             })
     }
 
