@@ -15,7 +15,7 @@ final class AirRobeOrderConfirmationViewModel {
     /// Describes the email of the logged in account.
     var email: String = ""
     /// Describes the sub total amount of the order in cents
-    var orderSubTotalCents: Int?
+    var orderSubtotalCents: Int?
     /// Describes the currency of the order
     var currency: String = "AUD"
     /// Describes the fraud status of the widget.
@@ -56,10 +56,10 @@ final class AirRobeOrderConfirmationViewModel {
                         
                     })
             } else {
-                guard let orderSubTotalCents = orderSubTotalCents, let appId = configuration?.appId else {
+                guard let orderSubtotalCents = orderSubtotalCents, let appId = configuration?.appId else {
                     return
                 }
-                createOptedOutOrder(appId: appId, orderId: orderId, orderSubTotalCents: orderSubTotalCents, currency: currency)
+                createOptedOutOrder(appId: appId, orderId: orderId, orderSubtotalCents: orderSubtotalCents, currency: currency)
             }
         }
     }
@@ -85,8 +85,8 @@ private extension AirRobeOrderConfirmationViewModel {
             })
     }
 
-    func createOptedOutOrder(appId: String, orderId: String, orderSubTotalCents: Int, currency: String) {
-        createOptedOutOrderCancellable = apiService.createOptedOutOrder(operation: AirRobeGraphQLOperation.fetchPost(with: appId, with: orderId, with: orderSubTotalCents, with: currency))
+    func createOptedOutOrder(appId: String, orderId: String, orderSubtotalCents: Int, currency: String) {
+        createOptedOutOrderCancellable = apiService.createOptedOutOrder(operation: AirRobeGraphQLOperation.fetchPost(with: appId, with: orderId, with: orderSubtotalCents, with: currency))
             .sink(receiveCompletion: { (completion) in
                 switch completion {
                 case .failure(let error):

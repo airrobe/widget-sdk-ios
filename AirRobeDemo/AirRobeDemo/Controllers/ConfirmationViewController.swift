@@ -20,7 +20,7 @@ final class ConfirmationViewController: UIViewController {
         airRobeConfirmation.initialize(
             orderId: orderId,
             email: email,
-            orderSubTotalCents: 10000
+            orderSubtotalCents: 10000
         )
         // This part is how you can configure the colors of the widget
 //        airRobeConfirmation.borderColor = .red
