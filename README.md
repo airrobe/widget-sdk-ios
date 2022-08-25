@@ -109,9 +109,11 @@ airRobeMultiOptIn.switchColor = .black       // the color of the widget switch O
 var airRobeConfirmation = AirRobeConfirmation()
 ...
 airRobeConfirmation.initialize(
-    orderId: String, // required - e.g. "123456" - the order id you got from the checkout.
-    email: String,   // required
-    fraudRisk: Bool  // optional - fraud status for the confirmation widget, default value is false.
+    orderId: String,           // required - e.g. "123456" - the order id you got from the checkout.
+    email: String,             // required
+    orderSubtotalCents: Int,   // required - Sum of line item prices including tax, less discounts, excluding any shipping costs.
+    currency: String,          // optional - the ISO 4217 currency code for the order subtotal, defaulting to "AUD" if omitted.
+    fraudRisk: Bool            // optional - fraud status for the confirmation widget, default value is `false`.
 )
 
 // Color configuration
