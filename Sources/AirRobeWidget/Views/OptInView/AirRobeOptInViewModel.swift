@@ -137,27 +137,21 @@ private extension AirRobeOptInViewModel {
         }()
         cancellable = apiService.priceEngine(price: priceCents, rrp: rrp, category: category, brand: brand, material: material)
             .sink(receiveCompletion: { [weak self] completion in
-                guard let self = self else {
-                    return
-                }
                 switch completion {
                 case .failure(let error):
                     #if DEBUG
                     print("PriceEngine Api Issue: ", error)
                     #endif
-                    self.potentialPrice = self.fallbackResalePrice()
+                    self?.potentialPrice = self?.fallbackResalePrice() ?? ""
                 case .finished:
                     print(completion)
                 }
             }, receiveValue: { [weak self] in
-                guard let self = self else {
-                    return
-                }
                 guard let result = $0.result, let resaleValue = result.resaleValue else {
-                    self.potentialPrice = self.fallbackResalePrice()
+                    self?.potentialPrice = self?.fallbackResalePrice() ?? ""
                     return
                 }
-                self.potentialPrice = String(resaleValue)
+                self?.potentialPrice = String(resaleValue)
             })
     }
 

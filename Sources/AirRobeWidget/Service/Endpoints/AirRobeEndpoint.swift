@@ -24,6 +24,7 @@ struct AirRobeEndpoint {
     var requestBody: [String: Any]
     var getShoppingDataRequestBody: AirRobeGraphQLOperation<AppIdInput>?
     var emailCheckRequestBody: AirRobeGraphQLOperation<EmailInput>?
+    var createOptedOutOrderRequestBody: AirRobeGraphQLOperation<CreateOptedOutOrderInput>?
     var customHeaders: [String: String]
     var scheme: String
     var host: String
@@ -36,6 +37,7 @@ struct AirRobeEndpoint {
         requestBody: [String: Any] = [:],
         getShoppingDataRequestBody: AirRobeGraphQLOperation<AppIdInput>? = nil,
         emailCheckRequestBody: AirRobeGraphQLOperation<EmailInput>? = nil,
+        createOptedOutOrderRequestBody: AirRobeGraphQLOperation<CreateOptedOutOrderInput>? = nil,
         customHeaders: [String: String] = [:],
         scheme: String = "https",
         host: String = priceEngineHost,
@@ -47,6 +49,7 @@ struct AirRobeEndpoint {
         self.requestBody = requestBody
         self.getShoppingDataRequestBody = getShoppingDataRequestBody
         self.emailCheckRequestBody = emailCheckRequestBody
+        self.createOptedOutOrderRequestBody = createOptedOutOrderRequestBody
         self.customHeaders = customHeaders
         self.scheme = scheme
         self.host = host
@@ -90,6 +93,13 @@ extension AirRobeEndpoint {
             #endif
         }
         if let graphQLRequestBody = emailCheckRequestBody, let bodyData = try? JSONEncoder().encode(graphQLRequestBody) {
+            request.httpBody = bodyData
+            #if DEBUG
+            let str = String(decoding: bodyData, as: UTF8.self)
+            print(str)
+            #endif
+        }
+        if let graphQLRequestBody = createOptedOutOrderRequestBody, let bodyData = try? JSONEncoder().encode(graphQLRequestBody) {
             request.httpBody = bodyData
             #if DEBUG
             let str = String(decoding: bodyData, as: UTF8.self)

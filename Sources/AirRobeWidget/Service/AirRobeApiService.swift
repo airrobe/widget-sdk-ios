@@ -60,6 +60,15 @@ final class AirRobeApiService: AirRobeNetworkClient {
         return execute(endpoint.asURLRequest(), decodingType: AirRobeEmailCheckResponseModel.self)
     }
 
+    func createOptedOutOrder(operation: AirRobeGraphQLOperation<CreateOptedOutOrderInput>) -> AnyPublisher<AirRobeCreateOptedOutOrderResponseModel, Error> {
+        var endpoint = AirRobeEndpoint.createOptedOutOrder(operation: operation)
+        endpoint.requestBody = endpoint.requestBody.merging(additionalRequestBodyParams) { (current, _) in current }
+        #if DEBUG
+        dump(endpoint.asURLRequest())
+        #endif
+        return execute(endpoint.asURLRequest(), decodingType: AirRobeCreateOptedOutOrderResponseModel.self)
+    }
+
     func telemetryEvent(
         eventName: String,
         pageName: String,

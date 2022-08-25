@@ -57,6 +57,16 @@ enum AirRobeStrings {
                 }
             """
 
+    // MARK: - Create Opted Out Order Query Strings
+    static let CreateOptedOutOrderQuery = """
+                mutation CreateOptedOutOrder ($input: CreateOptedOutOrderMutationInput!) {
+                  createOptedOutOrder (input: $input) {
+                    created
+                    error
+                  }
+                }
+            """
+
     // MARK: - Learn More Alert View Controller Strings
     static let learnMoreTitle = "HOW IT WORKS"
     static let learnMoreStep1Title = "1. ADD TO AIRROBE"

@@ -18,6 +18,10 @@ extension AirRobeEndpoint {
         return AirRobeEndpoint(method: .POST, path: "/graphql", emailCheckRequestBody: operation, host: emailCheckHost)
     }
 
+    static func createOptedOutOrder(operation: AirRobeGraphQLOperation<CreateOptedOutOrderInput>) -> AirRobeEndpoint {
+        return AirRobeEndpoint(method: .POST, path: "/graphql", createOptedOutOrderRequestBody: operation, host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue)
+    }
+
     static func priceEngine(price: Double, rrp: Double?, category: String, brand: String?, material: String?) -> AirRobeEndpoint {
         let rrpVal: String? = {
             if let rrp = rrp {
