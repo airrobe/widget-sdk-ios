@@ -32,6 +32,8 @@ final class AirRobeOrderConfirmationViewModel {
         if let testVariant = AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.getTargetSplitTestVariant(),
            !testVariant.enabled {
             isAllSet = .widgetDisabled
+            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
+            AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
             return
         }
 

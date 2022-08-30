@@ -44,7 +44,7 @@ struct AirRobeMinPriceThresholds: Codable {
 // MARK: - WidgetVariant
 struct AirRobeWidgetVariant: Codable {
     let enabled: Bool
-    let targetSplitTestVariant: String
+    let targetSplitTestVariant: String?
 }
 
 // MARK: - HashMap for the Category Mapping
