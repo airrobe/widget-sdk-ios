@@ -29,6 +29,12 @@ final class AirRobeOrderConfirmationViewModel {
     @Published var activateText: String = ""
 
     func initializeConfirmationWidget() {
+        if let testVariant = AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.getTargetSplitTestVariant(),
+           testVariant.targetSplitTestVariant == AirRobeStrings.airrobeDisabled && !testVariant.enabled {
+            isAllSet = .widgetDisabled
+            return
+        }
+
         if !alreadyInitialized {
             AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)
             AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.thankYou.rawValue)

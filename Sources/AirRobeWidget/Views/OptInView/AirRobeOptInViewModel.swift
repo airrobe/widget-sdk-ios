@@ -48,6 +48,12 @@ final class AirRobeOptInViewModel {
             return
         }
 
+        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(),
+           testVariant.targetSplitTestVariant == AirRobeStrings.airrobeDisabled && !testVariant.enabled {
+            isAllSet = .widgetDisabled
+            return
+        }
+
         if !alreadyInitialized {
             AirRobeUtils.telemetryEvent(
                 eventName: TelemetryEventName.pageView.rawValue,
@@ -84,11 +90,17 @@ final class AirRobeOptInViewModel {
 
     func initializeMultiOptInWidget() {
         guard
-            AirRobeShoppingDataModelInstance.shared.shoppingDataModel != nil,
+            let shoppingDataModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel,
             !AirRobeShoppingDataModelInstance.shared.categoryMapping.categoryMappingsHashMap.isEmpty
         else {
             isAllSet = .noCategoryMappingInfo
             UserDefaults.standard.OrderOptedIn = false
+            return
+        }
+
+        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(),
+           testVariant.targetSplitTestVariant == AirRobeStrings.airrobeDisabled && !testVariant.enabled {
+            isAllSet = .widgetDisabled
             return
         }
 
