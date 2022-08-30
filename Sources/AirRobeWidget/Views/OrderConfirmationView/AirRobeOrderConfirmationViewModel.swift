@@ -30,7 +30,7 @@ final class AirRobeOrderConfirmationViewModel {
 
     func initializeConfirmationWidget() {
         if let testVariant = AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.getTargetSplitTestVariant(),
-           testVariant.targetSplitTestVariant == AirRobeStrings.airrobeDisabled && !testVariant.enabled {
+           !testVariant.enabled {
             isAllSet = .widgetDisabled
             return
         }

@@ -95,8 +95,4 @@ enum AirRobeStrings {
 
     // MARK: - Delimiter
     static let delimiter: String.Element = "/"
-
-    // MARK: - Target Split Test Variants
-    static let airrobeEnabled = "airrobe-enabled"
-    static let airrobeDisabled = "airrobe-disabled"
 }

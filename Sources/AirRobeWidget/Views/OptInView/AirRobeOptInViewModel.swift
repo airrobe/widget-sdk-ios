@@ -48,8 +48,7 @@ final class AirRobeOptInViewModel {
             return
         }
 
-        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(),
-           testVariant.targetSplitTestVariant == AirRobeStrings.airrobeDisabled && !testVariant.enabled {
+        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(), !testVariant.enabled {
             isAllSet = .widgetDisabled
             return
         }
@@ -98,8 +97,7 @@ final class AirRobeOptInViewModel {
             return
         }
 
-        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(),
-           testVariant.targetSplitTestVariant == AirRobeStrings.airrobeDisabled && !testVariant.enabled {
+        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(), !testVariant.enabled {
             isAllSet = .widgetDisabled
             return
         }
