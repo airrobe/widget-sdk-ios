@@ -11,7 +11,7 @@ extension UserDefaults {
     enum Key {
         static let OptedInKey = "OptedInKey"
         static let OrderOptedInKey = "OrderOptedInKey"
-        static let TargetSplitTestVariantKey = "TargetSplitTestVariant"
+        static let TargetSplitTestVariantKey = "TargetSplitTestVariantKey"
     }
 
     @objc var OptedIn: Bool {
