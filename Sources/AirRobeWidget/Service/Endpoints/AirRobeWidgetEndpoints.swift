@@ -47,7 +47,8 @@ extension AirRobeEndpoint {
         brand: String? = nil,
         material: String? = nil,
         category: String? = nil,
-        department: String? = nil
+        department: String? = nil,
+        itemCount: Int? = nil
     ) -> AirRobeEndpoint {
         let requestBody: [String: Any] = [
             "app_id": configuration?.appId ?? "",
@@ -62,7 +63,8 @@ extension AirRobeEndpoint {
                 "brand": brand,
                 "material": material,
                 "category": category,
-                "department": department
+                "department": department,
+                "itemCount": itemCount
             ]
         ]
         return AirRobeEndpoint(

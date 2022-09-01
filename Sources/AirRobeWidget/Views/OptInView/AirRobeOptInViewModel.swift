@@ -93,7 +93,7 @@ final class AirRobeOptInViewModel {
         }
 
         if !alreadyInitialized {
-            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.cart.rawValue)
+            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.cart.rawValue, itemCount: items.count)
             AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
             alreadyInitialized = true
         }

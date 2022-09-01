@@ -38,7 +38,8 @@ struct AirRobeUtils {
         brand: String? = nil,
         material: String? = nil,
         category: String? = nil,
-        department: String? = nil
+        department: String? = nil,
+        itemCount: Int? = nil
     ) {
         let apiService = AirRobeApiService()
         cancellable = apiService.telemetryEvent(
@@ -47,7 +48,8 @@ struct AirRobeUtils {
             brand: brand,
             material: material,
             category: category,
-            department: department
+            department: department,
+            itemCount: itemCount
         )
             .sink(receiveCompletion: { completion in
                 switch completion {
