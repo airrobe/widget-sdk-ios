@@ -48,7 +48,7 @@ final class AirRobeOptInViewModel {
             return
         }
 
-        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(), !testVariant.enabled {
+        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(), testVariant.disabled {
             isAllSet = .widgetDisabled
             AirRobeUtils.telemetryEvent(
                 eventName: TelemetryEventName.pageView.rawValue,
@@ -106,7 +106,7 @@ final class AirRobeOptInViewModel {
             return
         }
 
-        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(), !testVariant.enabled {
+        if let testVariant = shoppingDataModel.getTargetSplitTestVariant(), testVariant.disabled {
             isAllSet = .widgetDisabled
             AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.cart.rawValue)
             AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)

@@ -43,8 +43,8 @@ struct AirRobeMinPriceThresholds: Codable {
 
 // MARK: - WidgetVariant
 struct AirRobeWidgetVariant: Codable {
-    let enabled: Bool
-    let targetSplitTestVariant: String?
+    let disabled: Bool
+    let splitTestVariant: String?
 }
 
 // MARK: - HashMap for the Category Mapping
@@ -79,8 +79,8 @@ extension AirRobeGetShoppingDataModel {
     func getTargetSplitTestVariant() -> AirRobeWidgetVariant? {
         if let testVariant = UserDefaults.standard.TargetSplitTestVariant,
            data.shop.widgetVariants.contains(where: {
-               $0.enabled == testVariant.enabled &&
-               $0.targetSplitTestVariant == testVariant.targetSplitTestVariant
+               $0.disabled == testVariant.disabled &&
+               $0.splitTestVariant == testVariant.splitTestVariant
            })
         {
             return testVariant

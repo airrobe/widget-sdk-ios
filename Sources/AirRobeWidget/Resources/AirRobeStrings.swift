@@ -47,8 +47,8 @@ enum AirRobeStrings {
                       minimumPriceCents
                     }
                     widgetVariants {
-                      enabled
-                      targetSplitTestVariant
+                      disabled
+                      splitTestVariant
                     }
                   }
                 }
