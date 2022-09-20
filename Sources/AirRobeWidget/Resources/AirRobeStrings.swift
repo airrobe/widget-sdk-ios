@@ -16,13 +16,23 @@ enum AirRobeStrings {
     static let description = "Wear now, re-sell later."
     static let descriptionCutOffText = "Re-sell later."
 
+    // MARK: - Description Strings (Variant 2)
+    static let descriptionVariant2 = "Save to resell later."
+
     // MARK: - Potential Value Strings
     static let potentialValue = "Potential value: "
+
+    // MARK: - Potential Value Strings (Variant 2)
+    static let potentialValueVariant2 = "Estimated resale: "
+    static let potentialValueVariant2CuttOff = "Est. resale: "
 
     // MARK: - Detailed Description Strings
     static let detailedDescription = "We’ve partnered with AirRobe to enable you to join the circular fashion movement. Re-sell or rent your purchases on AirRobe’s marketplace – all with one simple click. Together, we can do our part to keep fashion out of landfill. \(learnMoreLinkText)"
     static let learnMoreLinkText = "Learn more."
     static let learnMoreLinkForPurpose = URL(string: "https://airrobe.com/")!
+
+    // MARK: - Detailed Description Strings (Variant 2)
+    static let detailedDescriptionVariant2 = "AirRobe is the easiest way to resell, rent or recycle your fashion. “Add to AirRobe” to save all product details and imagery to your own digital Circular Wardrobe™ so you can list later on the AirRobe pre-loved marketplace in seconds. No fee to add. No commitment. \(learnMoreLinkText)"
 
     // MARK: - Extra Info Strings
     static let extraInfo = "By opting in you agree to \(companyNameText)’s \(extraLinkText) and consent for us to share your details with AirRobe."
@@ -79,11 +89,25 @@ enum AirRobeStrings {
     static let learnMoreToggleOn = "TOGGLE ON!"
     static let learnMoreFindMoreText = "Find out more about AirRobe."
 
+    // MARK: - Learn More Alert View Controller Strings (Variant 2)
+    static let learnMoreTitleVariant2 = "The easiest way to resell, rent or recycle."
+    static let learnMoreSubtitleVariant2 = "Save your purchases to AirRobe so you can repurpose them later in seconds on the AirRobe pre-loved designer marketplace.\n\nNo fee to add. No commitment."
+    static let learnHowItWorksTitleVariant2 = "HOW AIRROBE WORKS"
+    static let learnMoreStep1TitleVariant2 = "SHOP AS USUAL"
+    static let learnMoreStep2TitleVariant2 = "‘Add to AirRobe’"
+    static let learnMoreStep2DescriptionVariant2 = "All product detail & imagery will be saved to your digital Circular Wardrobe™ on AirRobe. Simply set up your account post-purchase."
+    static let learnMoreStep3TitleVariant2 = "RESELL, RENT OR RECYCLE LATER"
+    static let learnMoreStep3DescriptionVariant2 = "Once you’ve worn and loved an item, easily list from your AirRobe Circular Wardrobe™ in seconds."
+    static let learnMoreCloseVariant2 = "CLOSE"
+
     // MARK: - Order Confirmation View Strings
     static let orderConfirmationTitle = "Your items are in"
     static let orderConfirmationDescription = "Simply activate your free account below to re-sell your items back into a circular economy after you`ve worn and loved them."
     static let orderConfirmationActivateText = "ACTIVATE YOUR AIRROBE ACCOUNT"
     static let orderConfirmationVisitText = "VISIT YOUR AIRROBE ACCOUNT"
+
+    // MARK: - Order Confirmation View Strings (Variant 2)
+    static let orderConfirmationDescriptionVariant2 = "Simply activate your free account below to resell your items back into a circular economy after you’ve loved and worn them."
 
     // MARK: - Order Activate baseURL
     static let orderActivateBaseUrl = "https://shop.airrobe.com/en/orders/"
