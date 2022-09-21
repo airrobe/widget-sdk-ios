@@ -98,6 +98,7 @@ enum AirRobeStrings {
     static let learnMoreStep2DescriptionVariant2 = "All product detail & imagery will be saved to your digital Circular Wardrobe™ on AirRobe. Simply set up your account post-purchase."
     static let learnMoreStep3TitleVariant2 = "RESELL, RENT OR RECYCLE LATER"
     static let learnMoreStep3DescriptionVariant2 = "Once you’ve worn and loved an item, easily list from your AirRobe Circular Wardrobe™ in seconds."
+    static let learnMoreTextVariant2 = "LEARN MORE"
     static let learnMoreCloseVariant2 = "CLOSE"
 
     // MARK: - Order Confirmation View Strings

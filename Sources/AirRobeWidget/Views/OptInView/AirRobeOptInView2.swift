@@ -115,20 +115,20 @@ final class AirRobeOptInView2: UIView, NibLoadable {
     }
 
     private func onTapLearnMore(_ url: URL) {
-//        guard let vc = parentViewController else {
-//            return
-//        }
-//        let alert = AirRobeLearnMoreAlertViewController.instantiate()
-//        alert.modalPresentationStyle = .overCurrentContext
-//        alert.viewType = viewType
-//        vc.present(alert, animated: true)
-//        if viewType == .optIn {
-//            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.popupOpen.rawValue, pageName: PageName.product.rawValue)
-//            AirRobeUtils.dispatchEvent(eventName: EventName.popupOpen.rawValue, pageName: PageName.product.rawValue)
-//        } else {
-//            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.popupOpen.rawValue, pageName: PageName.cart.rawValue)
-//            AirRobeUtils.dispatchEvent(eventName: EventName.popupOpen.rawValue, pageName: PageName.cart.rawValue)
-//        }
+        guard let vc = parentViewController else {
+            return
+        }
+        let alert = AirRobeLearnMoreAlertViewController2.instantiate()
+        alert.modalPresentationStyle = .overCurrentContext
+        alert.viewType = viewType
+        vc.present(alert, animated: true)
+        if viewType == .optIn {
+            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.popupOpen.rawValue, pageName: PageName.product.rawValue)
+            AirRobeUtils.dispatchEvent(eventName: EventName.popupOpen.rawValue, pageName: PageName.product.rawValue)
+        } else {
+            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.popupOpen.rawValue, pageName: PageName.cart.rawValue)
+            AirRobeUtils.dispatchEvent(eventName: EventName.popupOpen.rawValue, pageName: PageName.cart.rawValue)
+        }
     }
 
     @IBAction func onTapSwitch(_ sender: UISwitch) {
@@ -235,10 +235,6 @@ private extension AirRobeOptInView2 {
                 case .initializing:
                     #if DEBUG
                     print(AirRobeWidgetLoadState.initializing.rawValue)
-                    #endif
-                case .widgetDisabled:
-                    #if DEBUG
-                    print(AirRobeWidgetLoadState.widgetDisabled.rawValue)
                     #endif
                 case .noCategoryMappingInfo:
                     #if DEBUG
