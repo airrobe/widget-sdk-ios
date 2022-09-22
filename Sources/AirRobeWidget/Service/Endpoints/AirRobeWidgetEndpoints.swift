@@ -50,22 +50,33 @@ extension AirRobeEndpoint {
         department: String? = nil,
         itemCount: Int? = nil
     ) -> AirRobeEndpoint {
+        var properties: [String: Any] = [
+            "source": AirRobeWidgetInfo.platform,
+            "version": AirRobeWidgetInfo.version,
+            "split_test_variant": "default",
+            "page_name": pageName,
+        ]
+        if let brand = brand {
+            properties["brand"] = brand
+        }
+        if let material = material {
+            properties["material"] = material
+        }
+        if let category = category {
+            properties["category"] = category
+        }
+        if let department = department {
+            properties["department"] = department
+        }
+        if let itemCount = itemCount {
+            properties["itemCount"] = itemCount
+        }
         let requestBody: [String: Any] = [
             "app_id": configuration?.appId ?? "",
             "anonymous_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
             "session_id": sessionId,
             "event_name": eventName,
-            "properties": [
-                "source": AirRobeWidgetInfo.platform,
-                "version": AirRobeWidgetInfo.version,
-                "split_test_variant": "default",
-                "page_name": pageName,
-                "brand": brand,
-                "material": material,
-                "category": category,
-                "department": department,
-                "itemCount": itemCount
-            ]
+            "properties": properties
         ]
         return AirRobeEndpoint(
             method: .POST,
