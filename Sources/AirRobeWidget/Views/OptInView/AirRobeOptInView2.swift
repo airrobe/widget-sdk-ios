@@ -15,7 +15,7 @@ final class AirRobeOptInView2: UIView, NibLoadable {
     @IBOutlet weak var topContentContainer: UIStackView!
     @IBOutlet weak var extraInfoContainer: UIView!
     @IBOutlet weak var extraInfoLabel: AirRobeHyperlinkLabel!
-    @IBOutlet weak var addToAirRobeSwitch: UISwitch!
+    @IBOutlet weak var addToAirRobeSwitch: AirRobeSwitch!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var potentialValueLabel: UILabel!
@@ -81,6 +81,13 @@ final class AirRobeOptInView2: UIView, NibLoadable {
         // Widget Border Style
         mainContainerView.addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 0)
 
+        addToAirRobeSwitch.thumbOnImage = UIImage(named: "check", in: .module, with: nil)
+        addToAirRobeSwitch.thumbOnTintColor = .white
+        addToAirRobeSwitch.onTintColor = .black
+        addToAirRobeSwitch.thumbOffImage = UIImage(named: "arrow", in: .module, with: nil)
+        addToAirRobeSwitch.thumbOffTintColor = .black
+        addToAirRobeSwitch.offTintColor = .white
+
         let tapOnArrowImage = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
         arrowImageView.isUserInteractionEnabled = true
         arrowImageView.addGestureRecognizer(tapOnArrowImage)
@@ -131,7 +138,7 @@ final class AirRobeOptInView2: UIView, NibLoadable {
         }
     }
 
-    @IBAction func onTapSwitch(_ sender: UISwitch) {
+    @IBAction func onTapSwitch(_ sender: AirRobeSwitch) {
         titleLabel.text = sender.isOn ? AirRobeStrings.added.uppercased() : AirRobeStrings.add.uppercased()
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
