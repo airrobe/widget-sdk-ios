@@ -76,8 +76,8 @@ extension AirRobeGetShoppingDataModel {
 
 // MARK: - Extension for checking target split test variant
 extension AirRobeGetShoppingDataModel {
-    func getTargetSplitTestVariant() -> AirRobeWidgetVariant? {
-        if let testVariant = UserDefaults.standard.TargetSplitTestVariant,
+    func getSplitTestVariant() -> AirRobeWidgetVariant? {
+        if let testVariant = UserDefaults.standard.SplitTestVariant,
            data.shop.widgetVariants.contains(where: {
                $0.disabled == testVariant.disabled &&
                $0.splitTestVariant == testVariant.splitTestVariant
@@ -87,10 +87,10 @@ extension AirRobeGetShoppingDataModel {
         }
         if !data.shop.widgetVariants.isEmpty {
             let testVariant = data.shop.widgetVariants.randomElement()
-            UserDefaults.standard.TargetSplitTestVariant = testVariant
+            UserDefaults.standard.SplitTestVariant = testVariant
             return testVariant
         }
-        UserDefaults.standard.TargetSplitTestVariant = nil
+        UserDefaults.standard.SplitTestVariant = nil
         return nil
     }
 }

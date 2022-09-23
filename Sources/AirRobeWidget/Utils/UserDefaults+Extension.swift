@@ -11,7 +11,7 @@ extension UserDefaults {
     enum Key {
         static let OptedInKey = "OptedInKey"
         static let OrderOptedInKey = "OrderOptedInKey"
-        static let TargetSplitTestVariantKey = "TargetSplitTestVariantKey"
+        static let SplitTestVariantKey = "SplitTestVariantKey"
     }
 
     @objc var OptedIn: Bool {
@@ -24,9 +24,9 @@ extension UserDefaults {
         set { set(newValue, forKey: Key.OrderOptedInKey) }
     }
 
-    var TargetSplitTestVariant: AirRobeWidgetVariant? {
-        get { return getCodable(Key.TargetSplitTestVariantKey) }
-        set { setCodable(newValue, forKey: Key.TargetSplitTestVariantKey) }
+    var SplitTestVariant: AirRobeWidgetVariant? {
+        get { return getCodable(Key.SplitTestVariantKey) }
+        set { setCodable(newValue, forKey: Key.SplitTestVariantKey) }
     }
 }
 

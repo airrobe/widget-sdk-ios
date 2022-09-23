@@ -57,7 +57,7 @@ extension AirRobeEndpoint {
             "properties": [
                 "source": AirRobeWidgetInfo.platform,
                 "version": AirRobeWidgetInfo.version,
-                "split_test_variant": UserDefaults.standard.TargetSplitTestVariant?.splitTestVariant ?? "default",
+                "split_test_variant": UserDefaults.standard.SplitTestVariant?.splitTestVariant ?? "default",
                 "page_name": pageName,
                 "brand": brand,
                 "material": material,
@@ -79,7 +79,7 @@ extension AirRobeEndpoint {
             "anonymous_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
             "session_id": sessionId,
             "external_order_id": orderId,
-            "split_test_variant": UserDefaults.standard.TargetSplitTestVariant?.splitTestVariant ?? "default",
+            "split_test_variant": UserDefaults.standard.SplitTestVariant?.splitTestVariant ?? "default",
             "opted_in": orderOptedIn
         ]
         return AirRobeEndpoint(

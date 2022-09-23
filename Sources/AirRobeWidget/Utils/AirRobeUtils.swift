@@ -75,7 +75,7 @@ struct AirRobeUtils {
             event_name: event,
             source: AirRobeWidgetInfo.platform,
             version: AirRobeWidgetInfo.version,
-            split_test_variant: UserDefaults.standard.TargetSplitTestVariant?.splitTestVariant ?? "default",
+            split_test_variant: UserDefaults.standard.SplitTestVariant?.splitTestVariant ?? "default",
             page_name: PageName.init(rawValue: pageName) ?? .other
         )
 
