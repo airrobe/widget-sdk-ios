@@ -24,6 +24,7 @@ struct AirRobeShopModel: Codable {
     let popupFindOutMoreUrl: String
     let categoryMappings: [AirRobeCategoryMapping]
     let minimumPriceThresholds: [AirRobeMinPriceThresholds]
+    let widgetVariants: [AirRobeWidgetVariant]
 }
 
 // MARK: - CategoryMapping
@@ -38,6 +39,12 @@ struct AirRobeMinPriceThresholds: Codable {
     let minimumPriceCents: Double
     let department: String?
     let `default`: Bool
+}
+
+// MARK: - WidgetVariant
+struct AirRobeWidgetVariant: Codable {
+    let disabled: Bool
+    let splitTestVariant: String?
 }
 
 // MARK: - HashMap for the Category Mapping
@@ -64,6 +71,27 @@ extension AirRobeGetShoppingDataModel {
             return price < (applicablePriceThreshold.minimumPriceCents / 100)
         }
         return false
+    }
+}
+
+// MARK: - Extension for checking target split test variant
+extension AirRobeGetShoppingDataModel {
+    func getSplitTestVariant() -> AirRobeWidgetVariant? {
+        if let testVariant = UserDefaults.standard.SplitTestVariant,
+           data.shop.widgetVariants.contains(where: {
+               $0.disabled == testVariant.disabled &&
+               $0.splitTestVariant == testVariant.splitTestVariant
+           })
+        {
+            return testVariant
+        }
+        if !data.shop.widgetVariants.isEmpty {
+            let testVariant = data.shop.widgetVariants.randomElement()
+            UserDefaults.standard.SplitTestVariant = testVariant
+            return testVariant
+        }
+        UserDefaults.standard.SplitTestVariant = nil
+        return nil
     }
 }
 

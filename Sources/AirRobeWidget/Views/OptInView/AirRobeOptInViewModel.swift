@@ -48,6 +48,20 @@ final class AirRobeOptInViewModel {
             return
         }
 
+        if let testVariant = shoppingDataModel.getSplitTestVariant(), testVariant.disabled {
+            isAllSet = .widgetDisabled
+            AirRobeUtils.telemetryEvent(
+                eventName: TelemetryEventName.pageView.rawValue,
+                pageName: PageName.product.rawValue,
+                brand: brand,
+                material: material,
+                category: category,
+                department: department
+            )
+            AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.product.rawValue)
+            return
+        }
+
         if !alreadyInitialized {
             AirRobeUtils.telemetryEvent(
                 eventName: TelemetryEventName.pageView.rawValue,
@@ -84,11 +98,18 @@ final class AirRobeOptInViewModel {
 
     func initializeMultiOptInWidget() {
         guard
-            AirRobeShoppingDataModelInstance.shared.shoppingDataModel != nil,
+            let shoppingDataModel = AirRobeShoppingDataModelInstance.shared.shoppingDataModel,
             !AirRobeShoppingDataModelInstance.shared.categoryMapping.categoryMappingsHashMap.isEmpty
         else {
             isAllSet = .noCategoryMappingInfo
             UserDefaults.standard.OrderOptedIn = false
+            return
+        }
+
+        if let testVariant = shoppingDataModel.getSplitTestVariant(), testVariant.disabled {
+            isAllSet = .widgetDisabled
+            AirRobeUtils.telemetryEvent(eventName: TelemetryEventName.pageView.rawValue, pageName: PageName.cart.rawValue)
+            AirRobeUtils.dispatchEvent(eventName: EventName.pageView.rawValue, pageName: PageName.cart.rawValue)
             return
         }
 

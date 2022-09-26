@@ -8,15 +8,49 @@
 import Foundation
 
 extension UserDefaults {
-    static let OptedInKey = "OptedInKey"
-    @objc var OptedIn: Bool {
-        get { return bool(forKey: UserDefaults.OptedInKey) }
-        set { set(newValue, forKey: UserDefaults.OptedInKey) }
+    enum Key {
+        static let OptedInKey = "OptedInKey"
+        static let OrderOptedInKey = "OrderOptedInKey"
+        static let SplitTestVariantKey = "SplitTestVariantKey"
     }
 
-    static let OrderOptedInKey = "OrderOptedInKey"
+    @objc var OptedIn: Bool {
+        get { return bool(forKey: Key.OptedInKey) }
+        set { set(newValue, forKey: Key.OptedInKey) }
+    }
+
     var OrderOptedIn: Bool {
-        get { return bool(forKey: UserDefaults.OrderOptedInKey) }
-        set { set(newValue, forKey: UserDefaults.OrderOptedInKey) }
+        get { return bool(forKey: Key.OrderOptedInKey) }
+        set { set(newValue, forKey: Key.OrderOptedInKey) }
+    }
+
+    var SplitTestVariant: AirRobeWidgetVariant? {
+        get { return getCodable(Key.SplitTestVariantKey) }
+        set { setCodable(newValue, forKey: Key.SplitTestVariantKey) }
+    }
+}
+
+extension UserDefaults {
+    func getCodable<T: Codable>(_ key: String) -> T? {
+        if let savedData = object(forKey: key) as? Data {
+            do {
+                let loadedData = try JSONDecoder().decode(T.self, from: savedData)
+                return loadedData
+            } catch {
+                print(String(describing: error))
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+
+    func setCodable<T: Codable>(_ value: T?, forKey key: String) {
+        do {
+            let encoded = try JSONEncoder().encode(value)
+            set(encoded, forKey: key)
+        } catch {
+            print(String(describing: error))
+        }
     }
 }
