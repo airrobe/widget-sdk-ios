@@ -1,5 +1,5 @@
 //
-//  AirRobeOptInView.swift
+//  DefaultOptInView.swift
 //  
 //
 //  Created by King on 11/18/21.
@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 // AirRobe view which will be shown on Shopping page.
-final class AirRobeOptInView: UIView, NibLoadable {
+final class DefaultOptInView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var topContentContainer: UIStackView!
@@ -131,7 +131,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
         guard let vc = parentViewController else {
             return
         }
-        let alert = AirRobeLearnMoreAlertViewController.instantiate()
+        let alert = DefaultLearnMoreAlertViewController.instantiate()
         alert.modalPresentationStyle = .overCurrentContext
         alert.viewType = viewType
         vc.present(alert, animated: true)
@@ -197,7 +197,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
             self?.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
         })
-        AirRobeOptInView.performWithoutAnimation {
+        DefaultOptInView.performWithoutAnimation {
             tableView?.beginUpdates()
             detailedDescriptionLabel.isHidden.toggle()
             tableView?.endUpdates()
@@ -205,7 +205,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
     }
 }
 
-private extension AirRobeOptInView {
+private extension DefaultOptInView {
 
     func setupBindings() {
         UserDefaults.standard

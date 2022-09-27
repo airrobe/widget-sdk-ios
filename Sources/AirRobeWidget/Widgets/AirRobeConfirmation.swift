@@ -40,7 +40,7 @@ open class AirRobeConfirmation: UIView {
         }
     }
 
-    lazy var orderConfirmationView: AirRobeOrderConfirmationView = AirRobeOrderConfirmationView.loadFromNib()
+    lazy var orderConfirmationView: DefaultOrderConfirmationView = DefaultOrderConfirmationView.loadFromNib()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

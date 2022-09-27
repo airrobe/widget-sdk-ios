@@ -1,5 +1,5 @@
 //
-//  AirRobeOptInView2.swift
+//  EnhancedOptInView.swift
 //  
 //
 //  Created by King on 9/15/22.
@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-final class AirRobeOptInView2: UIView, NibLoadable {
+final class EnhancedOptInView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var topContentContainer: UIStackView!
@@ -125,7 +125,7 @@ final class AirRobeOptInView2: UIView, NibLoadable {
         guard let vc = parentViewController else {
             return
         }
-        let alert = AirRobeLearnMoreAlertViewController2.instantiate()
+        let alert = EnhancedLearnMoreAlertViewController.instantiate()
         alert.modalPresentationStyle = .overCurrentContext
         alert.viewType = viewType
         vc.present(alert, animated: true)
@@ -191,7 +191,7 @@ final class AirRobeOptInView2: UIView, NibLoadable {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
             self?.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
         })
-        AirRobeOptInView.performWithoutAnimation {
+        DefaultOptInView.performWithoutAnimation {
             tableView?.beginUpdates()
             detailedDescriptionLabel.isHidden.toggle()
             tableView?.endUpdates()
@@ -199,7 +199,7 @@ final class AirRobeOptInView2: UIView, NibLoadable {
     }
 }
 
-private extension AirRobeOptInView2 {
+private extension EnhancedOptInView {
 
     func setupBindings() {
         UserDefaults.standard

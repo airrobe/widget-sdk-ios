@@ -53,7 +53,7 @@ open class AirRobeMultiOptIn: UIView {
         }
     }
 
-    lazy var optInView: AirRobeOptInView = AirRobeOptInView.loadFromNib()
+    lazy var optInView: DefaultOptInView = DefaultOptInView.loadFromNib()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

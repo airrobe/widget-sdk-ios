@@ -1,5 +1,5 @@
 //
-//  AirRobeOrderConfirmationView.swift
+//  DefaultOrderConfirmationView.swift
 //  
 //
 //  Created by King on 12/2/21.
@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-final class AirRobeOrderConfirmationView: UIView, NibLoadable {
+final class DefaultOrderConfirmationView: UIView, NibLoadable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var activateContainerView: UIView!
@@ -65,7 +65,7 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
     }
 }
 
-private extension AirRobeOrderConfirmationView {
+private extension DefaultOrderConfirmationView {
 
     func setupBindings() {
         viewModel.$isAllSet

@@ -1,5 +1,5 @@
 //
-//  AirRobeLearnMoreAlertViewControllerVariant2.swift
+//  EnhancedLearnMoreAlertViewController.swift
 //  
 //
 //  Created by King on 9/20/22.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class AirRobeLearnMoreAlertViewController2: UIViewController, StoryboardBased {
+final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBased {
     @IBOutlet weak var outsideView: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var closeImage: UIImageView!
@@ -29,7 +29,7 @@ final class AirRobeLearnMoreAlertViewController2: UIViewController, StoryboardBa
     @IBOutlet weak var learnMoreLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var closeLabel: AirRobeHyperlinkLabel!
 
-    var viewType: AirRobeOptInView2.ViewType = .optIn
+    var viewType: EnhancedOptInView.ViewType = .optIn
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  AirRobeLearnMoreAlertViewController.swift
+//  DefaultLearnMoreAlertViewController.swift
 //  
 //
 //  Created by King on 11/30/21.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBased {
+final class DefaultLearnMoreAlertViewController: UIViewController, StoryboardBased {
     @IBOutlet weak var outsideView: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var closeButton: UIButton!
@@ -30,7 +30,7 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
     @IBOutlet weak var separator2: UIView!
     @IBOutlet weak var separator3: UIView!
 
-    var viewType: AirRobeOptInView.ViewType = .optIn
+    var viewType: DefaultOptInView.ViewType = .optIn
 
     override func viewDidLoad() {
         super.viewDidLoad()
