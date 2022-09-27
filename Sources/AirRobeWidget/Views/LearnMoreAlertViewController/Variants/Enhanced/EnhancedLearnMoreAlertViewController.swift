@@ -25,7 +25,7 @@ final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBa
     @IBOutlet weak var addLabel: UILabel!
     @IBOutlet weak var addDescriptionLabel: UILabel!
     @IBOutlet weak var switchContainerView: UIView!
-    @IBOutlet weak var optSwitch: UISwitch!
+    @IBOutlet weak var optSwitch: AirRobeSwitch!
     @IBOutlet weak var learnMoreLabel: AirRobeHyperlinkLabel!
     @IBOutlet weak var closeLabel: AirRobeHyperlinkLabel!
 
@@ -64,8 +64,14 @@ final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBa
             link: learnMoreFindMoreLink,
             tapHandler: onTapLearnMoreLink)
 
+        optSwitch.thumbOnImage = UIImage(named: "check", in: .module, with: nil)
+        optSwitch.thumbOnTintColor = .white
+        optSwitch.onTintColor = .black
+        optSwitch.thumbOffImage = UIImage(named: "arrow", in: .module, with: nil)
+        optSwitch.thumbOffTintColor = .black
+        optSwitch.offTintColor = .white
         optSwitch.isOn = UserDefaults.standard.OptedIn
-        optSwitch.onTintColor = AirRobeSwitchColor
+
         optSwitch.tintColor = AirRobeSwitchColor
         addLabel.text = optSwitch.isOn ? AirRobeEnhancedStrings.add.uppercased() : AirRobeEnhancedStrings.added.uppercased()
         addLabel.textColor = AirRobeTextColor
@@ -101,7 +107,7 @@ final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBa
         dismissController()
     }
 
-    @IBAction func onToggleOptSwitch(_ sender: UISwitch) {
+    @IBAction func onToggleOptSwitch(_ sender: AirRobeSwitch) {
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {

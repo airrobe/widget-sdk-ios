@@ -164,10 +164,10 @@
                                                 <rect key="frame" x="16" y="16" width="250" height="70"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="MLW-G5-Zd2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="234" height="70"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="184" height="70"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qeT-Sb-iRz">
-                                                                <rect key="frame" x="0.0" y="0.0" width="234" height="15"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="184" height="15"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jz1-OW-MFg">
                                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="15"/>
@@ -195,24 +195,29 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xzi-h3-Vfv">
-                                                                        <rect key="frame" x="80" y="0.0" width="154" height="15"/>
+                                                                        <rect key="frame" x="80" y="0.0" width="104" height="15"/>
                                                                     </view>
                                                                 </subviews>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaV-yG-vqo">
-                                                                <rect key="frame" x="0.0" y="20" width="234" height="50"/>
+                                                                <rect key="frame" x="0.0" y="20" width="184" height="50"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCy-HZ-p9l">
-                                                        <rect key="frame" x="250" y="19.666666666666629" width="2" height="31"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mM1-Va-N0Y" customClass="AirRobeSwitch" customModule="AirRobeWidget">
+                                                        <rect key="frame" x="200" y="20" width="50" height="30"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="50" id="8nl-Gw-fLT"/>
+                                                            <constraint firstAttribute="height" constant="30" id="lIT-p1-hJh"/>
+                                                        </constraints>
                                                         <connections>
-                                                            <action selector="onToggleOptSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="GUW-X1-yav"/>
+                                                            <action selector="onToggleOptSwitch:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Ifa-Ab-heD"/>
                                                         </connections>
-                                                    </switch>
+                                                    </view>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -288,7 +293,7 @@
                         <outlet property="learnMoreLabel" destination="3al-0i-PTL" id="oVs-Js-ZIq"/>
                         <outlet property="mainStackView" destination="5Fx-MH-e98" id="iHz-S5-aDV"/>
                         <outlet property="mainView" destination="kpp-Tx-M4F" id="OII-pN-Uyx"/>
-                        <outlet property="optSwitch" destination="zCy-HZ-p9l" id="Mit-Le-9du"/>
+                        <outlet property="optSwitch" destination="mM1-Va-N0Y" id="Kyp-vE-99Y"/>
                         <outlet property="outsideView" destination="1GT-fx-zfN" id="W4s-mW-wqD"/>
                         <outlet property="step1TitleLabel" destination="Guu-UV-3cz" id="asq-Dr-w90"/>
                         <outlet property="step2DescriptionLabel" destination="SvP-kt-M7v" id="GGd-Ab-2HW"/>
