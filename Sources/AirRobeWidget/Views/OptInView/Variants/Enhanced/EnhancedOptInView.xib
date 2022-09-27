@@ -93,10 +93,10 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0TX-X9-hZU">
-                                                                    <rect key="frame" x="110" y="15.000000000000007" width="10" height="20"/>
+                                                                    <rect key="frame" x="110" y="15.000000000000007" width="20" height="20"/>
                                                                 </activityIndicatorView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8S2-zm-mmR">
-                                                                    <rect key="frame" x="125" y="0.0" width="159" height="50"/>
+                                                                    <rect key="frame" x="135" y="0.0" width="149" height="50"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 </view>
                                                             </subviews>
@@ -152,10 +152,10 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="MOF-1G-lho" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="6I4-Eg-Qu5"/>
-                <constraint firstAttribute="bottom" secondItem="MOF-1G-lho" secondAttribute="bottom" id="HSD-Xx-1XG"/>
-                <constraint firstAttribute="trailing" secondItem="MOF-1G-lho" secondAttribute="trailing" id="n0v-Yu-JvU"/>
-                <constraint firstItem="MOF-1G-lho" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pv2-rh-ivX"/>
+                <constraint firstItem="MOF-1G-lho" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" priority="999" id="6I4-Eg-Qu5"/>
+                <constraint firstAttribute="bottom" secondItem="MOF-1G-lho" secondAttribute="bottom" priority="999" id="HSD-Xx-1XG"/>
+                <constraint firstAttribute="trailing" secondItem="MOF-1G-lho" secondAttribute="trailing" priority="999" id="n0v-Yu-JvU"/>
+                <constraint firstItem="MOF-1G-lho" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" priority="999" id="pv2-rh-ivX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
