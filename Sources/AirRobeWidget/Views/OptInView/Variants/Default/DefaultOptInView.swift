@@ -63,13 +63,13 @@ final class DefaultOptInView: UIView, NibLoadable {
         let maxWidth = usableHorizontalSpace()
         if descriptionValueLabelMaxWidth != maxWidth {
             descriptionValueLabelMaxWidth = maxWidth
-            guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeStrings.description else {
+            guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeDefaultStrings.description else {
                 return
             }
-            if ((AirRobeStrings.description).width(withFont: descriptionLabel.font).width + EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > descriptionValueLabelMaxWidth {
-                descriptionLabel.text = AirRobeStrings.descriptionCutOffText
+            if ((AirRobeDefaultStrings.description).width(withFont: descriptionLabel.font).width + EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > descriptionValueLabelMaxWidth {
+                descriptionLabel.text = AirRobeDefaultStrings.descriptionCutOffText
             } else {
-                descriptionLabel.text = AirRobeStrings.description
+                descriptionLabel.text = AirRobeDefaultStrings.description
             }
         }
     }
@@ -90,25 +90,25 @@ final class DefaultOptInView: UIView, NibLoadable {
         topContentContainer.addGestureRecognizer(tapOnTopContentContainer)
 
         // Initializing Static Texts & Links
-        titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
-        descriptionLabel.text = AirRobeStrings.description
-        potentialValueLabel.text = AirRobeStrings.potentialValue
+        titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeDefaultStrings.added : AirRobeDefaultStrings.add
+        descriptionLabel.text = AirRobeDefaultStrings.description
+        potentialValueLabel.text = AirRobeDefaultStrings.potentialValue
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
         detailedDescriptionLabel.setLinkText(
-            orgText: AirRobeStrings.detailedDescription,
-            linkText: AirRobeStrings.learnMoreLinkText,
-            link: AirRobeStrings.learnMoreLinkForPurpose,
+            orgText: AirRobeDefaultStrings.detailedDescription,
+            linkText: AirRobeDefaultStrings.learnMoreLinkText,
+            link: AirRobeDefaultStrings.learnMoreLinkForPurpose,
             tapHandler: onTapLearnMore)
         detailedDescriptionLabel.isHidden = true
 
         if let privacyLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.privacyUrl ?? "") {
             extraInfoContainer.isHidden = false
-            let extraInfo = AirRobeStrings.extraInfo.replacingOccurrences(of: AirRobeStrings.companyNameText, with: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.name ?? "")
+            let extraInfo = AirRobeDefaultStrings.extraInfo.replacingOccurrences(of: AirRobeDefaultStrings.companyNameText, with: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.name ?? "")
             extraInfoLabel.setLinkText(
                 orgText: extraInfo,
-                linkText: AirRobeStrings.extraLinkText,
+                linkText: AirRobeDefaultStrings.extraLinkText,
                 link: privacyLink,
                 tapHandler: onTapExtraInfoLink)
         } else {
@@ -145,7 +145,7 @@ final class DefaultOptInView: UIView, NibLoadable {
     }
 
     @IBAction func onTapSwitch(_ sender: UISwitch) {
-        titleLabel.text = sender.isOn ? AirRobeStrings.added : AirRobeStrings.add
+        titleLabel.text = sender.isOn ? AirRobeDefaultStrings.added : AirRobeDefaultStrings.add
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
@@ -292,9 +292,9 @@ private extension DefaultOptInView {
                 }
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
-                    self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
-                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + self.EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > self.descriptionValueLabelMaxWidth {
-                        self.descriptionLabel.text = AirRobeStrings.descriptionCutOffText
+                    self.potentialValueLabel.text = AirRobeDefaultStrings.potentialValue + "$" + price
+                    if ((AirRobeDefaultStrings.description).width(withFont: self.descriptionLabel.font).width + self.EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > self.descriptionValueLabelMaxWidth {
+                        self.descriptionLabel.text = AirRobeDefaultStrings.descriptionCutOffText
                         return
                     }
                 }

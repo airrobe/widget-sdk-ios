@@ -34,23 +34,23 @@ final class DefaultLearnMoreAlertViewController: UIViewController, StoryboardBas
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = AirRobeStrings.learnMoreTitle
+        titleLabel.text = AirRobeDefaultStrings.learnMoreTitle
         titleLabel.textColor = AirRobeTextColor
-        step1TitleLabel.text = AirRobeStrings.learnMoreStep1Title
+        step1TitleLabel.text = AirRobeDefaultStrings.learnMoreStep1Title
         step1TitleLabel.textColor = AirRobeTextColor
-        step1DescriptionLabel.text = AirRobeStrings.learnMoreStep1Description
+        step1DescriptionLabel.text = AirRobeDefaultStrings.learnMoreStep1Description
         step1DescriptionLabel.textColor = AirRobeTextColor
-        step2TitleLabel.text = AirRobeStrings.learnMoreStep2Title
+        step2TitleLabel.text = AirRobeDefaultStrings.learnMoreStep2Title
         step2TitleLabel.textColor = AirRobeTextColor
-        step2DescriptionLabel.text = AirRobeStrings.learnMoreStep2Description
+        step2DescriptionLabel.text = AirRobeDefaultStrings.learnMoreStep2Description
         step2DescriptionLabel.textColor = AirRobeTextColor
-        questionLabel.text = AirRobeStrings.learnMoreQuestion
+        questionLabel.text = AirRobeDefaultStrings.learnMoreQuestion
         questionLabel.textColor = AirRobeTextColor
-        answerLabel.text = AirRobeStrings.learnMoreAnswer
+        answerLabel.text = AirRobeDefaultStrings.learnMoreAnswer
         answerLabel.textColor = AirRobeTextColor
-        readyLabel.text = AirRobeStrings.learnMoreReady
+        readyLabel.text = AirRobeDefaultStrings.learnMoreReady
         readyLabel.textColor = AirRobeTextColor
-        toggleOnLabel.text = AirRobeStrings.learnMoreToggleOn
+        toggleOnLabel.text = AirRobeDefaultStrings.learnMoreToggleOn
         toggleOnLabel.textColor = AirRobeTextColor
         findMoreLabel.hyperlinkAttributes = [.foregroundColor: AirRobeLinkTextColor]
         guard let learnMoreFindMoreLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.popupFindOutMoreUrl ?? "") else {
@@ -60,8 +60,8 @@ final class DefaultLearnMoreAlertViewController: UIViewController, StoryboardBas
             return
         }
         findMoreLabel.setLinkText(
-            orgText: AirRobeStrings.learnMoreFindMoreText,
-            linkText: AirRobeStrings.learnMoreFindMoreText,
+            orgText: AirRobeDefaultStrings.learnMoreFindMoreText,
+            linkText: AirRobeDefaultStrings.learnMoreFindMoreText,
             link: learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
         optSwitch.isOn = UserDefaults.standard.OptedIn

@@ -62,13 +62,13 @@ final class EnhancedOptInView: UIView, NibLoadable {
         let maxWidth = usableHorizontalSpace()
         if potentialValueLabelMaxWidth != maxWidth {
             potentialValueLabelMaxWidth = maxWidth
-            guard let value = potentialValueLabel.text, value.isEmpty || value == AirRobeStrings.potentialValueVariant2 else {
+            guard let value = potentialValueLabel.text, value.isEmpty || value == AirRobeEnhancedStrings.potentialValue else {
                 return
             }
-            if ((AirRobeStrings.potentialValueVariant2).width(withFont: potentialValueLabel.font).width + EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > potentialValueLabelMaxWidth {
-                potentialValueLabel.text = AirRobeStrings.potentialValueVariant2CuttOff
+            if ((AirRobeEnhancedStrings.potentialValue).width(withFont: potentialValueLabel.font).width + EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > potentialValueLabelMaxWidth {
+                potentialValueLabel.text = AirRobeEnhancedStrings.potentialValueCuttOff
             } else {
-                potentialValueLabel.text = AirRobeStrings.potentialValueVariant2
+                potentialValueLabel.text = AirRobeEnhancedStrings.potentialValue
             }
         }
     }
@@ -96,17 +96,17 @@ final class EnhancedOptInView: UIView, NibLoadable {
         topContentContainer.addGestureRecognizer(tapOnTopContentContainer)
 
         // Initializing Static Texts & Links
-        titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added.uppercased() : AirRobeStrings.add.uppercased()
-        descriptionLabel.text = AirRobeStrings.descriptionVariant2
+        titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeEnhancedStrings.added.uppercased() : AirRobeEnhancedStrings.add.uppercased()
+        descriptionLabel.text = AirRobeEnhancedStrings.description
         descriptionLabel.underlineText()
-        potentialValueLabel.text = AirRobeStrings.potentialValueVariant2
+        potentialValueLabel.text = AirRobeEnhancedStrings.potentialValue
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
         detailedDescriptionLabel.setLinkText(
-            orgText: AirRobeStrings.detailedDescriptionVariant2,
-            linkText: AirRobeStrings.learnMoreLinkText,
-            link: AirRobeStrings.learnMoreLinkForPurpose,
+            orgText: AirRobeEnhancedStrings.detailedDescription,
+            linkText: AirRobeEnhancedStrings.learnMoreLinkText,
+            link: AirRobeEnhancedStrings.learnMoreLinkForPurpose,
             tapHandler: onTapLearnMore)
         detailedDescriptionLabel.isHidden = true
 
@@ -139,7 +139,7 @@ final class EnhancedOptInView: UIView, NibLoadable {
     }
 
     @IBAction func onTapSwitch(_ sender: AirRobeSwitch) {
-        titleLabel.text = sender.isOn ? AirRobeStrings.added.uppercased() : AirRobeStrings.add.uppercased()
+        titleLabel.text = sender.isOn ? AirRobeEnhancedStrings.added.uppercased() : AirRobeEnhancedStrings.add.uppercased()
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
@@ -286,9 +286,9 @@ private extension EnhancedOptInView {
                 }
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
-                    self.potentialValueLabel.text = AirRobeStrings.potentialValueVariant2 + "$" + price
-                    if ((AirRobeStrings.potentialValueVariant2).width(withFont: self.potentialValueLabel.font).width + self.EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > self.potentialValueLabelMaxWidth {
-                        self.potentialValueLabel.text = AirRobeStrings.potentialValueVariant2CuttOff
+                    self.potentialValueLabel.text = AirRobeEnhancedStrings.potentialValue + "$" + price
+                    if ((AirRobeEnhancedStrings.potentialValue).width(withFont: self.potentialValueLabel.font).width + self.EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > self.potentialValueLabelMaxWidth {
+                        self.potentialValueLabel.text = AirRobeEnhancedStrings.potentialValueCuttOff
                         return
                     }
                 }

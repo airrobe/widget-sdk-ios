@@ -33,22 +33,22 @@ final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = AirRobeStrings.learnMoreTitleVariant2.uppercased()
+        titleLabel.text = AirRobeEnhancedStrings.learnMoreTitle.uppercased()
         titleLabel.textColor = AirRobeTextColor
-        descriptionLabel.text = AirRobeStrings.learnMoreStep2DescriptionVariant2
+        descriptionLabel.text = AirRobeEnhancedStrings.learnMoreStep2Description
         descriptionLabel.textColor = AirRobeTextColor
-        howItWorksLabel.text = AirRobeStrings.learnHowItWorksTitleVariant2
+        howItWorksLabel.text = AirRobeEnhancedStrings.learnHowItWorksTitle
         howItWorksLabel.textColor = AirRobeTextColor
         howItWorksTitleDivider.backgroundColor = AirRobeSeparatorColor
-        step1TitleLabel.text = AirRobeStrings.learnMoreStep1TitleVariant2.uppercased()
+        step1TitleLabel.text = AirRobeEnhancedStrings.learnMoreStep1Title.uppercased()
         step1TitleLabel.textColor = AirRobeTextColor
-        step2TitleLabel.text = AirRobeStrings.learnMoreStep2TitleVariant2.uppercased()
+        step2TitleLabel.text = AirRobeEnhancedStrings.learnMoreStep2Title.uppercased()
         step2TitleLabel.textColor = AirRobeTextColor
-        step2DescriptionLabel.text = AirRobeStrings.learnMoreStep2DescriptionVariant2
+        step2DescriptionLabel.text = AirRobeEnhancedStrings.learnMoreStep2Description
         step2DescriptionLabel.textColor = AirRobeTextColor
-        step3TitleLabel.text = AirRobeStrings.learnMoreStep3TitleVariant2.uppercased()
+        step3TitleLabel.text = AirRobeEnhancedStrings.learnMoreStep3Title.uppercased()
         step3TitleLabel.textColor = AirRobeTextColor
-        step3DescriptionLabel.text = AirRobeStrings.learnMoreStep3DescriptionVariant2
+        step3DescriptionLabel.text = AirRobeEnhancedStrings.learnMoreStep3Description
         step3DescriptionLabel.textColor = AirRobeTextColor
 
         learnMoreLabel.hyperlinkAttributes = [.foregroundColor: AirRobeLinkTextColor]
@@ -59,24 +59,24 @@ final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBa
             return
         }
         learnMoreLabel.setLinkText(
-            orgText: AirRobeStrings.learnMoreTextVariant2,
-            linkText: AirRobeStrings.learnMoreTextVariant2,
+            orgText: AirRobeEnhancedStrings.learnMoreText,
+            linkText: AirRobeEnhancedStrings.learnMoreText,
             link: learnMoreFindMoreLink,
             tapHandler: onTapLearnMoreLink)
 
         optSwitch.isOn = UserDefaults.standard.OptedIn
         optSwitch.onTintColor = AirRobeSwitchColor
         optSwitch.tintColor = AirRobeSwitchColor
-        addLabel.text = optSwitch.isOn ? AirRobeStrings.add.uppercased() : AirRobeStrings.added.uppercased()
+        addLabel.text = optSwitch.isOn ? AirRobeEnhancedStrings.add.uppercased() : AirRobeEnhancedStrings.added.uppercased()
         addLabel.textColor = AirRobeTextColor
-        addDescriptionLabel.text = AirRobeStrings.descriptionVariant2
+        addDescriptionLabel.text = AirRobeEnhancedStrings.description
         addDescriptionLabel.textColor = AirRobeTextColor
 
         closeLabel.hyperlinkAttributes = [.foregroundColor: AirRobeLinkTextColor]
         closeLabel.setLinkText(
-            orgText: AirRobeStrings.learnMoreCloseVariant2.uppercased(),
-            linkText: AirRobeStrings.learnMoreCloseVariant2.uppercased(),
-            link: AirRobeStrings.learnMoreLinkForPurpose,
+            orgText: AirRobeEnhancedStrings.learnMoreClose.uppercased(),
+            linkText: AirRobeEnhancedStrings.learnMoreClose.uppercased(),
+            link: AirRobeEnhancedStrings.learnMoreLinkForPurpose,
             tapHandler: onTapCloseText)
 
         mainStackView.setCustomSpacing(5, after: howItWorksLabel)

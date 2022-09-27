@@ -84,12 +84,12 @@ private extension AirRobeOrderConfirmationViewModel {
                     #if DEBUG
                     print("Email Checking Issue: ", error)
                     #endif
-                    self?.activateText = AirRobeStrings.orderConfirmationActivateText
+                    self?.activateText = AirRobeDefaultStrings.orderConfirmationActivateText
                 case .finished:
                     print(completion)
                 }
             }, receiveValue: { [weak self] in
-                self?.activateText = $0.data.isCustomer ? AirRobeStrings.orderConfirmationVisitText : AirRobeStrings.orderConfirmationActivateText
+                self?.activateText = $0.data.isCustomer ? AirRobeDefaultStrings.orderConfirmationVisitText : AirRobeDefaultStrings.orderConfirmationActivateText
             })
     }
 

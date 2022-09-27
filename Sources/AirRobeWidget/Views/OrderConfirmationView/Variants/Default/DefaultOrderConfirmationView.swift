@@ -38,8 +38,8 @@ final class DefaultOrderConfirmationView: UIView, NibLoadable {
     private func commonInit() {
         addBorder(color: AirRobeBorderColor.cgColor)
 
-        titleLabel.text = AirRobeStrings.orderConfirmationTitle
-        descriptionLabel.text = AirRobeStrings.orderConfirmationDescription
+        titleLabel.text = AirRobeDefaultStrings.orderConfirmationTitle
+        descriptionLabel.text = AirRobeDefaultStrings.orderConfirmationDescription
 
         activateContainerView.addBorder(borderWidth: 1, cornerRadius: 20)
 
@@ -54,7 +54,7 @@ final class DefaultOrderConfirmationView: UIView, NibLoadable {
             return
         }
         let url = URL(
-            string: "\(configuration.mode == .production ? AirRobeStrings.orderActivateBaseUrl : AirRobeStrings.orderActivateSandBoxBaseUrl)\(configuration.appId)-\(viewModel.orderId)/claim"
+            string: "\(configuration.mode == .production ? AirRobeDefaultStrings.orderActivateBaseUrl : AirRobeDefaultStrings.orderActivateSandBoxBaseUrl)\(configuration.appId)-\(viewModel.orderId)/claim"
         )
         guard let url = url else {
             return

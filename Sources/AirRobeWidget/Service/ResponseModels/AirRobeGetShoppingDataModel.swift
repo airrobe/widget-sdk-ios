@@ -107,7 +107,7 @@ extension AirRobeCategoryMappingHashMap {
 }
 
 private extension AirRobeCategoryMappingHashMap {
-    func factorize(category: String, delimiter: String.Element = AirRobeStrings.delimiter) -> [String] {
+    func factorize(category: String, delimiter: String.Element = AirRobeDefaultStrings.delimiter) -> [String] {
         let parts = category.split(separator: delimiter)
         var array: [String] = []
         for i in 0..<parts.count {

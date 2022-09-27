@@ -54,6 +54,8 @@ open class AirRobeConfirmation: UIView {
     /// - Parameters:
     ///   - orderId: string value of order Id generated from purchase
     ///   - email: email address that used for the purchase
+    ///   - orderSubtotalCents: Sum of line item prices including tax, less discounts, excluding any shipping costs.
+    ///   - currency: the ISO 4217 currency code for the order subtotal, defaulting to "AUD" if omitted.
     ///   - fraudRisk: fraud status for the confirmation widget
     public func initialize(
         orderId: String,

@@ -39,9 +39,9 @@ final class EnhancedOrderConfirmationView: UIView, NibLoadable {
     private func commonInit() {
         addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 0)
 
-        titleLabel.text = AirRobeStrings.orderConfirmationTitle.uppercased()
+        titleLabel.text = AirRobeEnhancedStrings.orderConfirmationTitle.uppercased()
         titleLabel.textColor = AirRobeTextColor
-        descriptionLabel.text = AirRobeStrings.orderConfirmationDescriptionVariant2
+        descriptionLabel.text = AirRobeEnhancedStrings.orderConfirmationDescription
         descriptionLabel.textColor = AirRobeTextColor
 
         activateContainerView.backgroundColor = AirRobeButtonBorderColor
@@ -60,7 +60,7 @@ final class EnhancedOrderConfirmationView: UIView, NibLoadable {
             return
         }
         let url = URL(
-            string: "\(configuration.mode == .production ? AirRobeStrings.orderActivateBaseUrl : AirRobeStrings.orderActivateSandBoxBaseUrl)\(configuration.appId)-\(viewModel.orderId)/claim"
+            string: "\(configuration.mode == .production ? AirRobeEnhancedStrings.orderActivateBaseUrl : AirRobeEnhancedStrings.orderActivateSandBoxBaseUrl)\(configuration.appId)-\(viewModel.orderId)/claim"
         )
         guard let url = url else {
             return
