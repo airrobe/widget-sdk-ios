@@ -81,6 +81,10 @@ private extension AirRobeOrderConfirmationView {
                     #if DEBUG
                     print(AirRobeWidgetLoadState.initializing.rawValue)
                     #endif
+                case .widgetDisabled:
+                    #if DEBUG
+                    print(AirRobeWidgetLoadState.widgetDisabled.rawValue)
+                    #endif
                 case .noCategoryMappingInfo:
                     #if DEBUG
                     print(AirRobeWidgetLoadState.noCategoryMappingInfo.rawValue)

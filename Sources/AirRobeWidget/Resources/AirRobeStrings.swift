@@ -56,6 +56,10 @@ enum AirRobeStrings {
                       department
                       minimumPriceCents
                     }
+                    widgetVariants {
+                      disabled
+                      splitTestVariant
+                    }
                   }
                 }
             """

@@ -92,7 +92,7 @@ extension AirRobeEndpoint {
             "anonymous_id": UIDevice.current.identifierForVendor?.uuidString ?? "",
             "session_id": sessionId,
             "external_order_id": orderId,
-            "split_test_variant": "default",
+            "split_test_variant": UserDefaults.standard.SplitTestVariant?.splitTestVariant ?? "default",
             "opted_in": orderOptedIn
         ]
         return AirRobeEndpoint(

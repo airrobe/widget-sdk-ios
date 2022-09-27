@@ -7,6 +7,7 @@
 
 enum AirRobeWidgetLoadState: String {
     case initializing = "Widget Initializing"
+    case widgetDisabled = "Widget is not enabled in target variant"
     case noCategoryMappingInfo = "Category Mapping Info is not loaded"
     case eligible
     case notEligible
