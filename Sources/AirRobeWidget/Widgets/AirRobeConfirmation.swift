@@ -11,14 +11,14 @@ import Combine
 
 open class AirRobeConfirmation: UIView {
     /// Border color of the widget - Default value is #DFDFDF
-    @IBInspectable open var borderColor: UIColor = .AirRobeDefaultBorderColor {
+    @IBInspectable open var borderColor: UIColor = .AirRobeColors.Default.BorderColor {
         didSet {
             orderConfirmationView.layer.borderColor = borderColor.cgColor
         }
     }
 
     /// Text color of the widget - Default value is #232323
-    @IBInspectable open var textColor: UIColor = .AirRobeDefaultTextColor {
+    @IBInspectable open var textColor: UIColor = .AirRobeColors.Default.TextColor {
         didSet {
             orderConfirmationView.titleLabel.textColor = textColor
             orderConfirmationView.descriptionLabel.textColor = textColor
@@ -26,14 +26,21 @@ open class AirRobeConfirmation: UIView {
     }
 
     /// AirRobe Confirmation Widget activate button border color - Default value is #232323
-    @IBInspectable open var buttonBorderColor: UIColor = .AirRobeDefaultButtonBorderColor {
+    @IBInspectable open var buttonBorderColor: UIColor = .AirRobeColors.Default.ConfirmationButtonBorderColor {
         didSet {
             orderConfirmationView.activateContainerView.layer.borderColor = buttonBorderColor.cgColor
         }
     }
 
+    /// AirRobe Confirmation Widget activate button background color - Default value is #FFFFFF
+    @IBInspectable open var buttonBackgroundColor: UIColor = .AirRobeColors.Default.ConfirmationButtonBackgroudColor {
+        didSet {
+            orderConfirmationView.activateContainerView.backgroundColor = buttonBackgroundColor
+        }
+    }
+
     /// AirRobe Confirmation Widget activate button text color - Default value is #232323
-    @IBInspectable open var buttonTextColor: UIColor = .AirRobeDefaultButtonTextColor {
+    @IBInspectable open var buttonTextColor: UIColor = .AirRobeColors.Default.ConfirmationButtonTextColor {
         didSet {
             orderConfirmationView.activateLoading.color = buttonTextColor
             orderConfirmationView.activateLabel.textColor = buttonTextColor
@@ -78,6 +85,7 @@ open class AirRobeConfirmation: UIView {
         borderColor = AirRobeBorderColor
         textColor = AirRobeTextColor
         buttonBorderColor = AirRobeButtonBorderColor
+        buttonBackgroundColor = AirRobeButtonBackgroundColor
         buttonTextColor = AirRobeButtonTextColor
     }
 }

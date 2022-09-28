@@ -36,7 +36,7 @@ final class DefaultOrderConfirmationView: UIView, NibLoadable {
     }
 
     private func commonInit() {
-        addBorder(color: AirRobeBorderColor.cgColor)
+        addBorder(color: UIColor.AirRobeColors.Default.BorderColor.cgColor)
 
         titleLabel.text = AirRobeDefaultStrings.orderConfirmationTitle
         descriptionLabel.text = AirRobeDefaultStrings.orderConfirmationDescription

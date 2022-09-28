@@ -11,14 +11,14 @@ import Combine
 
 open class AirRobeMultiOptIn: UIView {
     /// Border color of the widget - Default value is #DFDFDF
-    @IBInspectable open var borderColor: UIColor = .AirRobeDefaultBorderColor {
+    @IBInspectable open var borderColor: UIColor = .AirRobeColors.Default.BorderColor {
         didSet {
             optInView.mainContainerView.layer.borderColor = borderColor.cgColor
         }
     }
 
     /// Text color of the widget - Default value is #232323
-    @IBInspectable open var textColor: UIColor = .AirRobeDefaultTextColor {
+    @IBInspectable open var textColor: UIColor = .AirRobeColors.Default.TextColor {
         didSet {
             optInView.titleLabel.textColor = textColor
             optInView.descriptionLabel.textColor = textColor
@@ -31,22 +31,44 @@ open class AirRobeMultiOptIn: UIView {
     }
 
     /// AirRobe switch ON color - Default value is #42ABC8
-    @IBInspectable open var switchColor: UIColor = .AirRobeDefaultSwitchColor {
+    @IBInspectable open var switchOnColor: UIColor = .AirRobeColors.Default.SwitchOnTintColor {
         didSet {
-            optInView.addToAirRobeSwitch.onTintColor = switchColor
-            optInView.addToAirRobeSwitch.tintColor = switchColor
+            optInView.addToAirRobeSwitch.onTintColor = switchOnColor
+        }
+    }
+
+    /// AirRobe switch ON color - Default value is #E2E2E2
+    @IBInspectable open var switchOffColor: UIColor = .AirRobeColors.Default.SwitchOffTintColor {
+        didSet {
+            optInView.addToAirRobeSwitch.tintColor = switchOffColor
+            optInView.addToAirRobeSwitch.layer.cornerRadius = optInView.addToAirRobeSwitch.frame.height / 2.0
+            optInView.addToAirRobeSwitch.backgroundColor = switchOffColor
+            optInView.addToAirRobeSwitch.clipsToBounds = true
+
+        }
+    }
+
+    /// AirRobe switch thumb ON color - Default value is #FFFFFF
+    @IBInspectable open var switchThumbOnColor: UIColor = .AirRobeColors.Enhanced.SwitchThumbOnTintColor {
+        didSet {
+        }
+    }
+
+    /// AirRobe switch thumb OFF color - Default value is #222222
+    @IBInspectable open var switchThumbOffColor: UIColor = .AirRobeColors.Enhanced.SwitchThumbOffTintColor {
+        didSet {
         }
     }
 
     /// AirRobe OptIn Widget drop down arrow icon color - Default value is #42ABC8
-    @IBInspectable open var arrowColor: UIColor = .AirRobeDefaultArrowColor {
+    @IBInspectable open var arrowColor: UIColor = .AirRobeColors.Default.ArrowColor {
         didSet {
             optInView.arrowImageView.tintColor = arrowColor
         }
     }
 
     /// Legal copy text color of the widget - Default value is #696969
-    @IBInspectable open var linkTextColor: UIColor = .AirRobeDefaultLinkTextColor {
+    @IBInspectable open var linkTextColor: UIColor = .AirRobeColors.Default.LinkTextColor {
         didSet {
             optInView.extraInfoLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
             optInView.detailedDescriptionLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
@@ -79,7 +101,8 @@ open class AirRobeMultiOptIn: UIView {
         // Default Colors for the widget
         borderColor = AirRobeBorderColor
         textColor = AirRobeTextColor
-        switchColor = AirRobeSwitchColor
+        switchOnColor = AirRobeSwitchOnTintColor
+        switchOffColor = AirRobeSwitchOffTintColor
         arrowColor = AirRobeArrowColor
         linkTextColor = AirRobeLinkTextColor
     }

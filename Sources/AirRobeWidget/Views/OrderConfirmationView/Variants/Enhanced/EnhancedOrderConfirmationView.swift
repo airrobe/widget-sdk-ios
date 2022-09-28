@@ -37,21 +37,16 @@ final class EnhancedOrderConfirmationView: UIView, NibLoadable {
     }
 
     private func commonInit() {
-        addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 0)
+        addBorder(cornerRadius: 0)
 
         titleLabel.text = AirRobeEnhancedStrings.orderConfirmationTitle.uppercased()
-        titleLabel.textColor = AirRobeTextColor
         descriptionLabel.text = AirRobeEnhancedStrings.orderConfirmationDescription
-        descriptionLabel.textColor = AirRobeTextColor
-
-        activateContainerView.backgroundColor = AirRobeButtonBorderColor
-        activateLabel.textColor = AirRobeButtonTextColor
 
         activateLoading.hidesWhenStopped = true
         activateLoading.startAnimating()
 
         mainStackView.setCustomSpacing(4, after: titleLabel)
-        
+    
         setupBindings()
     }
 

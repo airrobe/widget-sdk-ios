@@ -65,14 +65,13 @@ final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBa
             tapHandler: onTapLearnMoreLink)
 
         optSwitch.thumbOnImage = UIImage(named: "check", in: .module, with: nil)
-        optSwitch.thumbOnTintColor = .white
-        optSwitch.onTintColor = .black
+        optSwitch.thumbOnTintColor = AirRobeSwitchThumbOnTintColor
+        optSwitch.onTintColor = AirRobeSwitchOnTintColor
         optSwitch.thumbOffImage = UIImage(named: "arrow", in: .module, with: nil)
-        optSwitch.thumbOffTintColor = .black
-        optSwitch.offTintColor = .white
+        optSwitch.thumbOffTintColor = AirRobeSwitchThumbOffTintColor
+        optSwitch.offTintColor = AirRobeSwitchOffTintColor
         optSwitch.isOn = UserDefaults.standard.OptedIn
 
-        optSwitch.tintColor = AirRobeSwitchColor
         addLabel.text = optSwitch.isOn ? AirRobeEnhancedStrings.add.uppercased() : AirRobeEnhancedStrings.added.uppercased()
         addLabel.textColor = AirRobeTextColor
         addDescriptionLabel.text = AirRobeEnhancedStrings.description

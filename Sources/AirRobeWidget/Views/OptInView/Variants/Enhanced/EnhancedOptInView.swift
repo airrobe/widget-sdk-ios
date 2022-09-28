@@ -79,14 +79,12 @@ final class EnhancedOptInView: UIView, NibLoadable {
 
     private func commonInit() {
         // Widget Border Style
-        mainContainerView.addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 0)
+        mainContainerView.addBorder(color: UIColor.AirRobeColors.Enhanced.BorderColor.cgColor, cornerRadius: 0)
 
         addToAirRobeSwitch.thumbOnImage = UIImage(named: "check", in: .module, with: nil)
-        addToAirRobeSwitch.thumbOnTintColor = .white
-        addToAirRobeSwitch.onTintColor = .black
+        addToAirRobeSwitch.thumbOnTintColor = .AirRobeColors.Enhanced.SwitchThumbOnTintColor
         addToAirRobeSwitch.thumbOffImage = UIImage(named: "arrow", in: .module, with: nil)
-        addToAirRobeSwitch.thumbOffTintColor = .black
-        addToAirRobeSwitch.offTintColor = .white
+        addToAirRobeSwitch.thumbOffTintColor = .AirRobeColors.Enhanced.SwitchThumbOffTintColor
 
         let tapOnArrowImage = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
         arrowImageView.isUserInteractionEnabled = true

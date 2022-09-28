@@ -22,68 +22,35 @@ extension UIColor {
         self.init(red: r, green: g, blue: b, alpha: CGFloat(alpha))
     }
 
-    static var AirRobeDefaultBorderColor: UIColor {
-        return UIColor(colorCode: "DFDFDF")
-    }
-
-    static var AirRobeDefaultTextColor: UIColor {
-        return UIColor(colorCode: "232323")
-    }
-
-    static var AirRobeDefaultSwitchColor: UIColor {
-        return UIColor(colorCode: "42abc8")
-    }
-
-    static var AirRobeDefaultArrowColor: UIColor {
-        return UIColor(colorCode: "42abc8")
-    }
-
-    static var AirRobeDefaultLinkTextColor: UIColor {
-        return UIColor(colorCode: "696969")
-    }
-
-    static var AirRobeDefaultButtonBorderColor: UIColor {
-        return UIColor(colorCode: "232323")
-    }
-
-    static var AirRobeDefaultButtonTextColor: UIColor {
-        return UIColor(colorCode: "232323")
-    }
-
-    static var AirRobeDefaultSeparatorColor: UIColor {
-        return UIColor(colorCode: "DFDFDF")
-    }
-
-    static var AirRobeDefaultBorderColorVariant2: UIColor {
-        return UIColor(colorCode: "000000")
-    }
-
-    static var AirRobeDefaultTextColorVariant2: UIColor {
-        return UIColor(colorCode: "222222")
-    }
-
-    static var AirRobeDefaultSwitchColorVariant2: UIColor {
-        return UIColor(colorCode: "222222")
-    }
-
-    static var AirRobeDefaultArrowColorVariant2: UIColor {
-        return UIColor(colorCode: "222222")
-    }
-
-    static var AirRobeDefaultLinkTextColorVariant2: UIColor {
-        return UIColor(colorCode: "222222")
-    }
-
-    static var AirRobeDefaultButtonBorderColorVariant2: UIColor {
-        return UIColor(colorCode: "111111")
-    }
-
-    static var AirRobeDefaultButtonTextColorVariant2: UIColor {
-        return UIColor(colorCode: "ffffff")
-    }
-
-    static var AirRobeDefaultSeparatorColorVariant2: UIColor {
-        return UIColor(colorCode: "222222")
+    enum AirRobeColors {
+        enum Default {
+            static let BorderColor = UIColor(colorCode: "DFDFDF")
+            static let TextColor = UIColor(colorCode: "232323")
+            static let SwitchOnTintColor = UIColor(colorCode: "42ABC8")
+            static let SwitchOffTintColor = UIColor(colorCode: "E2E2E2")
+            static let ArrowColor = UIColor(colorCode: "42ABC8")
+            static let LinkTextColor = UIColor(colorCode: "696969")
+            static let ConfirmationButtonBorderColor = UIColor(colorCode: "232323")
+            static let ConfirmationButtonBackgroudColor = UIColor(colorCode: "FFFFFF")
+            static let ConfirmationButtonTextColor = UIColor(colorCode: "232323")
+            static let SeparatorColor = UIColor(colorCode: "DFDFDF")
+        }
+        enum Enhanced {
+            static let BorderColor = UIColor(colorCode: "000000")
+            static let TextColor = UIColor(colorCode: "222222")
+            static let SwitchOnTintColor = UIColor(colorCode: "222222")
+            static let SwitchOffTintColor = UIColor(colorCode: "FFFFFF")
+            static let SwitchThumbOnTintColor = UIColor(colorCode: "FFFFFF")
+            static let SwitchThumbOffTintColor = UIColor(colorCode: "222222")
+            static let SwitchBorderColor = UIColor(colorCode: "B2B2B2")
+            static let PopupSwitchContainerBackgroundColor = UIColor(colorCode: "F1F1F1")
+            static let ArrowColor = UIColor(colorCode: "222222")
+            static let LinkTextColor = UIColor(colorCode: "222222")
+            static let ConfirmationButtonBorderColor = UIColor(colorCode: "FFFFFF", alpha: 0)
+            static let ConfirmationButtonBackgroudColor = UIColor(colorCode: "111111")
+            static let ConfirmationButtonTextColor = UIColor(colorCode: "FFFFFF")
+            static let SeparatorColor = UIColor(colorCode: "222222")
+        }
     }
 }
 #endif
