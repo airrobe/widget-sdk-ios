@@ -72,7 +72,7 @@ final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBa
         optSwitch.offTintColor = AirRobeSwitchOffTintColor
         optSwitch.isOn = UserDefaults.standard.OptedIn
 
-        addLabel.text = optSwitch.isOn ? AirRobeEnhancedStrings.add.uppercased() : AirRobeEnhancedStrings.added.uppercased()
+        addLabel.text = optSwitch.isOn ? AirRobeEnhancedStrings.added.uppercased() : AirRobeEnhancedStrings.add.uppercased()
         addLabel.textColor = AirRobeTextColor
         addDescriptionLabel.text = AirRobeEnhancedStrings.description
         addDescriptionLabel.textColor = AirRobeTextColor
@@ -108,6 +108,7 @@ final class EnhancedLearnMoreAlertViewController: UIViewController, StoryboardBa
 
     @IBAction func onToggleOptSwitch(_ sender: AirRobeSwitch) {
         UserDefaults.standard.OptedIn = sender.isOn
+        addLabel.text = sender.isOn ? AirRobeEnhancedStrings.added.uppercased() : AirRobeEnhancedStrings.add.uppercased()
         if sender.isOn {
             if viewType == .optIn {
                 AirRobeUtils.telemetryEvent(eventName: EventName.optIn.rawValue, pageName: PageName.product.rawValue)

@@ -80,7 +80,7 @@ final class DefaultOptInView: UIView, NibLoadable {
 
     private func commonInit() {
         // Widget Border Style
-        mainContainerView.addBorder(color: UIColor.AirRobeColors.Default.BorderColor.cgColor, cornerRadius: 0)
+        mainContainerView.addBorder(cornerRadius: 0)
 
         let tapOnArrowImage = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
         arrowImageView.isUserInteractionEnabled = true

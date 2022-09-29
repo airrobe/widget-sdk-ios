@@ -33,6 +33,7 @@ public func initialize(config: AirRobeWidgetConfig) {
             for i in 0..<$0.data.shop.categoryMappings.count {
                 AirRobeShoppingDataModelInstance.shared.categoryMapping.categoryMappingsHashMap[$0.data.shop.categoryMappings[i].from] = $0.data.shop.categoryMappings[i]
             }
+            updateDefaultColors()
         })
 }
 
@@ -68,16 +69,16 @@ public func orderOptedIn() -> Bool {
     return UserDefaults.standard.OrderOptedIn
 }
 
-/// Border color of the widget - Default value is #DFDFDF
+/// Border color of the widget - Default value is #DFDFDF or #000000
 public var AirRobeBorderColor: UIColor = .AirRobeColors.Default.BorderColor
 
-/// Text color of the widget - Default value is #232323
+/// Text color of the widget - Default value is #232323 or #222222
 public var AirRobeTextColor: UIColor = .AirRobeColors.Default.TextColor
 
-/// AirRobe switch ON color - Default value is #42ABC8
+/// AirRobe switch ON color - Default value is #42ABC8 or #222222
 public var AirRobeSwitchOnTintColor: UIColor = .AirRobeColors.Default.SwitchOnTintColor
 
-/// AirRobe switch OFF color - Default value is #E2E2E2
+/// AirRobe switch OFF color - Default value is #E2E2E2 or #FFFFFF
 public var AirRobeSwitchOffTintColor: UIColor = .AirRobeColors.Default.SwitchOffTintColor
 
 /// AirRobe switch thumb ON color - Default value is #FFFFFF
@@ -88,22 +89,22 @@ public var AirRobeSwitchThumbOnTintColor: UIColor = .AirRobeColors.Enhanced.Swit
 /// - It applies to only specific widget variant.
 public var AirRobeSwitchThumbOffTintColor: UIColor = .AirRobeColors.Enhanced.SwitchThumbOffTintColor
 
-/// AirRobe OptIn Widget drop down arrow icon color - Default value is #42ABC8
+/// AirRobe OptIn Widget drop down arrow icon color - Default value is #42ABC8 or #222222
 public var AirRobeArrowColor: UIColor = .AirRobeColors.Default.ArrowColor
 
-/// Legal copy text color of the widget - Default value is #696969
+/// Legal copy text color of the widget - Default value is #696969 or #222222
 public var AirRobeLinkTextColor: UIColor = .AirRobeColors.Default.LinkTextColor
 
-/// AirRobe Confirmation Widget activate button border color - Default value is #232323
+/// AirRobe Confirmation Widget activate button border color - Default value is #232323 or #FFFFFF
 public var AirRobeButtonBorderColor: UIColor = .AirRobeColors.Default.ConfirmationButtonBorderColor
 
-/// AirRobe Confirmation Widget activate button text color - Default value is #232323
+/// AirRobe Confirmation Widget activate button text color - Default value is #232323 or #FFFFFF
 public var AirRobeButtonTextColor: UIColor = .AirRobeColors.Default.ConfirmationButtonTextColor
 
-/// AirRobe Confirmation Widget activate button background color - Default value is #FFFFFF
+/// AirRobe Confirmation Widget activate button background color - Default value is #FFFFFF or #111111
 public var AirRobeButtonBackgroundColor: UIColor = .AirRobeColors.Default.ConfirmationButtonBackgroudColor
 
-/// AirRobe Learn More Popup Widget Separator color - Default value is #DFDFDF
+/// AirRobe Learn More Popup Widget Separator color - Default value is #DFDFDF or #222222
 public var AirRobeSeparatorColor: UIColor = .AirRobeColors.Default.SeparatorColor
 
 /// AirRobe Learn More Popup widget switch container background color - Default value is #F1F1F1

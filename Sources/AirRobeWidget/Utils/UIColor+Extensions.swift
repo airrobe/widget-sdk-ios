@@ -27,7 +27,7 @@ extension UIColor {
             static let BorderColor = UIColor(colorCode: "DFDFDF")
             static let TextColor = UIColor(colorCode: "232323")
             static let SwitchOnTintColor = UIColor(colorCode: "42ABC8")
-            static let SwitchOffTintColor = UIColor(colorCode: "E2E2E2")
+            static let SwitchOffTintColor = UIColor(colorCode: "DFDFDF")
             static let ArrowColor = UIColor(colorCode: "42ABC8")
             static let LinkTextColor = UIColor(colorCode: "696969")
             static let ConfirmationButtonBorderColor = UIColor(colorCode: "232323")

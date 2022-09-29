@@ -53,10 +53,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AirRobeEventDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        // Initialize AirRobeWidget with appId and privacy policy link for The Iconic
+        // Initialize AirRobeWidget with appId
         AirRobeWidget.initialize(
             config: AirRobeWidgetConfig(
-                appId: "515b6ee129da",
+                appId: "927fbe5e7924",
                 mode: .sandbox
             )
         )

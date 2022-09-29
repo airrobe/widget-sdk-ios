@@ -79,12 +79,10 @@ final class EnhancedOptInView: UIView, NibLoadable {
 
     private func commonInit() {
         // Widget Border Style
-        mainContainerView.addBorder(color: UIColor.AirRobeColors.Enhanced.BorderColor.cgColor, cornerRadius: 0)
+        mainContainerView.addBorder(cornerRadius: 0)
 
         addToAirRobeSwitch.thumbOnImage = UIImage(named: "check", in: .module, with: nil)
-        addToAirRobeSwitch.thumbOnTintColor = .AirRobeColors.Enhanced.SwitchThumbOnTintColor
         addToAirRobeSwitch.thumbOffImage = UIImage(named: "arrow", in: .module, with: nil)
-        addToAirRobeSwitch.thumbOffTintColor = .AirRobeColors.Enhanced.SwitchThumbOffTintColor
 
         let tapOnArrowImage = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
         arrowImageView.isUserInteractionEnabled = true
@@ -206,9 +204,11 @@ private extension EnhancedOptInView {
             .sink(receiveCompletion: {
                 print($0)
             }, receiveValue: { [weak self] (optInfo) in
-                self?.addToAirRobeSwitch.isOn = optInfo
-                if self?.viewType == .multiOptIn {
-                    UserDefaults.standard.OrderOptedIn = self?.viewModel.isAllSet == .eligible && optInfo ? true : false
+                if self?.addToAirRobeSwitch.isOn != optInfo {
+                    self?.addToAirRobeSwitch.setOn(on: optInfo, animated: true)
+                    if self?.viewType == .multiOptIn {
+                        UserDefaults.standard.OrderOptedIn = self?.viewModel.isAllSet == .eligible && optInfo ? true : false
+                    }
                 }
             }).store(in: &subscribers)
 

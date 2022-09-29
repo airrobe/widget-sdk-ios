@@ -10,44 +10,72 @@ import UIKit
 import Combine
 
 open class AirRobeConfirmation: UIView {
-    /// Border color of the widget - Default value is #DFDFDF
+    /// Border color of the widget - Default value is #DFDFDF or #000000
     @IBInspectable open var borderColor: UIColor = .AirRobeColors.Default.BorderColor {
         didSet {
-            orderConfirmationView.layer.borderColor = borderColor.cgColor
+            if let orderConfirmationView = orderConfirmationViewDefault {
+                orderConfirmationView.layer.borderColor = borderColor.cgColor
+            }
+            if let orderConfirmationView = orderConfirmationViewEnhanced {
+                orderConfirmationView.layer.borderColor = borderColor.cgColor
+            }
         }
     }
 
-    /// Text color of the widget - Default value is #232323
+    /// Text color of the widget - Default value is #232323 or #222222
     @IBInspectable open var textColor: UIColor = .AirRobeColors.Default.TextColor {
         didSet {
-            orderConfirmationView.titleLabel.textColor = textColor
-            orderConfirmationView.descriptionLabel.textColor = textColor
+            if let orderConfirmationView = orderConfirmationViewDefault {
+                orderConfirmationView.titleLabel.textColor = textColor
+                orderConfirmationView.descriptionLabel.textColor = textColor
+            }
+            if let orderConfirmationView = orderConfirmationViewEnhanced {
+                orderConfirmationView.titleLabel.textColor = textColor
+                orderConfirmationView.descriptionLabel.textColor = textColor
+            }
         }
     }
 
-    /// AirRobe Confirmation Widget activate button border color - Default value is #232323
+    /// AirRobe Confirmation Widget activate button border color - Default value is #232323 or #FFFFFF
     @IBInspectable open var buttonBorderColor: UIColor = .AirRobeColors.Default.ConfirmationButtonBorderColor {
         didSet {
-            orderConfirmationView.activateContainerView.layer.borderColor = buttonBorderColor.cgColor
+            if let orderConfirmationView = orderConfirmationViewDefault {
+                orderConfirmationView.activateContainerView.layer.borderColor = buttonBorderColor.cgColor
+            }
+            if let orderConfirmationView = orderConfirmationViewEnhanced {
+                orderConfirmationView.activateContainerView.layer.borderColor = buttonBorderColor.cgColor
+            }
         }
     }
 
-    /// AirRobe Confirmation Widget activate button background color - Default value is #FFFFFF
+    /// AirRobe Confirmation Widget activate button background color - Default value is #FFFFFF or #111111
     @IBInspectable open var buttonBackgroundColor: UIColor = .AirRobeColors.Default.ConfirmationButtonBackgroudColor {
         didSet {
-            orderConfirmationView.activateContainerView.backgroundColor = buttonBackgroundColor
+            if let orderConfirmationView = orderConfirmationViewDefault {
+                orderConfirmationView.activateContainerView.backgroundColor = buttonBackgroundColor
+            }
+            if let orderConfirmationView = orderConfirmationViewEnhanced {
+                orderConfirmationView.activateContainerView.backgroundColor = buttonBackgroundColor
+            }
         }
     }
 
-    /// AirRobe Confirmation Widget activate button text color - Default value is #232323
+    /// AirRobe Confirmation Widget activate button text color - Default value is #232323 or #FFFFFF
     @IBInspectable open var buttonTextColor: UIColor = .AirRobeColors.Default.ConfirmationButtonTextColor {
         didSet {
-            orderConfirmationView.activateLoading.color = buttonTextColor
-            orderConfirmationView.activateLabel.textColor = buttonTextColor
+            if let orderConfirmationView = orderConfirmationViewDefault {
+                orderConfirmationView.activateLoading.color = buttonTextColor
+                orderConfirmationView.activateLabel.textColor = buttonTextColor
+            }
+            if let orderConfirmationView = orderConfirmationViewEnhanced {
+                orderConfirmationView.activateLoading.color = buttonTextColor
+                orderConfirmationView.activateLabel.textColor = buttonTextColor
+            }
         }
     }
 
-    lazy var orderConfirmationView: DefaultOrderConfirmationView = DefaultOrderConfirmationView.loadFromNib()
+    var orderConfirmationViewDefault: DefaultOrderConfirmationView?
+    var orderConfirmationViewEnhanced: EnhancedOrderConfirmationView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,14 +100,30 @@ open class AirRobeConfirmation: UIView {
         fraudRisk: Bool = false
     ) {
         translatesAutoresizingMaskIntoConstraints = false
-        orderConfirmationView.viewModel.orderId = orderId
-        orderConfirmationView.viewModel.email = email
-        orderConfirmationView.viewModel.orderSubtotalCents = orderSubtotalCents
-        orderConfirmationView.viewModel.currency = currency
-        orderConfirmationView.viewModel.fraudRisk = fraudRisk
-        orderConfirmationView.superView = self
+        if let testVariant = AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.getSplitTestVariant() {
+            switch testVariant.splitTestVariant {
+            case Variants.enhanced.rawValue:
+                orderConfirmationViewEnhanced = EnhancedOrderConfirmationView.loadFromNib()
+                orderConfirmationViewEnhanced?.viewModel.orderId = orderId
+                orderConfirmationViewEnhanced?.viewModel.email = email
+                orderConfirmationViewEnhanced?.viewModel.orderSubtotalCents = orderSubtotalCents
+                orderConfirmationViewEnhanced?.viewModel.currency = currency
+                orderConfirmationViewEnhanced?.viewModel.fraudRisk = fraudRisk
+                orderConfirmationViewEnhanced?.superView = self
 
-        orderConfirmationView.viewModel.initializeConfirmationWidget()
+                orderConfirmationViewEnhanced?.viewModel.initializeConfirmationWidget()
+            default:
+                orderConfirmationViewDefault = DefaultOrderConfirmationView.loadFromNib()
+                orderConfirmationViewDefault?.viewModel.orderId = orderId
+                orderConfirmationViewDefault?.viewModel.email = email
+                orderConfirmationViewDefault?.viewModel.orderSubtotalCents = orderSubtotalCents
+                orderConfirmationViewDefault?.viewModel.currency = currency
+                orderConfirmationViewDefault?.viewModel.fraudRisk = fraudRisk
+                orderConfirmationViewDefault?.superView = self
+
+                orderConfirmationViewDefault?.viewModel.initializeConfirmationWidget()
+            }
+        }
 
         // Default Colors for the widget
         borderColor = AirRobeBorderColor

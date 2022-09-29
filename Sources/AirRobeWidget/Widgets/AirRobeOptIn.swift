@@ -10,71 +10,115 @@ import UIKit
 import Combine
 
 open class AirRobeOptIn: UIView {
-    /// Border color of the widget - Default value is #DFDFDF
+    /// Border color of the widget - Default value is #DFDFDF or #000000
     @IBInspectable open var borderColor: UIColor = .AirRobeColors.Default.BorderColor {
         didSet {
-            optInView.mainContainerView.layer.borderColor = borderColor.cgColor
+            if let optInView = optInViewDefault {
+                optInView.mainContainerView.layer.borderColor = borderColor.cgColor
+            }
+            if let optInView = optInViewEnhanced {
+                optInView.mainContainerView.layer.borderColor = borderColor.cgColor
+            }
         }
     }
 
-    /// Text color of the widget - Default value is #232323
+    /// Text color of the widget - Default value is #232323 or #222222
     @IBInspectable open var textColor: UIColor = .AirRobeColors.Default.TextColor {
         didSet {
-            optInView.titleLabel.textColor = textColor
-            optInView.descriptionLabel.textColor = textColor
-            optInView.detailedDescriptionLabel.textColor = textColor
-            optInView.extraInfoLabel.textColor = textColor
-            optInView.potentialValueLabel.textColor = textColor
-            optInView.extraInfoLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
-            optInView.detailedDescriptionLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+            if let optInView = optInViewDefault {
+                optInView.titleLabel.textColor = textColor
+                optInView.descriptionLabel.textColor = textColor
+                optInView.detailedDescriptionLabel.textColor = textColor
+                optInView.extraInfoLabel.textColor = textColor
+                optInView.potentialValueLabel.textColor = textColor
+                optInView.extraInfoLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+                optInView.detailedDescriptionLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+            }
+            if let optInView = optInViewEnhanced {
+                optInView.titleLabel.textColor = textColor
+                optInView.descriptionLabel.textColor = textColor
+                optInView.detailedDescriptionLabel.textColor = textColor
+                optInView.extraInfoLabel.textColor = textColor
+                optInView.potentialValueLabel.textColor = textColor
+                optInView.extraInfoLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+                optInView.detailedDescriptionLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+            }
         }
     }
 
-    /// AirRobe switch ON color - Default value is #42ABC8
+    /// AirRobe switch ON color - Default value is #42ABC8 or #222222
     @IBInspectable open var switchOnColor: UIColor = .AirRobeColors.Default.SwitchOnTintColor {
         didSet {
-            optInView.addToAirRobeSwitch.onTintColor = switchOnColor
+            if let optInView = optInViewDefault {
+                optInView.addToAirRobeSwitch.onTintColor = switchOnColor
+            }
+            if let optInView = optInViewEnhanced {
+                optInView.addToAirRobeSwitch.onTintColor = switchOnColor
+            }
         }
     }
 
-    /// AirRobe switch ON color - Default value is #E2E2E2
+    /// AirRobe switch ON color - Default value is #E2E2E2 or #FFFFFF
     @IBInspectable open var switchOffColor: UIColor = .AirRobeColors.Default.SwitchOffTintColor {
         didSet {
-            optInView.addToAirRobeSwitch.offTintColor = switchOffColor
+            if let optInView = optInViewDefault {
+                optInView.addToAirRobeSwitch.tintColor = switchOffColor
+                optInView.addToAirRobeSwitch.layer.cornerRadius = optInView.addToAirRobeSwitch.frame.height / 2.0
+                optInView.addToAirRobeSwitch.backgroundColor = switchOffColor
+                optInView.addToAirRobeSwitch.clipsToBounds = true
+            }
+            if let optInView = optInViewEnhanced {
+                optInView.addToAirRobeSwitch.offTintColor = switchOffColor
+            }
         }
     }
 
     /// AirRobe switch thumb ON color - Default value is #FFFFFF
     @IBInspectable open var switchThumbOnColor: UIColor = .AirRobeColors.Enhanced.SwitchThumbOnTintColor {
         didSet {
-            optInView.addToAirRobeSwitch.thumbOnTintColor = switchThumbOnColor
+            if let optInView = optInViewEnhanced {
+                optInView.addToAirRobeSwitch.thumbOnTintColor = switchThumbOnColor
+            }
         }
     }
 
     /// AirRobe switch thumb OFF color - Default value is #222222
     @IBInspectable open var switchThumbOffColor: UIColor = .AirRobeColors.Enhanced.SwitchThumbOffTintColor {
         didSet {
-            optInView.addToAirRobeSwitch.thumbOffTintColor = switchThumbOffColor
+            if let optInView = optInViewEnhanced {
+                optInView.addToAirRobeSwitch.thumbOffTintColor = switchThumbOffColor
+            }
         }
     }
 
-    /// AirRobe OptIn Widget drop down arrow icon color - Default value is #42ABC8
+    /// AirRobe OptIn Widget drop down arrow icon color - Default value is #42ABC8 or #222222
     @IBInspectable open var arrowColor: UIColor = .AirRobeColors.Default.ArrowColor {
         didSet {
-            optInView.arrowImageView.tintColor = arrowColor
+            if let optInView = optInViewDefault {
+                optInView.arrowImageView.tintColor = arrowColor
+            }
+            if let optInView = optInViewEnhanced {
+                optInView.arrowImageView.tintColor = arrowColor
+            }
         }
     }
 
-    /// Legal copy text color of the widget - Default value is #696969
+    /// Legal copy text color of the widget - Default value is #696969 or #222222
     @IBInspectable open var linkTextColor: UIColor = .AirRobeColors.Default.LinkTextColor {
         didSet {
-            optInView.extraInfoLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
-            optInView.detailedDescriptionLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+            if let optInView = optInViewDefault {
+                optInView.extraInfoLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+                optInView.detailedDescriptionLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+            }
+            if let optInView = optInViewEnhanced {
+                optInView.extraInfoLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+                optInView.detailedDescriptionLabel.hyperlinkAttributes = [.foregroundColor: linkTextColor]
+            }
         }
     }
 
-    private var subscribers: [AnyCancellable] = []
-    lazy var optInView: EnhancedOptInView = EnhancedOptInView.loadFromNib()
+    var optInViewDefault: DefaultOptInView?
+    var optInViewEnhanced: EnhancedOptInView?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -107,25 +151,48 @@ open class AirRobeOptIn: UIView {
         locale: String = "en-AU"
     ) {
         translatesAutoresizingMaskIntoConstraints = false
-        optInView.viewModel.brand = brand
-        optInView.viewModel.material = material
-        optInView.viewModel.category = category
-        optInView.viewModel.department = department
-        optInView.viewModel.priceCents = priceCents
-        optInView.viewModel.originalFullPriceCents = originalFullPriceCents
-        optInView.viewModel.rrpCents = rrpCents
-        optInView.viewModel.currency = currency
-        optInView.viewModel.locale = locale
-        optInView.viewType = .optIn
-        optInView.superView = self
+        if let testVariant = AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.getSplitTestVariant() {
+            switch testVariant.splitTestVariant {
+            case Variants.enhanced.rawValue:
+                optInViewEnhanced = EnhancedOptInView.loadFromNib()
+                optInViewEnhanced?.viewModel.brand = brand
+                optInViewEnhanced?.viewModel.material = material
+                optInViewEnhanced?.viewModel.category = category
+                optInViewEnhanced?.viewModel.department = department
+                optInViewEnhanced?.viewModel.priceCents = priceCents
+                optInViewEnhanced?.viewModel.originalFullPriceCents = originalFullPriceCents
+                optInViewEnhanced?.viewModel.rrpCents = rrpCents
+                optInViewEnhanced?.viewModel.currency = currency
+                optInViewEnhanced?.viewModel.locale = locale
+                optInViewEnhanced?.viewType = .optIn
+                optInViewEnhanced?.superView = self
 
-        optInView.viewModel.initializeOptInWidget()
+                optInViewEnhanced?.viewModel.initializeOptInWidget()
+            default:
+                optInViewDefault = DefaultOptInView.loadFromNib()
+                optInViewDefault?.viewModel.brand = brand
+                optInViewDefault?.viewModel.material = material
+                optInViewDefault?.viewModel.category = category
+                optInViewDefault?.viewModel.department = department
+                optInViewDefault?.viewModel.priceCents = priceCents
+                optInViewDefault?.viewModel.originalFullPriceCents = originalFullPriceCents
+                optInViewDefault?.viewModel.rrpCents = rrpCents
+                optInViewDefault?.viewModel.currency = currency
+                optInViewDefault?.viewModel.locale = locale
+                optInViewDefault?.viewType = .optIn
+                optInViewDefault?.superView = self
+
+                optInViewDefault?.viewModel.initializeOptInWidget()
+            }
+        }
 
         // Default Colors for the widget
         borderColor = AirRobeBorderColor
         textColor = AirRobeTextColor
         switchOnColor = AirRobeSwitchOnTintColor
         switchOffColor = AirRobeSwitchOffTintColor
+        switchThumbOnColor = AirRobeSwitchThumbOnTintColor
+        switchThumbOffColor = AirRobeSwitchThumbOffTintColor
         arrowColor = AirRobeArrowColor
         linkTextColor = AirRobeLinkTextColor
     }

@@ -65,3 +65,39 @@ public enum PageName: String {
     case thankYou = "Thank You"
     case other = "Other"
 }
+
+enum Variants: String {
+case `default` = "default"
+case enhanced = "enhanced"
+}
+
+func updateDefaultColors() {
+
+    if let testVariant = AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.getSplitTestVariant() {
+        switch testVariant.splitTestVariant {
+        case Variants.enhanced.rawValue:
+            AirRobeBorderColor = .AirRobeColors.Enhanced.BorderColor
+            AirRobeTextColor = .AirRobeColors.Enhanced.TextColor
+            AirRobeSwitchOnTintColor = .AirRobeColors.Enhanced.SwitchOnTintColor
+            AirRobeSwitchOffTintColor = .AirRobeColors.Enhanced.SwitchOffTintColor
+            AirRobeArrowColor = .AirRobeColors.Enhanced.ArrowColor
+            AirRobeLinkTextColor = .AirRobeColors.Enhanced.LinkTextColor
+            AirRobeButtonBorderColor = .AirRobeColors.Enhanced.ConfirmationButtonBorderColor
+            AirRobeButtonBackgroundColor = .AirRobeColors.Enhanced.ConfirmationButtonBackgroudColor
+            AirRobeButtonTextColor = .AirRobeColors.Enhanced.ConfirmationButtonTextColor
+            AirRobeSeparatorColor = .AirRobeColors.Enhanced.SeparatorColor
+        default:
+            AirRobeBorderColor = .AirRobeColors.Default.BorderColor
+            AirRobeTextColor = .AirRobeColors.Default.TextColor
+            AirRobeSwitchOnTintColor = .AirRobeColors.Default.SwitchOnTintColor
+            AirRobeSwitchOffTintColor = .AirRobeColors.Default.SwitchOffTintColor
+            AirRobeArrowColor = .AirRobeColors.Default.ArrowColor
+            AirRobeLinkTextColor = .AirRobeColors.Default.LinkTextColor
+            AirRobeButtonBorderColor = .AirRobeColors.Default.ConfirmationButtonBorderColor
+            AirRobeButtonBackgroundColor = .AirRobeColors.Default.ConfirmationButtonBackgroudColor
+            AirRobeButtonTextColor = .AirRobeColors.Default.ConfirmationButtonTextColor
+            AirRobeSeparatorColor = .AirRobeColors.Default.SeparatorColor
+        }
+    }
+
+}
