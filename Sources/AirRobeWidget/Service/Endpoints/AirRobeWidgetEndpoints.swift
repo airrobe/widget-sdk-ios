@@ -53,7 +53,7 @@ extension AirRobeEndpoint {
         var properties: [String: Any] = [
             "source": AirRobeWidgetInfo.platform,
             "version": AirRobeWidgetInfo.version,
-            "split_test_variant": "default",
+            "split_test_variant": UserDefaults.standard.SplitTestVariant?.splitTestVariant ?? "default",
             "page_name": pageName,
         ]
         if let brand = brand {
