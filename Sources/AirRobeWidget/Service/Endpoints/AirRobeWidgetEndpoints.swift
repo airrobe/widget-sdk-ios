@@ -81,9 +81,9 @@ extension AirRobeEndpoint {
         ]
         return AirRobeEndpoint(
             method: .PUT,
-            path: "/telemetry_events",
+            path: "/v1",
             requestBody: requestBody,
-            host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue
+            host: telemetryEventHost
         )
     }
 

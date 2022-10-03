@@ -14,3 +14,4 @@ enum AirRobeHost: String {
 
 let priceEngineHost = "price-engine.airrobe.com"
 let emailCheckHost = "shop.airrobe.com"
+let telemetryEventHost = "events.airrobe.com"
