@@ -1,5 +1,5 @@
 //
-//  AirRobeLearnMoreAlertViewController.swift
+//  DefaultLearnMoreAlertViewController.swift
 //  
 //
 //  Created by King on 11/30/21.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBased {
+final class DefaultLearnMoreAlertViewController: UIViewController, StoryboardBased {
     @IBOutlet weak var outsideView: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var closeButton: UIButton!
@@ -30,29 +30,29 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
     @IBOutlet weak var separator2: UIView!
     @IBOutlet weak var separator3: UIView!
 
-    var viewType: AirRobeOptInView.ViewType = .optIn
+    var viewType: DefaultOptInView.ViewType = .optIn
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleLabel.text = AirRobeStrings.learnMoreTitle
+        titleLabel.text = AirRobeDefaultStrings.learnMoreTitle
         titleLabel.textColor = AirRobeTextColor
-        step1TitleLabel.text = AirRobeStrings.learnMoreStep1Title
+        step1TitleLabel.text = AirRobeDefaultStrings.learnMoreStep1Title
         step1TitleLabel.textColor = AirRobeTextColor
-        step1DescriptionLabel.text = AirRobeStrings.learnMoreStep1Description
+        step1DescriptionLabel.text = AirRobeDefaultStrings.learnMoreStep1Description
         step1DescriptionLabel.textColor = AirRobeTextColor
-        step2TitleLabel.text = AirRobeStrings.learnMoreStep2Title
+        step2TitleLabel.text = AirRobeDefaultStrings.learnMoreStep2Title
         step2TitleLabel.textColor = AirRobeTextColor
-        step2DescriptionLabel.text = AirRobeStrings.learnMoreStep2Description
+        step2DescriptionLabel.text = AirRobeDefaultStrings.learnMoreStep2Description
         step2DescriptionLabel.textColor = AirRobeTextColor
-        questionLabel.text = AirRobeStrings.learnMoreQuestion
+        questionLabel.text = AirRobeDefaultStrings.learnMoreQuestion
         questionLabel.textColor = AirRobeTextColor
-        answerLabel.text = AirRobeStrings.learnMoreAnswer
+        answerLabel.text = AirRobeDefaultStrings.learnMoreAnswer
         answerLabel.textColor = AirRobeTextColor
-        readyLabel.text = AirRobeStrings.learnMoreReady
+        readyLabel.text = AirRobeDefaultStrings.learnMoreReady
         readyLabel.textColor = AirRobeTextColor
-        toggleOnLabel.text = AirRobeStrings.learnMoreToggleOn
+        toggleOnLabel.text = AirRobeDefaultStrings.learnMoreToggleOn
         toggleOnLabel.textColor = AirRobeTextColor
-        findMoreLabel.hyperlinkAttributes = [.foregroundColor: AirRobeLinkTextColor]
+        findMoreLabel.hyperlinkAttributes = [.foregroundColor: AirRobeLinkTextColor.cgColor]
         guard let learnMoreFindMoreLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.popupFindOutMoreUrl ?? "") else {
             #if DEBUG
             print("Popup find out more url is not valid.")
@@ -60,13 +60,13 @@ final class AirRobeLearnMoreAlertViewController: UIViewController, StoryboardBas
             return
         }
         findMoreLabel.setLinkText(
-            orgText: AirRobeStrings.learnMoreFindMoreText,
-            linkText: AirRobeStrings.learnMoreFindMoreText,
+            orgText: AirRobeDefaultStrings.learnMoreFindMoreText,
+            linkText: AirRobeDefaultStrings.learnMoreFindMoreText,
             link: learnMoreFindMoreLink,
             tapHandler: onTapFindMoreLink)
         optSwitch.isOn = UserDefaults.standard.OptedIn
-        optSwitch.onTintColor = AirRobeSwitchColor
-        optSwitch.tintColor = AirRobeSwitchColor
+        optSwitch.onTintColor = AirRobeSwitchOnTintColor
+        optSwitch.tintColor = AirRobeSwitchOffTintColor
 
         mainView.addShadow()
         step1View.addBorder(color: AirRobeBorderColor.cgColor)

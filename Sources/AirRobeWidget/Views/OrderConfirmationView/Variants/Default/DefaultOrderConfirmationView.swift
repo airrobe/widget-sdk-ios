@@ -1,5 +1,5 @@
 //
-//  AirRobeOrderConfirmationView.swift
+//  DefaultOrderConfirmationView.swift
 //  
 //
 //  Created by King on 12/2/21.
@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-final class AirRobeOrderConfirmationView: UIView, NibLoadable {
+final class DefaultOrderConfirmationView: UIView, NibLoadable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var activateContainerView: UIView!
@@ -36,10 +36,10 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
     }
 
     private func commonInit() {
-        addBorder(color: AirRobeBorderColor.cgColor)
+        addBorder(color: UIColor.AirRobeColors.Default.BorderColor.cgColor)
 
-        titleLabel.text = AirRobeStrings.orderConfirmationTitle
-        descriptionLabel.text = AirRobeStrings.orderConfirmationDescription
+        titleLabel.text = AirRobeDefaultStrings.orderConfirmationTitle
+        descriptionLabel.text = AirRobeDefaultStrings.orderConfirmationDescription
 
         activateContainerView.addBorder(borderWidth: 1, cornerRadius: 20)
 
@@ -54,7 +54,7 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
             return
         }
         let url = URL(
-            string: "\(configuration.mode == .production ? AirRobeStrings.orderActivateBaseUrl : AirRobeStrings.orderActivateSandBoxBaseUrl)\(configuration.appId)-\(viewModel.orderId)/claim"
+            string: "\(configuration.mode == .production ? AirRobeDefaultStrings.orderActivateBaseUrl : AirRobeDefaultStrings.orderActivateSandBoxBaseUrl)\(configuration.appId)-\(viewModel.orderId)/claim"
         )
         guard let url = url else {
             return
@@ -65,7 +65,7 @@ final class AirRobeOrderConfirmationView: UIView, NibLoadable {
     }
 }
 
-private extension AirRobeOrderConfirmationView {
+private extension DefaultOrderConfirmationView {
 
     func setupBindings() {
         viewModel.$isAllSet

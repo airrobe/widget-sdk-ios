@@ -1,5 +1,5 @@
 //
-//  AirRobeStrings.swift
+//  AirRobeDefaultStrings.swift
 //  
 //
 //  Created by King on 11/23/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AirRobeStrings {
+enum AirRobeDefaultStrings {
     // MARK: - Title Strings
     static let added = "Added To"
     static let add = "Add To"
@@ -28,48 +28,6 @@ enum AirRobeStrings {
     static let extraInfo = "By opting in you agree to \(companyNameText)’s \(extraLinkText) and consent for us to share your details with AirRobe."
     static let extraLinkText = "Privacy Policy"
     static let companyNameText = "COMPANY NAME"
-
-    // MARK: - Get Shopping Data Query Strings
-    static let GetShoppingDataQuery = """
-                query GetShoppingData ($appId: String) {
-                  shop(appId: $appId) {
-                    name
-                    privacyUrl
-                    popupFindOutMoreUrl
-                    categoryMappings(mappedOrExcludedOnly: true) {
-                      from
-                      to
-                      excluded
-                    }
-                    minimumPriceThresholds {
-                      default
-                      department
-                      minimumPriceCents
-                    }
-                    widgetVariants {
-                      disabled
-                      splitTestVariant
-                    }
-                  }
-                }
-            """
-
-    // MARK: - Check Email Query Strings
-    static let CheckEmailQuery = """
-                query IsCustomer ($email: String!) {
-                  isCustomer(email: $email)
-                }
-            """
-
-    // MARK: - Create Opted Out Order Query Strings
-    static let CreateOptedOutOrderQuery = """
-                mutation CreateOptedOutOrder ($input: CreateOptedOutOrderMutationInput!) {
-                  createOptedOutOrder (input: $input) {
-                    created
-                    error
-                  }
-                }
-            """
 
     // MARK: - Learn More Alert View Controller Strings
     static let learnMoreTitle = "HOW IT WORKS"
