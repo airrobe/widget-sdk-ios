@@ -1,5 +1,5 @@
 //
-//  AirRobeOptInView.swift
+//  DefaultOptInView.swift
 //  
 //
 //  Created by King on 11/18/21.
@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 // AirRobe view which will be shown on Shopping page.
-final class AirRobeOptInView: UIView, NibLoadable {
+final class DefaultOptInView: UIView, NibLoadable {
     @IBOutlet weak var widgetStackView: UIStackView!
     @IBOutlet weak var mainContainerView: UIView!
     @IBOutlet weak var topContentContainer: UIStackView!
@@ -63,13 +63,13 @@ final class AirRobeOptInView: UIView, NibLoadable {
         let maxWidth = usableHorizontalSpace()
         if descriptionValueLabelMaxWidth != maxWidth {
             descriptionValueLabelMaxWidth = maxWidth
-            guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeStrings.description else {
+            guard let value = descriptionLabel.text, value.isEmpty || value == AirRobeDefaultStrings.description else {
                 return
             }
-            if ((AirRobeStrings.description).width(withFont: descriptionLabel.font).width + EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > descriptionValueLabelMaxWidth {
-                descriptionLabel.text = AirRobeStrings.descriptionCutOffText
+            if ((AirRobeDefaultStrings.description).width(withFont: descriptionLabel.font).width + EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > descriptionValueLabelMaxWidth {
+                descriptionLabel.text = AirRobeDefaultStrings.descriptionCutOffText
             } else {
-                descriptionLabel.text = AirRobeStrings.description
+                descriptionLabel.text = AirRobeDefaultStrings.description
             }
         }
     }
@@ -80,7 +80,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
 
     private func commonInit() {
         // Widget Border Style
-        mainContainerView.addBorder(color: AirRobeBorderColor.cgColor, cornerRadius: 0)
+        mainContainerView.addBorder(cornerRadius: 0)
 
         let tapOnArrowImage = UITapGestureRecognizer(target: self, action:  #selector(onTapArrow))
         arrowImageView.isUserInteractionEnabled = true
@@ -90,25 +90,25 @@ final class AirRobeOptInView: UIView, NibLoadable {
         topContentContainer.addGestureRecognizer(tapOnTopContentContainer)
 
         // Initializing Static Texts & Links
-        titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeStrings.added : AirRobeStrings.add
-        descriptionLabel.text = AirRobeStrings.description
-        potentialValueLabel.text = AirRobeStrings.potentialValue
+        titleLabel.text = UserDefaults.standard.OptedIn ? AirRobeDefaultStrings.added : AirRobeDefaultStrings.add
+        descriptionLabel.text = AirRobeDefaultStrings.description
+        potentialValueLabel.text = AirRobeDefaultStrings.potentialValue
         potentialValueLoading.hidesWhenStopped = true
         potentialValueLoading.startAnimating()
 
         detailedDescriptionLabel.setLinkText(
-            orgText: AirRobeStrings.detailedDescription,
-            linkText: AirRobeStrings.learnMoreLinkText,
-            link: AirRobeStrings.learnMoreLinkForPurpose,
+            orgText: AirRobeDefaultStrings.detailedDescription,
+            linkText: AirRobeDefaultStrings.learnMoreLinkText,
+            link: AirRobeDefaultStrings.learnMoreLinkForPurpose,
             tapHandler: onTapLearnMore)
         detailedDescriptionLabel.isHidden = true
 
         if let privacyLink = URL(string: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.privacyUrl ?? "") {
             extraInfoContainer.isHidden = false
-            let extraInfo = AirRobeStrings.extraInfo.replacingOccurrences(of: AirRobeStrings.companyNameText, with: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.name ?? "")
+            let extraInfo = AirRobeDefaultStrings.extraInfo.replacingOccurrences(of: AirRobeDefaultStrings.companyNameText, with: AirRobeShoppingDataModelInstance.shared.shoppingDataModel?.data.shop.name ?? "")
             extraInfoLabel.setLinkText(
                 orgText: extraInfo,
-                linkText: AirRobeStrings.extraLinkText,
+                linkText: AirRobeDefaultStrings.extraLinkText,
                 link: privacyLink,
                 tapHandler: onTapExtraInfoLink)
         } else {
@@ -131,7 +131,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
         guard let vc = parentViewController else {
             return
         }
-        let alert = AirRobeLearnMoreAlertViewController.instantiate()
+        let alert = DefaultLearnMoreAlertViewController.instantiate()
         alert.modalPresentationStyle = .overCurrentContext
         alert.viewType = viewType
         vc.present(alert, animated: true)
@@ -145,7 +145,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
     }
 
     @IBAction func onTapSwitch(_ sender: UISwitch) {
-        titleLabel.text = sender.isOn ? AirRobeStrings.added : AirRobeStrings.add
+        titleLabel.text = sender.isOn ? AirRobeDefaultStrings.added : AirRobeDefaultStrings.add
         UserDefaults.standard.OptedIn = sender.isOn
         if sender.isOn {
             if viewType == .optIn {
@@ -197,7 +197,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveLinear, animations: { [weak self] in
             self?.arrowImageView.layer.transform = CATransform3DMakeRotation(CGFloat(Double.pi), degree, 0.0, 0.0)
         })
-        AirRobeOptInView.performWithoutAnimation {
+        DefaultOptInView.performWithoutAnimation {
             tableView?.beginUpdates()
             detailedDescriptionLabel.isHidden.toggle()
             tableView?.endUpdates()
@@ -205,7 +205,7 @@ final class AirRobeOptInView: UIView, NibLoadable {
     }
 }
 
-private extension AirRobeOptInView {
+private extension DefaultOptInView {
 
     func setupBindings() {
         UserDefaults.standard
@@ -292,9 +292,9 @@ private extension AirRobeOptInView {
                 }
                 DispatchQueue.main.async {
                     self.potentialValueLoading.stopAnimating()
-                    self.potentialValueLabel.text = AirRobeStrings.potentialValue + "$" + price
-                    if ((AirRobeStrings.description).width(withFont: self.descriptionLabel.font).width + self.EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > self.descriptionValueLabelMaxWidth {
-                        self.descriptionLabel.text = AirRobeStrings.descriptionCutOffText
+                    self.potentialValueLabel.text = AirRobeDefaultStrings.potentialValue + "$" + price
+                    if ((AirRobeDefaultStrings.description).width(withFont: self.descriptionLabel.font).width + self.EXTRA_PADDING_FOR_DESCRIPTION_LABEL_MAX_WIDTH) > self.descriptionValueLabelMaxWidth {
+                        self.descriptionLabel.text = AirRobeDefaultStrings.descriptionCutOffText
                         return
                     }
                 }
