@@ -11,7 +11,7 @@ import UIKit
 extension AirRobeEndpoint {
 
     static func getCategoryMapping(operation: AirRobeGraphQLOperation<AppIdInput>) -> AirRobeEndpoint {
-        return AirRobeEndpoint(method: .POST, path: "/graphql", getShoppingDataRequestBody: operation, host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue)
+        return AirRobeEndpoint(method: .POST, path: "/graphql", getShoppingDataRequestBody: operation, host: configuration?.mode == .production ? AirRobeConnectorHost.production.rawValue : AirRobeConnectorHost.sandbox.rawValue)
     }
 
     static func emailCheck(operation: AirRobeGraphQLOperation<EmailInput>) -> AirRobeEndpoint {
@@ -19,7 +19,7 @@ extension AirRobeEndpoint {
     }
 
     static func createOptedOutOrder(operation: AirRobeGraphQLOperation<CreateOptedOutOrderInput>) -> AirRobeEndpoint {
-        return AirRobeEndpoint(method: .POST, path: "/graphql", createOptedOutOrderRequestBody: operation, host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue)
+        return AirRobeEndpoint(method: .POST, path: "/graphql", createOptedOutOrderRequestBody: operation, host: configuration?.mode == .production ? AirRobeConnectorHost.production.rawValue : AirRobeConnectorHost.sandbox.rawValue)
     }
 
     static func priceEngine(price: Double, rrp: Double?, category: String, brand: String?, material: String?) -> AirRobeEndpoint {
@@ -83,7 +83,8 @@ extension AirRobeEndpoint {
             method: .PUT,
             path: "/v1",
             requestBody: requestBody,
-            host: telemetryEventHost
+            scheme: "http",
+            host: configuration?.mode == .production ? AirRobeTelemetryEventHost.production.rawValue : AirRobeTelemetryEventHost.sandbox.rawValue
         )
     }
 
@@ -100,7 +101,7 @@ extension AirRobeEndpoint {
             method: .POST,
             path: "/internal_webhooks/identify_order",
             requestBody: requestBody,
-            host: configuration?.mode == .production ? AirRobeHost.airRobeConnectorProduction.rawValue : AirRobeHost.airRobeConnectorSandbox.rawValue
+            host: configuration?.mode == .production ? AirRobeConnectorHost.production.rawValue : AirRobeConnectorHost.sandbox.rawValue
         )
     }
 }
