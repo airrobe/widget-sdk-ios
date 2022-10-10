@@ -83,7 +83,6 @@ extension AirRobeEndpoint {
             method: .PUT,
             path: "/v1",
             requestBody: requestBody,
-            scheme: "http",
             host: configuration?.mode == .production ? AirRobeTelemetryEventHost.production.rawValue : AirRobeTelemetryEventHost.sandbox.rawValue
         )
     }
